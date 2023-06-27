@@ -779,7 +779,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 				_value = _value * out_of_ratings;
 			}
 
-			if (df.fieldtype === "Image") {
+			if (df.fieldtype === "Image" || df.fieldtype === "Attach Image") {
 				html = df.options
 					? `<img src="${doc[df.options]}"
 					style="max-height: 30px; max-width: 100%;">`
@@ -1022,7 +1022,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			return `<span class="indicator-pill ${indicator[1]} filterable ellipsis"
 				data-filter='${indicator[2]}' title='${title}'>
 				<span class="ellipsis"> ${__(indicator[0])}</span>
-			</span>`;
+			<span>`;
 		}
 		return "";
 	}
