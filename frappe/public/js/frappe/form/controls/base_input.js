@@ -35,6 +35,11 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 	toggle_description(show) {
 		this.$wrapper.find(".help-box").toggleClass("hide", !show);
 	}
+	toggle_visibilty() {
+		if (this.$input && this.df.hide_on_new) {
+			this.$wrapper.find(".form-group").toggleClass("hide", this.frm?.is_new());
+		}
+	}
 	set_input_areas() {
 		if (this.only_input) {
 			this.input_area = this.wrapper;
@@ -123,6 +128,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 				}
 			}
 
+			me.toggle_visibilty();
 			me.set_description();
 			me.set_label();
 			me.set_doc_url();
