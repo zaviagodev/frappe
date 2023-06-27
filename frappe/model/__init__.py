@@ -60,6 +60,7 @@ no_value_fields = (
 	"Image",
 	"Fold",
 	"Heading",
+	"Connection",
 )
 
 display_fieldtypes = (
@@ -71,6 +72,7 @@ display_fieldtypes = (
 	"Image",
 	"Fold",
 	"Heading",
+	"Connection",
 )
 
 numeric_fieldtypes = ("Currency", "Int", "Long Int", "Float", "Percent", "Check")
