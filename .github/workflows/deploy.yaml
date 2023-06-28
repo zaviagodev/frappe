@@ -17,6 +17,7 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            export GIT_SSH_COMMAND=/home/frappe-bench/custom-ssh.sh
             cd /home/frappe-bench/frappe_docker/frappe/frappe-bench/apps/frappe
             git pull origin main
             export NVM_DIR=~/.nvm
