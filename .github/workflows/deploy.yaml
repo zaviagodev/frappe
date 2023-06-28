@@ -17,8 +17,6 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            whoami
-            ls
             cd /home/frappe-bench/frappe_docker/frappe/frappe-bench/apps/frappe
             git pull origin main
             export NVM_DIR=~/.nvm
