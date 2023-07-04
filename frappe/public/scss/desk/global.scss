@@ -664,7 +664,7 @@ details > summary:focus {
 	transition:left 300ms;
 	&.active {
 		left:70px;
-		transition:left 300ms;
+		transition:left 300ms,background 0ms;
 	}
 	.sidebar-child-item.nested-container {
 		margin-left:30px;
