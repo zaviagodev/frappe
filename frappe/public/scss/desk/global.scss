@@ -506,7 +506,7 @@ body.no-sidebar {
 	}
 }
 
-.list-group-by-fields .list-sidebar-button {
+.list-sidebar .list-sidebar-button {
 	background-color:#F4F5F6;
 	border:1px solid #EBEEF0;
 	box-sizing:border-box;
@@ -913,5 +913,14 @@ details > summary:focus {
 	}
 	.nav-btns {
 		border-color:#1C2126;
+	}
+}
+
+@media (max-width:1500px){
+	.nav-left-side-two {
+		width:200px;
+	}
+	.navbar, #body, .navbar-test {
+		margin-left:270px;
 	}
 }
