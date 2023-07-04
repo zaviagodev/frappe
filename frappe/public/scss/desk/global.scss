@@ -751,6 +751,16 @@ details > summary:focus {
 	margin-bottom:6px;
 }
 
+.logo {
+	cursor:pointer;
+	background-color:white;
+	position:relative;
+	height:54px;
+	width:54px;
+	left:-2px;
+	top:-5px;
+}
+
 .nav-btns {
 	height:47px;
 	display:flex;
