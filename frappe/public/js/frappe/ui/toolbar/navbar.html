@@ -1,11 +1,14 @@
 <header class="navbar navbar-expand sticky-top" role="navigation">
 	<div class="container">
-		<a class="navbar-brand navbar-home" href="/app">
+		<!-- <a class="navbar-brand navbar-home" href="/app">
 			<img class="app-logo" style="width: {{ navbar_settings.logo_width || 24 }}px" src="{{ frappe.boot.app_logo_url }}">
-		</a>
-		<ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul>
+		</a> -->
+		<ul class="nav navbar-nav" id="navbar-breadcrumbs"></ul>
+		<span id="expand-breadcrumb" onclick="clickToShowBreadcrumb()">
+			<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>
+		</span>
 		<div class="collapse navbar-collapse justify-content-end">
-			<form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
+			<form class="form-inline fill-width justify-content-center" role="search" onsubmit="return false;">
 				{% if (frappe.boot.read_only) { %}
 					<span class="indicator-pill yellow no-indicator-dot" title="{%= __("Your site is getting upgraded.") %}">
 						{%= __("Read Only Mode") %}
@@ -16,15 +19,37 @@
 						id="navbar-search"
 						type="text"
 						class="form-control"
-						placeholder="{%= __("Search or type a command (Ctrl + G)") %}"
+						placeholder="{%= __("Search or type a command") %}"
 						aria-haspopup="true"
 					>
 					<span class="search-icon">
 						<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
 					</span>
+					<span class="key-shortcut">
+						⌘G
+					</span>
 				</div>
 			</form>
 			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="return false;" style="margin-right:10px">
+						<span>
+							<svg class="icon icon-md" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+								<path d="M9.03125 0.03125C9.625 0.03125 10.0625 0.59375 9.90625 1.15625L8.21875 7H10.9062C11.5 7 12 7.5 12 8.09375C12 8.4375 11.8438 8.71875 11.5938 8.9375L3.5 15.8125C3.34375 15.9375 3.15625 16 2.9375 16C2.34375 16 1.90625 15.4375 2.0625 14.875L3.75 9H1.03125C0.46875 9 0 8.53125 0 7.96875C0 7.65625 0.125 7.34375 0.34375 7.15625L8.46875 0.21875C8.625 0.09375 8.8125 0 9.03125 0V0.03125ZM7.90625 2.65625L2.25 7.5H4.75C4.96875 7.5 5.1875 7.625 5.34375 7.8125C5.46875 8 5.53125 8.25 5.46875 8.46875L4.0625 13.375L9.78125 8.5H7.25C7 8.5 6.78125 8.40625 6.625 8.21875C6.5 8.03125 6.4375 7.78125 6.5 7.5625L7.90625 2.65625Z" fill="#006AFF" stroke="none"></path>
+							</svg>
+						</span>
+						Upgrade to pro
+					</a>
+				</li>
+				<li class="vertical-bar d-none d-sm-block"></li>
+				<li class="nav-item">
+					<a class="share-btn" href="#" onclick="return false;">
+						<span>
+							<svg class="icon icon-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3" stroke="white"></circle><circle cx="6" cy="12" r="3" stroke="white"></circle><circle cx="18" cy="19" r="3" stroke="white"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="white"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="white"></line></svg>
+						</span>
+						Share
+					</a>
+				</li>
 				<li class="nav-item dropdown dropdown-notifications dropdown-mobile hidden">
 					<a
 						class="nav-link notifications-icon text-muted"
@@ -118,3 +143,651 @@
 		</div>
 	</div>
 </header>
+
+<!-- Create additional sidebar -->
+
+<nav class="nav-left-side">
+	<div class="nav-btns" onclick="hideSidebar()" style="cursor:pointer">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<rect width="24" height="24" fill="url(#pattern0)"/>
+			<defs>
+			<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+			<use xlink:href="#image0_1075_130685" transform="translate(0 -0.00625) scale(0.00625)"/>
+			</pattern>
+			<image id="image0_1075_130685" width="160" height="162" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACiCAYAAADGB8YmAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF0WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTAxLTIyVDAwOjI1OjQ5KzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTAxLTIyVDAwOjI1OjQ5KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wMS0yMlQwMDoyNTo0OSswMTowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1ODc0ZGI3Mi01N2IzLTBmNDMtOTY0Yy05MWM2MTk1YzNmZTYiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDoxYjQzZjg2YS0wNWM0LTUwNGUtODQx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"/>
+			</defs>
+		</svg>
+	</div>
+	<a href="/app" class="nav-btns">
+		<svg xmlns="http://www.w3.org/2000/svg" width="23" height="21" viewBox="0 0 23 21" fill="none">
+			<path d="M22.5156 10.0312C22.7891 10.2656 22.7891 10.6562 22.5547 10.9297C22.3594 11.2031 21.9688 11.2031 21.6953 10.9688L20.25 9.67969V17.375C20.25 19.1328 18.8438 20.5 17.125 20.5H5.875C4.11719 20.5 2.75 19.1328 2.75 17.375V9.67969L1.26562 10.9688C0.992188 11.2031 0.601562 11.2031 0.40625 10.9297C0.171875 10.6562 0.171875 10.2656 0.445312 10.0312L11.0703 0.695312C11.3047 0.460938 11.6562 0.460938 11.8906 0.695312L22.5156 10.0312ZM5.875 19.25H8.375V13C8.375 12.3359 8.92188 11.75 9.625 11.75H13.375C14.0391 11.75 14.625 12.3359 14.625 13V19.25H17.125C18.1406 19.25 19 18.4297 19 17.375V8.58594L11.5 1.98438L4 8.58594V17.375C4 18.4297 4.82031 19.25 5.875 19.25ZM9.625 19.25H13.375V13H9.625V19.25Z" fill="#505A62"/>
+		</svg>
+	</a>
+	<div class="nav-btns" onclick="clickMenuOne()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+			<path d="M18.4609 0.5C19.8672 0.5 20.9609 1.63281 20.9609 3V14.1719C20.9609 15.5 19.8281 16.6328 18.4609 16.6328H12.8359L7.95312 20.3047C7.64062 20.5 7.21094 20.3047 7.21094 19.9141V16.6719H3.46094C2.05469 16.6719 0.960938 15.5781 0.960938 14.2109V3C0.960938 1.63281 2.05469 0.5 3.46094 0.5H18.4609ZM19.75 14.25V3C19.75 2.33594 19.1641 1.75 18.5 1.75H3.5C2.79688 1.75 2.25 2.33594 2.25 3V14.25C2.25 14.9531 2.79688 15.5 3.5 15.5H7.875C8.1875 15.5 8.5 15.8125 8.5 16.125V18.4688L12.0938 15.7734C12.3281 15.6172 12.5625 15.5 12.8359 15.5H18.5C19.1641 15.5 19.75 14.9531 19.75 14.25ZM11.625 9.875C11.9375 9.875 12.2109 10.1875 12.2109 10.5C12.2109 10.8516 11.9375 11.125 11.625 11.125H6.625C6.27344 11.125 5.96094 10.8516 6 10.5C6 10.1875 6.27344 9.875 6.625 9.875H11.625ZM15.375 6.125C15.6875 6.125 15.9609 6.4375 15.9609 6.75C15.9609 7.10156 15.6875 7.375 15.375 7.375H6.625C6.27344 7.375 5.96094 7.10156 6 6.75C6 6.4375 6.27344 6.125 6.625 6.125H15.375Z" fill="#505A62"/>
+		</svg>
+	</div>
+	<div class="nav-btns" onClick="clickMenuTwo()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M16.875 0C17.0649 0 17.2444 0.0863063 17.3631 0.234566L19.8631 3.35957C20.0456 3.58783 20.0456 3.91217 19.8631 4.14043L17.3631 7.26544C17.2444 7.41369 17.0649 7.5 16.875 7.5C16.6851 7.5 16.5056 7.41369 16.3869 7.26544L13.8869 4.14043C13.7044 3.91217 13.7044 3.58783 13.8869 3.35957L16.3869 0.234566C16.5056 0.0863063 16.6851 0 16.875 0ZM15.1754 3.75L16.875 5.87451L18.5746 3.75L16.875 1.62549L15.1754 3.75ZM6.83737 3.66554C7.11918 3.13396 7.8808 3.13396 8.16262 3.66554L10.3444 7.78063L14.4594 9.96238C14.9911 10.2442 14.9911 11.0058 14.4594 11.2876L10.3444 13.4694L8.16262 17.5844C7.8808 18.1161 7.11918 18.1161 6.83737 17.5844L4.65562 13.4694L0.540532 11.2876C0.00894861 11.0058 0.00895184 10.2442 0.540532 9.96238L4.65562 7.78063L6.83737 3.66554ZM7.49999 5.08428L5.6881 8.50181C5.6178 8.63437 5.50936 8.74281 5.37678 8.81312L1.95927 10.625L5.37678 12.4369C5.50936 12.5072 5.6178 12.6156 5.6881 12.7482L7.49999 16.1658L9.31187 12.7482C9.38218 12.6156 9.49062 12.5072 9.62318 12.4369L13.0407 10.625L9.62318 8.81312C9.49062 8.74281 9.38218 8.63437 9.31187 8.50181L7.49999 5.08428ZM17.5 13.125C17.5 12.7798 17.2202 12.5 16.875 12.5C16.5298 12.5 16.25 12.7798 16.25 13.125V15H14.375C14.0298 15 13.75 15.2798 13.75 15.625C13.75 15.9702 14.0298 16.25 14.375 16.25H16.25V18.125C16.25 18.4702 16.5298 18.75 16.875 18.75C17.2202 18.75 17.5 18.4702 17.5 18.125V16.25H19.375C19.7202 16.25 20 15.9702 20 15.625C20 15.2798 19.7202 15 19.375 15H17.5V13.125Z" fill="#505A62"/>
+		</svg>
+	</div>
+	<hr class="vertical-bar d-none d-sm-block" />
+	<div class="nav-btns">
+		<svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+			<path d="M0 2.625C0 1.60938 0.820312 0.75 1.875 0.75H5.625C6.64062 0.75 7.5 1.60938 7.5 2.625V6.375C7.5 7.42969 6.64062 8.25 5.625 8.25H1.875C0.820312 8.25 0 7.42969 0 6.375V2.625ZM1.25 2.625V6.375C1.25 6.72656 1.52344 7 1.875 7H5.625C5.9375 7 6.25 6.72656 6.25 6.375V2.625C6.25 2.3125 5.9375 2 5.625 2H1.875C1.52344 2 1.25 2.3125 1.25 2.625ZM0 12.625C0 11.6094 0.820312 10.75 1.875 10.75H5.625C6.64062 10.75 7.5 11.6094 7.5 12.625V16.375C7.5 17.4297 6.64062 18.25 5.625 18.25H1.875C0.820312 18.25 0 17.4297 0 16.375V12.625ZM1.25 12.625V16.375C1.25 16.7266 1.52344 17 1.875 17H5.625C5.9375 17 6.25 16.7266 6.25 16.375V12.625C6.25 12.3125 5.9375 12 5.625 12H1.875C1.52344 12 1.25 12.3125 1.25 12.625ZM15.625 0.75C16.6406 0.75 17.5 1.60938 17.5 2.625V6.375C17.5 7.42969 16.6406 8.25 15.625 8.25H11.875C10.8203 8.25 10 7.42969 10 6.375V2.625C10 1.60938 10.8203 0.75 11.875 0.75H15.625ZM15.625 2H11.875C11.5234 2 11.25 2.3125 11.25 2.625V6.375C11.25 6.72656 11.5234 7 11.875 7H15.625C15.9375 7 16.25 6.72656 16.25 6.375V2.625C16.25 2.3125 15.9375 2 15.625 2ZM10 12.625C10 11.6094 10.8203 10.75 11.875 10.75H15.625C16.6406 10.75 17.5 11.6094 17.5 12.625V16.375C17.5 17.4297 16.6406 18.25 15.625 18.25H11.875C10.8203 18.25 10 17.4297 10 16.375V12.625ZM11.25 12.625V16.375C11.25 16.7266 11.5234 17 11.875 17H15.625C15.9375 17 16.25 16.7266 16.25 16.375V12.625C16.25 12.3125 15.9375 12 15.625 12H11.875C11.5234 12 11.25 12.3125 11.25 12.625Z" fill="#505A62"/>
+		</svg>
+	</div>
+	<div id="additional-apps">
+		<div class="nav-btns add-ons" style="background:#292929">
+			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+				<path d="M12.5 1.54688L21.8359 0.453125C22.3828 0.375 22.9297 0.6875 23.125 1.19531L24.375 4.125C24.7656 5.02344 24.2578 6.03906 23.2812 6.23438L17.0703 7.67969C16.3281 7.875 15.5859 7.5625 15.1172 6.9375L12.5 3.22656L9.84375 6.9375C9.375 7.5625 8.63281 7.875 7.89062 7.67969L1.67969 6.23438C0.703125 6.03906 0.195312 5.02344 0.585938 4.125L1.83594 1.19531C2.03125 0.6875 2.57812 0.375 3.125 0.453125L12.5 1.54688ZM1.71875 4.59375C1.64062 4.78906 1.75781 4.98438 1.95312 5.02344L8.16406 6.46875C8.39844 6.54688 8.67188 6.42969 8.82812 6.23438L11.3672 2.67969L2.96875 1.70312L1.71875 4.59375ZM16.1328 6.23438C16.2891 6.42969 16.5625 6.54688 16.7969 6.46875L23.0078 5.02344C23.2031 4.98438 23.3203 4.78906 23.2422 4.59375L21.9922 1.70312L13.5938 2.67969L16.1328 6.23438ZM21.25 7.75781L22.5 7.40625V13.3047C22.5 14.1641 21.9141 14.9062 21.0547 15.1406L12.9297 17.1719C12.6562 17.2109 12.3438 17.2109 12.0312 17.1719L3.90625 15.1406C3.04688 14.9062 2.5 14.1641 2.5 13.3047V7.40625L3.75 7.75781V13.3047C3.75 13.5781 3.90625 13.8516 4.21875 13.8906L11.875 15.8047V6.625C11.875 6.3125 12.1484 6 12.5 6C12.8125 6 13.125 6.3125 13.125 6.625V15.8047L20.7422 13.8906C21.0547 13.8516 21.25 13.5781 21.25 13.3047V7.75781Z" fill="white"/>
+			</svg>
+		</div>
+		<div class="nav-btns add-ons" style="background:#F2F2FD">
+			<svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 22 24" fill="none">
+				<path d="M21.2486 11.3284L11.9056 1.00106L11 0L3.96702 7.77402L0.751445 11.3284C0.416185 11.6995 0.416185 12.3005 0.751445 12.6716L7.17685 19.774L11 24L18.033 16.226L18.1419 16.1056L21.2486 12.6716C21.5838 12.3005 21.5838 11.6995 21.2486 11.3284ZM11 15.548L7.79016 12L11 8.45195L14.2098 12L11 15.548Z" fill="#2684FF"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M11.0004 8.45469C8.89888 6.13142 8.88864 2.36846 10.9775 0.03125L3.95313 7.7926L7.77627 12.0186L11.0004 8.45469Z" fill="url(#paint0_linear_210_27796)"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M14.2184 11.9922L11 15.5497C12.0144 16.6703 12.5843 18.1905 12.5843 19.7757C12.5843 21.3609 12.0144 22.8811 11 24.0017L18.0416 16.2182L14.2184 11.9922Z" fill="url(#paint1_linear_210_27796)"/>
+				<defs>
+				<linearGradient id="paint0_linear_210_27796" x1="10.4273" y1="4.86546" x2="4.86407" y2="6.99082" gradientUnits="userSpaceOnUse">
+				<stop offset="0.18" stop-color="#0052CC"/>
+				<stop offset="1" stop-color="#2684FF"/>
+				</linearGradient>
+				<linearGradient id="paint1_linear_210_27796" x1="11.6133" y1="19.0978" x2="17.1646" y2="16.9882" gradientUnits="userSpaceOnUse">
+				<stop offset="0.18" stop-color="#0052CC"/>
+				<stop offset="1" stop-color="#2684FF"/>
+				</linearGradient>
+				</defs>
+			</svg>
+		</div>
+		<div class="nav-btns add-ons" style="background:#FFEAE1">
+			<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M18.3002 0C21.1074 1.74958 23 5.05109 23 8.8357C23 14.4493 18.8362 19 13.6998 19C11.9853 19 10.3791 18.4929 9 17.6086L18.3002 0Z" fill="#F46A2F"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.69983 23C1.89257 21.3425 0 18.2148 0 14.6293C0 9.31121 4.16381 5 9.3002 5C11.0147 5 12.6209 5.48035 14 6.31821L4.69983 23Z" fill="#CB5A2A"/>
+			</svg>
+		</div>
+	</div>
+</nav>
+<nav class="nav-left-side-two active">
+	<h4 style="color:#6A737A;font-size:11px;font-weight:500">SPACE</h4>
+	<h3 id="heading-menu" class="title-text"></h3>
+	<div class="p-0" id="menu-one">
+		<div class="list-sidebar overlay-sidebar">
+		  <div class="desk-sidebar list-unstyled sidebar-menu">
+			<div class="standard-sidebar-section nested-container hidden" data-title="My Workspaces">
+			  <div class="standard-sidebar-label">
+				<span>
+				  <svg class="icon  icon-xs" style="">
+					<use class="" href="#icon-small-down"></use>
+				  </svg>
+				</span>
+				<span class="section-title">My Workspaces <span></span>
+				</span>
+			  </div>
+			</div>
+			<div class="standard-sidebar-section nested-container inactive" data-title="Public">
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Home" item-public="1" item-is-hidden="0">
+				<a href="/app/home" class="item-anchor" title="Home">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="getting-started">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-getting-started"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Home <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Accounting" item-public="1" item-is-hidden="0">
+				<a href="/app/accounting" class="item-anchor" title="Accounting">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="accounting">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-accounting"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Accounting <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Assets" item-public="1" item-is-hidden="0">
+				<a href="/app/assets" class="item-anchor" title="Assets">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="assets">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-assets"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Assets <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Build" item-public="1" item-is-hidden="0">
+				<a href="/app/build" class="item-anchor" title="Build">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="tool">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-tool"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Build <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Buying" item-public="1" item-is-hidden="0">
+				<a href="/app/buying" class="item-anchor" title="Buying">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="buying">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-buying"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Buying <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="CRM" item-public="1" item-is-hidden="0">
+				<a href="/app/crm" class="item-anchor" title="CRM">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="crm">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-crm"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">CRM <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Loans" item-public="1" item-is-hidden="0">
+				<div class="sidebar-item-control with-dropdown">
+					<span class="drop-icon show-in-edit-mode">
+						<svg class="icon  icon-sm" style="">
+						<use class="" href="#icon-small-down"></use>
+						</svg>
+					</span>
+				</div>
+				<a href="/app/loans" class="item-anchor" title="Loans">
+				  <div class="desk-sidebar-item standard-sidebar-item has-dropdown">
+					<span class="sidebar-item-icon" item-icon="loan">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-loan"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Loans <span></span>
+					</span>
+				  </div>
+				</a>
+				<div class="sidebar-child-item nested-container submenu">
+				  <div class="sidebar-item-container is-draggable" item-parent="Loans" item-name="Manufacturing" item-public="1" item-is-hidden="0">
+					<a href="/app/manufacturing" class="item-anchor" title="Manufacturing">
+					  <div class="desk-sidebar-item standard-sidebar-item">
+						<span class="sidebar-item-icon" item-icon="organization">
+						  <svg class="icon  icon-md" style="">
+							<use class="" href="#icon-organization"></use>
+						  </svg>
+						</span>
+						<span class="sidebar-item-label">Manufacturing <span></span>
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Customization" item-public="1" item-is-hidden="0">
+				<a href="/app/customization" class="item-anchor" title="Customization">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="customization">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-customization"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Customization <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Integrations" item-public="1" item-is-hidden="0">
+				<a href="/app/integrations" class="item-anchor" title="Integrations">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="integration">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-integration"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Integrations <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Tools" item-public="1" item-is-hidden="0">
+				<a href="/app/tools" class="item-anchor" title="Tools">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="tool">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-tool"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Tools <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Users" item-public="1" item-is-hidden="0">
+				<a href="/app/users" class="item-anchor" title="Users">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="users">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-users"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Users <span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Website" item-public="1" item-is-hidden="0">
+				<a href="/app/website" class="item-anchor" title="Website">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="website">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-website"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Website <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Settings" item-public="1" item-is-hidden="0">
+				<a href="/app/settings" class="item-anchor" title="Settings">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="setting">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-setting"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Settings <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	  <div class="p-0" id="menu-two">
+		<div class="list-sidebar overlay-sidebar">
+		  <div class="desk-sidebar list-unstyled sidebar-menu">
+			<div class="standard-sidebar-section nested-container inactive" data-title="Public">
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Projects" item-public="1" item-is-hidden="0">
+				<a href="/app/projects" class="item-anchor" title="Projects">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="projects">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-projects"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Projects<span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Quality" item-public="1" item-is-hidden="0">
+				<a href="/app/quality" class="item-anchor" title="Quality">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="quality">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-quality"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Quality<span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Retail" item-public="1" item-is-hidden="0">
+				<a href="/app/retail" class="item-anchor" title="Retail">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="retail">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-retail"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Retail<span></span>
+					</span>
+				  </div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Stock" item-public="1" item-is-hidden="0">
+				<div class="sidebar-item-control with-dropdown">
+					<span class="drop-icon show-in-edit-mode">
+						<svg class="icon  icon-sm" style="">
+						<use class="" href="#icon-small-down"></use>
+						</svg>
+					</span>
+				</div>
+				<a href="/app/stock" class="item-anchor" title="Stock">
+				  <div class="desk-sidebar-item standard-sidebar-item has-dropdown">
+					<span class="sidebar-item-icon" item-icon="stock">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-stock"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Stock <span></span>
+					</span>
+				  </div>
+				</a>
+				<div class="sidebar-child-item nested-container submenu">
+				  <div class="sidebar-item-container is-draggable" item-parent="Loans" item-name="Item" item-public="1" item-is-hidden="0">
+					<a href="/app/item" class="item-anchor" title="Item">
+					  <div class="desk-sidebar-item standard-sidebar-item">
+						<span class="sidebar-item-icon" item-icon="file">
+						  <svg class="icon  icon-md" style="">
+							<use class="" href="#icon-file"></use>
+						  </svg>
+						</span>
+						<span class="sidebar-item-label">Item <span></span>
+						</span>
+					  </div>
+					</a>
+				  </div>
+				  <div class="sidebar-item-container is-draggable" item-parent="Loans" item-name="Warehouse" item-public="1" item-is-hidden="0">
+					<a href="/app/warehouse" class="item-anchor" title="Warehouse">
+					  <div class="desk-sidebar-item standard-sidebar-item">
+						<span class="sidebar-item-icon" item-icon="assets">
+						  <svg class="icon  icon-md" style="">
+							<use class="" href="#icon-assets"></use>
+						  </svg>
+						</span>
+						  <span class="sidebar-item-label">Warehouse <span></span>
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Support" item-public="1" item-is-hidden="0">
+				<a href="/app/support" class="item-anchor" title="Support">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="support">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-support"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Support <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			  <div class="sidebar-item-container is-draggable" item-parent="" item-name="Utilities" item-public="1" item-is-hidden="0">
+				<a href="/app/utilities" class="item-anchor" title="Utilities">
+				  <div class="desk-sidebar-item standard-sidebar-item">
+					<span class="sidebar-item-icon" item-icon="folder-normal">
+					  <svg class="icon  icon-md" style="">
+						<use class="" href="#icon-folder-normal"></use>
+					  </svg>
+					</span>
+					<span class="sidebar-item-label">Utilities <span></span>
+					</span>
+				  </div>
+				  <div class="sidebar-child-item nested-container"></div>
+				</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+</nav>
+
+<div class="navbar-test">
+	<ul class="navbar-test-menus">
+		<li>
+		<a class="grey-link dropdown-item" href="/app/item/view/report">
+			<span class="menu-item-icon">
+				<svg class="icon  icon-sm" style="">
+				<use class="" href="#icon-small-file"></use>
+				</svg></span>
+			<span class="menu-item-label" data-label="Report"><span class="alt-underline">R</span>eport</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey-link dropdown-item" href="/app/item/view/list">
+			<span class="menu-item-icon">
+				<svg class="icon  icon-sm" style="">
+				<use class="" href="#icon-list"></use>
+				</svg></span>
+			<span class="menu-item-label" data-label="Report"><span class="alt-underline">L</span>ist</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey-link dropdown-item" href="/app/item/view/dashboard">
+			<span class="menu-item-icon">
+				<svg class="icon  icon-sm" style="">
+				<use class="" href="#icon-dashboard"></use>
+				</svg></span>
+			<span class="menu-item-label" data-label="Report"><span class="alt-underline">D</span>ashboard</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey-link dropdown-item" href="#">
+			<span class="menu-item-icon">
+				<svg class="icon  icon-sm" style="">
+				<use class="" href="#icon-kanban"></use>
+				</svg></span>
+			<span class="menu-item-label" data-label="Report"><span class="alt-underline">K</span>anban</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey-link dropdown-item" href="/app/item/view/image">
+			<span class="menu-item-icon">
+				<svg class="icon  icon-sm" style="">
+				<use class="" href="#icon-select"></use>
+				</svg></span>
+			<span class="menu-item-label" data-label="Report"><span class="alt-underline">I</span>mage</span>
+			</a>
+		</li>
+	</ul>
+</div>
+
+<script defer>
+	function hideSidebar(){
+		let sidebar = document.querySelector(".nav-left-side-two");
+		sidebar.classList.toggle("active");
+
+		let navbar = document.querySelector(".navbar");
+		let container = document.querySelector("#body");
+
+		navbar.classList.toggle("inactive");
+		container.classList.toggle("inactive");
+	}
+
+	let itemAnchors = document.querySelectorAll(".nav-left-side-two .item-anchor");
+	let menuItems = document.querySelectorAll(".nav-left-side-two .desk-sidebar-item.standard-sidebar-item");
+	let sidebarLabel = document.querySelectorAll(".nav-left-side-two .sidebar-item-label");
+	let headingMenu = document.getElementById("heading-menu");
+
+	function clickToShowBreadcrumb(){
+		document.getElementById("other-breadcrumb").classList.toggle("active");
+	}
+
+	function handleClick(index) {
+	  for (let i = 0; i < menuItems.length; i++) {
+		if (i === index) {
+		  menuItems[i].classList.add("selected");
+		} else {
+		  menuItems[i].classList.remove("selected");
+		}
+	  }
+	}
+
+	for (let i = 0; i < itemAnchors.length; i++) {
+	  itemAnchors[i].addEventListener("click", function() {
+		handleClick(i);
+		headingMenu.innerHTML = sidebarLabel[i].innerHTML;
+
+		let menuTitle = document.querySelector(".page-title");
+		let navBarTest = document.querySelector(".navbar-test");
+		if (location.href === "/app/item"){
+			menuTitle.style.display = "none";
+			navBarTest.style.display = "flex";
+		} else {
+			menuTitle.style.display = "flex";
+			navBarTest.style.display = "none";
+		}
+	  });
+	}
+
+	var dropdownArrow = document.getElementsByClassName("with-dropdown");
+	var submenus = document.getElementsByClassName("submenu");
+	for (let i = 0; i < dropdownArrow.length; i++){
+		dropdownArrow[i].addEventListener("click", function(){
+			this.classList.toggle("active");
+			submenus[i].classList.toggle("active");
+		});
+	}
+
+	var menuOne = document.getElementById("menu-one");
+	var menuTwo = document.getElementById("menu-two");
+
+	function clickMenuOne(){
+		let sidebar = document.querySelector(".nav-left-side-two");
+		if (sidebar.classList.contains("active") === false){
+			hideSidebar()
+		}
+		menuOne.style.display = "block";
+		menuTwo.style.display = "none";
+	}
+
+	function clickMenuTwo(){
+		let sidebar = document.querySelector(".nav-left-side-two");
+		if (sidebar.classList.contains("active") === false){
+			hideSidebar()
+		}
+		menuOne.style.display = "none";
+		menuTwo.style.display = "block";
+	}
+
+	let navBtns = document.querySelectorAll("nav-btns");
+	for (let i = 0; i < navBtns.length;i++){
+		navBtns[i].addEventListener("click", function(){
+			this.classList.toggle("active");
+		})
+	}
+
+	window.addEventListener("load", function() {
+		var pathIndexMapMenuOne = {
+			"/app": 0,
+			"/app/home": 0,
+			"/app/accounting": 1,
+			"/app/assets": 2,
+			"/app/build": 3,
+			"/app/buying": 4,
+			"/app/crm": 5,
+			"/app/loans": 6,
+			"/app/manufacturing": 7,
+			"/app/customization": 8,
+			"/app/integrations": 9,
+			"/app/tools": 10,
+			"/app/users": 11,
+			"/app/website": 12,
+			"/app/settings": 13,
+		};
+
+		var pathIndexMapMenuTwo = {
+			"/app/projects": 0,
+			"/app/quality": 1,
+			"/app/retail": 2,
+			"/app/stock": 3,
+			"/app/item": 4,
+			"/app/warehouse": 5,
+			"/app/support": 6,
+			"/app/utilities": 7
+		};
+
+		let menuItemsOne = document.querySelectorAll(".nav-left-side-two #menu-one .desk-sidebar-item.standard-sidebar-item");
+		let menuItemsTwo = document.querySelectorAll(".nav-left-side-two #menu-two .desk-sidebar-item.standard-sidebar-item");
+		let sidebarLabel = document.querySelectorAll(".nav-left-side-two .sidebar-item-label");
+
+		function selectMenuItemOne(index) {
+			menuItemsOne[index].classList.add("selected");
+			headingMenu.innerHTML = sidebarLabel[index].innerHTML;
+		}
+
+		function selectMenuItemTwo(index) {
+			menuItemsTwo[index].classList.add("selected");
+			headingMenu.innerHTML = sidebarLabel[index].innerHTML;
+		}
+
+		var currentPath = location.pathname;
+		var indexOne = pathIndexMapMenuOne[currentPath];
+		if (indexOne !== undefined) {
+			selectMenuItemOne(indexOne);
+		}
+		var indexTwo = pathIndexMapMenuTwo[currentPath];
+		if (indexTwo !== undefined) {
+			selectMenuItemTwo(indexTwo);
+		}
+
+		var navbarSearch = document.getElementById("navbar-search");
+		var keyShortcut = document.querySelector(".key-shortcut");
+
+		navbarSearch.addEventListener("focus", function(){
+			keyShortcut.style.display = "none";
+		});
+
+		navbarSearch.addEventListener("blur", function(){
+			keyShortcut.style.display = "block";
+		});
+
+		let navBreadcrumb = document.getElementById("navbar-breadcrumbs");
+		let otherBreadcrumb = document.getElementById("expand-breadcrumb");
+		if (navBreadcrumb.hasChildNodes()){
+			let navBreadcrumbLists = document.querySelectorAll("#navbar-breadcrumbs li");
+			let newBlock = document.createElement("div");
+
+			newBlock.setAttribute("id", "other-breadcrumb");
+
+			navBreadcrumb.appendChild(newBlock);
+
+			otherBreadcrumb.style.visibility = "visible";
+
+			for (let i = 1; i < navBreadcrumbLists.length; i++){
+				newBlock.appendChild(navBreadcrumbLists[i]);
+			}
+		}
+
+		if (location.pathname === "/app/pricing-rule/new-pricing-rule-1" || location.pathname === "/app/pricing-rule/new-pricing-rule-2"){
+			hideSidebar();
+		}
+	});
+
+	document.addEventListener("change", function(){
+		let menuTitle = document.querySelector(".page-title");
+		let navBarTest = document.querySelector(".navbar-test");
+		if (location.pathname === "/app/item"){
+			menuTitle.style.display = "none";
+			navBarTest.style.display = "flex";
+		} else {
+			menuTitle.style.display = "flex";
+			navBarTest.style.display = "none";
+		}
+	});
+
+  </script>
