@@ -760,13 +760,14 @@ details > summary:focus {
 	margin-bottom:8px;
 	cursor:pointer;
 	border-radius:9px;
-	border:0px solid #2794F0;
+	outline:0px solid #2794F0;
+	border:3px solid white;
 	transition:border 100ms linear;
 	&:hover,&.active {
 		background-color:#F0F1F2;
 	}
 	&.add-ons:hover {
-		border:3px solid #2794F0;
+		outline:3px solid #2794F0;
 		transition:border 100ms linear;
 	}
 }
