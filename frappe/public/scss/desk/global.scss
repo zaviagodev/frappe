@@ -661,10 +661,10 @@ details > summary:focus {
 	height:100%;
 	padding:24px 14px;
 	left:-250px;
-	transition:left 300ms;
+	transition:left 300ms,background-color 0ms;
 	&.active {
 		left:70px;
-		transition:left 300ms,background 0ms;
+		transition:left 300ms,background-color 0ms;
 	}
 	.sidebar-child-item.nested-container {
 		margin-left:30px;
@@ -899,5 +899,8 @@ details > summary:focus {
 	}
 	#heading-menu {
 		color:#F9FAFA;
+	}
+	.nav-btns {
+		border-color:#1C2126;
 	}
 }
