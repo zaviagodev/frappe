@@ -743,9 +743,7 @@ details > summary:focus {
     border-radius: 10px;
     box-shadow: 0 1px 8px 0 rgba(0,0,0,0.3);
 	display:none;
-	&.active {
-		display:block;
-	}
+	&.active {display:block}
 }
 
 .standard-sidebar .standard-sidebar-item, .desk-sidebar .standard-sidebar-item, .search-dialog .search-results .search-sidebar .standard-sidebar-item {
@@ -764,11 +762,11 @@ details > summary:focus {
 	border:3px solid white;
 	transition:border 100ms linear;
 	&:hover,&.active {
-		background-color:#F0F1F2;
+	  background-color:#F0F1F2;
 	}
 	&.add-ons:hover {
-		outline:3px solid #2794F0;
-		transition:border 100ms linear;
+	  outline:3px solid #2794F0;
+	  transition:outline 100ms linear;
 	}
 }
 
