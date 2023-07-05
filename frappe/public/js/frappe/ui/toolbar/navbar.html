@@ -652,6 +652,11 @@
 		}
 	}
 
+	var smallScreen = window.matchMedia("(max-width:1200px)");
+	closeSidebarRes(smallScreen);
+
+	smallScreen.addListener(closeSidebarRes);
+
 	let itemAnchors = document.querySelectorAll(".nav-left-side-two .item-anchor");
 	let menuItems = document.querySelectorAll(".nav-left-side-two .desk-sidebar-item.standard-sidebar-item");
 	let sidebarLabel = document.querySelectorAll(".nav-left-side-two .sidebar-item-label");
