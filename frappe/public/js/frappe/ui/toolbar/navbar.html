@@ -634,6 +634,24 @@
 		container.classList.toggle("inactive");
 	}
 
+	function closeSidebarRes(screenSize){
+		let sidebar = document.querySelector(".nav-left-side-two");
+		let navbar = document.querySelector(".navbar");
+		let container = document.querySelector("#body");
+
+		if (screenSize.matches){
+			if (sidebar.hasAttribute("class","active")){
+				sidebar.classList.remove("active");
+				navbar.classList.add("inactive");
+				container.classList.add("inactive");
+			}
+		} else {
+			sidebar.classList.add("active");
+			navbar.classList.remove("inactive");
+			container.classList.remove("inactive");
+		}
+	}
+
 	let itemAnchors = document.querySelectorAll(".nav-left-side-two .item-anchor");
 	let menuItems = document.querySelectorAll(".nav-left-side-two .desk-sidebar-item.standard-sidebar-item");
 	let sidebarLabel = document.querySelectorAll(".nav-left-side-two .sidebar-item-label");
