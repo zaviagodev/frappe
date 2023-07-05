@@ -632,7 +632,6 @@ details > summary:focus {
 	position:absolute;
 	right:0;
 	margin-right:12px;
-	align-items:center;
 	height:27px;
 	display:flex;
 	border:1px solid #EBEEF0;
@@ -805,9 +804,9 @@ details > summary:focus {
 
 #navbar-breadcrumbs {
 	display:flex;
-	li:first-child a::before{
-		content:"";
-	}
+	margin-left:6px !important;
+	li:first-child a::before{content:""}
+	a {display:flex}
 }
 
 #navbar-search {
@@ -817,9 +816,7 @@ details > summary:focus {
     background-origin:border-box;
     background-clip:padding-box, border-box;
 	height:38px;
-	&:focus {
-		background-image:linear-gradient(white,white), linear-gradient(91.07deg, #006AFF 5.92%, rgba(0, 148, 255, 0.08) 33.93%, rgba(194, 147, 255, 0.5) 99.27%);
-	}
+	&:focus {background-image:linear-gradient(white,white), linear-gradient(91.07deg, #006AFF 5.92%, rgba(0, 148, 255, 0.08) 33.93%, rgba(194, 147, 255, 0.5) 99.27%)}
 }
 
 .layout-main-section,.form-page,.navbar,.btn, div#driver-popover-item .driver-popover-footer button, div#driver-popover-item .driver-popover-footer button.driver-next-btn, div#driver-popover-item .driver-popover-footer button.driver-prev-btn, div#driver-popover-item .driver-popover-footer button.driver-close-btn, div#driver-popover-item .driver-popover-footer button.driver-disabled {
