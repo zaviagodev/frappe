@@ -663,6 +663,10 @@ details > summary:focus {
 	}
 }
 
+.form-section.card-section, .form-dashboard-section {
+	border-bottom:none !important;
+}
+
 .nav-left-side-two {
 	position:fixed;
 	width:250px;
@@ -825,8 +829,12 @@ details > summary:focus {
 	box-shadow:none !important;
 }
 
-.btn-default.ellipsis, .btn-secondary.btn-default, .btn-default.icon-btn {
+.btn-default.ellipsis, .btn-secondary.btn-default, .btn-default.icon-btn, .btn-default {
 	border:1px solid #D7D7D7;
+}
+
+.comment-box {
+	box-shadow:none !important;
 }
 
 #expand-breadcrumb {
