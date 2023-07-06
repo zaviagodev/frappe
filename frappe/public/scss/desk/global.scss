@@ -835,6 +835,9 @@ details > summary:focus {
 
 .comment-box {
 	box-shadow:none !important;
+	.btn-comment {
+		border:1px solid #D7D7D7;
+	}
 }
 
 #expand-breadcrumb {
@@ -849,6 +852,12 @@ details > summary:focus {
 
 .page-head {
 	margin-bottom:12px !important;
+	box-shadow:none !important;
+}
+
+.form-tabs-list {
+	transform:translateY(-15px);
+    padding-top:15px;
 }
 
 .navbar {
