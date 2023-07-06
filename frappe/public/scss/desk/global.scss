@@ -777,6 +777,11 @@ details > summary:focus {
 	top:-5px;
 }
 
+.new-timeline .timeline-item .timeline-content.frappe-card{
+	box-shadow:none !important;
+	border:1px solid #F0F0F0;
+}
+
 .nav-btns {
 	height:47px;
 	display:flex;

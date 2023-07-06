@@ -729,6 +729,10 @@
 		}
 		menuOne.style.display = "block";
 		menuTwo.style.display = "none";
+
+		let menus = document.querySelectorAll(".grey");
+		menus.forEach(menu => menu.classList.remove("active"));
+		menus[1].classList.add("active");
 	}
 
 	function clickMenuTwo(){
@@ -739,6 +743,10 @@
 		}
 		menuOne.style.display = "none";
 		menuTwo.style.display = "block";
+
+		let menus = document.querySelectorAll(".grey");
+		menus.forEach(menu => menu.classList.remove("active"));
+		menus[2].classList.add("active");
 	}
 
 	let navBtns = document.querySelectorAll("nav-btns");
