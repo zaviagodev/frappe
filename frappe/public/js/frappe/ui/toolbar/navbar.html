@@ -723,6 +723,8 @@
 		let menus = document.querySelectorAll(".grey");
 		menus.forEach(menu => menu.classList.remove("active"));
 		menus[0].classList.add("active");
+		headingMenu.innerHTML = "Home";
+		handleClick(0);
 	}
 
 	function clickMenuOne(){
