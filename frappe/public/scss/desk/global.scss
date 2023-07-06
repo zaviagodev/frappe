@@ -787,11 +787,24 @@ details > summary:focus {
 	border-radius:9px;
 	outline:0px solid #2794F0;
 	border:3px solid white;
-	&:hover,&.active {
+	&:hover {
 	  background-color:#F0F1F2;
 	}
 	&.add-ons:hover {
 	  outline:2px solid #2794F0;
+	}
+}
+
+.grey {
+	svg path {
+		fill:#505A62;
+	}
+	&:active,&.active {
+		background-color:#292929;
+		outline:2px solid #2794F0;
+		svg path {
+			fill:#FFFFFF;
+		}
 	}
 }
 
@@ -838,6 +851,45 @@ details > summary:focus {
 	.btn-comment {
 		border:1px solid #D7D7D7;
 	}
+	.text-muted {
+		padding-top:50px;
+	}
+}
+
+.ql-bubble .ql-tooltip {
+	width:100% !important;
+	position:relative;
+	display:block !important;
+	top:90px !important;
+	transform:translateY(6px) !important;
+	border-radius:0 0 4px 4px !important;
+}
+
+.ql-bubble .ql-tooltip .ql-tooltip-arrow {
+	border:none;
+}
+
+.timeline-message-box .text-color {
+	font-weight:bold;
+	.frappe-timestamp {
+		font-weight:normal !important;
+	}
+}
+
+.timeline-badge {
+	background-color:#2D94F0 !important;
+	border:none !important;
+	.icon {
+		fill: #FFFFFF !important;
+		stroke: #FFFFFF !important;
+		color:#2D94F0
+	}
+}
+
+#lower-apps {
+    position: absolute;
+    width: calc(100% - 22px);
+    bottom: 0;
 }
 
 #expand-breadcrumb {
