@@ -769,7 +769,6 @@ details > summary:focus {
 
 .logo {
 	cursor:pointer;
-	background-color:white;
 	position:relative;
 	height:54px;
 	width:54px;
@@ -990,6 +989,18 @@ details > summary:focus {
 	}
 	.nav-btns {
 		border-color:#1C2126;
+	}
+	.grey {
+		svg path {
+			fill:#FFFFFF;
+		}
+		&:active,&.active {
+			background-color:#292929;
+			outline:2px solid #2794F0;
+			svg path {
+				fill:#FFFFFF;
+			}
+		}
 	}
 }
 
