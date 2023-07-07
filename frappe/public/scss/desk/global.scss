@@ -390,7 +390,7 @@ kbd {
 		margin-top: var(--margin-sm);
 	}
 
-	.standard-sidebar-item {
+	.standard-sidebar-item,.dropdown-menus {
 		@include flex(flex, null, center, null);
 		font-size: var(--text-base);
 		padding: 8px 12px;
@@ -871,6 +871,15 @@ details > summary:focus {
 
 .ql-bubble .ql-tooltip .ql-tooltip-arrow {
 	border:none;
+}
+
+.dot-items {
+	display:inline-block;
+	width:6px;
+	height:6px;
+	background-color:#D6932E;
+	border-radius:100px;
+	margin-right:16px;
 }
 
 .timeline-message-box .text-color {
