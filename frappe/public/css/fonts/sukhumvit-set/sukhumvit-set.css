@@ -1,0 +1,22 @@
+@font-face {
+	font-family:'Sukhumvit Set';
+    src:url('/assets/frappe/css/fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
+}
+
+@font-face {
+	font-family:'Sukhumvit Set';
+    src:url('/assets/frappe/css/fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
+	font-weight:bold;
+}
+
+@font-face {
+	font-family:'Sukhumvit Set';
+    src:url('/assets/frappe/css/fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
+	font-weight:600;
+}
+
+@font-face {
+	font-family:'Sukhumvit Set';
+    src:url('/assets/frappe/css/fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
+	font-weight:500;
+}
