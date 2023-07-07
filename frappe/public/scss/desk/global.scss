@@ -392,7 +392,7 @@ kbd {
 
 	.standard-sidebar-item,.dropdown-menus {
 		@include flex(flex, null, center, null);
-		font-size: var(--text-base);
+		font-size: 12px;
 		padding: 8px 12px;
 		margin-bottom: 6px;
 		border-radius: var(--border-radius-md);
@@ -1025,8 +1025,16 @@ details > summary:focus {
 @media (max-width:1500px){
 	.nav-left-side-two {
 		width:200px;
+		padding:24px 6px;
 	}
 	.navbar, #body, .navbar-test {
 		margin-left:270px;
+	}
+	.with-dropdown .icon {
+		width:10px;
+		height:10px;
+	}
+	.has-dropdown {
+		padding-left:20px !important;
 	}
 }
