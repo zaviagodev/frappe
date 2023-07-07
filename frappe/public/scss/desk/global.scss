@@ -1,3 +1,7 @@
+* {
+	font-family:'Inter', 'Sukhumvit Set',sans-serif;
+}
+
 html {
 	background-color: var(--bg-color);
 }
@@ -405,7 +409,6 @@ kbd {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
-			font-family:'Inter', 'Sukhumvit Set',sans-serif;
 		}
 
 		&:focus {
@@ -701,7 +704,7 @@ details > summary:focus {
 	&.active .drop-icon {
 		.icon {
 			transform:rotateX(180deg) translateY(-7px);
-			margin-top:-15px !important;
+			margin-top:-20px !important;
 			transition:all 300ms;
 		}
 	}
