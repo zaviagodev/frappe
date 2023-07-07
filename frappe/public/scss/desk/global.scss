@@ -692,7 +692,7 @@ details > summary:focus {
 }
 
 .has-dropdown {
-	padding-left:30px !important;
+	padding-left:25px !important;
 }
 
 .with-dropdown {
@@ -701,6 +701,10 @@ details > summary:focus {
 	.drop-icon .icon {
 		width:12px;
 		height:12px;
+		stroke: #6A737A !important;
+	}
+	.sidebar-item-icon .icon {
+		stroke: #98A1A9 !important;
 	}
 	.icon {
 		transition:all 300ms;
