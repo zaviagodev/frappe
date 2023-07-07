@@ -698,13 +698,17 @@ details > summary:focus {
 .with-dropdown {
 	transform:rotateX(0deg) translateY(7px);
 	cursor:pointer;
+	.drop-icon .icon {
+		width:12px;
+		height:12px;
+	}
 	.icon {
 		transition:all 300ms;
 	}
 	&.active .drop-icon {
 		.icon {
 			transform:rotateX(180deg) translateY(-7px);
-			margin-top:-20px !important;
+			margin-top:-15px !important;
 			transition:all 300ms;
 		}
 	}
@@ -828,7 +832,7 @@ details > summary:focus {
 	text-decoration:none;
 }
 
-#menu-two {
+#menu-two,#menu-three {
 	display:none;
 }
 
@@ -1034,8 +1038,8 @@ details > summary:focus {
 		margin-left:270px;
 	}
 	.with-dropdown .icon {
-		width:10px;
-		height:10px;
+		width:12px;
+		height:12px;
 	}
 	.has-dropdown {
 		padding-left:20px !important;
