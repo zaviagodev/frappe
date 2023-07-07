@@ -1,3 +1,26 @@
+@font-face {
+	font-family:Sukhumvit Set;
+	src:url('../../css/fonts/sukhumvit-set/SukhumvitSet-Text.ttf')
+}
+
+@font-face {
+	font-family:Sukhumvit Set;
+	src:url('../../css/fonts/sukhumvit-set/SukhumvitSet-Bold.ttf');
+	font-weight:bold;
+}
+
+@font-face {
+	font-family:Sukhumvit Set;
+	src:url('../../css/fonts/sukhumvit-set/SukhumvitSet-SemiBold.ttf');
+	font-weight:600;
+}
+
+@font-face {
+	font-family:Sukhumvit Set;
+	src:url('../../css/fonts/sukhumvit-set/SukhumvitSet-Medium.ttf');
+	font-weight:500;
+}
+
 html {
 	background-color: var(--bg-color);
 }
@@ -394,7 +417,7 @@ kbd {
 		@include flex(flex, null, center, null);
 		font-size: var(--text-base);
 		padding: 8px 12px;
-		margin-bottom: 2px;
+		margin-bottom: 6px;
 		border-radius: var(--border-radius-md);
 		overflow: hidden;
 		cursor: pointer;
@@ -405,6 +428,7 @@ kbd {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			font-family:'Inter', 'Sukhumvit Set',sans-serif;
 		}
 
 		&:focus {
@@ -688,21 +712,29 @@ details > summary:focus {
 }
 
 .has-dropdown {
-	padding-left:40px !important;
+	padding-left:30px !important;
 }
 
 .with-dropdown {
-	transition:all 300ms;
-	position:absolute;
-	left:27px;
-	transform:translateY(7px);
+	transform:rotateX(0deg) translateY(7px);
 	cursor:pointer;
-	&.active {
-		transform:rotateX(180deg) translateY(-7px);
+	.icon {
+		transition:all 300ms;
+	}
+	&.active .drop-icon {
 		.icon {
-			margin-top:-5px !important;
+			transform:rotateX(180deg) translateY(-7px);
+			margin-top:-15px !important;
+			transition:all 300ms;
 		}
 	}
+}
+
+.drop-icon {
+	position:absolute;
+	z-index:0;
+	top:20%;
+	left:3%
 }
 
 .submenu {
@@ -875,8 +907,8 @@ details > summary:focus {
 
 .dot-items {
 	display:inline-block;
-	width:6px;
-	height:6px;
+	min-width:6px;
+	min-height:6px;
 	background-color:#D6932E;
 	border-radius:100px;
 	margin-right:16px;
