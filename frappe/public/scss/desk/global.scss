@@ -913,14 +913,9 @@ details > summary:focus {
 	}
 }
 
-.timeline-badge {
-	background-color:#2D94F0 !important;
-	border:none !important;
-	.icon {
-		fill: #FFFFFF !important;
-		stroke: #FFFFFF !important;
-		color:#2D94F0
-	}
+.timeline-badge .icon {
+	fill: black;
+	stroke: black;
 }
 
 #lower-apps {
