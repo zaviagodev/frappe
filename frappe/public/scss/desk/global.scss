@@ -732,13 +732,17 @@ details > summary:focus {
 	}
 }
 
+// .navbar,#body,.navbar-test {
+// 	margin-left:320px;
+// 	transition:margin-left 300ms, background 0ms;
+// 	&.inactive {
+// 		margin-left:70px;
+// 		transition:margin-left 300ms, background 0ms;
+// 	}
+// }
+
 .navbar,#body,.navbar-test {
-	margin-left:320px;
-	transition:margin-left 300ms, background 0ms;
-	&.inactive {
-		margin-left:70px;
-		transition:margin-left 300ms, background 0ms;
-	}
+	margin-left:70px;
 }
 
 .page-head .page-head-content {
@@ -1037,9 +1041,6 @@ details > summary:focus {
 	.nav-left-side-two {
 		width:200px;
 		padding:24px 6px;
-	}
-	.navbar, #body, .navbar-test {
-		margin-left:270px;
 	}
 	.with-dropdown .icon {
 		width:12px;
