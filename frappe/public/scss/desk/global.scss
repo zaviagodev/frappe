@@ -636,7 +636,7 @@ details > summary:focus {
 
 .key-shortcut {
 	position:absolute;
-	right:0;
+	right:-20px;
 	margin-right:12px;
 	height:27px;
 	display:flex;
@@ -863,6 +863,7 @@ details > summary:focus {
     background-origin:border-box;
     background-clip:padding-box, border-box;
 	height:38px;
+	width:320px !important;
 	&:focus {background-image:linear-gradient(white,white), linear-gradient(91.07deg, #006AFF 5.92%, rgba(0, 148, 255, 0.08) 33.93%, rgba(194, 147, 255, 0.5) 99.27%)}
 }
 
@@ -922,6 +923,12 @@ details > summary:focus {
     position: absolute;
     width: calc(100% - 22px);
     bottom: 0;
+}
+
+#searchbar-top {
+	position: absolute;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 #expand-breadcrumb {

@@ -13,7 +13,7 @@
 			<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>
 		</span>
 		<div class="collapse navbar-collapse justify-content-end">
-			<form class="form-inline fill-width justify-content-center" role="search" onsubmit="return false;">
+			<form class="form-inline fill-width justify-content-center" id="searchbar-top" role="search" onsubmit="return false;">
 				{% if (frappe.boot.read_only) { %}
 					<span class="indicator-pill yellow no-indicator-dot" title="{%= __("Your site is getting upgraded.") %}">
 						{%= __("Read Only Mode") %}
