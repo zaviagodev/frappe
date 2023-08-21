@@ -803,10 +803,9 @@ details > summary:focus {
 .logo-mobile {
 	z-index:-2;
 	position:absolute;
-}
-
-.logo-mobile a {
-	display:none;
+	a {
+		display:none;
+	}
 }
 
 .new-timeline .timeline-item .timeline-content.frappe-card{
