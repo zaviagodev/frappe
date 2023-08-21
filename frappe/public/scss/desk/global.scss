@@ -800,6 +800,11 @@ details > summary:focus {
 	top:-5px;
 }
 
+.logo-mobile {
+	z-index:-2;
+	position:absolute;
+}
+
 .logo-mobile a {
 	display:none;
 }
@@ -1067,5 +1072,7 @@ details > summary:focus {
 	.logo-mobile a {
 		display:initial;
 		width:36px;
+		position:static;
+		z-index:initial;
 	}
 }
