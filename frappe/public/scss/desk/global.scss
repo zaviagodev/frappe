@@ -800,7 +800,7 @@ details > summary:focus {
 	top:-5px;
 }
 
-.logo-mobile svg {
+.logo-mobile a {
 	display:none;
 }
 
@@ -1064,5 +1064,7 @@ details > summary:focus {
 		max-width:320px !important;
 		width:100% !important;
 	}
-	.logo-mobile svg{display:initial}
+	.logo-mobile a {
+		display:initial;
+	}
 }
