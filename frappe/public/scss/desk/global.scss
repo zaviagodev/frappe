@@ -800,6 +800,10 @@ details > summary:focus {
 	top:-5px;
 }
 
+.logo-mobile {
+	display:none;
+}
+
 .new-timeline .timeline-item .timeline-content.frappe-card{
 	box-shadow:none !important;
 	border:1px solid #F0F0F0;
@@ -1054,11 +1058,11 @@ details > summary:focus {
 }
 
 @media (max-width:991px){
-	.nav-left-side{display:none}
+	.nav-left-side,.key-shortcut,#navbar-breadcrumbs{display:none !important}
 	.navbar, #body, .navbar-test{margin-left:0}
 	#navbar-search {
 		max-width:320px !important;
 		width:100% !important;
 	}
-	.key-shortcut{right:0}
+	.logo-mobile {display:block !important}
 }
