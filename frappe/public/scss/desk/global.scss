@@ -1,5 +1,5 @@
 * {
-	font-family:'Inter', sans-serif;
+	font-family:'Inter', 'Sukhumvit Set',sans-serif;
 }
 
 html {
@@ -1051,4 +1051,14 @@ details > summary:focus {
 	.has-dropdown {
 		padding-left:20px !important;
 	}
+}
+
+@media (max-width:991px){
+	.nav-left-side{display:none}
+	.navbar, #body, .navbar-test{margin-left:0}
+	#navbar-search {
+		max-width:320px !important;
+		width:100% !important;
+	}
+	.key-shortcut{right:0}
 }
