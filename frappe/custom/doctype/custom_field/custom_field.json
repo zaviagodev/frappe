@@ -13,6 +13,7 @@
   "label",
   "label_help",
   "fieldname",
+  "placeholder",
   "insert_after",
   "length",
   "column_break_6",
@@ -435,13 +436,18 @@
    "fieldtype": "Check",
    "label": "Is System Generated",
    "read_only": 1
+  },
+  {
+   "fieldname": "placeholder",
+   "fieldtype": "Data",
+   "label": "Place Holder"
   }
  ],
  "icon": "fa fa-glass",
  "idx": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-13 06:39:03.319667",
+ "modified": "2023-09-19 03:46:38.809919",
  "modified_by": "Administrator",
  "module": "Custom",
  "name": "Custom Field",

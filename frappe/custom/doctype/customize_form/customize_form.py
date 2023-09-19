@@ -597,6 +597,7 @@ docfield_properties = {
 	"idx": "Int",
 	"label": "Data",
 	"fieldtype": "Select",
+	"placeholder": "Data",
 	"options": "Text",
 	"fetch_from": "Small Text",
 	"fetch_if_empty": "Check",
