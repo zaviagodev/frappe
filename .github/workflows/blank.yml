@@ -32,7 +32,7 @@ jobs:
         run: |
           # Add commands to deploy your Frappe app using SSH
           # For example:
-          # ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /home/davil/frappe-night/apps/frappe && git reset --hard origin/main'
+          # ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }} 'cd /home/davil/frappe-night/apps/frappe && git fetch origin main'
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
