@@ -13,7 +13,6 @@ from frappe.utils.jinja_globals import is_rtl
 SCRIPT_TAG_PATTERN = re.compile(r"\<script[^<]*\</script\>")
 CLOSING_SCRIPT_TAG_PATTERN = re.compile(r"</script\>")
 
-
 def get_context(context):
 	if frappe.session.user == "Guest":
 		frappe.throw(_("Log in to access this pagesssssss."), frappe.PermissionError)
