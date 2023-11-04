@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI and CD beta.zaviago.com
+
+on:
+  push:
+    branches: [ "version-15" ]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Deploy to DO Droplet
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_IP_15 }}
+          username: ${{ vars.SERVER_USER_15 }}
+          key: ${{ secrets.SERVER_KEY_15 }}
+          port: ${{ secrets.SERVER_PORT_15 }}
+          script: |
+            export GIT_SSH_COMMAND=~/custom_keys_git_ssh.sh
+            cd /home/davil/frappe-night/apps/frappe
+            git pull origin version-15
+            yarn install
+            bench build --app frappe
+            bench migrate
