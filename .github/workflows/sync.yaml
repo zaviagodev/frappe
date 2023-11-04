@@ -22,6 +22,8 @@ jobs:
         run: |
           # git merge upstream/${{ github.ref_name }}
           # add a test comment in README.md
+          git config --global user.email "umer2001.uf@gmail.com"
+          git config --global user.name "umer2001"
           echo "test" >> README.md
           git add README.md
           git commit -m "test"
