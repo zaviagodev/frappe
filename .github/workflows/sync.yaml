@@ -26,5 +26,4 @@ jobs:
         
       - name: Push to origin
         run: |
-          git config pull.rebase false
           git push origin ${{ github.ref_name }}
