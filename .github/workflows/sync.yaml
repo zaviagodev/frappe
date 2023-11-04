@@ -27,4 +27,5 @@ jobs:
         
       - name: Push to origin
         run: |
+          git pull
           git push origin ${{ github.ref_name }}
