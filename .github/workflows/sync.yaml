@@ -20,6 +20,7 @@ jobs:
 
       - name: Sync with upstream
         run: |
+          git status
           git pull upstream ${{ github.ref_name }}
         
       - name: Push to origin
