@@ -72,3 +72,4 @@ Full-stack web application framework that uses Python and MariaDB on the server 
 
 ## License
 This repository has been released under the [MIT License](LICENSE).
+test
