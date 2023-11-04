@@ -20,7 +20,11 @@ jobs:
 
       - name: Sync with upstream
         run: |
-          git merge upstream/${{ github.ref_name }}
+          # git merge upstream/${{ github.ref_name }}
+          # add a test comment in README.md
+          echo "test" >> README.md
+          git add README.md
+          git commit -m "test"
 
       - name: Push to origin
         run: |
