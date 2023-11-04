@@ -3,11 +3,11 @@ name: Sync with upstream branch
 on:
   push:
     branches:
-      - main
+      - version-*
 
 
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,14 +20,8 @@ jobs:
 
       - name: Sync with upstream
         run: |
-          # git merge upstream/${{ github.ref_name }}
-          # add a test comment in README.md
-          git config --global user.email "umer2001.uf@gmail.com"
-          git config --global user.name "umer2001"
-          echo "test" >> README.md
-          git add README.md
-          git commit -m "test"
-
+          git merge upstream/${{ github.ref_name }}
+        
       - name: Push to origin
         run: |
           git push origin ${{ github.ref_name }}
