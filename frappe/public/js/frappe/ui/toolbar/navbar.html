@@ -1,9 +1,10 @@
 <header class="navbar navbar-expand sticky-top" role="navigation">
 	<div class="container">
 		<a class="navbar-brand navbar-home" href="/app">
-			<img class="app-logo" style="width: {{ navbar_settings.logo_width || 28 }}px" src="{{ frappe.boot.app_logo_url }}">
+			<!-- <img class="app-logo" style="width: {{ navbar_settings.logo_width || 28 }}px" src="{{ frappe.boot.app_logo_url }}"> -->
+			Zaviago WorkSpace
 		</a>
-		<ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul>
+		<!-- <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul> -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
 				{% if (frappe.boot.read_only) { %}
@@ -11,6 +12,12 @@
 						{%= __("Read Only Mode") %}
 					</span>
 				{% } %}
+				<div class="upgrade-sec">
+					<a href="" class="upgrade-to-pro">
+						<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.69667 0.0403541C8.90859 0.131038 9.03106 0.354857 8.99316 0.582235L8.0902 6.00001H12.5C12.6893 6.00001 12.8625 6.10701 12.9472 6.27641C13.0319 6.4458 13.0136 6.6485 12.8999 6.80001L6.89997 14.8C6.76167 14.9844 6.51521 15.0503 6.30328 14.9597C6.09135 14.869 5.96888 14.6452 6.00678 14.4178L6.90974 9H2.49999C2.31061 9 2.13748 8.893 2.05278 8.72361C1.96809 8.55422 1.98636 8.35151 2.09999 8.2L8.09997 0.200038C8.23828 0.0156255 8.48474 -0.0503301 8.69667 0.0403541ZM3.49999 8.00001H7.49997C7.64695 8.00001 7.78648 8.06467 7.88148 8.17682C7.97648 8.28896 8.01733 8.43723 7.99317 8.5822L7.33027 12.5596L11.5 7.00001H7.49997C7.353 7.00001 7.21347 6.93534 7.11846 6.8232C7.02346 6.71105 6.98261 6.56279 7.00678 6.41781L7.66968 2.44042L3.49999 8.00001Z" fill="#006AFF" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+						Upgrade to Pro
+					</a>
+				</div>
 				<div class="input-group search-bar text-muted hidden">
 					<input
 						id="navbar-search"
@@ -118,3 +125,197 @@
 		</div>
 	</div>
 </header>
+
+<!-- Additional Sidebar -->
+
+<nav class="navside nav-leftside">
+	<button class="icon-btn" onclick="expandSidebar()">
+	  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+	</button>
+	<a href="" class="icon-btn add">
+	  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-circle"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+	</a>
+  </nav>
+  
+  <nav class="navside nav-rightside active" id="rightside">
+	<div class="upper-sidebar">
+	  <button class="trigger">
+		<div class="inner-trigger">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+			<g clip-path="url(#clip0_293_15547)">
+			  <path d="M7.41372 0.564946L2.1099 3.56081C0.888978 4.24977 0.136719 5.52426 0.136719 6.90288V12.9256C0.136719 14.3043 0.888978 15.5787 2.1099 16.2677L7.44046 19.2787C8.66138 19.9684 10.1652 19.9684 11.3854 19.2787L14.7041 17.4049L7.44468 13.2608C6.2329 12.5691 5.48768 11.3001 5.48768 9.92702V3.89805C5.48768 2.43115 6.2885 1.23598 7.41583 0.580808C7.44609 0.562877 7.43905 0.550463 7.41372 0.564946Z" fill="url(#paint0_linear_293_15547)"/>
+			  <path d="M18.7361 6.86957L18.7389 12.8565C18.7389 12.8854 18.7234 12.8847 18.7234 12.8503C18.7059 11.5689 15.048 9.25164 13.7483 8.51854C13.7483 8.51854 13.1747 7.94957 12.7954 7.61923C12.4161 7.28819 12.3979 7.27302 12.115 7.08957C11.8694 6.93095 11.6139 6.80681 11.45 6.72681L11.4345 6.71922C11.2712 6.63991 10.7814 6.42819 10.7814 6.42819C9.09326 5.84681 8.60348 5.79371 7.62393 6.5344C7.62393 6.5344 6.48041 7.61923 6.04482 8.59785C5.60922 9.57647 5.49874 10.4365 5.69085 10.9785C5.7007 11.0054 5.70704 11.031 5.71196 11.0551C6.27844 12.4592 6.67252 12.682 7.66263 13.2413C7.73581 13.2834 7.81322 13.3268 7.89415 13.373L10.3986 14.5372L15.0804 16.2034L11.2487 19.2785C10.0285 19.9682 8.52396 19.9682 7.30374 19.2785L1.97248 16.2675C0.752259 15.5785 0 14.3041 0 12.9254V6.90267C0 5.52405 0.752259 4.24957 1.97248 3.5606L7.2763 0.564742C7.30233 0.550259 7.30937 0.562673 7.27911 0.580604C7.21789 0.615776 7.15667 0.666121 7.09544 0.729569L7.47474 0.515776C8.69637 -0.1725 10.2016 -0.17181 11.4232 0.517156L16.7601 3.52888C17.9817 4.21785 18.7354 5.49164 18.7361 6.86957Z" fill="url(#paint1_linear_293_15547)"/>
+			  <path d="M2.21414 16.4179L7.56229 19.4482C8.79518 20.14 10.3525 20.1262 11.5868 19.4331L16.975 16.4062C18.2093 15.7124 18.9693 14.4324 18.97 13.0469L18.9728 6.99721C18.9736 5.61238 18.2143 4.33238 16.9814 3.64066L13.6289 1.75928L13.586 10.0193C13.579 11.3979 12.8197 12.6703 11.591 13.36L6.1964 16.391C4.88329 17.1282 3.41044 17.0476 2.25496 16.4179C2.22329 16.4007 2.18811 16.4034 2.21414 16.4179Z" fill="url(#paint2_linear_293_15547)"/>
+			</g>
+			<defs>
+			  <linearGradient id="paint0_linear_293_15547" x1="7.38417" y1="0.558594" x2="7.51055" y2="19.7956" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#AD7EE1"/>
+				<stop offset="1" stop-color="#2A64BB"/>
+			  </linearGradient>
+			  <linearGradient id="paint1_linear_293_15547" x1="1.37586e-07" y1="3.81921" x2="19.2879" y2="15.0323" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#2F99FF"/>
+				<stop offset="1" stop-color="#002C7D"/>
+			  </linearGradient>
+			  <linearGradient id="paint2_linear_293_15547" x1="4.85788" y1="19.96" x2="17.6375" y2="2.73684" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#24A5FA"/>
+				<stop offset="1" stop-color="#24A5F9"/>
+			  </linearGradient>
+			  <clipPath id="clip0_293_15547">
+				<rect width="19" height="20" fill="white"/>
+			  </clipPath>
+			</defs>
+		  </svg>
+		  Zaviago
+		</div>
+	  </button>
+	  <button class="listminus-btn" onclick="hideSidebar()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-minus"><path d="M11 12H3"/><path d="M16 6H3"/><path d="M16 18H3"/><path d="M21 12h-6"/></svg>
+	  </button>
+	</div>
+	<div class="rightside-menus">
+	  <a href="" class="link-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+		Dashboard
+	  </a>
+	  <a href="" class="link-btn">
+		<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.60124 1.25086C8.60124 1.75459 8.26278 2.17927 7.80087 2.30989C10.1459 2.4647 12 4.41582 12 6.79999V10.25C12 11.0563 12.0329 11.7074 12.7236 12.0528C12.931 12.1565 13.0399 12.3892 12.9866 12.6149C12.9333 12.8406 12.7319 13 12.5 13H8.16144C8.36904 13.1832 8.49997 13.4513 8.49997 13.75C8.49997 14.3023 8.05226 14.75 7.49997 14.75C6.94769 14.75 6.49997 14.3023 6.49997 13.75C6.49997 13.4513 6.63091 13.1832 6.83851 13H2.49999C2.2681 13 2.06664 12.8406 2.01336 12.6149C1.96009 12.3892 2.06897 12.1565 2.27638 12.0528C2.96708 11.7074 2.99999 11.0563 2.99999 10.25V6.79999C2.99999 4.41537 4.85481 2.46396 7.20042 2.3098C6.73867 2.17908 6.40036 1.75448 6.40036 1.25086C6.40036 0.643104 6.89304 0.150421 7.5008 0.150421C8.10855 0.150421 8.60124 0.643104 8.60124 1.25086ZM7.49999 3.29999C5.56699 3.29999 3.99999 4.86699 3.99999 6.79999V10.25L4.00002 10.3009C4.0005 10.7463 4.00121 11.4084 3.69929 12H11.3007C10.9988 11.4084 10.9995 10.7463 11 10.3009L11 10.25V6.79999C11 4.86699 9.43299 3.29999 7.49999 3.29999Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+		Notifications
+	  </a>
+	  <a href="" class="link-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+		Search
+	  </a>
+	  <a href="" class="link-btn">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+		Settings
+	  </a>
+	</div>
+
+	<div class="rightside-menus">
+	  <button class="main-menu with-submenu" onclick="expandSubmenuOne()">
+		Selling
+		<div class="submenu-arrow">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+		</div>
+	  </button>
+	  <div class="submenus" id="submenu-one">
+		<button class="link-btn with-innersubmenu" onclick="expandInnerSubmenuOne()">
+		  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.69667 0.0403541C8.90859 0.131038 9.03106 0.354857 8.99316 0.582235L8.0902 6.00001H12.5C12.6893 6.00001 12.8625 6.10701 12.9472 6.27641C13.0319 6.4458 13.0136 6.6485 12.8999 6.80001L6.89997 14.8C6.76167 14.9844 6.51521 15.0503 6.30328 14.9597C6.09135 14.869 5.96888 14.6452 6.00678 14.4178L6.90974 9H2.49999C2.31061 9 2.13748 8.893 2.05278 8.72361C1.96809 8.55422 1.98636 8.35151 2.09999 8.2L8.09997 0.200038C8.23828 0.0156255 8.48474 -0.0503301 8.69667 0.0403541ZM3.49999 8.00001H7.49997C7.64695 8.00001 7.78648 8.06467 7.88148 8.17682C7.97648 8.28896 8.01733 8.43723 7.99317 8.5822L7.33027 12.5596L11.5 7.00001H7.49997C7.353 7.00001 7.21347 6.93534 7.11846 6.8232C7.02346 6.71105 6.98261 6.56279 7.00678 6.41781L7.66968 2.44042L3.49999 8.00001Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+		  Inventory
+		</button>
+		<div class="inner-submenus" id="innersubmenu-one">
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+			Item
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-group"><path d="M3 7V5c0-1.1.9-2 2-2h2"/><path d="M17 3h2c1.1 0 2 .9 2 2v2"/><path d="M21 17v2c0 1.1-.9 2-2 2h-2"/><path d="M7 21H5c-1.1 0-2-.9-2-2v-2"/><rect width="7" height="5" x="7" y="7" rx="1"/><rect width="7" height="5" x="10" y="12" rx="1"/></svg>
+			Item Group
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baseline"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>
+			Brand
+		  </button>
+		</div>
+		<button class="link-btn with-innersubmenu" onclick="expandInnerSubmenuTwo()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+		  Orders
+		</button>
+		<div class="inner-submenus" id="innersubmenu-two">
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+			Sales Invoice
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+			Payment Entry
+		  </button>
+		</div>
+		<button button class="link-btn with-innersubmenu" onclick="expandInnerSubmenuThree()">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-circle"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+		  Customers
+		</button>
+		<div class="inner-submenus" id="innersubmenu-three">
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-square"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>
+			Customer
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+			Customers Group
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mailbox"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8Z"/><polyline points="15,9 18,9 18,11"/><path d="M6.5 5C9 5 11 7 11 9.5V17a2 2 0 0 1-2 2v0"/><line x1="6" x2="7" y1="10" y2="10"/></svg>
+			Contact
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-milestone"><path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"/><path d="M12 13v8"/><path d="M12 3v3"/></svg>
+			Customer Address
+		  </button>
+		</div>
+		<button class="link-btn with-innersubmenu" onclick="expandInnerSubmenuFour()">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+		  Stock
+		</button>
+		<div class="inner-submenus" id="innersubmenu-four">
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+			Stock Entry
+		  </button>
+		  <button class="link-btn inner-submenu">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-paste"><path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M16 4h2a2 2 0 0 1 2 2v2M11 14h10"/><path d="m17 10 4 4-4 4"/></svg>
+			Delivery Note
+		  </button>
+		</div>
+	  </div>
+	  <button class="main-menu with-submenu">
+		CRM
+	  </button>
+	  <button class="main-menu with-submenu">
+		HR & HRM
+	  </button>
+	  <button class="main-menu with-submenu">
+		Accounting
+	  </button>
+	</div>
+  </nav>
+
+<script>
+    var rightsidebar = document.getElementById("rightside");
+	var submenuOne = document.getElementById("submenu-one");
+
+	var innersubmenuOne = document.getElementById("innersubmenu-one");
+	var innersubmenuTwo = document.getElementById("innersubmenu-two");
+	var innersubmenuThree = document.getElementById("innersubmenu-three");
+	var innersubmenuFour = document.getElementById("innersubmenu-four");
+
+	function expandSubmenuOne(){
+	  submenuOne.classList.toggle("active");
+	}
+
+	function expandInnerSubmenuOne(){
+		innersubmenuOne.classList.toggle("active");
+	}
+
+	function expandInnerSubmenuTwo(){
+		innersubmenuTwo.classList.toggle("active");
+	}
+
+	function expandInnerSubmenuThree(){
+		innersubmenuThree.classList.toggle("active");
+	}
+
+	function expandInnerSubmenuFour(){
+		innersubmenuFour.classList.toggle("active");
+	}
+
+    function expandSidebar() {
+      rightsidebar.classList.add("active");
+      rightsidebar.classList.remove("inactive");
+    }
+
+    function hideSidebar(){
+      rightsidebar.classList.remove("active");
+      rightsidebar.classList.add("inactive");
+    }
+</script>
