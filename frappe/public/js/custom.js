@@ -186,9 +186,15 @@ const upperItems = [
 	function expandSidebar() {
 		$('#rightside').addClass('active');
 		$('#rightside').removeClass('inactive');
+
+        $('.navbar').removeClass('inactive');
+        $('.content').removeClass('inactive');
 	}
   
 	  function hideSidebar(){
 		$('#rightside').removeClass('active');
 		$('#rightside').addClass('inactive');
+
+        $('.navbar').addClass('inactive');
+        $('.content').addClass('inactive');
 	}
