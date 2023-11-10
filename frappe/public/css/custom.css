@@ -78,7 +78,7 @@
 	transition:all 300ms;
 }
 
-.icon-btn {
+.own-icon-btn {
 	background-color:#F4F4F5;
 	border:1px solid #E4E4E7;
 	border-radius:6px;
@@ -89,7 +89,7 @@
 	justify-content:center;
 	box-sizing:border-box;
 }
-.icon-btn.add {
+.own-icon-btn.add {
 	background-color:white;
 }
 
