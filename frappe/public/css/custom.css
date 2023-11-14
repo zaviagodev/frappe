@@ -71,12 +71,12 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 	transition:all 200ms;
 }
 
-.navbar,.content {
+.navbar,.content.page-container {
 	margin-left:calc(var(--left-sidebar-size) + var(--right-sidebar-size));
 	transition:all 300ms;
 }
 
-.navbar.inactive,.content.inactive {
+.navbar.inactive,.content.page-container.inactive {
 	margin-left:calc(var(--left-sidebar-size) + 1px);
 	transition:all 300ms;
 }
@@ -317,7 +317,7 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
     padding:16px 28px;
 }
 
-.main-section:has(.nav-rightside.inactive) #body>.content {
+.main-section:has(.nav-rightside.inactive) #body>.content.page-container {
 	margin-left:var(--left-sidebar-size);
 }
 
@@ -325,3 +325,7 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
     font-weight:500;
     font-size:14px;
 }
+
+body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
+    display: none !important;
+} 
