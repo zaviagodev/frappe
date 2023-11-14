@@ -3,6 +3,7 @@
 	--left-sidebar-size:60px;
 	--right-sidebar-size:266px;
 }
+
 #trigger {
     background-color:#F4F4F5;
     padding:8px 16px;
@@ -15,7 +16,9 @@
     font-size:14px;
     font-weight:500;
 }
-
+body[data-route^="Workspaces/Home"]{
+    margin-top: 12px;
+  } 
 .inner-trigger {
 	display:flex;
 	gap:8px;
