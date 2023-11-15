@@ -16,9 +16,7 @@
     font-size:14px;
     font-weight:500;
 }
-body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
-    display: none !important;
-  } 
+
 .inner-trigger {
 	display:flex;
 	gap:8px;
@@ -324,6 +322,10 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 .navbar-home {
     font-weight:500;
     font-size:14px;
+}
+
+body[data-route^="Workspaces/Home"]{
+    margin-top: 0 !important;
 }
 
 body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
