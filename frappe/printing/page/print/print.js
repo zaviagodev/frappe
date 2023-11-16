@@ -91,7 +91,8 @@ frappe.ui.form.PrintView = class {
 			fieldtype: "Link",
 			fieldname: "print_format",
 			options: "Print Format",
-			label: __("Print Format"),
+			// label: __("Print Format"),
+			label: "Print Format",
 			get_query: () => {
 				return { filters: { doc_type: this.frm.doctype } };
 			},
