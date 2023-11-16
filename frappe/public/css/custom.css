@@ -3,7 +3,6 @@
 	--left-sidebar-size:60px;
 	--right-sidebar-size:266px;
 }
-
 #trigger {
     background-color:#F4F4F5;
     padding:8px 16px;
@@ -90,11 +89,12 @@
 	justify-content:center;
 	box-sizing:border-box;
 }
+
 .own-icon-btn.add {
 	background-color:white;
 }
 
-.link-btn,.modal-btn {
+.menulink-btn,.modal-btn {
 	display:flex;
 	gap:8px;
 	border-radius:6px;
@@ -104,7 +104,7 @@
 	border:none;
 }
 
-.link-btn {
+.menulink-btn {
     padding:8px 16px;
     font-size:13px;
     line-height:20px;
@@ -124,7 +124,7 @@
 	gap:8px;
 }
 
-.link-btn:hover,.main-menu:hover,.modal-btn:hover {
+.menulink-btn:hover,.main-menu:hover,.modal-btn:hover {
     background-color:#F4F4F5;
 	text-decoration:none;
 }
@@ -276,7 +276,7 @@
 	margin:8px 0;
 }
 
-#upper-menu .link-btn {
+#upper-menu .menulink-btn {
 	font-weight:500;
 }
 
@@ -322,10 +322,6 @@
 .navbar-home {
     font-weight:500;
     font-size:14px;
-}
-
-body[data-route^="Workspaces/Home"]{
-    margin-top: 0 !important;
 }
 
 body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
