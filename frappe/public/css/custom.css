@@ -324,6 +324,6 @@
     font-size:14px;
 }
 
-body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
+body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section,body[data-route^="Workspaces/Welcome Workspace"] .col-lg-2.layout-side-section {
     display: none !important;
-} 
+}
