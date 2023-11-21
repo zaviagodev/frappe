@@ -327,3 +327,59 @@
 body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section,body[data-route^="Workspaces/Welcome Workspace"] .col-lg-2.layout-side-section {
     display: none !important;
 }
+
+/* Modify CSS of doctypes */
+
+.section-head {
+	margin:0 0 8px !important;
+	padding:0 15px !important;
+	font-size:18px !important;
+	font-weight:700 !important;
+}
+
+.form-section-description,.help-box {
+	color:#525252 !important;
+	font-size:12px !important;
+}
+
+.control-input .form-control, .like-disabled-input {
+	padding:4px 10px;
+	min-height:34px;
+	display:flex;
+	align-items:center;
+}
+
+.form-section-description {
+	padding:0 15px !important;
+	margin-bottom:38px !important;
+}
+
+.form-section.card-section.visible-section,
+.form-dashboard-section {
+	padding:40px 15px;
+}
+
+/* Details section on item page */
+#item-details .form-section.card-section{
+	border-bottom:none !important
+}
+
+[data-fieldname="custom_section_break_vqsfh"] {
+	padding-top:0 !important;
+}
+
+[data-fieldname="custom_general_information"] {
+	padding-bottom:0 !important;
+}
+
+/* Custom line break */
+[data-fieldname="custom_section_break_9qhrk"],
+[data-fieldname="custom_section_break_9qhrk"] .form-column{
+	padding:0 !important
+}
+
+[data-fieldname="custom_section_break_9qhrk"] .form-column hr {
+	margin:0 !important
+}
+
+/* End of details section */
