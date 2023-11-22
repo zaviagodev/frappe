@@ -383,3 +383,27 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section,body[data-rout
 }
 
 /* End of details section */
+
+.indicator-pill.no-indicator-dot::before {
+	content:"";
+	display:inline-table;
+	height:6px;
+	width:6px;
+	border-radius:50%;
+	margin-right:7px;
+  }
+.indicator-pill {
+	display:inline-flex !important;
+	height:26px !important;
+	border-radius:4px
+}
+.editable-title .flex {
+	align-items:center
+}
+.btn {
+	padding:0 10px !important;
+	font-size:13px;
+	height:29px !important;
+	display:flex;
+	align-items:center;
+}
