@@ -324,9 +324,9 @@
     font-size:14px;
 }
 
-body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section,body[data-route^="Workspaces/Welcome Workspace"] .col-lg-2.layout-side-section {
+body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
     display: none !important;
-}
+} 
 
 /* Modify CSS of doctypes */
 
@@ -411,10 +411,17 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section,body[data-rout
 	display:flex;
 	align-items:center;
 }
-.dashboard-list-item .col-sm-2.text-right {
+.dashboard-list-item .col-sm-2.text-right,
+.standard-actions,
+.file-upload-area .mt-2.text-center,
+.bulk-select-options {
 	display:flex;
 }
 button.btn.btn-xs.btn-default {
 	background-color:#171717;
 	color:white;
+}
+
+.btn-file-upload {
+	display:block
 }
