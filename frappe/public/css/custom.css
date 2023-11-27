@@ -429,3 +429,7 @@ button.btn.btn-xs.btn-default {
 	flex-direction:column;
 	align-items:center;
 }
+.filter-action-buttons div {
+	display:flex;
+	gap:8px
+}
