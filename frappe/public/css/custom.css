@@ -421,7 +421,11 @@ button.btn.btn-xs.btn-default {
 	background-color:#171717;
 	color:white;
 }
-
 .btn-file-upload {
 	display:block
+}
+.no-result .msg-box {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
 }
