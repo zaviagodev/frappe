@@ -276,6 +276,11 @@
 	margin:8px 0;
 }
 
+#sidebar-menus::-webkit-scrollbar,
+.nav-leftside::-webkit-scrollbar {
+	display:none
+}
+
 #upper-menu .menulink-btn {
 	font-weight:500;
 }
