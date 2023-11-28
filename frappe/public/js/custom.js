@@ -138,6 +138,34 @@ const apps = [
 
 const currentApp = apps[2]
 
+function expandSidebar() {
+  $('#rightside').addClass('active');
+  $('#rightside').removeClass('inactive');
+
+  $('.navbar').removeClass('inactive');
+  $('.content').removeClass("inactive");
+  $('#expand-sidebar-btn')
+  .html(`<button class="own-icon-btn" onclick="goToDashboard()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  </button>`)
+}
+
+function hideSidebar(){
+  $('#rightside').removeClass('active');
+  $('#rightside').addClass('inactive');
+
+  $('.navbar').addClass('inactive');
+  $('.content').addClass('inactive');
+  $('#expand-sidebar-btn')
+  .html(`<button class="own-icon-btn" onclick="expandSidebar()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-open"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>
+  </button>`)
+}
+
+function goToDashboard(){
+  window.location.href = `https://zaviago-dashboard.vercel.app/`
+}
+
 $(document).ready(function(){
   $('#trigger').on('click', function(e){
     e.stopPropagation()
@@ -232,19 +260,3 @@ $(document).ready(function(){
     }
   });
 })
-
-function expandSidebar() {
-  $('#rightside').addClass('active');
-  $('#rightside').removeClass('inactive');
-
-  $('.navbar').removeClass('inactive');
-  $('.content').removeClass("inactive");
-}
-
-function hideSidebar(){
-  $('#rightside').removeClass('active');
-  $('#rightside').addClass('inactive');
-
-  $('.navbar').addClass('inactive');
-  $('.content').addClass('inactive');
-}
