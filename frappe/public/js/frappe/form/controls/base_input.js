@@ -129,6 +129,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 			me.set_mandatory(me.value);
 			me.set_bold();
 			me.set_required();
+			me.set_placeholder();
 		}
 	}
 
@@ -232,6 +233,27 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 		}
 		if (this.disp_area) {
 			$(this.disp_area).toggleClass("bold", !!(this.df.bold || this.df.reqd));
+		}
+	}
+	
+	set_placeholder(placeholderText) {
+		if (placeholderText !== undefined) {
+			this.df.placeholder = placeholderText;
+		}
+		if (this.df.placeholder === this._placeholder) {
+			return;
+		}
+		if (this.$input && this.df.placeholder) {
+			this.$input.attr("placeholder", __(this.df.placeholder));
+		} else {
+			this.set_empty_placeholder();
+		}
+		this._placeholder = this.df.placeholder;
+	}
+
+	set_empty_placeholder() {
+		if (this.$input) {
+			this.$input.attr("placeholder", "");
 		}
 	}
 };
