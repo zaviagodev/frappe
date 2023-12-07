@@ -31,6 +31,7 @@
   "fetch_if_empty",
   "visibility_section",
   "hidden",
+  "hide_on_new",
   "bold",
   "allow_in_quick_entry",
   "translatable",
@@ -559,6 +560,12 @@
     "fieldname": "placeholder",
     "fieldtype": "Data",
     "label": "Place Holder"
+   },
+   {
+    "default": "0",
+    "fieldname": "hide_on_new",
+    "fieldtype": "Check",
+    "label": "Hide on new"
    },
   {
    "default": "0",
