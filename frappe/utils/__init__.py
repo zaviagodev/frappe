@@ -272,7 +272,9 @@ def has_gravatar(email: str) -> str:
 
 
 def get_gravatar_url(email: str, default: Literal["mm", "404"] = "mm") -> str:
-	hexdigest = hashlib.md5(frappe.as_unicode(email).encode("utf-8")).hexdigest()
+	hexdigest = hashlib.md5(
+		frappe.as_unicode(email).encode("utf-8"), usedforsecurity=False
+	).hexdigest()
 	return f"https://secure.gravatar.com/avatar/{hexdigest}?d={default}&s=200"
 
 
@@ -1101,9 +1103,9 @@ def add_user_info(user: str | list[str] | set[str], user_info: dict[str, _UserIn
 
 	for info in missing_info:
 		user_info.setdefault(info.name, frappe._dict()).update(
-			fullname=info.full_name or user,
+			fullname=info.full_name or info.name,
 			image=info.user_image,
-			name=user,
+			name=info.name,
 			email=info.email,
 			time_zone=info.time_zone,
 		)
