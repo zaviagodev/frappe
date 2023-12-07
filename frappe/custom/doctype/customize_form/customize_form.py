@@ -717,6 +717,7 @@ docfield_properties = {
 	"idx": "Int",
 	"label": "Data",
 	"fieldtype": "Select",
+	"placeholder": "Data",
 	"options": "Text",
 	"sort_options": "Check",
 	"fetch_from": "Small Text",
