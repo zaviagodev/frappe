@@ -433,3 +433,5 @@ after_job = [
 extend_bootinfo = [
 	"frappe.utils.telemetry.add_bootinfo",
 ]
+
+#test
