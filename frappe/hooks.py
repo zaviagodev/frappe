@@ -463,5 +463,3 @@ default_log_clearing_doctypes = {
 	"Unhandled Email": 30,
 	"Reminder": 30,
 }
-
-#fixtures = ["Item","Item Barcode"]
