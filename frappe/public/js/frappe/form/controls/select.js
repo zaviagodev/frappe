@@ -32,7 +32,7 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 		if (this.only_input) {
 			this.$wrapper.append(placeholder_html);
 		} else {
-			this.$wrapper.find(".control-input").append(placeholder_html);
+			this.$wrapper?.find(".control-input").append(placeholder_html);
 		}
 		this.toggle_placeholder();
 		this.$input && this.$input.on("select-change", () => this.toggle_placeholder());
@@ -97,8 +97,8 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 		}
 	}
 	toggle_placeholder() {
-		const input_set = Boolean(this.$input.find("option:selected").text());
-		this.$wrapper.find(".placeholder").toggle(!input_set);
+		const input_set = Boolean(this.$input?.find("option:selected").text());
+		this.$wrapper?.find(".placeholder").toggle(!input_set);
 	}
 };
 
