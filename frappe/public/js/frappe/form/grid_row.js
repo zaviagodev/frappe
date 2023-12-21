@@ -40,6 +40,8 @@ export default class GridRow {
 			render_row = this.render_row();
 		}
 
+		this.set_popovers();
+
 		if (!render_row) return;
 
 		this.set_data();
@@ -82,6 +84,26 @@ export default class GridRow {
 				.find(".row-index span, .grid-form-row-index")
 				.html(this.doc.idx);
 		}
+	}
+	set_popovers() {
+		const fields = this.wrapper.find('.attached-image-link');
+		if (!fields.length) return;
+		fields.each(function () {
+			const txt = $(this);
+			txt.popover({
+				trigger: "hover",
+				placement: "top",
+				content: () => {
+					return `<div>
+						<img src="${txt.attr("href")}"
+							width="150px"
+							style="object-fit: contain;"
+						/>
+					</div>`;
+				},
+				html: true,
+			});
+		});
 	}
 	select(checked) {
 		this.doc.__checked = checked ? 1 : 0;
@@ -205,6 +227,8 @@ export default class GridRow {
 		} else {
 			this.render_row(true);
 		}
+
+		this.set_popovers();
 
 		// refresh form fields
 		if (this.grid_form) {
