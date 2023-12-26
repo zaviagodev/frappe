@@ -106,37 +106,7 @@ const sidebarMenus = [
       }
     ]
   },
-  {
-    name: 'CRM'
-  },
-  {
-    name: 'HR & HRM'
-  },
-  {
-    name: 'Accounting'
-  }
 ]
-
-const apps = [
-  {
-    title:'Loyalty System',
-    color:'#5BB3FF'
-  },
-  {
-    title:'Data Studio',
-    color:'#79FF97'
-  },
-  {
-    title:'B2B CRM',
-    color:'#F4C344'
-  },
-  {
-    title:'Commerce',
-    color:'#FF9797'
-  }
-]
-
-const currentApp = apps[2]
 
 function expandSidebar() {
   $('#rightside').addClass('active');
@@ -144,10 +114,7 @@ function expandSidebar() {
 
   $('.navbar').removeClass('inactive');
   $('.content').removeClass("inactive");
-  $('#expand-sidebar-btn')
-  .html(`<button class="own-icon-btn" onclick="goToDashboard()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </button>`)
+  $('#expand-sidebar-btn').addClass('hide')
 }
 
 function hideSidebar(){
@@ -158,8 +125,8 @@ function hideSidebar(){
   $('.content').addClass('inactive');
   $('#expand-sidebar-btn')
   .html(`<button class="own-icon-btn" onclick="expandSidebar()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-open"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>
-  </button>`)
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
+  </button>`).removeClass('hide')
 }
 
 function goToDashboard(){
@@ -181,24 +148,7 @@ $(document).ready(function(){
     `
   }).join(''))
 
-  function modalBtn(title, color){
-    return `
-      <button class="modal-btn">
-        <div class="modal-btn-text">
-          <div class="icon-circle" style="background:${color}"></div>
-          ${title}
-        </div>
-      </button>
-    `
-  }
-  
-  $('#current-app').append(function(){
-    return modalBtn(currentApp.title, currentApp.color)
-  })
-  
-  $('#app-lists').append(apps.map(app => {
-    return modalBtn(app.title, app.color)
-  }))
+  $('#site-name').html(window.location.hostname)
   
   $('#lower-menu').html(sidebarMenus.forEach(menu => {
     if (menu.submenus){
@@ -209,7 +159,7 @@ $(document).ready(function(){
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
           </div>` : ''}
         </button>
-        <div class="submenus">
+        <div class="submenus active">
           ${menu.submenus.map(submenu => {
             return `
               <button class="menulink-btn ${submenu.inner_submenus ? 'with-innersubmenu' : ''}">
@@ -217,7 +167,7 @@ $(document).ready(function(){
                 ${submenu.title}
               </button>
               ${submenu.inner_submenus ? `
-                <div class="inner-submenus">
+                <div class="inner-submenus active">
                   ${submenu.inner_submenus.map(inner_submenu => {
                     return `
                       <a href="${inner_submenu.link}" class="menulink-btn inner-submenu">
