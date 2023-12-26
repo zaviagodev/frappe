@@ -1,36 +1,98 @@
 /* custom css code goes here */
 :root {
 	--left-sidebar-size:60px;
-	--right-sidebar-size:266px;
+	--right-sidebar-size:256px;
 }
+
+@font-face {
+	font-family:'Cal Sans';
+	src:url('./fonts/calsans/CalSans-SemiBold.ttf')
+}
+
+.cal-sans {
+	font-family:'Cal Sans'
+}
+
+.pro-icon {
+	background-color:black;
+	border-radius:6px;
+	padding:6px;
+	display:flex;
+	gap:3px;
+	font-family:'Cal Sans';
+	color:white;
+	font-size:13px;
+	height:100%;
+	font-weight:600;
+}
+
+.upgrade-to-pro {
+	display:flex;
+	background-color:#F4F4F5;
+	padding:4px 4px 4px 8px;
+	border-radius:8px;
+	color:#1F272E;
+	font-size:12px;
+	gap:5px;
+	align-items:center;
+	font-weight:500;
+	height:34px;
+}
+
+#site-title,#site-name {
+	text-align:left;
+}
+
+#site-title {
+	font-size:17px;
+	font-weight:600;
+	margin:0;
+	line-height:25px;
+	letter-spacing:-0.05px;
+}
+
+#site-name {
+	font-size:11px;
+	font-weight:500;
+	letter-spacing:-0.33px;
+	color:#5A5A5A;
+	margin-top:-4px;
+	margin-bottom:0
+}
+
+.hide {
+	display:none;
+}
+
 #trigger {
-    background-color:#F4F4F5;
-    padding:8px 16px;
     border-radius:6px;
     display:flex;
     align-items:center;
 	justify-content:space-between;
 	width:100%;
 	border:none;
-    font-size:14px;
-    font-weight:500;
 }
 
 .inner-trigger {
 	display:flex;
 	gap:8px;
 	align-items:center;
+	height:38px;
+}
+
+.nav-rightside:hover .listminus-btn {
+	opacity:0.5;
+	transition:opacity 400ms;
 }
 
 .listminus-btn {
-	min-width:40px;
-	height:40px;
+	opacity:0;
+	transition:opacity 400ms;
+	border:none;
+	background:none;
 	display:flex;
 	align-items:center;
-	justify-content:center;
-	background-color:#F4F4F5;
-	border-radius:6px;
-	border:none;
+	padding:0;
 }
 .upper-sidebar {
 	display:flex;
@@ -156,9 +218,11 @@
 	display:flex;
 	flex-direction:column;
 	gap:17px;
+	padding:16px 12px 12px;
 	position:fixed;
 	z-index:11;
 	overflow-y:auto;
+	background-color:#f7f7f7;
 	border-right:1px solid #E4E4E7;
 	align-items:center;
 }
@@ -179,14 +243,6 @@
 .nav-rightside.inactive {
 	transition:all 300ms;
 	transform:translateX(-120%)
-}
-
-.upgrade-to-pro {
-	display:flex;
-	color:#006AFF;
-	font-size:12px;
-	gap:8px;
-	align-items:center
 }
 
 .inner-submenu {
@@ -281,7 +337,6 @@
 	display:none
 }
 
-
 #upper-menu .menulink-btn {
 	font-weight:500;
 }
@@ -318,7 +373,9 @@
 .w-full {width:100%}
 
 .navbar {
-    padding:16px 28px;
+    padding:4px 19px;
+	border-bottom:none;
+	height:53px;
 }
 
 .main-section:has(.nav-rightside.inactive) #body>.content.page-container {
@@ -326,7 +383,8 @@
 }
 
 .navbar-home {
-    font-weight:500;
+	color:#09090B;
+    line-height:20px;
     font-size:14px;
 }
 
@@ -366,12 +424,16 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 }
 
 /* Details section on item page */
-#item-details .form-section.card-section{
+/* #item-details .form-section.card-section{
 	border-bottom:none !important
 }
 
 [data-fieldname="custom_section_break_vqsfh"] {
 	padding-top:0 !important;
+} */
+[data-fieldname="custom_section_break_vqsfh"],
+[data-fieldname="custom_section_break_9qhrk"] {
+	border-bottom:none !important
 }
 
 [data-fieldname="custom_general_information"] {
