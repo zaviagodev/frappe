@@ -35,12 +35,12 @@ const sidebarMenus = [
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`
           },
           {
-            link:'/app/item-group',
+            link:'/app/item-group/',
             title: 'Item Group',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-group"><path d="M3 7V5c0-1.1.9-2 2-2h2"/><path d="M17 3h2c1.1 0 2 .9 2 2v2"/><path d="M21 17v2c0 1.1-.9 2-2 2h-2"/><path d="M7 21H5c-1.1 0-2-.9-2-2v-2"/><rect width="7" height="5" x="7" y="7" rx="1"/><rect width="7" height="5" x="10" y="12" rx="1"/></svg>`
           },
           {
-            link:'/app/brand',
+            link:'/app/brand/',
             title:'Brand',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baseline"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>`
           }
@@ -51,12 +51,12 @@ const sidebarMenus = [
         icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>`,
         inner_submenus: [
           {
-            link:'/app/sales-invoice',
+            link:'/app/sales-invoice/',
             title: 'Sales Invoice',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>`
           },
           {
-            link:'/app/payment-entry',
+            link:'/app/payment-entry/',
             title:'Payment Entry',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`
           }
@@ -67,22 +67,22 @@ const sidebarMenus = [
         icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-circle"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>`,
         inner_submenus: [
           {
-            link:'/app/customer',
+            link:'/app/customer/',
             title: 'Customer',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-square"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>`
           },
           {
-            link:'/app/customer-group',
+            link:'/app/customer-group/',
             title:'Customers Group',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
           },
           {
-            link:'/app/contact',
+            link:'/app/contact/',
             title:'Contact',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mailbox"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8Z"/><polyline points="15,9 18,9 18,11"/><path d="M6.5 5C9 5 11 7 11 9.5V17a2 2 0 0 1-2 2v0"/><line x1="6" x2="7" y1="10" y2="10"/></svg>`
           },
           {
-            link:'/app/address',
+            link:'/app/address/',
             title:'Address',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-milestone"><path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"/><path d="M12 13v8"/><path d="M12 3v3"/></svg>`
           }
@@ -93,12 +93,12 @@ const sidebarMenus = [
         icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>`,
         inner_submenus: [
           {
-            link:'/app/stock-entry',
+            link:'/app/stock-entry/',
             title: 'Stock Entry',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>`
           },
           {
-            link:'/app/delivery-note',
+            link:'/app/delivery-note/',
             title:'Delivery Note',
             icon:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-paste"><path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2M16 4h2a2 2 0 0 1 2 2v2M11 14h10"/><path d="m17 10 4 4-4 4"/></svg>`
           }
@@ -106,37 +106,7 @@ const sidebarMenus = [
       }
     ]
   },
-  {
-    name: 'CRM'
-  },
-  {
-    name: 'HR & HRM'
-  },
-  {
-    name: 'Accounting'
-  }
 ]
-
-const apps = [
-  {
-    title:'Loyalty System',
-    color:'#5BB3FF'
-  },
-  {
-    title:'Data Studio',
-    color:'#79FF97'
-  },
-  {
-    title:'B2B CRM',
-    color:'#F4C344'
-  },
-  {
-    title:'Commerce',
-    color:'#FF9797'
-  }
-]
-
-const currentApp = apps[2]
 
 function expandSidebar() {
   $('#rightside').addClass('active');
@@ -144,10 +114,7 @@ function expandSidebar() {
 
   $('.navbar').removeClass('inactive');
   $('.content').removeClass("inactive");
-  $('#expand-sidebar-btn')
-  .html(`<button class="own-icon-btn" onclick="goToDashboard()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </button>`)
+  $('#expand-sidebar-btn').addClass('hide')
 }
 
 function hideSidebar(){
@@ -158,8 +125,8 @@ function hideSidebar(){
   $('.content').addClass('inactive');
   $('#expand-sidebar-btn')
   .html(`<button class="own-icon-btn" onclick="expandSidebar()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-open"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>
-  </button>`)
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
+  </button>`).removeClass('hide')
 }
 
 function goToDashboard(){
@@ -167,11 +134,6 @@ function goToDashboard(){
 }
 
 $(document).ready(function(){
-  $('#trigger').on('click', function(e){
-    e.stopPropagation()
-    $('#modal-menus').toggleClass('active')
-  });
-
   $('#upper-menu').html(upperItems.map(item => {
     return `
       <a href="${item.link}" class="menulink-btn">
@@ -181,35 +143,15 @@ $(document).ready(function(){
     `
   }).join(''))
 
-  function modalBtn(title, color){
-    return `
-      <button class="modal-btn">
-        <div class="modal-btn-text">
-          <div class="icon-circle" style="background:${color}"></div>
-          ${title}
-        </div>
-      </button>
-    `
-  }
-  
-  $('#current-app').append(function(){
-    return modalBtn(currentApp.title, currentApp.color)
-  })
-  
-  $('#app-lists').append(apps.map(app => {
-    return modalBtn(app.title, app.color)
-  }))
+  $('#site-name').html(window.location.hostname)
   
   $('#lower-menu').html(sidebarMenus.forEach(menu => {
     if (menu.submenus){
       $('#lower-menu').append(`
         <button class="main-menu with-submenu">
           ${menu.name}
-          ${menu.submenus.length > 0 ? `<div class="submenu-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
-          </div>` : ''}
         </button>
-        <div class="submenus">
+        <div class="submenus active">
           ${menu.submenus.map(submenu => {
             return `
               <button class="menulink-btn ${submenu.inner_submenus ? 'with-innersubmenu' : ''}">
@@ -217,10 +159,10 @@ $(document).ready(function(){
                 ${submenu.title}
               </button>
               ${submenu.inner_submenus ? `
-                <div class="inner-submenus">
+                <div class="inner-submenus active">
                   ${submenu.inner_submenus.map(inner_submenu => {
                     return `
-                      <a href="${inner_submenu.link}" class="menulink-btn inner-submenu">
+                      <a href="${inner_submenu.link}" class="menulink-btn inner-submenu ${location.pathname.includes(inner_submenu.link) ? "active" : ""}">
                         ${inner_submenu.icon}
                         ${inner_submenu.title}
                       </a>
@@ -239,17 +181,6 @@ $(document).ready(function(){
       `)
     }
   }))
-  
-  $('.with-submenu').click(function() {
-    var index = $('.with-submenu').index(this);
-    $('.submenus').eq(index).toggleClass('active');
-    $('.submenu-arrow').eq(index).toggleClass('active');
-  });
-  
-  $('.with-innersubmenu').click(function() {
-    var index = $('.with-innersubmenu').index(this);
-    $('.inner-submenus').eq(index).toggleClass('active');
-  });
   
   $(document).on('click', function(e) {
     var modalMenu = $('#modal-menus');
