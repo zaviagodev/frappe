@@ -91,7 +91,7 @@ frappe.ui.form.ControlAttach = class ControlAttach extends frappe.ui.form.Contro
 	set_input(value, dataurl) {
 		this.last_value = this.value;
 		this.value = value;
-		if (this.value) {
+		if (this.value && !Array.isArray(this.value)) {
 			this.$input.toggle(false);
 			// value can also be using this format: FILENAME,DATA_URL
 			// Important: We have to be careful because normal filenames may also contain ","

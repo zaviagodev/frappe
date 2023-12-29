@@ -178,6 +178,11 @@ class DocType(Document):
 		website_search_field: DF.Data | None
 	# end: auto-generated types
 
+	def before_validate(self):
+		for d in self.get("fields"):
+			if d.fieldtype == "Attach Multiple Images":
+				d.options = "Image List"
+
 	def validate(self):
 		"""Validate DocType before saving.
 

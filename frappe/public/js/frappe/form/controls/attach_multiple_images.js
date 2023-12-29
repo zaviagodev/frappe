@@ -1,24 +1,16 @@
 frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages extends frappe.ui.form.ControlAttach {
     make() {
         super.make();
-        frappe.db.get_list('File', {
-            fields: ['*'],
-            filters: {
-                attached_to_doctype: this.frm.doctype,
-                attached_to_name: this.frm.docname,
-                attached_to_field: this.df.fieldname
-            }
-        }).then(records => {
-            this.imageGrid = new ImageGrid({
-                parent: this.$wrapper,
-                frm: this.frm,
-                images: records
-            });
-        })
+        this.imageGrid = new ImageGrid({
+            frm: this.frm,
+            parent: this.wrapper,
+            control: this,
+            images: this.frm.doc[this.df.fieldname] ?? [],
+        });
     }
 
-    set_value(value) {
-        this.images = [...this.imageGrid.images, value];
+    set_value(attachment) {
+        this.images = [...this.imageGrid.images, attachment];
         this.imageGrid.images = this.images;
         this.imageGrid.render();
     }
@@ -31,10 +23,20 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
     }
 
     async on_upload_complete(attachment) {
+        const newImage = {
+            image: attachment.name,
+            file_type: attachment.file_type,
+            file_url: attachment.file_url,
+            thumbnail_url: attachment?.thumbnail_url,
+            file_size: attachment.file_size,
+        };
         if (this.frm) {
-            this.frm.attachments.update_attachment(attachment);
+            this.frm.set_value(this.df.fieldname, [
+                ...this.imageGrid.images,
+                newImage,
+            ]);
         }
-        this.set_value(attachment);
+        this.set_value(newImage);
     }
 }
 
@@ -47,25 +49,25 @@ class ImageGrid {
     make() {
         this.wrapper = $(`<div class="row"></div>`).appendTo(this.parent);
         this.render();
+        new Sortable(this.wrapper[0], {
+            animation: 150,
+            ghostClass: "sortable-ghost",
+            onEnd: (e) => {
+                // swap the idx of the images
+                const tmp = this.images[e.oldIndex]?.idx ?? this.images.length;
+                this.images[e.oldIndex].idx = this.images[e.newIndex]?.idx ?? this.images.length;
+                this.images[e.newIndex].idx = tmp;
+
+                this.frm.set_value(this.control.df.fieldname, this.images);
+                this.frm.dirty();
+            },
+        });
     }
 
     delete_image(image) {
-        frappe.call({
-            method: "frappe.desk.form.utils.remove_attach",
-            type: "DELETE",
-            args: {
-                fid: image.name,
-                dt: this.frm.doctype,
-                dn: this.frm.docname,
-            }
-        }).then((r) => {
-            if (r.exc) {
-                if (!r._server_messages) frappe.msgprint(__("There were errors"));
-                return;
-            }
-            this.images = this.images.filter(img => img.name !== image.name);
-            this.render();
-        });
+        this.images = this.images.filter(img => img.name !== image.name);
+        this.frm.set_value(this.control.df.fieldname, this.images);
+        this.render();
     }
 
     render() {
