@@ -89,7 +89,7 @@
    "label": "Type",
    "oldfieldname": "fieldtype",
    "oldfieldtype": "Select",
-   "options": "Autocomplete\nAttach\nAttach Image\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRating\nRead Only\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
+   "options": "Autocomplete\nAttach\nAttach Image\nAttach Multiple Images\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRating\nRead Only\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
    "reqd": 1,
    "search_index": 1,
    "sort_options": 1
@@ -467,10 +467,10 @@
    "label": "Ignore XSS Filter"
   },
   {
-    "fieldname": "placeholder",
-    "fieldtype": "Data",
-    "label": "Place Holder"
-   },
+   "fieldname": "placeholder",
+   "fieldtype": "Data",
+   "label": "Place Holder"
+  },
   {
    "default": "0",
    "depends_on": "eval: doc.fieldtype === 'Select'",
@@ -483,7 +483,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-08 15:52:37.525003",
+ "modified": "2023-12-29 12:19:10.371748",
  "modified_by": "Administrator",
  "module": "Custom",
  "name": "Customize Form Field",

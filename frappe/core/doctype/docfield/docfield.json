@@ -103,7 +103,7 @@
    "label": "Type",
    "oldfieldname": "fieldtype",
    "oldfieldtype": "Select",
-   "options": "Autocomplete\nAttach\nAttach Image\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nJSON\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRead Only\nRating\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
+   "options": "Autocomplete\nAttach\nAttach Image\nAttach Multiple Images\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nJSON\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRead Only\nRating\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
    "reqd": 1,
    "search_index": 1,
    "sort_options": 1
@@ -557,16 +557,16 @@
    "options": "URL"
   },
   {
-    "fieldname": "placeholder",
-    "fieldtype": "Data",
-    "label": "Place Holder"
-   },
-   {
-    "default": "0",
-    "fieldname": "hide_on_new",
-    "fieldtype": "Check",
-    "label": "Hide on new"
-   },
+   "fieldname": "placeholder",
+   "fieldtype": "Data",
+   "label": "Place Holder"
+  },
+  {
+   "default": "0",
+   "fieldname": "hide_on_new",
+   "fieldtype": "Check",
+   "label": "Hide on new"
+  },
   {
    "default": "0",
    "depends_on": "eval: doc.fieldtype === 'Select'",
@@ -579,7 +579,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-06-11 19:23:03.399616",
+ "modified": "2023-12-28 02:38:32.159826",
  "modified_by": "Administrator",
  "module": "Core",
  "name": "DocField",

@@ -438,3 +438,29 @@ button.btn.btn-xs.btn-default {
 	display:flex;
 	gap:8px
 }
+
+.grid-image {
+	position:relative;
+	text-align: center;
+	overflow: hidden;
+}
+
+.overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.5);
+	opacity:0;
+	visibility:hidden;
+}
+
+.grid-image:hover .overlay {
+	opacity:1;
+	visibility: visible;
+	transition:all 200ms;
+}

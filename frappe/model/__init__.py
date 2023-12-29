@@ -47,6 +47,7 @@ datetime_fields = {"Datetime", "Date", "Time"}
 attachment_fieldtypes = (
 	"Attach",
 	"Attach Image",
+	"Attach Multiple Images",
 )
 
 no_value_fields = (
@@ -56,6 +57,7 @@ no_value_fields = (
 	"HTML",
 	"Table",
 	"Table MultiSelect",
+	"Attach Multiple Images",
 	"Button",
 	"Image",
 	"Fold",

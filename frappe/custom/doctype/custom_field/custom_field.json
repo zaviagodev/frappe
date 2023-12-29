@@ -127,7 +127,7 @@
    "label": "Field Type",
    "oldfieldname": "fieldtype",
    "oldfieldtype": "Select",
-   "options": "Autocomplete\nAttach\nAttach Image\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nJSON\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRead Only\nRating\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
+   "options": "Autocomplete\nAttach\nAttach Image\nAttach Multiple Images\nBarcode\nButton\nCheck\nCode\nColor\nColumn Break\nConnection\nCurrency\nData\nDate\nDatetime\nDuration\nDynamic Link\nFloat\nFold\nGeolocation\nHeading\nHTML\nHTML Editor\nIcon\nImage\nInt\nJSON\nLink\nLong Text\nMarkdown Editor\nPassword\nPercent\nPhone\nRead Only\nRating\nSection Break\nSelect\nSignature\nSmall Text\nTab Break\nTable\nTable MultiSelect\nText\nText Editor\nTime",
    "reqd": 1,
    "sort_options": 1
   },
@@ -440,10 +440,10 @@
    "read_only": 1
   },
   {
-    "fieldname": "placeholder",
-    "fieldtype": "Data",
-    "label": "Place Holder"
-   },
+   "fieldname": "placeholder",
+   "fieldtype": "Data",
+   "label": "Place Holder"
+  },
   {
    "default": "0",
    "depends_on": "eval: doc.fieldtype === 'Select'",
@@ -456,7 +456,7 @@
  "idx": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-08 15:52:37.525003",
+ "modified": "2023-12-29 12:21:44.402218",
  "modified_by": "Administrator",
  "module": "Custom",
  "name": "Custom Field",
