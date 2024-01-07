@@ -53,11 +53,11 @@ class ImageGrid {
             animation: 150,
             ghostClass: "sortable-ghost",
             onEnd: (e) => {
-                // swap the idx of the images
-                const tmp = this.images[e.oldIndex]?.idx ?? this.images.length;
-                this.images[e.oldIndex].idx = this.images[e.newIndex]?.idx ?? this.images.length;
-                this.images[e.newIndex].idx = tmp;
-
+                const newSort = []
+                e.to.querySelectorAll(".grid-image").forEach((img) => newSort.push(img.getAttribute("image")));
+                this.images.forEach((img) => {
+                    img.idx = newSort.indexOf(img.image) + 1;
+                });
                 this.frm.set_value(this.control.df.fieldname, this.images);
                 this.frm.dirty();
             },
@@ -65,7 +65,7 @@ class ImageGrid {
     }
 
     delete_image(image) {
-        this.images = this.images.filter(img => img.name !== image.name);
+        this.images = this.images.filter(img => img.image !== image.image);
         this.frm.set_value(this.control.df.fieldname, this.images);
         this.render();
     }
@@ -74,7 +74,7 @@ class ImageGrid {
         this.wrapper.empty();
         this.images.forEach((image) => {
             const $image = $(`
-            <div class="grid-image rounded" style="background-image: url(${image.file_url}); width: 100px; height: 100px; background-size: cover; background-position: center; margin: 5px;"></div>
+            <div class="grid-image rounded" style="background-image: url(${image.file_url}); width: 100px; height: 100px; background-size: cover; background-position: center; margin: 5px;" image="${image.image}"></div>
             `)
             const $overlay = $(`
                 <div class="overlay">

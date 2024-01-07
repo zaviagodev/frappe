@@ -14,9 +14,13 @@ class ImageList(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		file_size: DF.Int
+		file_type: DF.Data | None
+		file_url: DF.Code | None
 		image: DF.Link
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
+		thumbnail_url: DF.SmallText | None
 	# end: auto-generated types	
 
