@@ -16,6 +16,7 @@ import TextEditorControl from "../form_builder/components/controls/TextEditorCon
 export function registerGlobalComponents(app) {
 	app.component("AttachControl", AttachControl)
 		.component("AttachImageControl", AttachControl)
+		.component("AttachMultipleImagesControl", AttachControl)
 		.component("AutocompleteControl", DataControl)
 		.component("BarcodeControl", DataControl)
 		.component("ButtonControl", ButtonControl)

@@ -30,7 +30,7 @@ const label_input = ref(null);
 const hovered = ref(false);
 const selected = computed(() => store.selected(props.field.df.name));
 const component = computed(() => {
-	return props.field.df.fieldtype.replace(" ", "") + "Control";
+	return props.field.df.fieldtype.replaceAll(" ", "") + "Control";
 });
 
 function remove_field() {
@@ -79,69 +79,32 @@ onMounted(() => selected.value && label_input.value.focus_on_label());
 </script>
 
 <template>
-	<div
-		:class="['field', selected ? 'selected' : hovered ? 'hovered' : '']"
-		:title="field.df.fieldname"
-		@click.stop="store.form.selected_field = field.df"
-		@mouseover.stop="hovered = true"
-		@mouseout.stop="hovered = false"
-	>
-		<component
-			:is="component"
-			:df="field.df"
-			:data-fieldname="field.df.fieldname"
-			:data-fieldtype="field.df.fieldtype"
-		>
+	<div :class="['field', selected ? 'selected' : hovered ? 'hovered' : '']" :title="field.df.fieldname"
+		@click.stop="store.form.selected_field = field.df" @mouseover.stop="hovered = true"
+		@mouseout.stop="hovered = false">
+		<component :is="component" :df="field.df" :data-fieldname="field.df.fieldname" :data-fieldtype="field.df.fieldtype">
 			<template #label>
 				<div class="field-label">
-					<EditableInput
-						ref="label_input"
-						:text="field.df.label"
-						:placeholder="__('Label')"
-						:empty_label="`${__('No Label')} (${field.df.fieldtype})`"
-						v-model="field.df.label"
-					/>
+					<EditableInput ref="label_input" :text="field.df.label" :placeholder="__('Label')"
+						:empty_label="`${__('No Label')} (${field.df.fieldtype})`" v-model="field.df.label" />
 					<div class="reqd-asterisk" v-if="field.df.reqd">*</div>
-					<div
-						class="help-icon"
-						v-if="field.df.documentation_url"
-						v-html="frappe.utils.icon('help', 'sm')"
-					></div>
+					<div class="help-icon" v-if="field.df.documentation_url" v-html="frappe.utils.icon('help', 'sm')"></div>
 				</div>
 			</template>
 			<template #actions>
 				<div class="field-actions" :hidden="store.read_only">
-					<AddFieldButton
-						v-if="column.fields.indexOf(field) != column.fields.length - 1"
-						ref="add_field_ref"
-						:field="field"
-						:column="column"
-						:tooltip="__('Add field below')"
-					>
+					<AddFieldButton v-if="column.fields.indexOf(field) != column.fields.length - 1" ref="add_field_ref"
+						:field="field" :column="column" :tooltip="__('Add field below')">
 						<div v-html="frappe.utils.icon('add', 'sm')" />
 					</AddFieldButton>
-					<button
-						class="btn btn-xs btn-icon"
-						:title="__('Duplicate field')"
-						@click.stop="duplicate_field"
-					>
+					<button class="btn btn-xs btn-icon" :title="__('Duplicate field')" @click.stop="duplicate_field">
 						<div v-html="frappe.utils.icon('duplicate', 'sm')"></div>
 					</button>
-					<button
-						v-if="column.fields.indexOf(field)"
-						class="btn btn-xs btn-icon"
-						:title="
-							__('Move the current field and the following fields to a new column')
-						"
-						@click="move_fields_to_column"
-					>
+					<button v-if="column.fields.indexOf(field)" class="btn btn-xs btn-icon" :title="__('Move the current field and the following fields to a new column')
+						" @click="move_fields_to_column">
 						<div v-html="frappe.utils.icon('move', 'sm')"></div>
 					</button>
-					<button
-						class="btn btn-xs btn-icon"
-						:title="__('Remove field')"
-						@click.stop="remove_field"
-					>
+					<button class="btn btn-xs btn-icon" :title="__('Remove field')" @click.stop="remove_field">
 						<div v-html="frappe.utils.icon('remove', 'sm')"></div>
 					</button>
 				</div>
@@ -167,6 +130,7 @@ onMounted(() => selected.value && label_input.value.focus_on_label());
 	&.hovered,
 	&.selected {
 		border-color: var(--border-primary);
+
 		.btn.btn-icon {
 			opacity: 1 !important;
 		}
@@ -185,10 +149,12 @@ onMounted(() => selected.value && label_input.value.focus_on_label());
 		.field-label {
 			display: flex;
 			align-items: center;
+
 			.reqd-asterisk {
 				margin-left: 3px;
 				color: var(--red-400);
 			}
+
 			.help-icon {
 				margin-left: 3px;
 				color: var(--text-muted);
