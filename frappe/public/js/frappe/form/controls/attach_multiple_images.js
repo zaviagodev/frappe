@@ -53,11 +53,13 @@ class ImageGrid {
             animation: 150,
             ghostClass: "sortable-ghost",
             onEnd: (e) => {
-                const newSort = []
+                let newSort = []
                 e.to.querySelectorAll(".grid-image").forEach((img) => newSort.push(img.getAttribute("image")));
-                this.images.forEach((img) => {
-                    img.idx = newSort.indexOf(img.image) + 1;
-                });
+                newSort = newSort.map((img, index) => ({
+                    ...this.images.find((i) => i.image === img),
+                    idx: index + 1
+                }));
+                this.images = newSort;
                 this.frm.set_value(this.control.df.fieldname, this.images);
                 this.frm.dirty();
             },
