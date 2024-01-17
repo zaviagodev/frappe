@@ -412,6 +412,7 @@ ignore_links_on_delete = [
 	"Email Unsubscribe",
 	"Activity Log",
 	"File",
+	"Image List",
 	"Version",
 	"Document Follow",
 	"Comment",

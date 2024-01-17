@@ -6,6 +6,31 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
             parent: this.wrapper,
             control: this,
             images: this.frm.doc[this.df.fieldname] ?? [],
+            pending_delete: [],
+        });
+
+        // sync with attachments
+        frappe.ui.form.on(this.frm.doctype, {
+            onload: () => {
+                frappe.db.get_list("File", {
+                    filters: {
+                        attached_to_name: this.frm.docname,
+                        attached_to_field: this.df.fieldname,
+                    }
+                }).then((attachments) => {
+                    const extra_attachments = attachments.filter(attachment => !this.imageGrid.images.find(img => img.image === attachment.name));
+                    for (const attachment of extra_attachments) {
+                        this.frm.attachments.remove_attachment(attachment.name);
+                    }
+                    this.frm.attachments.refresh();
+                });
+            },
+            before_save: () => {
+                for (const image of this.imageGrid.pending_delete) {
+                    this.frm.attachments.remove_attachment(image.image);
+                }
+                this.frm.attachments.refresh();
+            }
         });
     }
 
@@ -13,6 +38,9 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
         this.images = [...this.imageGrid.images, attachment];
         this.imageGrid.images = this.images;
         this.imageGrid.render();
+
+        // attachment lifecycle 
+        this.imageGrid.pending_delete = this.imageGrid.pending_delete.filter(img => img.image !== attachment.image);
     }
 
     set_upload_options() {
@@ -69,6 +97,7 @@ class ImageGrid {
     delete_image(image) {
         this.images = this.images.filter(img => img.image !== image.image);
         this.frm.set_value(this.control.df.fieldname, this.images);
+        this.pending_delete.push(image);
         this.render();
     }
 
