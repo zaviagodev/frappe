@@ -9,29 +9,38 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
             pending_delete: [],
         });
 
-        // sync with attachments
-        frappe.ui.form.on(this.frm.doctype, {
-            onload: () => {
-                frappe.db.get_list("File", {
-                    filters: {
-                        attached_to_name: this.frm.docname,
-                        attached_to_field: this.df.fieldname,
-                    }
-                }).then((attachments) => {
-                    const extra_attachments = attachments.filter(attachment => !this.imageGrid.images.find(img => img.image === attachment.name));
-                    for (const attachment of extra_attachments) {
-                        this.frm.attachments.remove_attachment(attachment.name);
+        if (this.frm) {
+            this.frm.imageGrids[this.frm.imageGrids.length] = this;
+
+            // sync with attachments
+            frappe.ui.form.on(this.frm.doctype, {
+                onload: () => {
+                    frappe.db.get_list("File", {
+                        filters: {
+                            attached_to_name: this.frm.docname,
+                            attached_to_field: this.df.fieldname,
+                        }
+                    }).then((attachments) => {
+                        const extra_attachments = attachments.filter(attachment => !this.imageGrid.images.find(img => img.image === attachment.name));
+                        for (const attachment of extra_attachments) {
+                            this.frm.attachments.remove_attachment(attachment.name);
+                        }
+                        this.frm.attachments.refresh();
+                    });
+                },
+                before_save: () => {
+                    for (const image of this.imageGrid.pending_delete) {
+                        this.frm.attachments.remove_attachment(image.image);
                     }
                     this.frm.attachments.refresh();
-                });
-            },
-            before_save: () => {
-                for (const image of this.imageGrid.pending_delete) {
-                    this.frm.attachments.remove_attachment(image.image);
                 }
-                this.frm.attachments.refresh();
-            }
-        });
+            });
+        }
+    }
+
+    refresh_input() {
+        super.refresh_input();
+        this.imageGrid.refresh();
     }
 
     set_value(attachment) {
@@ -92,6 +101,11 @@ class ImageGrid {
                 this.frm.dirty();
             },
         });
+    }
+
+    refresh() {
+        this.images = this.frm.doc[this.control.df.fieldname] ?? [];
+        this.render();
     }
 
     delete_image(image) {

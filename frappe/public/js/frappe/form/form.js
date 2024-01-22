@@ -34,6 +34,7 @@ frappe.ui.form.Form = class FrappeForm {
 		this.custom_buttons = {};
 		this.sections = [];
 		this.grids = [];
+		this.imageGrids = [];
 		this.cscript = new frappe.ui.form.Controller({ frm: this });
 		this.events = {};
 		this.fetch_dict = {};
@@ -405,6 +406,10 @@ frappe.ui.form.Form = class FrappeForm {
 			// update grids with new permissions
 			this.grids.forEach((table) => {
 				table.grid.refresh();
+			});
+
+			this.imageGrids.forEach((table) => {
+				table.imageGrid.refresh();
 			});
 
 			// read only (workflow)
@@ -1127,9 +1132,9 @@ frappe.ui.form.Form = class FrappeForm {
 				this.dashboard.clear_headline();
 				this.dashboard.set_headline_alert(
 					__("This form has been modified after you have loaded it") +
-						'<button class="btn btn-xs btn-primary pull-right" onclick="cur_frm.reload_doc()">' +
-						__("Refresh") +
-						"</button>",
+					'<button class="btn btn-xs btn-primary pull-right" onclick="cur_frm.reload_doc()">' +
+					__("Refresh") +
+					"</button>",
 					"alert-warning"
 				);
 			} else {
@@ -1164,7 +1169,7 @@ frappe.ui.form.Form = class FrappeForm {
 	add_web_link(path, label) {
 		label = __(label) || __("See on Website");
 		this.web_link = this.sidebar
-			.add_user_action(__(label), function () {})
+			.add_user_action(__(label), function () { })
 			.attr("href", path || this.doc.route)
 			.attr("target", "_blank");
 	}
@@ -2109,8 +2114,8 @@ frappe.ui.form.Form = class FrappeForm {
 						</div>
 						<div class="col-md-6">
 							<a href='/app/submission-queue?ref_doctype=${encodeURIComponent(
-								this.doctype
-							)}&ref_docname=${encodeURIComponent(this.docname)}'>${__(
+							this.doctype
+						)}&ref_docname=${encodeURIComponent(this.docname)}'>${__(
 							"All Submissions"
 						)}</a>
 						`;
