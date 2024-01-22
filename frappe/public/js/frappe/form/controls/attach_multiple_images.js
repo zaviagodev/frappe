@@ -33,7 +33,17 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
                         this.frm.attachments.remove_attachment(image.image);
                     }
                     this.frm.attachments.refresh();
-                }
+                },
+                after_save: () => {
+                    const missing_attachments = this.imageGrid.images.filter(img => !this.frm.attachments.get_attachments().find(attachment => attachment.name === img.image));
+                    for (const attachment of missing_attachments) {
+                        frappe.db.set_value("File", attachment.image, {
+                            attached_to_name: this.frm.docname,
+                            attached_to_field: this.df.fieldname,
+                        });
+                    }
+                    this.frm.attachments.refresh();
+                },
             });
         }
     }
