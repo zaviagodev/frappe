@@ -464,3 +464,7 @@ button.btn.btn-xs.btn-default {
 	visibility: visible;
 	transition:all 200ms;
 }
+
+div[data-fieldtype="Attach Multiple Images"] {
+	max-width: 100% !important;
+}
