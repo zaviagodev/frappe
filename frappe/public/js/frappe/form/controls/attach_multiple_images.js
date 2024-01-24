@@ -129,7 +129,7 @@ class ImageGrid {
         this.wrapper.empty();
         this.images.forEach((image) => {
             const $image = $(`
-            <div class="grid-image rounded" style="background-image: url(${image.file_url}); width: 100px; height: 100px; background-size: cover; background-position: center; margin: 5px;" image="${image.image}"></div>
+            <div class="grid-image rounded" style="background-image: url('${image.file_url}'); width: 100px; height: 100px; background-size: cover; background-position: center; margin: 5px;" image="${image.image}"></div>
             `)
             const $overlay = $(`
                 <div class="overlay">
