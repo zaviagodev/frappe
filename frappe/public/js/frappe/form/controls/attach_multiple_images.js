@@ -120,6 +120,7 @@ class ImageGrid {
 
     delete_image(image) {
         this.images = this.images.filter(img => img.image !== image.image);
+        this.images = this.images.map((img, index) => ({ ...img, idx: index + 1 }));
         this.frm.set_value(this.control.df.fieldname, this.images);
         this.pending_delete.push(image);
         this.render();
