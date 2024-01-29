@@ -17,7 +17,7 @@ class ImageList(Document):
 		file_size: DF.Int
 		file_type: DF.Data | None
 		file_url: DF.Code | None
-		image: DF.Link
+		image: DF.Link | None
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
