@@ -104,7 +104,6 @@ function expandSidebar() {
 
   $('.navbar').removeClass('inactive');
   $('.content').removeClass("inactive");
-  $('#expand-sidebar-btn').addClass('hide')
 }
 
 function hideSidebar(){
@@ -113,10 +112,6 @@ function hideSidebar(){
 
   $('.navbar').addClass('inactive');
   $('.content').addClass('inactive');
-  $('#expand-sidebar-btn')
-  .html(`<button class="own-icon-btn" onclick="expandSidebar()">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
-  </button>`).removeClass('hide')
 }
 
 function goToDashboard(){
@@ -134,7 +129,7 @@ $(document).ready(function(){
   }).join(''))
 
   $('#site-name').html(window.location.hostname)
-  
+
   $('#lower-menu').html(sidebarMenus.forEach(menu => {
     if (menu.submenus){
       $('#lower-menu').append(`
@@ -171,7 +166,7 @@ $(document).ready(function(){
       `)
     }
   }))
-  
+
   $(document).on('click', function(e) {
     var modalMenu = $('#modal-menus');
     var modalButton = $('#trigger');
