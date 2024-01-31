@@ -102,13 +102,77 @@
 	justify-content:space-between;
 	width:100%;
 	border:none;
-	padding:0 8px
+	padding:0 10px;
+	cursor:pointer
 }
 
 .inner-trigger {
 	display:flex;
 	gap:8px;
+	position:relative;
 }
+
+.inner-trigger svg {
+	z-index:9;
+}
+
+#trigger:hover .square-shadow {
+	top:10px;
+	transition:top 150ms;
+}
+
+.square-shadow {
+	border:1px solid #0A5FD930;
+	background-color:#0A5FD914;
+	width:32px;
+	height:32px;
+	border-radius:5px;
+	position:absolute;
+	top:2px;
+	left:2px;
+	transition:top 150ms;
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px -1px rgba(0, 0, 0, 0.10);
+}
+
+#modal-menus-trigger {
+	position:absolute;
+	width:310px;
+	padding:4px;
+	box-shadow: 0px 1px 7.2px 0px rgba(0, 0, 0, 0.12);
+	background-color:white;
+	z-index:99;
+	border-radius:12px;
+	display:none;
+	top:110%;
+	left:10px;
+}
+
+.modal-menus-trigger-btn {
+	display:flex;
+	align-items:center;
+	gap:8px;
+	padding:6px 8px;
+	border-radius:5px;
+}
+
+.modal-menus-trigger-btn:hover {
+	background-color:#f4f4f5;
+}
+
+#modal-menus-trigger h2 {
+	font-size:14px;
+	color:#09090B;
+	margin:0;
+	line-height:20px;
+}
+
+#modal-menus-trigger p {
+	font-size:13px;
+	color:#565656;
+	margin:0;
+	line-height:20px;
+}
+
 .upper-sidebar {
 	display:flex;
 	justify-content:space-between;
@@ -171,6 +235,10 @@
 	justify-content:space-between;
 }
 
+.modal-actions {
+	display:flex;
+}
+
 .modal-btn-text {
 	display:flex;
 	align-items:center;
@@ -209,7 +277,7 @@
 	width:var(--right-sidebar-size);
 	border-right:1px solid #F4F4F4;
 	position:fixed;
-	z-index:9;
+	z-index:1030;
 }
 
 .inner-submenu {
@@ -451,6 +519,12 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 button.btn.btn-xs.btn-default {
 	background-color:#171717;
 	color:white;
+	stroke:white;
+}
+
+button.btn.btn-xs.btn-default[data-fieldname='option_toggle_button']{
+	background-color:revert;
+	color:revert;
 }
 .btn-file-upload {
 	display:block
