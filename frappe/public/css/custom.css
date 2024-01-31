@@ -102,7 +102,7 @@
 	justify-content:space-between;
 	width:100%;
 	border:none;
-	padding:0 10px;
+	padding:0 8px;
 	cursor:pointer
 }
 
@@ -117,7 +117,7 @@
 }
 
 #trigger:hover .square-shadow {
-	top:10px;
+	top:12px;
 	transition:top 150ms;
 }
 
@@ -128,7 +128,7 @@
 	height:32px;
 	border-radius:5px;
 	position:absolute;
-	top:2px;
+	top:8px;
 	left:2px;
 	transition:top 150ms;
 	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px -1px rgba(0, 0, 0, 0.10);
@@ -136,27 +136,35 @@
 
 #modal-menus-trigger {
 	position:absolute;
-	width:310px;
-	padding:4px;
+	width:355px;
+	padding:8px 7px 16px;
 	box-shadow: 0px 1px 7.2px 0px rgba(0, 0, 0, 0.12);
 	background-color:white;
 	z-index:99;
 	border-radius:12px;
 	display:none;
 	top:110%;
-	left:10px;
+	left:8px;
+}
+
+#modal-menus-trigger.active {
+	display:flex;
+	flex-direction:column;
+	gap:10px
 }
 
 .modal-menus-trigger-btn {
 	display:flex;
 	align-items:center;
 	gap:8px;
-	padding:6px 8px;
+	padding:6px 7px;
 	border-radius:5px;
+	justify-content:space-between;
 }
 
 .modal-menus-trigger-btn:hover {
 	background-color:#f4f4f5;
+	text-decoration:none;
 }
 
 #modal-menus-trigger h2 {
@@ -171,6 +179,24 @@
 	color:#565656;
 	margin:0;
 	line-height:20px;
+	margin-top:-4px;
+}
+
+.modal-menus-desc {
+	display:flex;
+	align-items: center;
+	gap:10px
+}
+
+.modal-app {
+	font-family:'Cal Sans';
+	font-size:16px !important;
+}
+
+.modal-app-host {
+	font-family:'Cal Sans';
+	font-size:12px !important;
+	color:#565656;
 }
 
 .upper-sidebar {
@@ -178,6 +204,7 @@
 	justify-content:space-between;
 	gap:8px;
 	position:relative;
+	margin-top:7px;
 	margin-bottom:20px;
 }
 
@@ -269,7 +296,7 @@
 .navside {
 	height:100%;
 	background-color:white;
-	padding:16px 6px;
+	padding:12px 6px;
 	top:0;
 }
 
