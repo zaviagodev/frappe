@@ -41,6 +41,7 @@
 
 .searchbar-header {
 	max-width:155px;
+	margin-right:6px
 }
 
 .pro-icon {
@@ -57,6 +58,11 @@
 	align-items:center;
 }
 
+.pro-icon span {
+	display:inline-block;
+	margin-top:2px
+}
+
 .upgrade-to-pro {
 	display:flex;
 	background-color:#F4F4F5;
@@ -71,16 +77,25 @@
 	font-family:'SF Pro Display'
 }
 
+.upgrade-to-pro:hover {
+	color:black;
+	text-decoration:none
+}
+
 #site-title,#site-name {
 	text-align:left;
 }
 
+.nav-link .es-icon {
+	margin-top:-1px
+}
+
 #site-title {
-	font-size:17px;
+	font-size:16px;
 	font-weight:600;
 	margin:0;
 	line-height:25px;
-	letter-spacing:-1.1px;
+	letter-spacing:-1px;
 }
 
 #site-name {
@@ -139,7 +154,7 @@
 	width:355px;
 	padding:8px 7px 16px;
 	box-shadow: 0px 1px 7.2px 0px rgba(0, 0, 0, 0.12);
-	background-color:white;
+	background-color:var(--bg-color);
 	z-index:99;
 	border-radius:12px;
 	display:none;
@@ -167,6 +182,14 @@
 	text-decoration:none;
 }
 
+[data-theme="dark"] .modal-menus-trigger-btn:hover,
+[data-theme="dark"] .menulink-btn:hover,
+[data-theme="dark"] .main-menu:hover,
+[data-theme="dark"] .modal-btn:hover,
+[data-theme="dark"] .menulink-btn.inner-submenu.active{
+	background-color:#232323;
+}
+
 #modal-menus-trigger h2 {
 	font-size:14px;
 	color:#09090B;
@@ -180,6 +203,14 @@
 	margin:0;
 	line-height:20px;
 	margin-top:-4px;
+}
+
+[data-theme="dark"] #modal-menus-trigger {
+	box-shadow:0px 1px 7.2px 0px rgba(0, 0, 0, 0.88)
+}
+[data-theme="dark"] #modal-menus-trigger h2,
+[data-theme="dark"] #modal-menus-trigger p {
+	color:var(--text-color);
 }
 
 .modal-menus-desc {
@@ -205,7 +236,7 @@
 	gap:8px;
 	position:relative;
 	margin-top:7px;
-	margin-bottom:20px;
+	margin-bottom:24px;
 }
 
 .rightside-menu-group {
@@ -249,7 +280,7 @@
 }
 
 .menulink-btn {
-    padding:8px 10px;
+    padding:7px 10px;
     font-size:13px;
     line-height:20px;
 }
@@ -295,7 +326,7 @@
 
 .navside {
 	height:100%;
-	background-color:white;
+	background-color:var(--bg-color);
 	padding:12px 6px;
 	top:0;
 }
@@ -305,6 +336,11 @@
 	border-right:1px solid #F4F4F4;
 	position:fixed;
 	z-index:1030;
+}
+
+[data-theme="dark"] .nav-rightside,
+[data-theme="dark"] .navbar {
+	border-color:var(--border-color)
 }
 
 .inner-submenu {
@@ -391,7 +427,6 @@
 #sidebar-menus {
 	overflow-y:auto;
 	height:calc(100% - 40px);
-	margin:8px 0;
 }
 
 #sidebar-menus::-webkit-scrollbar,
@@ -404,7 +439,7 @@
 }
 
 #lower-menu {
-	margin-top:16px;
+	margin-top:20px;
 }
 
 #modal-menus.active {
@@ -443,7 +478,11 @@
 .navbar-home {
 	color:#09090B;
     line-height:20px;
-    font-size:14px;
+    font-size:13px;
+}
+
+[data-theme="dark"] .navbar-home {
+	color:var(--text-color)
 }
 
 body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
