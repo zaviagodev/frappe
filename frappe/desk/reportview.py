@@ -488,6 +488,25 @@ def delete_bulk(doctype, items):
 	for i, d in enumerate(items):
 		try:
 			if softdelet == 1:
+				stock = frappe.get_doc("Item", d)
+				stock_entry = frappe.get_list("Stock Ledger Entry",filters={"item_code": stock.item_code},fields=["sum(actual_qty) as total_qty"])
+				if stock_entry and stock_entry[0].total_qty > 0:
+					warehouse = "Stores - Z"
+					quantity_to_remove = stock_entry[0].total_qty
+					stock_entry = frappe.new_doc("Stock Entry")
+					stock_entry.posting_date = frappe.utils.nowdate()
+					stock_entry.append("items", {
+						"item_code": stock.item_code,
+						"qty": quantity_to_remove,
+						"transfer_qty": quantity_to_remove,
+						"s_warehouse": "Stores - Z",
+						"uom": frappe.get_value("Item", stock.item_code, "stock_uom"),
+						"serial_no": "",
+					})
+					stock_entry.from_warehouse = "Stores - Z"
+					stock_entry.stock_entry_type = "Material Issue"
+					stock_entry.docstatus = 1
+					stock_entry.save()
 				frappe.db.set_value(doctype, d, 'docstatus', 5)
 			else:
 				frappe.delete_doc(doctype, d)
