@@ -20,6 +20,7 @@
   "is_calendar_and_gantt",
   "editable_grid",
   "quick_entry",
+  "soft_delete",
   "cb01",
   "track_changes",
   "track_seen",
@@ -158,6 +159,13 @@
    "fieldtype": "Check",
    "label": "Quick Entry"
   },
+  {
+    "default": "0",
+    "description": "Soft Delete item so it will be hidden insted of removing the document from database",
+    "fieldname": "soft_delete",
+    "fieldtype": "Check",
+    "label": "Soft Delete"
+   },
   {
    "fieldname": "cb01",
    "fieldtype": "Column Break"

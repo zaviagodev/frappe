@@ -272,7 +272,12 @@ def delete(doctype, name):
 
 	:param doctype: DocType of the document to be deleted
 	:param name: name of the document to be deleted"""
-	delete_doc(doctype, name)
+ 
+	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
+	if softdelet == 1:
+		frappe.db.set_value(doctype, name, 'docstatus', 5)
+	else:
+		delete_doc(doctype, name)
 
 
 @frappe.whitelist(methods=["POST", "PUT"])
