@@ -999,9 +999,11 @@ def sign_up(email: str, full_name: str, redirect_to: str) -> tuple[int, str]:
 				"user_type": "Website User",
 			}
 		)
+		user.is_verified = 1
 		user.flags.ignore_permissions = True
 		user.flags.ignore_password_policy = True
 		user.insert()
+		return 1, _("Registered")
 
 		# set default signup role as per Portal Settings
 		default_role = frappe.db.get_single_value("Portal Settings", "default_role")

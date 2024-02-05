@@ -14,10 +14,11 @@ class TopBarItem(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		is_product: DF.Check
 		label: DF.Data
 		open_in_new_tab: DF.Check
 		parent: DF.Data
-		parent_label: DF.Literal
+		parent_label: DF.Link | None
 		parentfield: DF.Data
 		parenttype: DF.Data
 		right: DF.Check
