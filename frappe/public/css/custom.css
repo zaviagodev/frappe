@@ -124,7 +124,7 @@
 
 .inner-trigger {
 	display:flex;
-	gap:8px;
+	gap:10px;
 	position:relative;
 }
 
@@ -625,4 +625,8 @@ button.btn.btn-xs.btn-default[data-fieldname='option_toggle_button']{
 
 .form-tabs-sticky-up {
 	top:53px
+}
+
+.page-head .page-head-content {
+	height:fit-content
 }
