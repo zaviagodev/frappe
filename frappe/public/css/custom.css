@@ -96,6 +96,7 @@
 	margin:0;
 	line-height:25px;
 	letter-spacing:-1px;
+	margin-bottom:-3px;
 }
 
 #site-name {
@@ -491,6 +492,10 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 
 /* Modify CSS of doctypes */
 
+.form-section .form-section-description, .form-dashboard-section .form-section-description {
+	font-weight:400
+}
+
 .section-head {
 	margin:0 0 8px !important;
 	padding:0 15px !important;
@@ -603,4 +608,21 @@ button.btn.btn-xs.btn-default[data-fieldname='option_toggle_button']{
 .filter-action-buttons div {
 	display:flex;
 	gap:8px
+}
+
+.form-tabs-list .form-tabs .nav-item .nav-link {
+	font-weight:400;
+	font-size:13px;
+}
+
+.std-form-layout > .form-layout > .form-page {
+	border:1px solid #F4F4F4
+}
+
+.form-tabs-list {
+	border-bottom-color:#F4F4F4
+}
+
+.form-tabs-sticky-up {
+	top:53px
 }
