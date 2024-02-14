@@ -35,6 +35,11 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 	toggle_description(show) {
 		this.$wrapper.find(".help-box").toggleClass("hide", !show);
 	}
+	toggle_visibilty() {
+		if (this.$input && this.df.hide_on_new) {
+			this.$wrapper.find(".form-group").toggleClass("hide", this.frm?.is_new());
+		}
+	}
 	set_input_areas() {
 		if (this.only_input) {
 			this.input_area = this.wrapper;
@@ -123,12 +128,14 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 				}
 			}
 
+			me.toggle_visibilty();
 			me.set_description();
 			me.set_label();
 			me.set_doc_url();
 			me.set_mandatory(me.value);
 			me.set_bold();
 			me.set_required();
+			me.set_placeholder();
 		}
 	}
 
@@ -138,7 +145,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 
 	set_disp_area(value) {
 		if (
-			in_list(["Currency", "Int", "Float"], this.df.fieldtype) &&
+			["Currency", "Int", "Float"].includes(this.df.fieldtype) &&
 			(this.value === 0 || value === 0)
 		) {
 			// to set the 0 value in readonly for currency, int, float field
@@ -172,7 +179,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 		if (
 			!this.df.label ||
 			!this.df?.documentation_url ||
-			in_list(unsupported_fieldtypes, this.df.fieldtype)
+			unsupported_fieldtypes.includes(this.df.fieldtype)
 		)
 			return;
 
@@ -217,7 +224,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 		let invalid = !!this.df.invalid;
 		if (this.grid) {
 			this.$wrapper.parents(".grid-static-col").toggleClass("invalid", invalid);
-			this.$input.toggleClass("invalid", invalid);
+			this.$input?.toggleClass("invalid", invalid);
 			this.grid_row.columns[this.df.fieldname].is_invalid = invalid;
 		} else {
 			this.$wrapper.toggleClass("has-error", invalid);
@@ -232,6 +239,27 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 		}
 		if (this.disp_area) {
 			$(this.disp_area).toggleClass("bold", !!(this.df.bold || this.df.reqd));
+		}
+	}
+	
+	set_placeholder(placeholderText) {
+		if (placeholderText !== undefined) {
+			this.df.placeholder = placeholderText;
+		}
+		if (this.df.placeholder === this._placeholder) {
+			return;
+		}
+		if (this.$input && this.df.placeholder) {
+			this.$input.attr("placeholder", __(this.df.placeholder));
+		} else {
+			this.set_empty_placeholder();
+		}
+		this._placeholder = this.df.placeholder;
+	}
+
+	set_empty_placeholder() {
+		if (this.$input) {
+			this.$input.attr("placeholder", "");
 		}
 	}
 };

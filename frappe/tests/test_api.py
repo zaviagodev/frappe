@@ -278,6 +278,14 @@ class TestMethodAPI(FrappeAPITestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.json["message"], "Administrator")
 
+		authorization_token = f"{api_key}:INCORRECT"
+		response = self.get(self.method_path("frappe.auth.get_logged_user"))
+		self.assertEqual(response.status_code, 401)
+
+		authorization_token = f"NonExistentKey:INCORRECT"
+		response = self.get(self.method_path("frappe.auth.get_logged_user"))
+		self.assertEqual(response.status_code, 401)
+
 		authorization_token = None
 
 	def test_404s(self):
@@ -410,6 +418,19 @@ class TestResponse(FrappeAPITestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertIn("text/csv", response.headers["content-type"])
 		self.assertGreater(cint(response.headers["content-length"]), 0)
+
+		from frappe.desk.utils import provide_binary_file
+		from frappe.utils.response import build_response
+
+		filename = "دفتر الأستاذ العام"
+		encoded_filename = filename.encode("utf-8").decode("unicode-escape", "ignore") + ".xlsx"
+		provide_binary_file(filename, "xlsx", "content")
+
+		response = build_response("binary")
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.headers["content-type"], "application/octet-stream")
+		self.assertGreater(cint(response.headers["content-length"]), 0)
+		self.assertEqual(response.headers["content-disposition"], f'filename="{encoded_filename}"')
 
 
 def generate_admin_keys():

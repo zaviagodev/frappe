@@ -34,51 +34,7 @@ class CustomField(Document):
 		fetch_from: DF.SmallText | None
 		fetch_if_empty: DF.Check
 		fieldname: DF.Data | None
-		fieldtype: DF.Literal[
-			"Autocomplete",
-			"Attach",
-			"Attach Image",
-			"Barcode",
-			"Button",
-			"Check",
-			"Code",
-			"Color",
-			"Column Break",
-			"Currency",
-			"Data",
-			"Date",
-			"Datetime",
-			"Duration",
-			"Dynamic Link",
-			"Float",
-			"Fold",
-			"Geolocation",
-			"Heading",
-			"HTML",
-			"HTML Editor",
-			"Icon",
-			"Image",
-			"Int",
-			"JSON",
-			"Link",
-			"Long Text",
-			"Markdown Editor",
-			"Password",
-			"Percent",
-			"Phone",
-			"Read Only",
-			"Rating",
-			"Section Break",
-			"Select",
-			"Signature",
-			"Small Text",
-			"Tab Break",
-			"Table",
-			"Table MultiSelect",
-			"Text",
-			"Text Editor",
-			"Time",
-		]
+		fieldtype: DF.Literal["Autocomplete", "Attach", "Attach Image", "Attach Multiple Images", "Barcode", "Button", "Check", "Code", "Color", "Column Break", "Connection", "Currency", "Data", "Date", "Datetime", "Duration", "Dynamic Link", "Float", "Fold", "Geolocation", "Heading", "HTML", "HTML Editor", "Icon", "Image", "Int", "JSON", "Link", "Long Text", "Markdown Editor", "Password", "Percent", "Phone", "Read Only", "Rating", "Section Break", "Select", "Signature", "Small Text", "Tab Break", "Table", "Table MultiSelect", "Text", "Text Editor", "Time"]
 		hidden: DF.Check
 		hide_border: DF.Check
 		hide_days: DF.Check
@@ -100,6 +56,7 @@ class CustomField(Document):
 		non_negative: DF.Check
 		options: DF.SmallText | None
 		permlevel: DF.Int
+		placeholder: DF.Data | None
 		precision: DF.Literal["", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		print_hide: DF.Check
 		print_hide_if_no_value: DF.Check
@@ -356,12 +313,13 @@ def rename_fieldname(custom_field: str, fieldname: str):
 	if field.is_system_generated:
 		frappe.throw(_("System Generated Fields can not be renamed"))
 	if frappe.db.has_column(parent_doctype, fieldname):
-		frappe.throw(_("Can not rename as fieldname {0} is already present on DocType."))
+		frappe.throw(_("Can not rename as column {0} is already present on DocType.").format(fieldname))
 	if old_fieldname == new_fieldname:
 		frappe.msgprint(_("Old and new fieldnames are same."), alert=True)
 		return
 
-	frappe.db.rename_column(parent_doctype, old_fieldname, new_fieldname)
+	if frappe.db.has_column(field.dt, old_fieldname):
+		frappe.db.rename_column(parent_doctype, old_fieldname, new_fieldname)
 
 	# Update in DB after alter column is successful, alter column will implicitly commit, so it's
 	# best to commit change on field too to avoid any possible mismatch between two.

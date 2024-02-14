@@ -293,6 +293,7 @@ def get_all_translations(lang: str) -> dict[str, str]:
 	except Exception:
 		# People mistakenly call translation function on global variables
 		# where locals are not initalized, translations dont make much sense there
+		frappe.logger().error("Unable to load translations", exc_info=True)
 		return {}
 
 
@@ -306,7 +307,7 @@ def get_translations_from_apps(lang, apps=None):
 
 	translations = {}
 	for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
-		path = frappe.get_app_path(app, "translations", lang + ".csv")
+		path = os.path.join(frappe.get_app_path(app, "translations"), lang + ".csv")
 		translations.update(get_translation_dict_from_file(path, lang, app) or {})
 	if "-" in lang:
 		parent = lang.split("-", 1)[0]

@@ -465,7 +465,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			? __("No {0} found with matching filters. Clear filters to see all {0}.", [
 					__(this.doctype),
 			  ])
+			: this.meta.description
+			? __(this.meta.description)
 			: __("You haven't created a {0} yet", [__(this.doctype)]);
+
 		let new_button_label = has_filters_set
 			? __("Create a new {0}", [__(this.doctype)], "Create a new document from list view")
 			: __(
@@ -478,7 +481,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			"/assets/frappe/images/ui-states/list-empty-state.svg";
 
 		const new_button = this.can_create
-			? `<p><button class="btn btn-primary btn-sm btn-new-doc hidden-xs">
+			? `<p><button class="btn btn-default btn-sm btn-new-doc hidden-xs">
 				${new_button_label}
 			</button> <button class="btn btn-primary btn-new-doc visible-xs">
 				${__("Create New", null, "Create a new document from list view")}
@@ -755,7 +758,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			: value;
 
 		let translated_doctypes = frappe.boot?.translated_doctypes || [];
-		if (in_list(translated_doctypes, df.options)) {
+		if (translated_doctypes.includes(df.options)) {
 			value_display = __(value_display);
 		}
 
@@ -795,7 +798,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 				_value = _value * out_of_ratings;
 			}
 
-			if (df.fieldtype === "Image") {
+			if (df.fieldtype === "Image" || df.fieldtype === "Attach Image") {
 				html = df.options
 					? `<img src="${doc[df.options]}"
 					style="max-height: 30px; max-width: 100%;">`
@@ -934,7 +937,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 				</span>
 			</div>
 			<div class="level-item visible-xs text-right">
-				${this.get_indicator_dot(doc)}
+				${this.get_indicator_html(doc)}
 			</div>
 		`;
 

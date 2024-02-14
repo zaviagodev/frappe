@@ -26,50 +26,7 @@ class CustomizeFormField(Document):
 		fetch_from: DF.SmallText | None
 		fetch_if_empty: DF.Check
 		fieldname: DF.Data | None
-		fieldtype: DF.Literal[
-			"Autocomplete",
-			"Attach",
-			"Attach Image",
-			"Barcode",
-			"Button",
-			"Check",
-			"Code",
-			"Color",
-			"Column Break",
-			"Currency",
-			"Data",
-			"Date",
-			"Datetime",
-			"Duration",
-			"Dynamic Link",
-			"Float",
-			"Fold",
-			"Geolocation",
-			"Heading",
-			"HTML",
-			"HTML Editor",
-			"Icon",
-			"Image",
-			"Int",
-			"Link",
-			"Long Text",
-			"Markdown Editor",
-			"Password",
-			"Percent",
-			"Phone",
-			"Rating",
-			"Read Only",
-			"Section Break",
-			"Select",
-			"Signature",
-			"Small Text",
-			"Tab Break",
-			"Table",
-			"Table MultiSelect",
-			"Text",
-			"Text Editor",
-			"Time",
-		]
+		fieldtype: DF.Literal["Autocomplete", "Attach", "Attach Image", "Attach Multiple Images", "Barcode", "Button", "Check", "Code", "Color", "Column Break", "Connection", "Currency", "Data", "Date", "Datetime", "Duration", "Dynamic Link", "Float", "Fold", "Geolocation", "Heading", "HTML", "HTML Editor", "Icon", "Image", "Int", "Link", "Long Text", "Markdown Editor", "Password", "Percent", "Phone", "Rating", "Read Only", "Section Break", "Select", "Signature", "Small Text", "Tab Break", "Table", "Table MultiSelect", "Text", "Text Editor", "Time"]
 		hidden: DF.Check
 		hide_border: DF.Check
 		hide_days: DF.Check
@@ -94,6 +51,7 @@ class CustomizeFormField(Document):
 		parentfield: DF.Data
 		parenttype: DF.Data
 		permlevel: DF.Int
+		placeholder: DF.Data | None
 		precision: DF.Literal["", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		print_hide: DF.Check
 		print_hide_if_no_value: DF.Check

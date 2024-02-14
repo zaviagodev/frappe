@@ -86,6 +86,17 @@ class FrappeTestCase(unittest.TestCase):
 
 		return BeautifulSoup(code, "html.parser").prettify(formatter=None)
 
+	def normalize_sql(self, query: str) -> str:
+		"""Formats SQL consistently so simple string comparisons can work on them."""
+		import sqlparse
+
+		return (
+			sqlparse.format(query.strip(), keyword_case="upper", reindent=True, strip_comments=True),
+		)
+
+	def assertQueryEqual(self, first: str, second: str):
+		self.assertEqual(self.normalize_sql(first), self.normalize_sql(second))
+
 	@contextmanager
 	def assertQueryCount(self, count):
 		queries = []
@@ -190,7 +201,7 @@ def _commit_watcher():
 	import traceback
 
 	print("Warning:, transaction committed during tests.")
-	traceback.print_stack(limit=5)
+	traceback.print_stack(limit=10)
 
 
 def _rollback_db():
@@ -206,7 +217,7 @@ def _restore_thread_locals(flags):
 	frappe.local.conf = frappe._dict(frappe.get_site_config())
 	frappe.local.cache = {}
 	frappe.local.lang = "en"
-	frappe.local.preload_assets = {"style": [], "script": []}
+	frappe.local.preload_assets = {"style": [], "script": [], "icons": []}
 
 	if hasattr(frappe.local, "request"):
 		delattr(frappe.local, "request")

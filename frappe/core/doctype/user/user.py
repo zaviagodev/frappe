@@ -9,6 +9,7 @@ import frappe.defaults
 import frappe.permissions
 import frappe.share
 from frappe import STANDARD_USERS, _, msgprint, throw
+from frappe.auth import MAX_PASSWORD_SIZE
 from frappe.core.doctype.user_type.user_type import user_linked_with_permission_on_doctype
 from frappe.desk.doctype.notification_settings.notification_settings import (
 	create_notification_settings,
@@ -823,6 +824,9 @@ def update_password(
 	        old_password (str, optional): Old password. Defaults to None.
 	"""
 
+	if len(new_password) > MAX_PASSWORD_SIZE:
+		frappe.throw(_("Password size exceeded the maximum allowed size."))
+
 	result = test_password_strength(new_password)
 	feedback = result.get("feedback", None)
 
@@ -995,9 +999,11 @@ def sign_up(email: str, full_name: str, redirect_to: str) -> tuple[int, str]:
 				"user_type": "Website User",
 			}
 		)
+		user.is_verified = 1
 		user.flags.ignore_permissions = True
 		user.flags.ignore_password_policy = True
 		user.insert()
+		return 1, _("Registered")
 
 		# set default signup role as per Portal Settings
 		default_role = frappe.db.get_single_value("Portal Settings", "default_role")
@@ -1048,7 +1054,7 @@ def user_query(doctype, txt, searchfield, start, page_len, filters):
 	user_type_condition = "and user_type != 'Website User'"
 	if filters and filters.get("ignore_user_type") and frappe.session.data.user_type == "System User":
 		user_type_condition = ""
-		filters.pop("ignore_user_type")
+	filters and filters.pop("ignore_user_type", None)
 
 	txt = f"%{txt}%"
 	return frappe.db.sql(
@@ -1223,27 +1229,31 @@ def create_contact(user, ignore_links=False, ignore_mandatory=False):
 
 	contact_name = get_contact_name(user.email)
 	if not contact_name:
-		contact = frappe.get_doc(
-			{
-				"doctype": "Contact",
-				"first_name": user.first_name,
-				"last_name": user.last_name,
-				"user": user.name,
-				"gender": user.gender,
-			}
-		)
+		try:
+			contact = frappe.get_doc(
+				{
+					"doctype": "Contact",
+					"first_name": user.first_name,
+					"last_name": user.last_name,
+					"user": user.name,
+					"gender": user.gender,
+				}
+			)
 
-		if user.email:
-			contact.add_email(user.email, is_primary=True)
+			if user.email:
+				contact.add_email(user.email, is_primary=True)
 
-		if user.phone:
-			contact.add_phone(user.phone, is_primary_phone=True)
+			if user.phone:
+				contact.add_phone(user.phone, is_primary_phone=True)
 
-		if user.mobile_no:
-			contact.add_phone(user.mobile_no, is_primary_mobile_no=True)
-		contact.insert(
-			ignore_permissions=True, ignore_links=ignore_links, ignore_mandatory=ignore_mandatory
-		)
+			if user.mobile_no:
+				contact.add_phone(user.mobile_no, is_primary_mobile_no=True)
+
+			contact.insert(
+				ignore_permissions=True, ignore_links=ignore_links, ignore_mandatory=ignore_mandatory
+			)
+		except frappe.DuplicateEntryError:
+			pass
 	else:
 		contact = frappe.get_doc("Contact", contact_name)
 		contact.first_name = user.first_name

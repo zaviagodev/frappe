@@ -3,6 +3,7 @@
 
 # model __init__.py
 import frappe
+from frappe import _
 
 data_fieldtypes = (
 	"Currency",
@@ -47,6 +48,7 @@ datetime_fields = {"Datetime", "Date", "Time"}
 attachment_fieldtypes = (
 	"Attach",
 	"Attach Image",
+	"Attach Multiple Images",
 )
 
 no_value_fields = (
@@ -56,10 +58,12 @@ no_value_fields = (
 	"HTML",
 	"Table",
 	"Table MultiSelect",
+	"Attach Multiple Images",
 	"Button",
 	"Image",
 	"Fold",
 	"Heading",
+	"Connection",
 )
 
 display_fieldtypes = (
@@ -71,6 +75,7 @@ display_fieldtypes = (
 	"Image",
 	"Fold",
 	"Heading",
+	"Connection",
 )
 
 numeric_fieldtypes = ("Currency", "Int", "Long Int", "Float", "Percent", "Check")
@@ -92,7 +97,7 @@ child_table_fields = ("parent", "parentfield", "parenttype")
 
 optional_fields = ("_user_tags", "_comments", "_assign", "_liked_by", "_seen")
 
-table_fields = ("Table", "Table MultiSelect")
+table_fields = ("Table", "Table MultiSelect", "Attach Multiple Images")
 
 core_doctypes_list = (
 	"DefaultValue",
@@ -131,6 +136,25 @@ log_types = (
 	"Document Follow",
 	"Console Log",
 )
+
+std_fields = [
+	{"fieldname": "name", "fieldtype": "Link", "label": _("ID")},
+	{"fieldname": "owner", "fieldtype": "Link", "label": _("Created By"), "options": "User"},
+	{"fieldname": "idx", "fieldtype": "Int", "label": _("Index")},
+	{"fieldname": "creation", "fieldtype": "Datetime", "label": _("Created On")},
+	{"fieldname": "modified", "fieldtype": "Datetime", "label": _("Last Updated On")},
+	{
+		"fieldname": "modified_by",
+		"fieldtype": "Link",
+		"label": _("Last Updated By"),
+		"options": "User",
+	},
+	{"fieldname": "_user_tags", "fieldtype": "Data", "label": _("Tags")},
+	{"fieldname": "_liked_by", "fieldtype": "Data", "label": _("Liked By")},
+	{"fieldname": "_comments", "fieldtype": "Text", "label": _("Comments")},
+	{"fieldname": "_assign", "fieldtype": "Text", "label": _("Assigned To")},
+	{"fieldname": "docstatus", "fieldtype": "Int", "label": _("Document Status")},
+]
 
 
 def delete_fields(args_dict, delete=0):
@@ -194,6 +218,8 @@ def get_permitted_fields(
 	parenttype: str | None = None,
 	user: str | None = None,
 	permission_type: str | None = None,
+	*,
+	ignore_virtual=False,
 ) -> list[str]:
 	meta = frappe.get_meta(doctype)
 	valid_columns = meta.get_valid_columns()
@@ -208,21 +234,24 @@ def get_permitted_fields(
 	if permission_type is None:
 		permission_type = "select" if frappe.only_has_select_perm(doctype, user=user) else "read"
 
+	meta_fields = meta.default_fields.copy()
+	optional_meta_fields = [x for x in optional_fields if x in valid_columns]
+
 	if permitted_fields := meta.get_permitted_fieldnames(
-		parenttype=parenttype, user=user, permission_type=permission_type
+		parenttype=parenttype,
+		user=user,
+		permission_type=permission_type,
+		with_virtual_fields=not ignore_virtual,
 	):
 		if permission_type == "select":
 			return permitted_fields
-
-		meta_fields = meta.default_fields.copy()
-		optional_meta_fields = [x for x in optional_fields if x in valid_columns]
 
 		if meta.istable:
 			meta_fields.extend(child_table_fields)
 
 		return meta_fields + permitted_fields + optional_meta_fields
 
-	return []
+	return meta_fields + optional_meta_fields
 
 
 def is_default_field(fieldname: str) -> bool:

@@ -63,7 +63,6 @@ frappe.ui.form.ControlAttach = class ControlAttach extends frappe.ui.form.Contro
 	on_attach_doc_image() {
 		this.set_upload_options();
 		this.upload_options.restrictions.allowed_file_types = ["image/*"];
-		this.upload_options.restrictions.crop_image_aspect_ratio = 1;
 		this.file_uploader = new frappe.ui.FileUploader(this.upload_options);
 	}
 	set_upload_options() {
@@ -92,7 +91,7 @@ frappe.ui.form.ControlAttach = class ControlAttach extends frappe.ui.form.Contro
 	set_input(value, dataurl) {
 		this.last_value = this.value;
 		this.value = value;
-		if (this.value) {
+		if (this.value && !Array.isArray(this.value)) {
 			this.$input.toggle(false);
 			// value can also be using this format: FILENAME,DATA_URL
 			// Important: We have to be careful because normal filenames may also contain ","

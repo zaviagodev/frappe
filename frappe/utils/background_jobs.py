@@ -21,7 +21,7 @@ from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_fi
 import frappe
 import frappe.monitor
 from frappe import _
-from frappe.utils import cint, cstr, get_bench_id
+from frappe.utils import CallbackManager, cint, cstr, get_bench_id
 from frappe.utils.commands import log
 from frappe.utils.deprecations import deprecation_warning
 from frappe.utils.redis_queue import RedisQueue
@@ -185,6 +185,7 @@ def run_doc_method(doctype, name, doc_method, **kwargs):
 def execute_job(site, method, event, job_name, kwargs, user=None, is_async=True, retry=0):
 	"""Executes job in a worker, performs commit/rollback and logs if there is any error"""
 	retval = None
+
 	if is_async:
 		frappe.connect(site)
 		if os.environ.get("CI"):
@@ -197,7 +198,16 @@ def execute_job(site, method, event, job_name, kwargs, user=None, is_async=True,
 		method_name = method
 		method = frappe.get_attr(method)
 	else:
-		method_name = cstr(method.__name__)
+		method_name = f"{method.__module__}.{method.__qualname__}"
+
+	frappe.local.job = frappe._dict(
+		site=site,
+		method=method_name,
+		job_name=job_name,
+		kwargs=kwargs,
+		user=user,
+		after_job=CallbackManager(),
+	)
 
 	for before_job_task in frappe.get_hooks("before_job"):
 		frappe.call(before_job_task, method=method_name, kwargs=kwargs, transaction_type="job")
@@ -239,6 +249,7 @@ def execute_job(site, method, event, job_name, kwargs, user=None, is_async=True,
 	finally:
 		for after_job_task in frappe.get_hooks("after_job"):
 			frappe.call(after_job_task, method=method_name, kwargs=kwargs, result=retval)
+		frappe.local.job.after_job.run()
 
 		if is_async:
 			frappe.destroy()
@@ -257,6 +268,7 @@ def start_worker(
 	if not strategy:
 		strategy = DequeueStrategy.DEFAULT
 
+	_start_sentry()
 	_freeze_gc()
 
 	with frappe.init_site():
@@ -298,6 +310,7 @@ def start_worker_pool(
 	WARNING: This feature is considered "EXPERIMENTAL".
 	"""
 
+	_start_sentry()
 	_freeze_gc()
 
 	with frappe.init_site():
@@ -448,15 +461,18 @@ def get_redis_conn(username=None, password=None):
 			return get_redis_connection_without_auth()
 		else:
 			return RedisQueue.get_connection(**cred)
-	except (redis.exceptions.AuthenticationError, redis.exceptions.ResponseError):
+	except redis.exceptions.AuthenticationError:
 		log(
 			f'Wrong credentials used for {cred.username or "default user"}. '
 			"You can reset credentials using `bench create-rq-users` CLI and restart the server",
 			colour="red",
 		)
 		raise
-	except Exception:
-		log(f"Please make sure that Redis Queue runs @ {frappe.get_conf().redis_queue}", colour="red")
+	except Exception as e:
+		log(
+			f"Please make sure that Redis Queue runs @ {frappe.get_conf().redis_queue}. Redis reported error: {str(e)}",
+			colour="red",
+		)
 		raise
 
 
@@ -561,3 +577,50 @@ def truncate_failed_registry(job, connection, type, value, traceback):
 		for job_ids in create_batch(failed_jobs, 100):
 			for job_obj in Job.fetch_many(job_ids=job_ids, connection=connection):
 				job_obj and fail_registry.remove(job_obj, delete_job=True)
+
+
+def _start_sentry():
+	sentry_dsn = os.getenv("FRAPPE_SENTRY_DSN")
+	if not sentry_dsn:
+		return
+
+	import sentry_sdk
+	from sentry_sdk.integrations.argv import ArgvIntegration
+	from sentry_sdk.integrations.atexit import AtexitIntegration
+	from sentry_sdk.integrations.dedupe import DedupeIntegration
+	from sentry_sdk.integrations.excepthook import ExcepthookIntegration
+	from sentry_sdk.integrations.modules import ModulesIntegration
+	from sentry_sdk.integrations.rq import RqIntegration
+
+	from frappe.utils.sentry import FrappeIntegration, before_send
+
+	integrations = [
+		AtexitIntegration(),
+		ExcepthookIntegration(),
+		DedupeIntegration(),
+		ModulesIntegration(),
+		ArgvIntegration(),
+		RqIntegration(),
+	]
+
+	experiments = {}
+	kwargs = {}
+
+	if os.getenv("ENABLE_SENTRY_DB_MONITORING"):
+		integrations.append(FrappeIntegration())
+		experiments["record_sql_params"] = True
+
+	if tracing_sample_rate := os.getenv("SENTRY_TRACING_SAMPLE_RATE"):
+		kwargs["traces_sample_rate"] = float(tracing_sample_rate)
+
+	sentry_sdk.init(
+		dsn=sentry_dsn,
+		before_send=before_send,
+		attach_stacktrace=True,
+		release=frappe.__version__,
+		auto_enabling_integrations=False,
+		default_integrations=False,
+		integrations=integrations,
+		_experiments=experiments,
+		**kwargs,
+	)

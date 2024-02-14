@@ -19,6 +19,7 @@ import "./check";
 import "./image";
 import "./attach";
 import "./attach_image";
+import "./attach_multiple_images";
 import "./table";
 import "./color";
 import "./signature";
@@ -41,6 +42,7 @@ import "./duration";
 import "./icon";
 import "./phone";
 import "./json";
+import "./connection"
 
 frappe.ui.form.make_control = function (opts) {
 	var control_class_name = "Control" + opts.df.fieldtype.replace(/ /g, "");

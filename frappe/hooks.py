@@ -1,3 +1,5 @@
+import os
+
 from . import __version__ as app_version
 
 app_name = "frappe"
@@ -32,6 +34,7 @@ app_include_js = [
 	"telemetry.bundle.js",
 	"/assets/frappe/js/custom.js"
 ]
+
 app_include_css = [
 	"desk.bundle.css",
 	"report.bundle.css",
@@ -409,6 +412,7 @@ ignore_links_on_delete = [
 	"Email Unsubscribe",
 	"Activity Log",
 	"File",
+	"Image List",
 	"Version",
 	"Document Follow",
 	"Comment",
@@ -432,9 +436,18 @@ before_request = [
 
 # Background Job Hooks
 before_job = [
+	"frappe.recorder.record",
 	"frappe.monitor.start",
 ]
+
+if os.getenv("FRAPPE_SENTRY_DSN") and (
+	os.getenv("ENABLE_SENTRY_DB_MONITORING") or os.getenv("SENTRY_TRACING_SAMPLE_RATE")
+):
+	before_request.append("frappe.utils.sentry.set_sentry_context")
+	before_job.append("frappe.utils.sentry.set_sentry_context")
+
 after_job = [
+	"frappe.recorder.dump",
 	"frappe.monitor.stop",
 	"frappe.utils.file_lock.release_document_locks",
 	"frappe.utils.telemetry.flush",
@@ -443,6 +456,22 @@ after_job = [
 extend_bootinfo = [
 	"frappe.utils.telemetry.add_bootinfo",
 	"frappe.core.doctype.user_permission.user_permission.send_user_permissions",
+	"frappe.utils.sentry.add_bootinfo",
 ]
 
 export_python_type_annotations = True
+
+# log doctype cleanups to automatically add in log settings
+default_log_clearing_doctypes = {
+	"Error Log": 30,
+	"Activity Log": 90,
+	"Email Queue": 30,
+	"Scheduled Job Log": 90,
+	"Route History": 90,
+	"Submission Queue": 30,
+	"Prepared Report": 30,
+	"Webhook Request Log": 30,
+	"Integration Request": 90,
+	"Unhandled Email": 30,
+	"Reminder": 30,
+}

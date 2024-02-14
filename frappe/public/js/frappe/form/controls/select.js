@@ -1,5 +1,6 @@
 frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.ControlData {
 	static html_element = "select";
+	static trigger_change_on_input_event = false;
 	make_input() {
 		super.make_input();
 
@@ -32,7 +33,7 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 		if (this.only_input) {
 			this.$wrapper.append(placeholder_html);
 		} else {
-			this.$wrapper.find(".control-input").append(placeholder_html);
+			this.$wrapper?.find(".control-input").append(placeholder_html);
 		}
 		this.toggle_placeholder();
 		this.$input && this.$input.on("select-change", () => this.toggle_placeholder());
@@ -97,8 +98,8 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 		}
 	}
 	toggle_placeholder() {
-		const input_set = Boolean(this.$input.find("option:selected").text());
-		this.$wrapper.find(".placeholder").toggle(!input_set);
+		const input_set = Boolean(this.$input?.find("option:selected").text());
+		this.$wrapper?.find(".placeholder").toggle(!input_set);
 	}
 };
 
@@ -110,7 +111,7 @@ frappe.ui.form.add_options = function (input, options_list, sort) {
 
 	let options = options_list.map((raw_option) => parse_option(raw_option));
 	if (sort) {
-		options = options.sort((a, b) => a.label.localeCompare(b.label));
+		options = options.sort((a, b) => cstr(a.label).localeCompare(cstr(b.label)));
 	}
 
 	options

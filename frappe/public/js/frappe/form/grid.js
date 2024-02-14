@@ -158,7 +158,7 @@ export default class Grid {
 		if (
 			!this.df.label ||
 			!this.df?.documentation_url ||
-			in_list(unsupported_fieldtypes, this.df.fieldtype)
+			unsupported_fieldtypes.includes(this.df.fieldtype)
 		)
 			return;
 
@@ -680,7 +680,7 @@ export default class Grid {
 	get_modal_data() {
 		return this.df.get_data
 			? this.df.get_data().filter((data) => {
-					if (!this.deleted_docs || !in_list(this.deleted_docs, data.name)) {
+					if (!this.deleted_docs || !this.deleted_docs.includes(data.name)) {
 						return data;
 					}
 			  })
@@ -935,7 +935,7 @@ export default class Grid {
 				!df.hidden &&
 				(this.editable_fields || df.in_list_view) &&
 				((this.frm && this.frm.get_perm(df.permlevel, "read")) || !this.frm) &&
-				!in_list(frappe.model.layout_fields, df.fieldtype)
+				!frappe.model.layout_fields.includes(df.fieldtype)
 			) {
 				if (df.columns) {
 					df.colsize = df.columns;
@@ -1007,15 +1007,17 @@ export default class Grid {
 
 		let user_settings = frappe.get_user_settings(this.frm.doctype, "GridView");
 		if (user_settings && user_settings[this.doctype] && user_settings[this.doctype].length) {
-			this.user_defined_columns = user_settings[this.doctype].map((row) => {
-				let column = frappe.meta.get_docfield(this.doctype, row.fieldname);
+			this.user_defined_columns = user_settings[this.doctype]
+				.map((row) => {
+					let column = frappe.meta.get_docfield(this.doctype, row.fieldname);
 
-				if (column) {
-					column.in_list_view = 1;
-					column.columns = row.columns;
-					return column;
-				}
-			});
+					if (column) {
+						column.in_list_view = 1;
+						column.columns = row.columns;
+						return column;
+					}
+				})
+				.filter(Boolean);
 		}
 	}
 
@@ -1082,6 +1084,9 @@ export default class Grid {
 					new frappe.ui.FileUploader({
 						as_dataurl: true,
 						allow_multiple: false,
+						restrictions: {
+							allowed_file_types: [".csv"],
+						},
 						on_success(file) {
 							var data = frappe.utils.csv_to_array(
 								frappe.utils.get_decoded_string(file.dataurl)

@@ -1,15 +1,36 @@
 <script setup>
 import EditableInput from "./EditableInput.vue";
-import { ref, computed } from "vue";
 import { useStore } from "../store";
 import { move_children_to_parent, clone_field } from "../utils";
+import { ref, computed, onMounted } from "vue";
+import AddFieldButton from "./AddFieldButton.vue";
+import { useMagicKeys, whenever } from "@vueuse/core";
 
 const props = defineProps(["column", "field"]);
-let store = useStore();
+const store = useStore();
 
-let hovered = ref(false);
-let component = computed(() => {
-	return props.field.df.fieldtype.replace(" ", "") + "Control";
+const add_field_ref = ref(null);
+
+// cmd/ctrl + shift + n to open the add field autocomplete
+const { ctrl_shift_n, Backspace } = useMagicKeys();
+whenever(ctrl_shift_n, (value) => {
+	if (value && selected.value) {
+		add_field_ref.value.open();
+	}
+});
+
+// delete/backspace to delete the field
+whenever(Backspace, (value) => {
+	if (value && selected.value && store.not_using_input) {
+		remove_field();
+	}
+});
+
+const label_input = ref(null);
+const hovered = ref(false);
+const selected = computed(() => store.selected(props.field.df.name));
+const component = computed(() => {
+	return props.field.df.fieldtype.replaceAll(" ", "") + "Control";
 });
 
 function remove_field() {
@@ -23,8 +44,8 @@ function remove_field() {
 }
 
 function move_fields_to_column() {
-	let current_section = store.current_tab.sections.find(section =>
-		section.columns.find(column => column == props.column)
+	let current_section = store.current_tab.sections.find((section) =>
+		section.columns.find((column) => column == props.column)
 	);
 	move_children_to_parent(props, "column", "field", current_section);
 }
@@ -53,61 +74,37 @@ function duplicate_field() {
 	props.column.fields.splice(index + 1, 0, duplicate_field);
 	store.form.selected_field = duplicate_field.df;
 }
+
+onMounted(() => selected.value && label_input.value.focus_on_label());
 </script>
 
 <template>
-	<div
-		:class="[
-			'field',
-			hovered ? 'hovered' : '',
-			store.selected(field.df.name) ? 'selected' : ''
-		]"
-		:title="field.df.fieldname"
-		@click.stop="store.form.selected_field = field.df"
-		@mouseover.stop="hovered = true"
-		@mouseout.stop="hovered = false"
-	>
-		<component
-			:is="component"
-			:df="field.df"
-			:data-fieldname="field.df.fieldname"
-			:data-fieldtype="field.df.fieldtype"
-		>
+	<div :class="['field', selected ? 'selected' : hovered ? 'hovered' : '']" :title="field.df.fieldname"
+		@click.stop="store.form.selected_field = field.df" @mouseover.stop="hovered = true"
+		@mouseout.stop="hovered = false">
+		<component :is="component" :df="field.df" :data-fieldname="field.df.fieldname" :data-fieldtype="field.df.fieldtype">
 			<template #label>
 				<div class="field-label">
-					<EditableInput
-						:text="field.df.label"
-						:placeholder="__('Label')"
-						:empty_label="`${__('No Label')} (${field.df.fieldtype})`"
-						v-model="field.df.label"
-					/>
+					<EditableInput ref="label_input" :text="field.df.label" :placeholder="__('Label')"
+						:empty_label="`${__('No Label')} (${field.df.fieldtype})`" v-model="field.df.label" />
 					<div class="reqd-asterisk" v-if="field.df.reqd">*</div>
 					<div class="help-icon" v-if="field.df.documentation_url" v-html="frappe.utils.icon('help', 'sm')"></div>
 				</div>
 			</template>
 			<template #actions>
 				<div class="field-actions" :hidden="store.read_only">
-					<button
-						v-if="field.df.fieldtype == 'HTML'"
-						class="btn btn-xs btn-icon"
-						@click="edit_html"
-					>
-						<div v-html="frappe.utils.icon('edit', 'sm')"></div>
-					</button>
-					<button
-						v-if="column.fields.indexOf(field)"
-						class="btn btn-xs btn-icon"
-						:title="
-							__('Move the current field and the following fields to a new column')
-						"
-						@click="move_fields_to_column"
-					>
-						<div v-html="frappe.utils.icon('move', 'sm')"></div>
-					</button>
-					<button class="btn btn-xs btn-icon" @click.stop="duplicate_field">
+					<AddFieldButton v-if="column.fields.indexOf(field) != column.fields.length - 1" ref="add_field_ref"
+						:field="field" :column="column" :tooltip="__('Add field below')">
+						<div v-html="frappe.utils.icon('add', 'sm')" />
+					</AddFieldButton>
+					<button class="btn btn-xs btn-icon" :title="__('Duplicate field')" @click.stop="duplicate_field">
 						<div v-html="frappe.utils.icon('duplicate', 'sm')"></div>
 					</button>
-					<button class="btn btn-xs btn-icon" @click.stop="remove_field">
+					<button v-if="column.fields.indexOf(field)" class="btn btn-xs btn-icon" :title="__('Move the current field and the following fields to a new column')
+						" @click="move_fields_to_column">
+						<div v-html="frappe.utils.icon('move', 'sm')"></div>
+					</button>
+					<button class="btn btn-xs btn-icon" :title="__('Remove field')" @click.stop="remove_field">
 						<div v-html="frappe.utils.icon('remove', 'sm')"></div>
 					</button>
 				</div>
@@ -132,7 +129,8 @@ function duplicate_field() {
 
 	&.hovered,
 	&.selected {
-		border-color: var(--primary);
+		border-color: var(--border-primary);
+
 		.btn.btn-icon {
 			opacity: 1 !important;
 		}
@@ -151,10 +149,12 @@ function duplicate_field() {
 		.field-label {
 			display: flex;
 			align-items: center;
+
 			.reqd-asterisk {
 				margin-left: 3px;
 				color: var(--red-400);
 			}
+
 			.help-icon {
 				margin-left: 3px;
 				color: var(--text-muted);

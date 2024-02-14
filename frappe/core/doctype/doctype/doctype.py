@@ -4,13 +4,10 @@
 import copy
 import json
 import os
-
-# imports - standard imports
 import re
 import shutil
 from typing import TYPE_CHECKING, Union
 
-# imports - module imports
 import frappe
 from frappe import _
 from frappe.cache_manager import clear_controller_cache, clear_user_cache
@@ -161,6 +158,7 @@ class DocType(Document):
 		route: DF.Data | None
 		search_fields: DF.Data | None
 		sender_field: DF.Data | None
+		sender_name_field: DF.Data | None
 		show_name_in_global_search: DF.Check
 		show_preview_popup: DF.Check
 		show_title_field_in_link: DF.Check
@@ -176,6 +174,12 @@ class DocType(Document):
 		translated_doctype: DF.Check
 		website_search_field: DF.Data | None
 	# end: auto-generated types
+
+	def before_validate(self):
+		for d in self.get("fields"):
+			if d.fieldtype == "Attach Multiple Images":
+				d.options = "Image List"
+
 	def validate(self):
 		"""Validate DocType before saving.
 
@@ -201,7 +205,6 @@ class DocType(Document):
 		self.validate_document_type()
 		validate_fields(self)
 		self.check_indexing_for_dashboard_links()
-
 		if not self.istable:
 			validate_permissions(self)
 
@@ -231,6 +234,7 @@ class DocType(Document):
 			"DocPerm",
 			"Custom Field",
 			"Customize Form Field",
+			"Web Form Field",
 			"DocField",
 		]
 
@@ -870,6 +874,7 @@ class DocType(Document):
 						"read_only": 1,
 						"print_hide": 1,
 						"no_copy": 1,
+						"search_index": 1,
 					},
 				)
 
@@ -1603,7 +1608,6 @@ def validate_fields(meta):
 
 		check_illegal_characters(d.fieldname)
 		check_invalid_fieldnames(meta.get("name"), d.fieldname)
-		check_unique_fieldname(meta.get("name"), d.fieldname)
 		check_fieldname_length(d.fieldname)
 		check_hidden_and_mandatory(meta.get("name"), d)
 		check_unique_and_text(meta.get("name"), d)
@@ -1613,6 +1617,7 @@ def validate_fields(meta):
 		validate_data_field_type(d)
 
 		if not frappe.flags.in_migrate:
+			check_unique_fieldname(meta.get("name"), d.fieldname)
 			check_link_table_options(meta.get("name"), d)
 			check_illegal_mandatory(meta.get("name"), d)
 			check_dynamic_link_options(d)
@@ -1657,22 +1662,12 @@ def validate_permissions_for_doctype(doctype, for_remove=False, alert=False):
 
 
 def clear_permissions_cache(doctype):
+	from frappe.cache_manager import clear_user_cache
+
 	frappe.clear_cache(doctype=doctype)
 	delete_notification_count_for(doctype)
-	for user in frappe.db.sql_list(
-		"""
-		SELECT
-			DISTINCT `tabHas Role`.`parent`
-		FROM
-			`tabHas Role`,
-			`tabDocPerm`
-		WHERE `tabDocPerm`.`parent` = %s
-			AND `tabDocPerm`.`role` = `tabHas Role`.`role`
-			AND `tabHas Role`.`parenttype` = 'User'
-		""",
-		doctype,
-	):
-		frappe.clear_cache(user=user)
+
+	clear_user_cache()
 
 
 def validate_permissions(doctype, for_remove=False, alert=False):

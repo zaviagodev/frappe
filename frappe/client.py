@@ -10,6 +10,7 @@ import frappe.utils
 from frappe import _
 from frappe.desk.reportview import validate_args
 from frappe.model.db_query import check_parent_permission
+from frappe.model.utils import is_virtual_doctype
 from frappe.utils import get_safe_filters
 from frappe.utils.deprecations import deprecated
 
@@ -271,7 +272,39 @@ def delete(doctype, name):
 
 	:param doctype: DocType of the document to be deleted
 	:param name: name of the document to be deleted"""
-	delete_doc(doctype, name)
+
+	
+ 
+	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
+	if softdelet == 1:
+		if doctype == "Item":
+			stock = frappe.get_doc("Item", name)
+
+			stock_entry = frappe.get_list("Stock Ledger Entry",filters={"item_code": stock.item_code},fields=["sum(actual_qty) as total_qty"])
+
+			if stock_entry and stock_entry[0].total_qty > 0:
+				warehouse = "Stores - Z"
+				quantity_to_remove = stock_entry[0].total_qty
+				stock_entry = frappe.new_doc("Stock Entry")
+				stock_entry.posting_date = frappe.utils.nowdate()
+				stock_entry.append("items", {
+					"item_code": stock.item_code,
+					"qty": quantity_to_remove,
+					"transfer_qty": quantity_to_remove,
+					"s_warehouse": "Stores - Z",
+					"uom": frappe.get_value("Item", stock.item_code, "stock_uom"),
+					"serial_no": "",
+				})
+				stock_entry.from_warehouse = "Stores - Z"
+				stock_entry.stock_entry_type = "Material Issue"
+				stock_entry.docstatus = 1
+				stock_entry.save()
+				frappe.db.commit()
+
+
+		frappe.db.set_value(doctype, name, 'docstatus', 5)
+	else:
+		delete_doc(doctype, name)
 
 
 @frappe.whitelist(methods=["POST", "PUT"])
@@ -431,6 +464,18 @@ def validate_link(doctype: str, docname: str, fields=None):
 		)
 
 	values = frappe._dict()
+
+	if is_virtual_doctype(doctype):
+		try:
+			frappe.get_doc(doctype, docname)
+			values.name = docname
+		except frappe.DoesNotExistError:
+			frappe.clear_last_message()
+			frappe.msgprint(
+				_("Document {0} {1} does not exist").format(frappe.bold(doctype), frappe.bold(docname)),
+			)
+		return values
+
 	values.name = frappe.db.get_value(doctype, docname, cache=True)
 
 	fields = frappe.parse_json(fields)

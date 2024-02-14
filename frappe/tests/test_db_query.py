@@ -11,7 +11,7 @@ from frappe.custom.doctype.property_setter.property_setter import make_property_
 from frappe.database.utils import DefaultOrderBy
 from frappe.desk.reportview import get_filters_cond
 from frappe.handler import execute_cmd
-from frappe.model.db_query import DatabaseQuery
+from frappe.model.db_query import DatabaseQuery, get_between_date_filter
 from frappe.permissions import add_user_permission, clear_user_permissions_for_doctype
 from frappe.query_builder import Column
 from frappe.tests.utils import FrappeTestCase
@@ -104,6 +104,7 @@ class TestDBQuery(FrappeTestCase):
 				"doctype": "DocType",
 				"name": "Parent DocType 1",
 				"module": "Custom",
+				"autoname": "Prompt",
 				"custom": 1,
 				"fields": [
 					{"label": "Title", "fieldname": "title", "fieldtype": "Data"},
@@ -122,6 +123,7 @@ class TestDBQuery(FrappeTestCase):
 			{
 				"doctype": "DocType",
 				"name": "Parent DocType 2",
+				"autoname": "Prompt",
 				"module": "Custom",
 				"custom": 1,
 				"fields": [
@@ -286,7 +288,7 @@ class TestDBQuery(FrappeTestCase):
 		event1 = create_event(starts_on="2016-07-05 23:59:59")
 		event2 = create_event(starts_on="2016-07-06 00:00:00")
 		event3 = create_event(starts_on="2016-07-07 23:59:59")
-		event4 = create_event(starts_on="2016-07-08 00:00:01")
+		event4 = create_event(starts_on="2016-07-08 00:00:00")
 
 		# if the values are not passed in filters then event should be filter as current datetime
 		data = DatabaseQuery("Event").execute(filters={"starts_on": ["between", None]}, fields=["name"])
@@ -298,26 +300,57 @@ class TestDBQuery(FrappeTestCase):
 			filters={"starts_on": ["between", ["2016-07-06", "2016-07-07"]]}, fields=["name"]
 		)
 
-		self.assertTrue({"name": event2.name} in data)
-		self.assertTrue({"name": event3.name} in data)
-		self.assertTrue({"name": event1.name} not in data)
-		self.assertTrue({"name": event4.name} not in data)
+		self.assertIn({"name": event2.name}, data)
+		self.assertIn({"name": event3.name}, data)
+		self.assertNotIn({"name": event1.name}, data)
+		self.assertNotIn({"name": event4.name}, data)
 
 		# if only one value is passed in the filter
 		data = DatabaseQuery("Event").execute(
 			filters={"starts_on": ["between", ["2016-07-07"]]}, fields=["name"]
 		)
 
-		self.assertTrue({"name": event3.name} in data)
-		self.assertTrue({"name": event4.name} in data)
-		self.assertTrue({"name": todays_event.name} in data)
-		self.assertTrue({"name": event1.name} not in data)
-		self.assertTrue({"name": event2.name} not in data)
+		self.assertIn({"name": event3.name}, data)
+		self.assertIn({"name": event4.name}, data)
+		self.assertIn({"name": todays_event.name}, data)
+		self.assertNotIn({"name": event1.name}, data)
+		self.assertNotIn({"name": event2.name}, data)
 
 		# test between is formatted for creation column
 		data = DatabaseQuery("Event").execute(
 			filters={"creation": ["between", ["2016-07-06", "2016-07-07"]]}, fields=["name"]
 		)
+
+	def test_between_filters_date_bounds(self):
+		date_df = frappe._dict(fieldtype="Date")
+		datetime_df = frappe._dict(fieldtype="Datetime")
+		today = frappe.utils.nowdate()
+
+		# No filters -> assumes today
+		cond = get_between_date_filter("", date_df)
+		self.assertQueryEqual(cond, f"'{today}' AND '{today}'")
+
+		# One filter assumes "from" bound and to is today
+		start = "2021-01-01"
+		cond = get_between_date_filter([start], date_df)
+		self.assertQueryEqual(cond, f"'{start}' AND '{today}'")
+
+		# both date filters are applied
+		start = "2021-01-01"
+		end = "2022-01-02"
+		cond = get_between_date_filter([start, end], date_df)
+		self.assertQueryEqual(cond, f"'{start}' AND '{end}'")
+
+		# single date should include entire day
+		start = "2021-01-01"
+		cond = get_between_date_filter([start, start], datetime_df)
+		self.assertQueryEqual(cond, f"'{start} 00:00:00.000000' AND '{start} 23:59:59.999999'")
+
+		# datetime field on datetime type should remain same
+		start = "2021-01-01 01:01:00"
+		end = "2022-01-02 12:23:43"
+		cond = get_between_date_filter([start, end], datetime_df)
+		self.assertQueryEqual(cond, f"'{start}.000000' AND '{end}.000000'")
 
 	def test_ignore_permissions_for_get_filters_cond(self):
 		frappe.set_user("test2@example.com")
@@ -720,6 +753,14 @@ class TestDBQuery(FrappeTestCase):
 			limit=50,
 		)
 
+	def test_virtual_field_get_list(self):
+		try:
+			frappe.get_list("Prepared Report", ["*"])
+			frappe.get_list("Scheduled Job Type", ["*"])
+		except Exception as e:
+			print(frappe.get_traceback())
+			self.fail("get_list not working with virtual field")
+
 	def test_pluck_name(self):
 		names = DatabaseQuery("DocType").execute(filters={"name": "DocType"}, pluck="name")
 		self.assertEqual(names, ["DocType"])
@@ -984,13 +1025,17 @@ class TestDBQuery(FrappeTestCase):
 			self.assertEqual(call_args["order_by"], DefaultOrderBy)
 
 	def test_coalesce_with_in_ops(self):
-		self.assertNotIn("ifnull", frappe.get_all("User", {"name": ("in", ["a", "b"])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("in", ["a", None])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("in", ["a", ""])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("in", [])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("not in", ["a"])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("not in", [])}, run=0))
-		self.assertIn("ifnull", frappe.get_all("User", {"name": ("not in", [""])}, run=0))
+		self.assertNotIn("ifnull", frappe.get_all("User", {"first_name": ("in", ["a", "b"])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("in", ["a", None])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("in", ["a", ""])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("in", [])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("not in", ["a"])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("not in", [])}, run=0))
+		self.assertIn("ifnull", frappe.get_all("User", {"first_name": ("not in", [""])}, run=0))
+
+		# primary key is never nullable
+		self.assertNotIn("ifnull", frappe.get_all("User", {"name": ("in", ["a", None])}, run=0))
+		self.assertNotIn("ifnull", frappe.get_all("User", {"name": ("in", ["a", ""])}, run=0))
 
 	def test_ambiguous_linked_tables(self):
 		from frappe.desk.reportview import get
@@ -1209,6 +1254,9 @@ class TestReportView(FrappeTestCase):
 
 			response = execute_cmd("frappe.desk.reportview.get")
 			self.assertNotIn("published", response["keys"])
+
+			# If none of the fields are accessible then result should be empty
+			self.assertEqual(frappe.get_list("Blog Post", "published"), [])
 
 	def test_reportview_get_admin(self):
 		# Admin should be able to see access all fields
