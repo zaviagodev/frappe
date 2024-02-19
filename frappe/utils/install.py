@@ -4,6 +4,8 @@ import getpass
 
 import frappe
 from frappe.geo.doctype.country.country import import_country_and_currency
+from frappe.geo.doctype.state.state import import_states
+from frappe.geo.doctype.city.city import import_cities
 from frappe.utils.password import update_password
 
 
@@ -27,6 +29,8 @@ def after_install():
 
 	make_home_folder()
 	import_country_and_currency()
+	import_states()
+	import_cities()
 	sync_languages()
 
 	# save default print setting

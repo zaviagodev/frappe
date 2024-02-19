@@ -75,6 +75,7 @@ dependencies = [
     "xlrd~=2.0.1",
     "zxcvbn~=4.4.28",
     "markdownify~=0.11.6",
+    "py-countries-states-cities-database",
 
     # integration dependencies
     "boto3~=1.28.10",
