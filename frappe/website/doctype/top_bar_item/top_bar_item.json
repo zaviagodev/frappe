@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "autoname": "field:label",
  "creation": "2013-02-22 01:28:08",
  "doctype": "DocType",
  "document_type": "Other",
@@ -11,7 +12,8 @@
   "open_in_new_tab",
   "right",
   "column_break_5",
-  "parent_label"
+  "parent_label",
+  "is_product"
  ],
  "fields": [
   {
@@ -21,14 +23,16 @@
    "label": "Label",
    "print_width": "120px",
    "reqd": 1,
+   "unique": 1,
    "width": "120px"
   },
   {
    "description": "If you set this, this Item will come in a drop-down under the selected parent.",
    "fieldname": "parent_label",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Parent Label"
+   "label": "Parent Label",
+   "options": "Top Bar Item"
   },
   {
    "description": "Link to the page you want to open. Leave blank if you want to make it a group parent.",
@@ -55,16 +59,23 @@
    "fieldname": "open_in_new_tab",
    "fieldtype": "Check",
    "label": "Open URL in a New Tab"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_product",
+   "fieldtype": "Check",
+   "label": "is product"
   }
  ],
  "idx": 1,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-08 12:05:25.782635",
+ "modified": "2024-01-29 09:59:39.023293",
  "modified_by": "Administrator",
  "module": "Website",
  "name": "Top Bar Item",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

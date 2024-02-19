@@ -45,7 +45,7 @@ from .utils.jinja import (
 )
 from .utils.lazy_loader import lazy_import
 
-__version__ = "15.10.0"
+__version__ = "15.12.0"
 __title__ = "Frappe Framework"
 
 controllers = {}
@@ -987,6 +987,7 @@ def has_permission(
 	throw=False,
 	*,
 	parent_doctype=None,
+	debug=False,
 ):
 	"""
 	Returns True if the user has permission `ptype` for given `doctype` or `doc`
@@ -1010,6 +1011,7 @@ def has_permission(
 		user=user,
 		raise_exception=throw,
 		parent_doctype=parent_doctype,
+		debug=debug,
 	)
 
 	if throw and not out:

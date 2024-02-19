@@ -20,7 +20,12 @@ from frappe.utils import add_user_info, format_duration
 @frappe.read_only()
 def get():
 	args = get_form_params()
-	# If virtual doctype, get data from controller get_list method
+	
+	softdelet = frappe.db.get_value("DocType", args['doctype'], "soft_delete")
+	if softdelet == 1:
+		filter = args['filters']
+		filter.append([args['doctype'], "docstatus", "!=", "5"])
+
 	if is_virtual_doctype(args.doctype):
 		controller = get_controller(args.doctype)
 		data = compress(controller.get_list(args))
@@ -479,17 +484,40 @@ def delete_items():
 
 def delete_bulk(doctype, items):
 	undeleted_items = []
+	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
 	for i, d in enumerate(items):
 		try:
-			frappe.delete_doc(doctype, d)
-			if len(items) >= 5:
-				frappe.publish_realtime(
-					"progress",
-					dict(progress=[i + 1, len(items)], title=_("Deleting {0}").format(doctype), description=d),
-					user=frappe.session.user,
-				)
-			# Commit after successful deletion
-			frappe.db.commit()
+			if softdelet == 1:
+				stock = frappe.get_doc("Item", d)
+				stock_entry = frappe.get_list("Stock Ledger Entry",filters={"item_code": stock.item_code},fields=["sum(actual_qty) as total_qty"])
+				if stock_entry and stock_entry[0].total_qty > 0:
+					warehouse = "Stores - Z"
+					quantity_to_remove = stock_entry[0].total_qty
+					stock_entry = frappe.new_doc("Stock Entry")
+					stock_entry.posting_date = frappe.utils.nowdate()
+					stock_entry.append("items", {
+						"item_code": stock.item_code,
+						"qty": quantity_to_remove,
+						"transfer_qty": quantity_to_remove,
+						"s_warehouse": "Stores - Z",
+						"uom": frappe.get_value("Item", stock.item_code, "stock_uom"),
+						"serial_no": "",
+					})
+					stock_entry.from_warehouse = "Stores - Z"
+					stock_entry.stock_entry_type = "Material Issue"
+					stock_entry.docstatus = 1
+					stock_entry.save()
+				frappe.db.set_value(doctype, d, 'docstatus', 5)
+			else:
+				frappe.delete_doc(doctype, d)
+				if len(items) >= 5:
+					frappe.publish_realtime(
+						"progress",
+						dict(progress=[i + 1, len(items)], title=_("Deleting {0}").format(doctype), description=d),
+						user=frappe.session.user,
+					)
+				# Commit after successful deletion
+				frappe.db.commit()
 		except Exception:
 			# rollback if any record failed to delete
 			# if not rollbacked, queries get committed on after_request method in app.py
