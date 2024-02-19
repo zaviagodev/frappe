@@ -84,61 +84,55 @@ const sidebarMenus = [
     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
     submenu: [
       {
-        label: 'คำสั่งซื้อ',
-        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>',
+        label: "คำสั่งซื้อของฉัน",
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"/><path d="M4 13.5V6a2 2 0 0 1 2-2h2"/></svg>',
+        url: "/app/sales-invoice"
+      },
+      {
+        label:'การแจ้งโอนเงิน',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
+        url: "/app/payment-entry"
+      },
+      {
+        label:'แชแนลการขาย',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-goal"><path d="M12 13V2l8 4-8 4"/><path d="M20.55 10.23A9 9 0 1 1 8 4.94"/><path d="M8 10a5 5 0 1 0 8.9 2.02"/></svg>',
         submenu: [
           {
-            label: "คำสั่งซื้อของฉัน",
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"/><path d="M4 13.5V6a2 2 0 0 1 2-2h2"/></svg>',
-            url: "/app/sales-invoice"
+            label: "Website Item",
+            icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
+            url: "/app/sales-invoice?custom_channel=Website"
           },
           {
-            label:'การแจ้งโอนเงิน',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
-            url: "/app/payment-entry"
+            label: "Lazada",
+            icon: `<div class="dot" style="background-color:#6100DD"></div>`,
+            url: "/app/sales-invoice?custom_channel=Lazada"
           },
           {
-            label:'แชแนลการขาย',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-goal"><path d="M12 13V2l8 4-8 4"/><path d="M20.55 10.23A9 9 0 1 1 8 4.94"/><path d="M8 10a5 5 0 1 0 8.9 2.02"/></svg>',
-            submenu: [
-              {
-                label: "Website Item",
-                icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
-                url: "/app/sales-invoice?custom_channel=Website"
-              },
-              {
-                label: "Lazada",
-                icon: `<div class="dot" style="background-color:#6100DD"></div>`,
-                url: "/app/sales-invoice?custom_channel=Lazada"
-              },
-              {
-                label: "TikTok",
-                icon: `<div class="dot" style="background-color:black"></div>`,
-                url: "/app/sales-invoice?custom_channel=TikTok+Shop"
-              },
-              {
-                label: "Shopee",
-                icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
-                url: "/app/sales-invoice?custom_channel=Shopee"
-              },
-              {
-                label: "Line MyShop",
-                icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
-                url: "/app/sales-invoice?custom_channel=LINE+MyShop"
-              }
-            ]
+            label: "TikTok",
+            icon: `<div class="dot" style="background-color:black"></div>`,
+            url: "/app/sales-invoice?custom_channel=TikTok+Shop"
           },
           {
-            label:'การจัดส่งของฉัน',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
-            url: "/app/sales-invoice?status=Return"
+            label: "Shopee",
+            icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
+            url: "/app/sales-invoice?custom_channel=Shopee"
           },
           {
-            label:'คืนสินค้า',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database-backup"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></svg>',
-            url:''
+            label: "Line MyShop",
+            icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
+            url: "/app/sales-invoice?custom_channel=LINE+MyShop"
           }
         ]
+      },
+      {
+        label:'การจัดส่งของฉัน',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
+        url: "/app/sales-invoice?status=Return"
+      },
+      {
+        label:'คืนสินค้า',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database-backup"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></svg>',
+        url:''
       },
       {
         label:'ลูกค้า',
@@ -165,7 +159,7 @@ const sidebarMenus = [
   },
   {
     label:'การตลาด',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-party-popper"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>',
     badgePrefix:`<div style="background: linear-gradient(96.29deg, #C7BEFF 5.86%, #FFD3FB 104.34%);color:#460051" class='badge-prefix'>
       <div style='background-color:#460051' class='dot-badge'></div>
       New
@@ -287,11 +281,11 @@ const sidebarMenus = [
       <div style='background-color:#754600' class='dot-badge'></div>
       Beta 0.1
     </div>`,
+    innerBgColor:'#FFFBF4',
     submenu: [
       {
-        label:'ระบบบัญชี',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sheet"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="3" x2="21" y1="15" y2="15"/><line x1="9" x2="9" y1="9" y2="21"/><line x1="15" x2="15" y1="9" y2="21"/></svg>',
-        bgColor:'#FFFBF4',
+        label:'สมุดการบัญชีต่างๆ',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
         tip:`
           <div style="background-color:#FFE8C0;color:#754600" class='menutip'>
             <svg style='width:40px' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
@@ -300,63 +294,57 @@ const sidebarMenus = [
         `,
         submenu: [
           {
-            label:'สมุดการบัญชีต่างๆ',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
-            submenu: [
-              {
-                label: "บัญชีแยกประเภททั่วไป",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Balance%20Sheet"
-              },
-              {
-                label: "บัญชีเงินรับ",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Accounts%20Receivable"
-              },
-              {
-                label: "บัญชีเงินจ่าย",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Accounts%20Payable"
-              },
-            ]
+            label: "บัญชีแยกประเภททั่วไป",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Balance%20Sheet"
           },
           {
-            label:'งบการเงินต่างๆ',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
-            submenu: [
-              {
-                label: "งบดุลและฐานะการเงิน",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Balance%20Sheet"
-              },
-              {
-                label: "งบกำไรขาดทุน (P&L)",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Profit%20and%20Loss%20Statement"
-              },
-              {
-                label: "งบการเงินรวม",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Consolidated%20Financial%20Statement"
-              },
-              {
-                label: "งบกระแสเงินสด",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Cash%20Flow"
-              },
-              {
-                label: "งบทดลอง",
-                icon: `<div class="dot" style="background-color:#394047"></div>`,
-                url: "/app/query-report/Trial%20Balance"
-              },
-            ]
+            label: "บัญชีเงินรับ",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Accounts%20Receivable"
           },
           {
-            label:'อัตรากำไรขั้นต้น',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><polyline points="10 2 10 10 13 7 16 10 16 2"/></svg>',
-            url:'/app/query-report/Gross%20Profit?'
-          }
+            label: "บัญชีเงินจ่าย",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Accounts%20Payable"
+          },
         ]
+      },
+      {
+        label:'งบการเงินต่างๆ',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
+        submenu: [
+          {
+            label: "งบดุลและฐานะการเงิน",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Balance%20Sheet"
+          },
+          {
+            label: "งบกำไรขาดทุน (P&L)",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Profit%20and%20Loss%20Statement"
+          },
+          {
+            label: "งบการเงินรวม",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Consolidated%20Financial%20Statement"
+          },
+          {
+            label: "งบกระแสเงินสด",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Cash%20Flow"
+          },
+          {
+            label: "งบทดลอง",
+            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            url: "/app/query-report/Trial%20Balance"
+          },
+        ]
+      },
+      {
+        label:'อัตรากำไรขั้นต้น',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><polyline points="10 2 10 10 13 7 16 10 16 2"/></svg>',
+        url:'/app/query-report/Gross%20Profit?'
       }
     ]
   },
@@ -365,35 +353,29 @@ const sidebarMenus = [
     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
     submenu: [
       {
-        label:'การตั้งค่าทั่วไป',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
-        submenu: [
-          {
-            label:'ตั้งค่าข้อมูลธุรกิจ',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
-            url: ""
-          },
-          {
-            label:'ตั้งค่าเว็บร้านค้า',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
-            url: "/app/storefront-website-settings"
-          },
-          {
-            label:'ตั้งค่าการจัดส่ง',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
-            url: "/app/shipping-rule"
-          },
-          {
-            label:'ตั้งค่าภาษี',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>',
-            url: "/app/sales-taxes-and-charges-template"
-          },
-          {
-            label:'ตั้งค่าอีเมลแจ้งเตือน',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mails"><rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/></svg>',
-            url: ""
-          },
-        ]
+        label:'ตั้งค่าข้อมูลธุรกิจ',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
+        url: ""
+      },
+      {
+        label:'ตั้งค่าเว็บร้านค้า',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
+        url: "/app/storefront-website-settings"
+      },
+      {
+        label:'ตั้งค่าการจัดส่ง',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
+        url: "/app/shipping-rule"
+      },
+      {
+        label:'ตั้งค่าภาษี',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>',
+        url: "/app/sales-taxes-and-charges-template"
+      },
+      {
+        label:'ตั้งค่าอีเมลแจ้งเตือน',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mails"><rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/></svg>',
+        url: ""
       },
     ]
   },
@@ -569,7 +551,7 @@ $(document).ready(function(){
       if (depth === 0){
         $a.addClass('first')
       }
-      if (depth === 1 && item.bgColor){
+      if (depth === 1 && item.bgColor || item.innerBgColor){
         $a.addClass('second-with-bg')
       }
       $li.append($a);
@@ -579,6 +561,10 @@ $(document).ready(function(){
         var $submenu = $("<ul>").addClass("submenu");
         buildMenu(item.submenu, $submenu, depth + 1);
         $submenu.css('margin-bottom', '10px')
+        if (item.innerBgColor) {
+          $submenu.css('background-color', item.innerBgColor)
+          $submenu.css('padding', '0 8px 8px 0')
+        }
         $li.addClass('has-submenu');
         $a.append(`<svg class='submenu-toggle' style="color:${depth === 0 ? '#18181B' : '#7A7A7A'};" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>`)
         $a.append(item.badgeSuffix || '')
