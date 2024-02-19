@@ -31,9 +31,8 @@ from frappe.database.utils import (
 from frappe.exceptions import DoesNotExistError, ImplicitCommitError
 from frappe.monitor import get_trace_id
 from frappe.query_builder.functions import Count
-from frappe.utils import CallbackManager
+from frappe.utils import CallbackManager, cint, get_datetime, get_table_name, getdate, now, sbool
 from frappe.utils import cast as cast_fieldtype
-from frappe.utils import cint, get_datetime, get_table_name, getdate, now, sbool
 from frappe.utils.deprecations import deprecation_warning
 
 if TYPE_CHECKING:
@@ -379,7 +378,9 @@ class Database:
 			return self._cursor.mogrify(query, values)
 		except AttributeError:
 			if isinstance(values, dict):
-				return query % {k: frappe.db.escape(v) if isinstance(v, str) else v for k, v in values.items()}
+				return query % {
+					k: frappe.db.escape(v) if isinstance(v, str) else v for k, v in values.items()
+				}
 			elif isinstance(values, (list, tuple)):
 				return query % tuple(frappe.db.escape(v) if isinstance(v, str) else v for v in values)
 			return query, values
@@ -630,8 +631,11 @@ class Database:
 						skip_locked=skip_locked,
 					)
 				except Exception as e:
-					if ignore and (frappe.db.is_missing_column(e) or frappe.db.is_table_missing(e)):
-						# table or column not found, return None
+					if ignore and (
+						frappe.db.is_missing_column(e)
+						or frappe.db.is_table_missing(e)
+						or str(e).startswith("Invalid DocType")
+					):
 						out = None
 					elif (not ignore) and frappe.db.is_table_missing(e):
 						# table not found, look in singles
@@ -798,9 +802,7 @@ class Database:
 		)
 
 		singles_data = ((doctype, key, sbool(value)) for key, value in to_update.items())
-		frappe.qb.into("Singles").columns("doctype", "field", "value").insert(*singles_data).run(
-			debug=debug
-		)
+		frappe.qb.into("Singles").columns("doctype", "field", "value").insert(*singles_data).run(debug=debug)
 		frappe.clear_document_cache(doctype, doctype)
 
 		if doctype in self.value_cache:
