@@ -27,7 +27,7 @@ class City(Document):
 def import_cities():
 	print("Importing Cities...")
 	cities = []
-	ijson_cities = ijson.items(open(get_file_path("cities.json", encoding="utf-8")), "item")
+	ijson_cities = ijson.items(open(get_file_path("cities.json"), encoding="utf-8"), "item")
 	for city_dict in ijson_cities:
 		city = frappe._dict(city_dict)
 		cities.append(

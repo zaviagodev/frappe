@@ -26,7 +26,7 @@ class State(Document):
 def import_states():
 	print("Importing States...")
 	states = []
-	ijson_states = ijson.items(open(get_file_path("states.json", encoding="utf-8")), "item")
+	ijson_states = ijson.items(open(get_file_path("states.json"), encoding="utf-8"), "item")
 	for state_dict in ijson_states:
 		state = frappe._dict(state_dict)
 		states.append(
