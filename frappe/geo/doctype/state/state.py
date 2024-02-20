@@ -3,7 +3,9 @@
 
 import frappe
 from frappe.model.document import Document, bulk_insert
-from py_countries_states_cities_database import get_all_states
+
+import ijson
+from py_countries_states_cities_database import get_file_path
 
 
 class State(Document):
@@ -22,8 +24,10 @@ class State(Document):
 	pass
 
 def import_states():
+	print("Importing States...")
 	states = []
-	for state_dict in get_all_states():
+	ijson_states = ijson.items(open(get_file_path("states.json", encoding="utf-8")), "item")
+	for state_dict in ijson_states:
 		state = frappe._dict(state_dict)
 		states.append(
 			frappe.get_doc(

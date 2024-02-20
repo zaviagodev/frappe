@@ -3,7 +3,9 @@
 
 import frappe
 from frappe.model.document import Document, bulk_insert
-from py_countries_states_cities_database import get_all_cities
+
+import ijson
+from py_countries_states_cities_database import get_file_path
 
 
 
@@ -23,8 +25,10 @@ class City(Document):
 	pass
 
 def import_cities():
+	print("Importing Cities...")
 	cities = []
-	for city_dict in get_all_cities():
+	ijson_cities = ijson.items(open(get_file_path("cities.json", encoding="utf-8")), "item")
+	for city_dict in ijson_cities:
 		city = frappe._dict(city_dict)
 		cities.append(
 			frappe.get_doc(
