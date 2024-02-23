@@ -1,10 +1,9 @@
 # Copyright (c) 2024, Frappe Technologies and contributors
 # For license information, please see license.txt
 
-import frappe
-from frappe.model.document import Document, bulk_insert
-from py_countries_states_cities_database import get_all_states
-
+import json
+from frappe.model.document import Document
+from frappe.geo import geo_Source
 
 class State(Document):
 	# begin: auto-generated types
@@ -21,17 +20,39 @@ class State(Document):
 	# end: auto-generated types
 	pass
 
-def import_states():
-	states = []
-	for state_dict in get_all_states():
-		state = frappe._dict(state_dict)
-		states.append(
-			frappe.get_doc(
-				doctype="State",
-				name=f"{state.name}-{state.country_code}",
-				state_name=state.name,
-				code=state.state_code.lower(),
-				country=state.country_name
-			)
+	def load_from_db(self):
+		state = geo_Source.get_doc("State", self.name)
+		super(Document, self).__init__(state)
+
+	def db_insert(self, *args, **kwargs):
+		geo_Source.insert(self.as_dict())
+
+	def db_update(self, *args, **kwargs):
+		updated_state =  self.as_dict()
+		updated_state.pop("modified")
+		geo_Source.update(updated_state)
+
+	def delete(self):
+		geo_Source.delete("State", self.name)
+			
+	@staticmethod
+	def get_list(args):
+		return geo_Source.get_list(
+			"State",
+			fields=args.get("fields"),
+			filters=args.get("filters"),
+			limit_page_length=args.get("page_length"),
+			limit_start=args.get("start"),
 		)
-	bulk_insert("State", states, ignore_duplicates=True)
+	
+	@staticmethod	
+	def get_count(args):
+		return geo_Source.get_api("frappe.desk.reportview.get_count", {
+			"doctype": "State",
+			"filters": json.dumps(args.get("filters"))
+		})
+	
+	@staticmethod
+	def get_stats(self):
+		"""Returns the stats of cities"""
+		return {}

@@ -32,8 +32,9 @@
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_virtual": 1,
  "links": [],
- "modified": "2024-02-19 23:59:30.091222",
+ "modified": "2024-02-21 12:37:38.086476",
  "modified_by": "Administrator",
  "module": "Geo",
  "name": "City",
