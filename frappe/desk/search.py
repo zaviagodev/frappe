@@ -44,6 +44,16 @@ def search_link(
 	reference_doctype: str | None = None,
 	ignore_user_permissions: bool = False,
 ) -> list[LinkSearchResults]:
+	# if is_virtual, return the name as value and description
+	if frappe.get_meta(doctype).is_virtual:
+		return frappe.get_all(
+			doctype,
+			fields=["name as value", "name as description"],
+			filters=[["name", "like", f"%{txt}%"]],
+			limit_start=0,
+			limit_page_length=page_length,
+		)
+	# normal search
 	results = search_widget(
 		doctype,
 		txt.strip(),
