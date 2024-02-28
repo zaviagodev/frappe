@@ -1,7 +1,6 @@
 # Copyright (c) 2024, Frappe Technologies and contributors
 # For license information, please see license.txt
 
-import json
 from frappe.model.document import Document
 from frappe.geo import geo_Source
 
@@ -37,20 +36,11 @@ class State(Document):
 			
 	@staticmethod
 	def get_list(args):
-		return geo_Source.get_list(
-			"State",
-			fields=args.get("fields"),
-			filters=args.get("filters"),
-			limit_page_length=args.get("page_length"),
-			limit_start=args.get("start"),
-		)
+		return geo_Source.get_list("State", args)
 	
 	@staticmethod	
 	def get_count(args):
-		return geo_Source.get_api("frappe.desk.reportview.get_count", {
-			"doctype": "State",
-			"filters": json.dumps(args.get("filters"))
-		})
+		return geo_Source.get_count("State", args)
 	
 	@staticmethod
 	def get_stats(self):
