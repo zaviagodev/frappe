@@ -757,3 +757,18 @@ div[data-fieldtype="Attach Multiple Images"] {
 	width:calc(100% + 8px);
 	margin-bottom:8px;
 }
+
+.grid-image.rounded {
+	width: 170px !important;
+	height: 170px !important;
+}
+
+.input-with-feedback.form-control[data-fieldname="custom_short_description"]{
+	padding:12px 15px;
+	font-size:13px;
+}
+
+.input-with-feedback.form-control[data-fieldname="custom_short_description"]::placeholder {
+	font-style:italic;
+	font-weight:normal;
+}
