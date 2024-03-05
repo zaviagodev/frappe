@@ -772,3 +772,8 @@ div[data-fieldtype="Attach Multiple Images"] {
 	font-style:italic;
 	font-weight:normal;
 }
+
+.grid-footer .grid-pagination {
+	display:flex;
+	align-items:center;
+}
