@@ -103,7 +103,6 @@ def import_db_from_sql(source_sql=None, verbose=False):
 
 
 def check_database_settings():
-
 	check_compatible_versions()
 
 	# Check each expected value vs. actuals:
@@ -111,10 +110,7 @@ def check_database_settings():
 	result = True
 	for key, expected_value in REQUIRED_MARIADB_CONFIG.items():
 		if mariadb_variables.get(key) != expected_value:
-			print(
-				"For key %s. Expected value %s, found value %s"
-				% (key, expected_value, mariadb_variables.get(key))
-			)
+			print(f"For key {key}. Expected value {expected_value}, found value {mariadb_variables.get(key)}")
 			result = False
 
 	if not result:

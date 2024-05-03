@@ -63,7 +63,7 @@ def search_widget(
 	doctype: str,
 	txt: str,
 	query: str | None = None,
-	searchfield: str = None,
+	searchfield: str | None = None,
 	start: int = 0,
 	page_length: int = 10,
 	filters: str | None | dict | list = None,
@@ -72,7 +72,17 @@ def search_widget(
 	reference_doctype: str | None = None,
 	ignore_user_permissions: bool = False,
 ):
-
+	# if is_virtual, return the name as value and description
+	if frappe.get_meta(doctype).is_virtual:
+		res = frappe.get_all(
+			doctype,
+			fields=["name as value", "name as description"],
+			filters=[["name", "like", f"%{txt}%"]],
+			limit_start=start,
+			limit_page_length=page_length,
+		)
+		return [(r["value"], r["description"]) for r in res]
+	# normal search
 	start = cint(start)
 
 	if isinstance(filters, str):
@@ -228,7 +238,9 @@ def search_widget(
 				r.pop("_relevance", None)
 		else:
 			values = [r[:-1] for r in values]
-
+	print("///////////////")
+	print(values)
+	print("///////////////")
 	return values
 
 
@@ -319,9 +331,7 @@ def get_users_for_mentions():
 
 
 def get_user_groups():
-	return frappe.get_all(
-		"User Group", fields=["name as id", "name as value"], update={"is_group": True}
-	)
+	return frappe.get_all("User Group", fields=["name as id", "name as value"], update={"is_group": True})
 
 
 @frappe.whitelist()

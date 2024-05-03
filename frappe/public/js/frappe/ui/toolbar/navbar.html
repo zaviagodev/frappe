@@ -11,6 +11,11 @@
 					{%= __("Read Only Mode") %}
 				</span>
 			{% } %}
+			{% if (frappe.boot.user.impersonated_by) { %}
+					<span class="indicator-pill red no-indicator-dot" title="{%= __("You are impersonating as another user.") %}">
+						{%= __("Impersonating {0}", [frappe.boot.user.name]) %}
+					</span>
+			{% } %}
 			<div class="upgrade-sec">
 				<a href="" class="upgrade-to-pro">
 					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -59,16 +64,17 @@
 					class="nav-link notifications-icon text-muted"
 					data-toggle="dropdown"
 					aria-haspopup="true"
-					aria-expanded="true"
-					href="#"
-					onclick="return false;">
+					aria-expanded="false"
+				>
 					<span class="notifications-seen">
+						<span class="sr-only">{{ __("No new notifications") }}</span>
 						<svg class="es-icon icon-sm" style="stroke:none;"><use href="#es-line-notifications"></use></svg>
 					</span>
 					<span class="notifications-unseen">
+						<span class="sr-only">{{ __("You have unseen notifications") }}</span>
 						<svg class="es-icon icon-sm"><use href="#es-line-notifications-unseen"></use></svg>
 					</span>
-				</a>
+				</button>
 				<div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">
 					<div class="notification-list-header">
 						<div class="header-items"></div>
@@ -81,26 +87,30 @@
 				</div>
 			</li> -->
 			<li class="nav-item dropdown dropdown-message dropdown-mobile hidden">
-				<a
-					class="nav-link notifications-icon text-muted"
+				<button
+					class="btn-reset nav-link notifications-icon text-muted"
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="true"
-					href="#"
-					onclick="return false;">
+				>
 					<span>
 						<svg class="es-icon icon-sm"><use href="#es-line-chat-alt"></use></svg>
 					</span>
-				</a>
+				</button>
 			</li>
 			<li class="vertical-bar d-none d-sm-block"></li>
 			<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
-				<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
-					{{ __("ช่วยเหลือ") }}
-					<span>
-						<svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg>
-					</span>
-				</a>
+				<button
+						class="btn-reset nav-link"
+						data-toggle="dropdown"
+						aria-controls="toolbar-help"
+						aria-label="{{ __("ช่วยเหลือ") }}"
+					>
+						<span>
+							{{ __("ช่วยเหลือ") }}
+							<svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg>
+						</span>
+					</button>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-help" role="menu">
 					<div id="help-links"></div>
 					<div class="dropdown-divider documentation-links"></div>
@@ -111,9 +121,9 @@
 									{%= __(item.item_label) %}
 								</a>
 							{% } else if (item.action) { %}
-								<a class="dropdown-item" onclick="return {{ item.action }}">
+								<button class="btn-reset dropdown-item" onclick="return {{ item.action }}">
 									{%= __(item.item_label) %}
-								</a>
+								</button>
 							{% } else { %}
 								<div class="dropdown-divider"></div>
 							{% } %}
@@ -122,9 +132,13 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown dropdown-navbar-user dropdown-mobile">
-				<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+				<button
+						class="btn-reset nav-link"
+						data-toggle="dropdown"
+						aria-label="{{ __("User Menu") }}"
+				>
 					{{ avatar }}
-				</a>
+				</button>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-user" role="menu">
 					{% for item in navbar_settings.settings_dropdown %}
 						{% if (!item.hidden) { %}
@@ -133,9 +147,9 @@
 									{%= __(item.item_label) %}
 								</a>
 							{% } else if (item.action) { %}
-								<a class="dropdown-item" onclick="return {{ item.action }}">
+								<button class="btn-reset dropdown-item" onclick="return {{ item.action }}">
 									{%= __(item.item_label) %}
-								</a>
+								</button>
 							{% } else { %}
 								<div class="dropdown-divider"></div>
 							{% } %}
