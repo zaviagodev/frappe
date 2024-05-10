@@ -526,6 +526,7 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 }
 
 .form-section.card-section.visible-section,
+.form-section.card-section[data-fieldname="custom_stock_levels"],
 .form-dashboard-section {
 	padding:40px 15px;
 }
@@ -543,9 +544,9 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 	border-bottom:none !important
 }
 
-[data-fieldname="custom_general_information"] {
+/* [data-fieldname="custom_general_information"] {
 	padding-bottom:0 !important;
-}
+} */
 
 /* Custom line break */
 [data-fieldname="custom_section_break_9qhrk"],
@@ -591,6 +592,10 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 .file-upload-area .mt-2.text-center,
 .bulk-select-options {
 	display:flex;
+}
+[data-fieldname="custom_stock_levels"] .dashboard-list-item .col-sm-3{
+	flex:0 0 23%;
+	max-width:23%
 }
 button.btn.btn-xs.btn-default {
 	background-color:#171717;
