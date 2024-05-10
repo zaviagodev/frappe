@@ -6,6 +6,11 @@ const upperItems = [
   },
   {
     link:'',
+    title:'ตั้งค่า',
+    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>'
+  },
+  {
+    link:'',
     title:'ทีมงาน',
     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
   }
@@ -17,60 +22,60 @@ const sidebarMenus = [
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
     submenu: [
       {
-        label: "เพิ่มสินค้าใหม่",
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-square"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
-        url: "/app/item/new-item"
-      },
-      {
         label: "สินค้าของฉัน",
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>',
         url: "/app/item"
       },
       {
-        label: "สินค้าตามเซลส์แชแนล",
+        label: "เพิ่มสินค้าใหม่",
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-square"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+        url: "/app/item/new-item"
+      },
+      {
+        label: "สินค้าในช่องทางต่างๆ",
         icon:'<svg style="transform:rotate(90deg)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>',
         submenu: [
           {
-            label: "เว็บไซต์",
+            label: "Website Item",
             icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
-            url: "/app/sales-invoice?custom_channel=Website"
-          },
-          {
-            label: "Shopee",
-            icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
-            url: "/app/sales-invoice?custom_channel=Shopee"
+            url: "/app/website-item"
           },
           {
             label: "Lazada",
             icon: `<div class="dot" style="background-color:#6100DD"></div>`,
-            url: "/app/sales-invoice?custom_channel=Lazada"
+            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Lazada"%5D'
           },
           {
-            label: "TikTok Shop",
-            icon: `<div class="dot" style="background-color:black"></div>`,
-            url: "/app/sales-invoice?custom_channel=TikTok+Shop"
+            label: "TikTok",
+            icon: `<div class="dot" style="background-color:#000000"></div>`,
+            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Tiktok+Shop"%5D'
+          },
+          {
+            label: "Shopee",
+            icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
+            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Shopee"%5D'
           },
           {
             label: "Line MyShop",
             icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
-            url: "/app/sales-invoice?custom_channel=LINE+MyShop"
+            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Line+MyShop"%5D'
           }
         ]
       },
       {
         label: "หมวดหมู่สินค้า",
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-tree"><path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M3 5a2 2 0 0 0 2 2h3"/><path d="M3 3v13a2 2 0 0 0 2 2h3"/></svg>',
-        url: "/app/item-group"
+        url: "/app/item-group/view/tree"
       },
       {
-        label: "แบรนด์สินค้า",
+        label: "ยี่ห้อสินค้า",
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baseline"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>',
         url: "/app/brand"
       },
       {
         label:'คลังสินค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
-        url: "/app/warehouse"
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>',
+        url: "/app/warehouse/view/tree"
       },
       {
         label:'คุณลักษณะของสินค้า',
@@ -80,32 +85,22 @@ const sidebarMenus = [
     ]
   },
   {
-    label: "คำสั่งซื้อ",
+    label: "การค้าขาย",
     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
     submenu: [
       {
-        label: "คำสั่งซื้อของฉัน",
+        label: "คำสั่งซื้อ",
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"/><path d="M4 13.5V6a2 2 0 0 1 2-2h2"/></svg>',
         url: "/app/sales-invoice"
       },
       {
-        label:'การแจ้งชำระเงิน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
-        url: "/app/payment-entry"
-      },
-      {
-        label:'คำสั่งซื้อตามเซลส์แชแนล',
+        label:'ช่องทางการขาย',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-goal"><path d="M12 13V2l8 4-8 4"/><path d="M20.55 10.23A9 9 0 1 1 8 4.94"/><path d="M8 10a5 5 0 1 0 8.9 2.02"/></svg>',
         submenu: [
           {
-            label: "เว็บไซต์",
+            label: "Website",
             icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
             url: "/app/sales-invoice?custom_channel=Website"
-          },
-          {
-            label: "Shopee",
-            icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
-            url: "/app/sales-invoice?custom_channel=Shopee"
           },
           {
             label: "Lazada",
@@ -113,9 +108,14 @@ const sidebarMenus = [
             url: "/app/sales-invoice?custom_channel=Lazada"
           },
           {
-            label: "TikTok Shop",
-            icon: `<div class="dot" style="background-color:black"></div>`,
+            label: "TikTok",
+            icon: `<div class="dot" style="background-color:#000000"></div>`,
             url: "/app/sales-invoice?custom_channel=TikTok+Shop"
+          },
+          {
+            label: "Shopee",
+            icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
+            url: "/app/sales-invoice?custom_channel=Shopee"
           },
           {
             label: "Line MyShop",
@@ -125,14 +125,19 @@ const sidebarMenus = [
         ]
       },
       {
-        label:'การจัดส่งของฉัน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
-        url: "/app/sales-invoice?status=Return"
+        label:'การแจ้งโอนเงิน',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
+        url: "/app/payment-entry"
       },
+      // {
+      //   label:'การจัดส่ง',
+      //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
+      //   url: "/app/sales-invoice?status=Return"
+      // },
       {
-        label:'การยกเลิกและคืนสินค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database-backup"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></svg>',
-        url:''
+        label:'คืนสินค้า',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-receipt"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>',
+        url:'/app/sales-invoice?status=%5B"in"%2C%5B"Return"%2C"Cancelled"%2Cnull%5D%5D'
       },
     ]
   },
@@ -146,14 +151,14 @@ const sidebarMenus = [
         url:'/app/customer'
       },
       {
-        label:'รายงานลูกค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
-        url: "/app/customer/view/dashboard"
+        label:'แดชบอร์ดลูกค้า',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>',
+        url: "/app/dashboard-view/Customers"
       },
       {
         label:'กลุ่มลูกค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-plus"><path d="M16 16h6"/><path d="M19 13v6"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>',
-        url: "/app/customer-group"
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-user"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>',
+        url: "/app/customer-group/view/tree"
       },
     ]
   },
@@ -161,7 +166,6 @@ const sidebarMenus = [
     label:'การตลาด',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-party-popper"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>',
     badgePrefix:`<div style="background: linear-gradient(96.29deg, #C7BEFF 5.86%, #FFD3FB 104.34%);color:#460051" class='badge-prefix'>
-      <div style='background-color:#460051' class='dot-badge'></div>
       New
     </div>`,
     submenu: [
@@ -169,7 +173,6 @@ const sidebarMenus = [
         label:'Reduced',
         bgColor:'#FEF8FF',
         badgeSuffix:`<div style="background:linear-gradient(96.29deg, #FAECFF 5.86%, #FFD0FA 104.34%);color:#AF3BD4" class='badge-suffix'>
-          <div style='background-color:#AF3BD4' class='dot-badge'></div>
           Pro
         </div>`,
         icon:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,11 +187,11 @@ const sidebarMenus = [
           </defs>
         </svg>`,
         submenu: [
-          {
-            label:'แดชบอร์ด',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-big"><path d="M3 3v18h18"/><rect width="4" height="7" x="7" y="10" rx="1"/><rect width="4" height="12" x="15" y="5" rx="1"/></svg>',
-            url:''
-          },
+          // {
+          //   label:'แดชบอร์ด',
+          //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-big"><path d="M3 3v18h18"/><rect width="4" height="7" x="7" y="10" rx="1"/><rect width="4" height="12" x="15" y="5" rx="1"/></svg>',
+          //   url:''
+          // },
           {
             label:'โค้ดส่วนลด',
             icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>',
@@ -200,33 +203,38 @@ const sidebarMenus = [
             submenu: [
               {
                 label: "โปรโมชันส่วนลด",
-                icon: `<div class="dot" style="background-color:#A739D8"></div>`,
+                icon: `<div class="dot"></div>`,
                 url: "/app/promotional-scheme"
               },
               {
                 label: "Bundle Deal",
-                icon: `<div class="dot" style="background-color:#A739D8"></div>`,
+                icon: `<div class="dot"></div>`,
                 url: "/app/product-bundle"
               },
               {
                 label: "Add-on Deal",
-                icon: `<div class="dot" style="background-color:#A739D8"></div>`,
+                icon: `<div class="dot"></div>`,
                 url: "/app/pricing-rule"
               },
               {
                 label: "Flash Sale ในร้านค้า",
-                icon: `<div class="dot" style="background-color:#A739D8"></div>`,
+                icon: `<div class="dot"></div>`,
                 url: "/app/pricing-rule"
               },
             ]
           },
         ]
       },
+    ]
+  },
+  {
+    label: "ระบบแต้มและรางวัล",
+    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
+    submenu: [
       {
         label:'Rewardful',
         bgColor:'#FFFAF8',
         badgeSuffix:`<div style="background: linear-gradient(102.81deg, #FFEDE0 0.4%, #FFD4CB 104.74%);color:#FF7009" class='badge-suffix'>
-          <div style='background-color:#FF7009' class='dot-badge'></div>
           Pro
         </div>`,
         icon:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -235,41 +243,41 @@ const sidebarMenus = [
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.55927 8.46391C9.31508 8.46152 11.148 6.18962 11.4895 5.56632C11.8544 4.90035 12.2823 4.1193 11.1287 3.48727C9.97515 2.85523 9.54723 3.63628 9.18236 4.30225C8.95735 4.71293 8.47768 6.05452 8.2924 7.10458C7.78688 6.16985 6.92518 5.06187 6.58636 4.7447C6.03198 4.22574 5.38181 3.61711 4.48287 4.5774C3.58394 5.53769 4.23411 6.14632 4.78848 6.66528C5.3297 7.17191 7.85241 8.49853 8.55927 8.46391Z" fill="white"/>
         </svg>`,
         submenu: [
-          {
-            label:'แดชบอร์ด',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-big"><path d="M3 3v18h18"/><rect width="4" height="7" x="7" y="10" rx="1"/><rect width="4" height="12" x="15" y="5" rx="1"/></svg>',
-            url:''
-          },
+          // {
+          //   label:'แดชบอร์ด',
+          //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-big"><path d="M3 3v18h18"/><rect width="4" height="7" x="7" y="10" rx="1"/><rect width="4" height="12" x="15" y="5" rx="1"/></svg>',
+          //   url:''
+          // },
           {
             label:'Loyalty Program',
             icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
-            url:''
-          },
-          {
-            label:'ของรางวัล',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>',
-            url:'/app/item?type=reward'
+            url:'/app/loyalty-program'
           },
           {
             label:'ระดับลูกค้า',
             icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
-            url:''
+            url:'/app/item?type=reward'
           },
           {
-            label:'แลกซื้อผ่านแต้ม',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-carrot"><path d="M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7zM8.64 14l-2.05-2.04M15.34 15l-2.46-2.46"/><path d="M22 9s-1.33-2-3.5-2C16.86 7 15 9 15 9s1.33 2 3.5 2S22 9 22 9z"/><path d="M15 2s-2 1.33-2 3.5S15 9 15 9s2-1.84 2-3.5C17 3.33 15 2 15 2z"/></svg>',
-            url:'/app/loyalty-point-entry'
+            label:'ของรางวัล',
+            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>',
+            url:'/app/loyalty-point-entry/view/report'
           },
-          {
-            label:'การแจกแต้ม',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>',
-            url:''
-          },
-          {
-            label:'ตั้งค่าพอยท์',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
-            url:''
-          }
+          // {
+          //   label:'แลกซื้อผ่านแต้ม',
+          //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-carrot"><path d="M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7zM8.64 14l-2.05-2.04M15.34 15l-2.46-2.46"/><path d="M22 9s-1.33-2-3.5-2C16.86 7 15 9 15 9s1.33 2 3.5 2S22 9 22 9z"/><path d="M15 2s-2 1.33-2 3.5S15 9 15 9s2-1.84 2-3.5C17 3.33 15 2 15 2z"/></svg>',
+          //   url:''
+          // },
+          // {
+          //   label:'การแจกแต้ม',
+          //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>',
+          //   url:''
+          // },
+          // {
+          //   label:'ตั้งค่าพอยท์',
+          //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
+          //   url:''
+          // }
         ]
       },
     ]
@@ -278,10 +286,8 @@ const sidebarMenus = [
     label: "การเงิน",
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
     badgePrefix:`<div style="background: linear-gradient(96.29deg, #FFE5BE 5.86%, #F8FFD0 104.34%);color:#754600" class='badge-prefix'>
-      <div style='background-color:#754600' class='dot-badge'></div>
       Beta 0.1
     </div>`,
-    innerBgColor:'#FFFBF4',
     submenu: [
       {
         label:'สมุดบัญชี',
@@ -312,31 +318,31 @@ const sidebarMenus = [
       },
       {
         label:'งบการเงิน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
+        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
         submenu: [
           {
             label: "งบดุลและฐานะการเงิน",
-            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            icon: `<div class="dot"></div>`,
             url: "/app/query-report/Balance%20Sheet"
           },
           {
             label: "งบกำไรขาดทุน (P&L)",
-            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            icon: `<div class="dot"></div>`,
             url: "/app/query-report/Profit%20and%20Loss%20Statement"
           },
           {
             label: "งบการเงินรวม",
-            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            icon: `<div class="dot"></div>`,
             url: "/app/query-report/Consolidated%20Financial%20Statement"
           },
           {
             label: "งบกระแสเงินสด",
-            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            icon: `<div class="dot"></div>`,
             url: "/app/query-report/Cash%20Flow"
           },
           {
             label: "งบทดลอง",
-            icon: `<div class="dot" style="background-color:#394047"></div>`,
+            icon: `<div class="dot"></div>`,
             url: "/app/query-report/Trial%20Balance"
           },
         ]
@@ -353,30 +359,30 @@ const sidebarMenus = [
     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
     submenu: [
       {
-        label:'ตั้งค่าข้อมูลธุรกิจ',
+        label:'ข้อมูลธุรกิจ',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
-        url: ""
+        url: "/app/company/Zaviago"
       },
       {
-        label:'ตั้งค่าเว็บไซต์ขายของ',
+        label:'เว็บร้านค้า',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
         url: "/app/storefront-website-settings"
       },
       {
-        label:'ตั้งค่าการจัดส่ง',
+        label:'ขนส่งและการจัดส่ง',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
         url: "/app/shipping-rule"
       },
       {
-        label:'ตั้งค่าอัตราภาษี',
+        label:'อัตราภาษี',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>',
         url: "/app/sales-taxes-and-charges-template"
       },
-      {
-        label:'ตั้งค่าอีเมลแจ้งเตือน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mails"><rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/></svg>',
-        url: ""
-      },
+      // {
+      //   label:'ตั้งค่าอีเมลแจ้งเตือน',
+      //   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mails"><rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/></svg>',
+      //   url: ""
+      // },
     ]
   },
 ];
@@ -537,10 +543,10 @@ $(document).ready(function(){
   }).join('')}`)
 
   function buildMenu(sidebarMenus, $parent, depth = 0) {
+    var $ul = $(`<ul class='menulists'>`);
     sidebarMenus.forEach(function(item) {
-      var $ul = $(`<ul class='menulists' style="background-color:${item.bgColor || "transparent"};${depth === 1 && item.bgColor ? 'margin-bottom:5px;padding:0 8px 1px 0' : ''}">`);
       var $li = $("<li>");
-      var $a = $("<a>").attr("href", item.url).html(`
+      var $a = $(`<a style="${item.bgColor ? `background-color:${item.bgColor}` : ''};${depth === 1 && item.bgColor ? 'margin-bottom:5px' : ''}">`).attr("href", item.url).html(`
         <span class='with-icon'>
           ${item.icon || ''}
           ${item.label}
@@ -560,7 +566,11 @@ $(document).ready(function(){
       if (item.submenu) {
         var $submenu = $("<ul>").addClass("submenu");
         buildMenu(item.submenu, $submenu, depth + 1);
-        $submenu.css('margin-bottom', '10px')
+        $submenu.css('margin-bottom', '20px')
+        if (depth === 1){
+          $submenu.css('margin-bottom', '0')
+        }
+
         if (item.innerBgColor) {
           $submenu.css('background-color', item.innerBgColor)
           $submenu.css('padding', '0 8px 8px 0')
@@ -601,14 +611,14 @@ $(document).ready(function(){
   var modalButton = $('#trigger')
   var modalMenu = $('#modal-menus-trigger');
 
-  modalButton.on('click', function (event) {
-    modalMenu.show();
-    event.stopPropagation();
-  });
+  // modalButton.on('click', function (event) {
+  //   modalMenu.show();
+  //   event.stopPropagation();
+  // });
 
-  $(document).on('click', function (event) {
-    if (!modalMenu.is(event.target) && modalMenu.has(event.target).length === 0) {
-      modalMenu.hide();
-    }
-  });
+  // $(document).on('click', function (event) {
+  //   if (!modalMenu.is(event.target) && modalMenu.has(event.target).length === 0) {
+  //     modalMenu.hide();
+  //   }
+  // });
 })
