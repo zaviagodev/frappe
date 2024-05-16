@@ -778,11 +778,68 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 
 .title-text {
-	width:50%
+	width:20vw
 }
 
 .vertical-bar.d-none.d-sm-block {
 	margin:0
+}
+
+.attachment-row {
+	margin-bottom:8px;
+}
+
+.attachment-row .data-pill.btn {
+	background-color:#F3F3F3;
+}
+
+.add-assignment-btn:hover, .add-attachment-btn:hover, .add-review-btn:hover, .shares:hover, .add-tags-btn:hover, .share-doc-btn:hover, .followed-by:hover {
+	background-color:transparent !important
+}
+
+.shares,.assignments {
+	margin:0 !important;
+	padding:0 !important;
+}
+
+.form-assignments {
+	margin-top:28px
+}
+
+.form-sidebar-items {
+	padding-bottom:8px
+}
+
+.form-attachments,.form-tags,.form-shared {
+	margin-top:30px;
+}
+
+.layout-side-section {
+	padding-right:initial;
+}
+
+.form-sidebar {
+	max-width:168px;
+}
+
+[data-fieldname="custom_sales_channels_heading"]{
+	padding:40px 0 !important;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .section-head,
+[data-fieldname="custom_sales_channels_heading"] .form-section-description{
+	padding-left:30px;
+	padding-right:30px;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .section-body{
+	padding-left:15px;
+	padding-right:15px;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .form-section-description {
+	border-bottom:1px solid #F4F4F4;
+	padding-bottom:40px !important;
 }
 
 @media (max-width:1280px){
@@ -793,6 +850,13 @@ div[data-fieldtype="Attach Multiple Images"] {
 	.row.flex.align-center.page-head-content {
 		flex-direction: column;
 		gap:8px;
+	}
+}
+
+@media (max-width:1280px) and (min-width:1024px){
+	.layout-side-section {
+		flex: 0 0 20% !important;
+		max-width:20% !important
 	}
 }
 
