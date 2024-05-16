@@ -11,11 +11,6 @@
 					{%= __("Read Only Mode") %}
 				</span>
 			{% } %}
-			{% if (frappe.boot.user.impersonated_by) { %}
-					<span class="indicator-pill red no-indicator-dot" title="{%= __("You are impersonating as another user.") %}">
-						{%= __("Impersonating {0}", [frappe.boot.user.name]) %}
-					</span>
-			{% } %}
 			<div class="upgrade-sec">
 				<a href="" class="upgrade-to-pro">
 					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -64,17 +59,16 @@
 					class="nav-link notifications-icon text-muted"
 					data-toggle="dropdown"
 					aria-haspopup="true"
-					aria-expanded="false"
-				>
+					aria-expanded="true"
+					href="#"
+					onclick="return false;">
 					<span class="notifications-seen">
-						<span class="sr-only">{{ __("No new notifications") }}</span>
 						<svg class="es-icon icon-sm" style="stroke:none;"><use href="#es-line-notifications"></use></svg>
 					</span>
 					<span class="notifications-unseen">
-						<span class="sr-only">{{ __("You have unseen notifications") }}</span>
 						<svg class="es-icon icon-sm"><use href="#es-line-notifications-unseen"></use></svg>
 					</span>
-				</button>
+				</a>
 				<div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">
 					<div class="notification-list-header">
 						<div class="header-items"></div>
@@ -87,30 +81,26 @@
 				</div>
 			</li> -->
 			<li class="nav-item dropdown dropdown-message dropdown-mobile hidden">
-				<button
-					class="btn-reset nav-link notifications-icon text-muted"
+				<a
+					class="nav-link notifications-icon text-muted"
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="true"
-				>
+					href="#"
+					onclick="return false;">
 					<span>
 						<svg class="es-icon icon-sm"><use href="#es-line-chat-alt"></use></svg>
 					</span>
-				</button>
+				</a>
 			</li>
 			<li class="vertical-bar d-none d-sm-block"></li>
 			<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
-				<button
-						class="btn-reset nav-link"
-						data-toggle="dropdown"
-						aria-controls="toolbar-help"
-						aria-label="{{ __("ช่วยเหลือ") }}"
-					>
-						<span>
-							{{ __("ช่วยเหลือ") }}
-							<svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg>
-						</span>
-					</button>
+				<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+					{{ __("ช่วยเหลือ") }}
+					<span>
+						<svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg>
+					</span>
+				</a>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-help" role="menu">
 					<div id="help-links"></div>
 					<div class="dropdown-divider documentation-links"></div>
@@ -121,9 +111,9 @@
 									{%= __(item.item_label) %}
 								</a>
 							{% } else if (item.action) { %}
-								<button class="btn-reset dropdown-item" onclick="return {{ item.action }}">
+								<a class="dropdown-item" onclick="return {{ item.action }}">
 									{%= __(item.item_label) %}
-								</button>
+								</a>
 							{% } else { %}
 								<div class="dropdown-divider"></div>
 							{% } %}
@@ -132,13 +122,9 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown dropdown-navbar-user dropdown-mobile">
-				<button
-						class="btn-reset nav-link"
-						data-toggle="dropdown"
-						aria-label="{{ __("User Menu") }}"
-				>
+				<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
 					{{ avatar }}
-				</button>
+				</a>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-user" role="menu">
 					{% for item in navbar_settings.settings_dropdown %}
 						{% if (!item.hidden) { %}
@@ -147,9 +133,9 @@
 									{%= __(item.item_label) %}
 								</a>
 							{% } else if (item.action) { %}
-								<button class="btn-reset dropdown-item" onclick="return {{ item.action }}">
+								<a class="dropdown-item" onclick="return {{ item.action }}">
 									{%= __(item.item_label) %}
-								</button>
+								</a>
 							{% } else { %}
 								<div class="dropdown-divider"></div>
 							{% } %}
@@ -163,7 +149,8 @@
 
 <!-- Additional Sidebar -->
 
-  <nav class="navside nav-rightside active" id="rightside">
+  <div id="navbar-overlay-mobile"></div>
+  <nav class="navside nav-rightside" id="rightside">
 	<div class="upper-sidebar">
         <div id="trigger">
 			<div class="inner-trigger">
@@ -195,7 +182,7 @@
 				  <!-- <div class="square-shadow"></div> -->
 			  <div>
 				<h2 id="site-title">workspace.</h2>
-				<p id="site-name"></p>
+				<p class="site-name"></p>
 			  </div>
 			</div>
 		  </div>
