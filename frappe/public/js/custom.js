@@ -493,7 +493,7 @@ $(document).ready(function(){
     `
   }).join(''))
 
-  $('#site-name').html(window.location.hostname)
+  $('.site-name').html(window.location.hostname)
 
   $('#modal-menus-trigger').html(`
     <a href="" class='modal-menus-trigger-btn'>
@@ -610,6 +610,18 @@ $(document).ready(function(){
 
   var modalButton = $('#trigger')
   var modalMenu = $('#modal-menus-trigger');
+  var sidebarOverlay = $('#navbar-overlay-mobile')
+  var sidebar = $('#rightside')
+
+  modalButton.on('click', function(){
+    sidebarOverlay.addClass("active")
+    sidebar.addClass("active")
+  })
+
+  sidebarOverlay.on('click', function(){
+    sidebarOverlay.removeClass("active")
+    sidebar.removeClass("active")
+  })
 
   // modalButton.on('click', function (event) {
   //   modalMenu.show();
