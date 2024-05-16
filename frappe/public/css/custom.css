@@ -2,6 +2,8 @@
 :root {
 	--left-sidebar-size:60px;
 	--right-sidebar-size:256px;
+	--topbar-height:53px;
+	--icon-height:40px
 }
 
 @font-face {
@@ -71,7 +73,7 @@
 	text-decoration:none
 }
 
-#site-title,#site-name {
+#site-title,.site-name {
 	text-align:left;
 }
 
@@ -88,7 +90,7 @@
 	margin-bottom:-3px;
 }
 
-#site-name {
+.site-name {
 	font-size:11px;
 	font-weight:500;
 	letter-spacing:-0.33px;
@@ -108,7 +110,8 @@
 	width:100%;
 	border:none;
 	padding:0 14px;
-	cursor:pointer
+	cursor:pointer;
+	height:var(--icon-height)
 }
 
 .inner-trigger {
@@ -240,6 +243,19 @@
 
 .navbar.active,.content.page-container {
 	margin-left:var(--right-sidebar-size);
+}
+
+.navbar {
+    padding:4px 19px;
+	border-bottom-color:#F4F4F4;
+	height:var(--topbar-height);
+	position:fixed;
+	width:calc(100% - var(--right-sidebar-size));
+	right:0
+}
+
+.content.page-container {
+	margin-top:var(--topbar-height);
 }
 
 .own-icon-btn {
@@ -474,12 +490,6 @@
 }
 
 .w-full {width:100%}
-
-.navbar {
-    padding:4px 19px;
-	border-bottom-color:#F4F4F4;
-	height:53px;
-}
 
 .navbar-home {
 	color:#09090B;
@@ -765,4 +775,78 @@ div[data-fieldtype="Attach Multiple Images"] {
 .grid-footer .grid-pagination {
 	display:flex;
 	align-items:center;
+}
+
+.title-text {
+	width:50%
+}
+
+.vertical-bar.d-none.d-sm-block {
+	margin:0
+}
+
+@media (max-width:1280px){
+	.col-md-4.col-sm-6.col-xs-7.page-title {
+		max-width:none
+	}
+	
+	.row.flex.align-center.page-head-content {
+		flex-direction: column;
+		gap:8px;
+	}
+}
+
+@media (max-width:1024px){
+	#trigger {
+		display:inline-flex;
+		position:fixed;
+		left:0;
+		top:8px;
+		width:fit-content
+	}
+	.nav-rightside {
+		left:-100%;
+		transition:left 300ms;
+	}
+	.nav-rightside.active {
+		left:0;
+		transition:left 300ms;
+	}
+	#sidebar-menus {
+		margin-top:calc(var(--icon-height) + 16px)
+	}
+	#navbar-overlay-mobile {
+		width:100%;
+		height:100%;
+		position:fixed;
+		left:0;
+		top:0;
+		opacity:0;
+		visibility:hidden;
+		background-color:rgba(0,0,0,0.6);
+		z-index:1029;
+		transition:opacity 300ms, visibility 300ms;
+	}
+	#navbar-overlay-mobile.active {
+		opacity:1;
+		visibility:visible;
+		transition:opacity 300ms, visibility 300ms;
+	}
+	.navbar.active,.content.page-container {
+		margin-left:0
+	}
+	.navbar {
+		width:100%
+	}
+	.content.page-container,.container {
+		max-width:none !important
+	}
+	.navbar-home {display:none}
+	.flex.fill-width.title-area.editable-title div {
+		width:100% !important;
+	}
+	.flex.fill-width.title-area.editable-title .ellipsis.title-text {
+		max-width:none !important;
+		width:60vw;
+	}
 }
