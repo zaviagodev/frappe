@@ -549,7 +549,6 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 [data-fieldname="custom_section_break_vqsfh"] {
 	padding-top:0 !important;
 } */
-[data-fieldname="custom_section_break_vqsfh"],
 [data-fieldname="custom_section_break_9qhrk"] {
 	border-bottom:none !important
 }
@@ -844,6 +843,38 @@ div[data-fieldtype="Attach Multiple Images"] {
 
 #item-custom_sales_channels .btn.btn-xs.btn-default {
 	margin-top:38px
+}
+
+#point-rewards b {
+	display:inline-flex;
+	gap:8px;
+}
+
+.frappe-control[data-fieldtype=Select] .control-input .select-icon, .frappe-control[data-fieldtype=Select].form-group .select-icon {
+	top:6px;
+}
+
+/* On the 'products' section of the details tab of the sales-invoice page */
+#sales-invoice-__details [data-fieldname="section_break_42"],
+#sales-invoice-__details [data-fieldname="taxes_section"],
+#sales-invoice-__details [data-fieldname="section_break_40"]{
+	padding-bottom:18px !important
+}
+
+#sales-invoice-__details [data-fieldname="section_break_30"],
+#sales-invoice-__details [data-fieldname="section_break_40"]
+#sales-invoice-__details [data-fieldname="section_break_43"]{
+	padding-top:0 !important
+}
+
+[data-fieldname="custom_order_amount"],
+[data-fieldname="custom_outstand_and_paid_amount"]{
+	text-align:right
+}
+
+/* Product images on the item page */
+#item-custom_details [data-fieldname="custom_images"] .row {
+	padding:0 10px;
 }
 
 @media (max-width:1280px){
