@@ -842,6 +842,10 @@ div[data-fieldtype="Attach Multiple Images"] {
 	padding-bottom:40px !important;
 }
 
+#item-custom_sales_channels .btn.btn-xs.btn-default {
+	margin-top:38px
+}
+
 @media (max-width:1280px){
 	.col-md-4.col-sm-6.col-xs-7.page-title {
 		max-width:none
