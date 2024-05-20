@@ -52,7 +52,7 @@
 	background:linear-gradient(139.97deg, rgb(0, 117, 224) -0.75%, rgb(158, 0, 233) 127.99%);
 	padding:6px;
 	border-radius:12px;
-	color:white;
+	color:white !important;
 	font-size:13px;
 	line-height:17px;
 	gap:5px;
@@ -777,7 +777,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 
 .title-text {
-	width:20vw
+	max-width:20vw !important;
 }
 
 .vertical-bar.d-none.d-sm-block {
@@ -815,10 +815,6 @@ div[data-fieldtype="Attach Multiple Images"] {
 
 .layout-side-section {
 	padding-right:initial;
-}
-
-.form-sidebar {
-	max-width:168px;
 }
 
 [data-fieldname="custom_sales_channels_heading"]{
@@ -877,6 +873,11 @@ div[data-fieldtype="Attach Multiple Images"] {
 	padding:0 10px;
 }
 
+.chart-container {
+	overflow-x:auto !important;
+	margin-bottom:16px;
+}
+
 @media (max-width:1280px){
 	.col-md-4.col-sm-6.col-xs-7.page-title {
 		max-width:none
@@ -888,14 +889,18 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-@media (max-width:1280px) and (min-width:1024px){
+.layout-side-section,.form-sidebar {
+	max-width:160px !important
+}
+
+/* @media (max-width:1280px) and (min-width:1024px){
 	.layout-side-section {
 		flex: 0 0 20% !important;
 		max-width:20% !important
 	}
-}
+} */
 
-@media (max-width:1024px){
+@media (max-width:1200px){
 	#trigger {
 		display:inline-flex;
 		position:fixed;
@@ -945,7 +950,13 @@ div[data-fieldtype="Attach Multiple Images"] {
 		width:100% !important;
 	}
 	.flex.fill-width.title-area.editable-title .ellipsis.title-text {
-		max-width:none !important;
+		max-width:fit-content !important;
 		width:60vw;
+	}
+}
+
+@media (max-width:991px){
+	.layout-side-section {
+		max-width:none !important
 	}
 }
