@@ -518,6 +518,17 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 	font-weight:700 !important;
 }
 
+.modal-content .form-layout .section-head {
+	margin:20px 0 !important;
+	padding:0 !important;
+}
+
+.modal-title {
+	font-size:18px !important;
+	line-height:24px !important;
+	font-weight:700 !important;
+}
+
 .form-section-description,.help-box {
 	color:#525252 !important;
 	font-size:12px !important;
