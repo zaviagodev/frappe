@@ -43,22 +43,26 @@ const sidebarMenus = [
           {
             label: "Lazada",
             icon: `<div class="dot" style="background-color:#6100DD"></div>`,
-            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Lazada"%5D'
+            url: '/app/item',
+            search: '?item_group=%5B"descendants+of+%28inclusive%29"%2C"Lazada"%5D'
           },
           {
             label: "TikTok",
             icon: `<div class="dot" style="background-color:#000000"></div>`,
-            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Tiktok+Shop"%5D'
+            url: '/app/item',
+            search: '?item_group=%5B"descendants+of+%28inclusive%29"%2C"Tiktok+Shop"%5D'
           },
           {
             label: "Shopee",
             icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
-            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Shopee"%5D'
+            url: '/app/item',
+            search: '?item_group=%5B"descendants+of+%28inclusive%29"%2C"Shopee"%5D'
           },
           {
             label: "Line MyShop",
             icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
-            url: '/app/item?item_group=%5B"descendants+of+%28inclusive%29"%2C"Line+MyShop"%5D'
+            url: '/app/item',
+            search: '?item_group=%5B"descendants+of+%28inclusive%29"%2C"Line+MyShop"%5D'
           }
         ]
       },
@@ -100,27 +104,32 @@ const sidebarMenus = [
           {
             label: "Website",
             icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
-            url: "/app/sales-invoice?custom_channel=Website"
+            url: "/app/sales-invoice",
+            search: "?custom_channel=Website"
           },
           {
             label: "Lazada",
             icon: `<div class="dot" style="background-color:#6100DD"></div>`,
-            url: "/app/sales-invoice?custom_channel=Lazada"
+            url: "/app/sales-invoice",
+            search: "?custom_channel=Lazada"
           },
           {
             label: "TikTok",
             icon: `<div class="dot" style="background-color:#000000"></div>`,
-            url: "/app/sales-invoice?custom_channel=TikTok+Shop"
+            url: "/app/sales-invoice",
+            search: "?custom_channel=TikTok+Shop"
           },
           {
             label: "Shopee",
             icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
-            url: "/app/sales-invoice?custom_channel=Shopee"
+            url: "/app/sales-invoice",
+            search: "?custom_channel=Shopee"
           },
           {
             label: "Line MyShop",
             icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
-            url: "/app/sales-invoice?custom_channel=LINE+MyShop"
+            url: "/app/sales-invoice",
+            search: "?custom_channel=LINE+MyShop"
           }
         ]
       },
@@ -137,7 +146,8 @@ const sidebarMenus = [
       {
         label:'คืนสินค้า',
         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-receipt"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>',
-        url:'/app/sales-invoice?status=%5B"in"%2C%5B"Return"%2C"Cancelled"%2Cnull%5D%5D'
+        url:'/app/sales-invoice',
+        search:'?status=%5B"in"%2C%5B"Return"%2C"Cancelled"%2Cnull%5D%5D'
       },
     ]
   },
@@ -256,7 +266,8 @@ const sidebarMenus = [
           {
             label:'ระดับลูกค้า',
             icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
-            url:'/app/item?type=reward'
+            url:'/app/item',
+            search: '?type=reward'
           },
           {
             label:'ของรางวัล',
@@ -545,14 +556,20 @@ $(document).ready(function(){
   function buildMenu(sidebarMenus, $parent, depth = 0) {
     var $ul = $(`<ul class='menulists'>`);
     sidebarMenus.forEach(function(item) {
+
+      function getSearch(){
+        if (item.search !== undefined){ window.history.replaceState({}, "", item.search) }
+      }
+
       var $li = $("<li>");
-      var $a = $(`<a style="${item.bgColor ? `background-color:${item.bgColor}` : ''};${depth === 1 && item.bgColor ? 'margin-bottom:5px' : ''}">`).attr("href", item.url).html(`
+      var $a = $(`<a style="${item.bgColor ? `background-color:${item.bgColor};` : ''}${depth === 1 && item.bgColor ? 'margin-bottom:5px;' : ''}">`).attr("href", item.url).html(`
         <span class='with-icon'>
           ${item.icon || ''}
           ${item.label}
           ${item.badgePrefix || ''}
         </span>
       `); 
+      $a.on("click", getSearch)
       $a.addClass('menulink-btn');
       if (depth === 0){
         $a.addClass('first')
@@ -576,7 +593,7 @@ $(document).ready(function(){
           $submenu.css('padding', '0 8px 8px 0')
         }
         $li.addClass('has-submenu');
-        $a.append(`<svg class='submenu-toggle' style="color:${depth === 0 ? '#18181B' : '#7A7A7A'};" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>`)
+        $a.append(`<svg class='submenu-toggle' style="color:${depth === 0 ? '#18181B;' : '#7A7A7A;'}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>`)
         $a.append(item.badgeSuffix || '')
         $li.append($submenu);
       }
