@@ -52,7 +52,7 @@
 	background:linear-gradient(139.97deg, rgb(0, 117, 224) -0.75%, rgb(158, 0, 233) 127.99%);
 	padding:6px;
 	border-radius:12px;
-	color:white;
+	color:white !important;
 	font-size:13px;
 	line-height:17px;
 	gap:5px;
@@ -518,6 +518,17 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 	font-weight:700 !important;
 }
 
+.modal-content .form-layout .section-head {
+	margin:20px 0 !important;
+	padding:0 !important;
+}
+
+.modal-title {
+	font-size:18px !important;
+	line-height:24px !important;
+	font-weight:700 !important;
+}
+
 .form-section-description,.help-box {
 	color:#525252 !important;
 	font-size:12px !important;
@@ -549,7 +560,6 @@ body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
 [data-fieldname="custom_section_break_vqsfh"] {
 	padding-top:0 !important;
 } */
-[data-fieldname="custom_section_break_vqsfh"],
 [data-fieldname="custom_section_break_9qhrk"] {
 	border-bottom:none !important
 }
@@ -778,11 +788,105 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 
 .title-text {
-	width:50%
+	max-width:20vw !important;
 }
 
 .vertical-bar.d-none.d-sm-block {
 	margin:0
+}
+
+.attachment-row {
+	margin-bottom:8px;
+}
+
+.attachment-row .data-pill.btn {
+	background-color:#F3F3F3;
+}
+
+.add-assignment-btn:hover, .add-attachment-btn:hover, .add-review-btn:hover, .shares:hover, .add-tags-btn:hover, .share-doc-btn:hover, .followed-by:hover {
+	background-color:transparent !important
+}
+
+.shares,.assignments {
+	margin:0 !important;
+	padding:0 !important;
+}
+
+.form-assignments {
+	margin-top:28px
+}
+
+.form-sidebar-items {
+	padding-bottom:8px
+}
+
+.form-attachments,.form-tags,.form-shared {
+	margin-top:30px;
+}
+
+.layout-side-section {
+	padding-right:initial;
+}
+
+[data-fieldname="custom_sales_channels_heading"]{
+	padding:40px 0 !important;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .section-head,
+[data-fieldname="custom_sales_channels_heading"] .form-section-description{
+	padding-left:30px;
+	padding-right:30px;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .section-body{
+	padding-left:15px;
+	padding-right:15px;
+}
+
+[data-fieldname="custom_sales_channels_heading"] .form-section-description {
+	border-bottom:1px solid #F4F4F4;
+	padding-bottom:40px !important;
+}
+
+#item-custom_sales_channels .btn.btn-xs.btn-default {
+	margin-top:38px
+}
+
+#point-rewards b {
+	display:inline-flex;
+	gap:8px;
+}
+
+.frappe-control[data-fieldtype=Select] .control-input .select-icon, .frappe-control[data-fieldtype=Select].form-group .select-icon {
+	top:6px;
+}
+
+/* On the 'products' section of the details tab of the sales-invoice page */
+#sales-invoice-__details [data-fieldname="section_break_42"],
+#sales-invoice-__details [data-fieldname="taxes_section"],
+#sales-invoice-__details [data-fieldname="section_break_40"]{
+	padding-bottom:18px !important
+}
+
+#sales-invoice-__details [data-fieldname="section_break_30"],
+#sales-invoice-__details [data-fieldname="section_break_40"]
+#sales-invoice-__details [data-fieldname="section_break_43"]{
+	padding-top:0 !important
+}
+
+[data-fieldname="custom_order_amount"],
+[data-fieldname="custom_outstand_and_paid_amount"]{
+	text-align:right
+}
+
+/* Product images on the item page */
+#item-custom_details [data-fieldname="custom_images"] .row {
+	padding:0 10px;
+}
+
+.chart-container {
+	overflow-x:auto !important;
+	margin-bottom:16px;
 }
 
 @media (max-width:1280px){
@@ -796,7 +900,18 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-@media (max-width:1024px){
+.layout-side-section,.form-sidebar {
+	max-width:160px !important
+}
+
+/* @media (max-width:1280px) and (min-width:1024px){
+	.layout-side-section {
+		flex: 0 0 20% !important;
+		max-width:20% !important
+	}
+} */
+
+@media (max-width:1200px){
 	#trigger {
 		display:inline-flex;
 		position:fixed;
@@ -846,7 +961,13 @@ div[data-fieldtype="Attach Multiple Images"] {
 		width:100% !important;
 	}
 	.flex.fill-width.title-area.editable-title .ellipsis.title-text {
-		max-width:none !important;
+		max-width:fit-content !important;
 		width:60vw;
+	}
+}
+
+@media (max-width:991px){
+	.layout-side-section {
+		max-width:none !important
 	}
 }
