@@ -972,3 +972,48 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
+/* //responsive customizations start from here */
+@media (min-width:1281px) { /* hi-res laptops and desktops */ 
+	.layout-side-section{
+		margin-right: 21px;
+	}
+}
+@media (max-width:1200px){
+	.layout-side-section{
+		display: none;
+	}
+}
+@media (max-width:1200px) and (min-width:992px) {
+	.page-head-content{
+		margin-top: 12px;
+	}
+	html{
+		padding:12px;
+		background-color:#EBEBEB;
+	}
+	#page-Item{
+		border-radius: 6px;
+	}
+	.page-actions{
+		padding-bottom:24px;
+	}
+	.layout-side-section{
+		padding-left: 16px;
+	}
+}
+@media (min-width:481px) and (max-width:992px) {
+	.layout-side-section{
+		padding: 20px;
+	}
+	.layout-side-section{
+		max-width: 240px !important;
+	}
+	.sidebar-standard-image .standard-image{
+		height:200px;
+		width: 200px;
+	}
+	.form-assignments{
+		margin-top: 24px;
+	}
+}
+/* //responsive customizations ends from here */
