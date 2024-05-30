@@ -900,10 +900,6 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-.layout-side-section,.form-sidebar {
-	max-width:160px !important
-}
-
 /* @media (max-width:1280px) and (min-width:1024px){
 	.layout-side-section {
 		flex: 0 0 20% !important;
@@ -982,17 +978,18 @@ div[data-fieldtype="Attach Multiple Images"] {
 	.layout-side-section{
 		display: none;
 	}
+	html{
+		padding:12px;
+		background:#ebebeb;
+	}
 }
 @media (max-width:1200px) and (min-width:992px) {
 	.page-head-content{
-		margin-top: 12px;
+		margin-top: 24px;
 	}
 	html{
 		padding:12px;
-		background-color:#EBEBEB;
-	}
-	#page-Item{
-		border-radius: 6px;
+		background:#ebebeb;
 	}
 	.page-actions{
 		padding-bottom:24px;
@@ -1000,13 +997,26 @@ div[data-fieldtype="Attach Multiple Images"] {
 	.layout-side-section{
 		padding-left: 16px;
 	}
+	.standard-image{
+		width: 148px;
+		height: 148px;
+	}
+	.form-footer{
+		padding: 56px 30px 0 30px;
+	}
+	.form-sidebar{
+		max-width: 160px !important;
+	}
 }
 @media (min-width:481px) and (max-width:992px) {
 	.layout-side-section{
 		padding: 20px;
 	}
-	.layout-side-section{
-		max-width: 240px !important;
+	.form-shared {
+		padding-bottom: 72px;
+	}
+    .form-sidebar{
+		max-width: 230px !important;
 	}
 	.sidebar-standard-image .standard-image{
 		height:200px;
