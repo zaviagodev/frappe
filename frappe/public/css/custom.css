@@ -967,40 +967,68 @@ div[data-fieldtype="Attach Multiple Images"] {
 		max-width:none !important
 	}
 }
+/* muzammal script */
+input[type=text],.like-disabled-input,select {
+    height: 42px !important;
+}
 
 /* //responsive customizations start from here */
+@media (max-width:1200px) and (min-width:481px) { 
+	/* tablet screens */
+	html,body{
+		background:#ebebeb;
+	}
+	#page-Item{
+		margin: 12px;
+		margin-top: 65px;
+		border-radius: 6px;
+		overflow: hidden;
+	}
+	.layout-main-section{
+		margin-top: 4px;
+	}
+	.page-title{
+		margin-top: -20px;
+	}
+}
 @media (min-width:1281px) { /* hi-res laptops and desktops */ 
 	.layout-side-section{
 		margin-right: 21px;
 	}
-}
-@media (max-width:1200px){
-	.layout-side-section{
-		display: none;
+	.form-sidebar .sidebar-image-section .sidebar-image{
+		max-height:200px;
+		max-width: 200px;
 	}
-	html{
-		padding:12px;
-		background:#ebebeb;
-	}
+	 .sidebar-image-wrapper{
+        width:200px !important;
+        height:200px !important;
+        /* cover background*/
+    }
+    .sidebar-image{
+        width:200px !important;
+        height:200px !important;
+    }
 }
+
 @media (max-width:1200px) and (min-width:992px) {
 	.page-head-content{
 		margin-top: 24px;
 	}
-	html{
-		padding:12px;
-		background:#ebebeb;
+	.sidebar-image{
+		width:160px !important;
 	}
+
 	.page-actions{
 		padding-bottom:24px;
 	}
 	.layout-side-section{
 		padding-left: 16px;
 	}
-	.standard-image{
-		width: 148px;
-		height: 148px;
+	.standard-image , .sidebar-image-wrapper{
+		width: 160px !important;
+		height: 160px !important;
 	}
+
 	.form-footer{
 		padding: 56px 30px 0 30px;
 	}
@@ -1012,18 +1040,31 @@ div[data-fieldtype="Attach Multiple Images"] {
 	.layout-side-section{
 		padding: 20px;
 	}
+	.form-sidebar .sidebar-image-section .sidebar-image{
+		max-height:200px;
+		max-width: 200px;
+	}
+    .sidebar-image-wrapper{
+        width:200px !important;
+        height:200px !important;
+        /* cover background*/
+    }
+    .sidebar-image{
+        width:200px !important;
+        height:200px !important;
+    }
 	.form-shared {
 		padding-bottom: 72px;
 	}
-    .form-sidebar{
-		max-width: 230px !important;
+    .form-sidebar {
+		max-width: 240px !important;
 	}
-	.sidebar-standard-image .standard-image{
-		height:200px;
-		width: 200px;
-	}
+    
 	.form-assignments{
 		margin-top: 24px;
 	}
 }
 /* //responsive customizations ends from here */
+#tooltip950436{
+    display:none;
+}
