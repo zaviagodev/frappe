@@ -834,8 +834,8 @@ div[data-fieldtype="Attach Multiple Images"] {
 
 [data-fieldname="custom_sales_channels_heading"] .section-head,
 [data-fieldname="custom_sales_channels_heading"] .form-section-description{
-	padding-left:30px;
-	padding-right:30px;
+	padding-left:30px !important;
+	padding-right:30px !important;
 }
 
 [data-fieldname="custom_sales_channels_heading"] .section-body{
@@ -968,11 +968,31 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 /* muzammal script */
-input[type=text],.like-disabled-input,select {
+
+.frappe-control input[type=text] ,.frappe-control .like-disabled-input,.frappe-control select {
     height: 42px !important;
+}
+.control-input input[type=text],.standard-filter-section .frappe-control input[type=text] ,.standard-filter-section .frappe-control .like-disabled-input,.standard-filter-section .frappe-control select {
+    height: 30px !important;
+}
+.frappe-control[data-fieldtype="Small Text"] .like-disabled-input, .frappe-control[data-fieldtype="Small Text"] select{
+	height: unset !important;
+	padding: 11px 11px 11px 11px;
+}
+.frappe-control[data-fieldtype=Select] .control-input .select-icon, .frappe-control[data-fieldtype=Select].form-group .select-icon {
+	top:9px;
 }
 
 /* //responsive customizations start from here */
+@media (max-width:1200px) {
+	.page-title{
+		margin-top: 24px;
+	}
+	.page-body{
+		margin-top: 17px
+	}
+}
+
 @media (max-width:1200px) and (min-width:481px) { 
 	/* tablet screens */
 	html,body{
@@ -987,11 +1007,15 @@ input[type=text],.like-disabled-input,select {
 	.layout-main-section{
 		margin-top: 4px;
 	}
-	.page-title{
+	#page-Item .page-title{
 		margin-top: -20px;
 	}
 }
 @media (min-width:1281px) { /* hi-res laptops and desktops */ 
+	#page-Item .page-head-content{
+		padding-top: 24px;
+		padding-bottom: 24px;
+	}
 	.layout-side-section{
 		margin-right: 21px;
 	}
@@ -1011,20 +1035,22 @@ input[type=text],.like-disabled-input,select {
 }
 
 @media (max-width:1200px) and (min-width:992px) {
-	.page-head-content{
-		margin-top: 24px;
-	}
+    .page-head-content{
+        margin-top: -12px;
+    }
+    .layout-main-section{
+        margin-top: 0 !important;
+    }
 	.sidebar-image{
 		width:160px !important;
 	}
-
-	.page-actions{
-		padding-bottom:24px;
-	}
+    #page-Item .page-body{
+        margin-top: 67px;
+    }
 	.layout-side-section{
 		padding-left: 16px;
 	}
-	.standard-image , .sidebar-image-wrapper{
+	.sidebar-image-wrapper .standard-image , .sidebar-image-wrapper{
 		width: 160px !important;
 		height: 160px !important;
 	}
@@ -1040,6 +1066,12 @@ input[type=text],.like-disabled-input,select {
 	.layout-side-section{
 		padding: 20px;
 	}
+    #page-Item .page-title{
+        margin-top: -35px;
+    }
+    #page-Item .page-body{
+        margin-top: 21px;
+    }
 	.form-sidebar .sidebar-image-section .sidebar-image{
 		max-height:200px;
 		max-width: 200px;
@@ -1067,4 +1099,10 @@ input[type=text],.like-disabled-input,select {
 /* //responsive customizations ends from here */
 #tooltip950436{
     display:none;
+}
+#tooltip444893{
+	display:none;
+}
+.page-body .form-footer{
+	padding-top: 56px;
 }
