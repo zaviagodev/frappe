@@ -907,7 +907,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 } */
 
-@media (max-width:1200px){
+@media (max-width:1336px){
 	#trigger {
 		display:inline-flex;
 		position:fixed;
@@ -968,13 +968,19 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 /* muzammal script */
-
-.frappe-control input[type=text] ,.frappe-control .like-disabled-input,.frappe-control select {
-    height: 42px !important;
+.control-value {
+	height: 42px !important;
+}
+.for-description{
+	height: unset !important;
 }
 .control-input input[type=text],.standard-filter-section .frappe-control input[type=text] ,.standard-filter-section .frappe-control .like-disabled-input,.standard-filter-section .frappe-control select {
     height: 30px !important;
 }
+.frappe-control input[type=text] , .frappe-control select {
+    height: 42px !important;
+}
+
 .frappe-control[data-fieldtype="Small Text"] .like-disabled-input, .frappe-control[data-fieldtype="Small Text"] select{
 	height: unset !important;
 	padding: 11px 11px 11px 11px;
@@ -982,9 +988,12 @@ div[data-fieldtype="Attach Multiple Images"] {
 .frappe-control[data-fieldtype=Select] .control-input .select-icon, .frappe-control[data-fieldtype=Select].form-group .select-icon {
 	top:9px;
 }
+.frappe-control[data-fieldname="custom_customer_detail_section"]{
+	padding-top: 10px !important;
+}
 
 /* //responsive customizations start from here */
-@media (max-width:1200px) {
+@media (max-width:1336px) {
 	.page-title{
 		margin-top: 24px;
 	}
@@ -993,7 +1002,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-@media (max-width:1200px) and (min-width:481px) { 
+@media (max-width:1336px) and (min-width:481px) { 
 	/* tablet screens */
 	html,body{
 		background:#ebebeb;
@@ -1034,7 +1043,7 @@ div[data-fieldtype="Attach Multiple Images"] {
     }
 }
 
-@media (max-width:1200px) and (min-width:992px) {
+@media (max-width:1336px) and (min-width:992px) {
     .page-head-content{
         margin-top: -12px;
     }
