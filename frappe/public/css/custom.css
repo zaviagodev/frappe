@@ -968,19 +968,28 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 /* muzammal script */
-
-.frappe-control input[type=text] ,.frappe-control .like-disabled-input,.frappe-control select {
-    height: 42px !important;
+.control-value {
+	height: 42px !important;
+}
+.for-description{
+	height: unset !important;
 }
 .control-input input[type=text],.standard-filter-section .frappe-control input[type=text] ,.standard-filter-section .frappe-control .like-disabled-input,.standard-filter-section .frappe-control select {
     height: 30px !important;
 }
+.frappe-control input[type=text] , .frappe-control select {
+    height: 42px !important;
+}
+
 .frappe-control[data-fieldtype="Small Text"] .like-disabled-input, .frappe-control[data-fieldtype="Small Text"] select{
 	height: unset !important;
 	padding: 11px 11px 11px 11px;
 }
 .frappe-control[data-fieldtype=Select] .control-input .select-icon, .frappe-control[data-fieldtype=Select].form-group .select-icon {
 	top:9px;
+}
+.frappe-control[data-fieldname="custom_customer_detail_section"]{
+	padding-top: 10px !important;
 }
 
 /* //responsive customizations start from here */
