@@ -907,7 +907,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 } */
 
-@media (max-width:1200px){
+@media (max-width:1336px){
 	#trigger {
 		display:inline-flex;
 		position:fixed;
@@ -993,7 +993,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 
 /* //responsive customizations start from here */
-@media (max-width:1200px) {
+@media (max-width:1336px) {
 	.page-title{
 		margin-top: 24px;
 	}
@@ -1002,7 +1002,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-@media (max-width:1200px) and (min-width:481px) { 
+@media (max-width:1336px) and (min-width:481px) { 
 	/* tablet screens */
 	html,body{
 		background:#ebebeb;
@@ -1043,7 +1043,7 @@ div[data-fieldtype="Attach Multiple Images"] {
     }
 }
 
-@media (max-width:1200px) and (min-width:992px) {
+@media (max-width:1336px) and (min-width:992px) {
     .page-head-content{
         margin-top: -12px;
     }
