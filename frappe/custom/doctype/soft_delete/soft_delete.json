@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "autoname": "SD.####",
+ "creation": "2024-02-07 15:40:01.699017",
+ "default_view": "List",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "doc_type",
+  "fields_section_break",
+  "deleted_items"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "doc_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Enter Type",
+   "options": "DocType"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "doc_type",
+   "fieldname": "fields_section_break",
+   "fieldtype": "Section Break",
+   "label": "Deleted Items"
+  },
+  {
+   "allow_bulk_edit": 1,
+   "fieldname": "deleted_items",
+   "fieldtype": "Table",
+   "label": "Fields",
+   "options": "Soft Delete List"
+  }
+ ],
+ "hide_toolbar": 1,
+ "icon": "fa fa-glass",
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-02-09 16:56:16.617609",
+ "modified_by": "Administrator",
+ "module": "Custom",
+ "name": "Soft Delete",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "doc_type",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
