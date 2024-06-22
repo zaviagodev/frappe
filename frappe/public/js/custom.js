@@ -1,18 +1,18 @@
 const upperItems = [
   {
-    link:'/',
-    title:'แดชบอร์ด',
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hotel"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="m9 16 .348-.24c1.465-1.013 3.84-1.013 5.304 0L15 16"/><path d="M8 7h.01"/><path d="M16 7h.01"/><path d="M12 7h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 11h.01"/><path d="M10 22v-6.5m4 0V22"/></svg>'
+    link: '/',
+    title: 'แดชบอร์ด',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hotel"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="m9 16 .348-.24c1.465-1.013 3.84-1.013 5.304 0L15 16"/><path d="M8 7h.01"/><path d="M16 7h.01"/><path d="M12 7h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 11h.01"/><path d="M10 22v-6.5m4 0V22"/></svg>'
   },
   {
-    link:'',
-    title:'ตั้งค่า',
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>'
+    link: '',
+    title: 'ตั้งค่า',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>'
   },
   {
-    link:'',
-    title:'ทีมงาน',
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+    link: '',
+    title: 'ทีมงาน',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
   }
 ]
 
@@ -28,12 +28,12 @@ const sidebarMenus = [
       },
       {
         label: "เพิ่มสินค้าใหม่",
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-square"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-square"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
         url: "/app/item/new-item"
       },
       {
         label: "สินค้าในช่องทางต่างๆ",
-        icon:'<svg style="transform:rotate(90deg)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>',
+        icon: '<svg style="transform:rotate(90deg)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>',
         submenu: [
           {
             label: "Website Item",
@@ -68,38 +68,38 @@ const sidebarMenus = [
       },
       {
         label: "หมวดหมู่สินค้า",
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-tree"><path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M3 5a2 2 0 0 0 2 2h3"/><path d="M3 3v13a2 2 0 0 0 2 2h3"/></svg>',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-tree"><path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M3 5a2 2 0 0 0 2 2h3"/><path d="M3 3v13a2 2 0 0 0 2 2h3"/></svg>',
         url: "/app/item-group/view/tree"
       },
       {
         label: "ยี่ห้อสินค้า",
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baseline"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baseline"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg>',
         url: "/app/brand"
       },
       {
-        label:'คลังสินค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>',
+        label: 'คลังสินค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>',
         url: "/app/warehouse/view/tree"
       },
       {
-        label:'คุณลักษณะของสินค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tags"><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"/><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="6.5" cy="9.5" r=".5" fill="currentColor"/></svg>',
+        label: 'คุณลักษณะของสินค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tags"><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"/><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="6.5" cy="9.5" r=".5" fill="currentColor"/></svg>',
         url: "/app/item-attribute"
       }
     ]
   },
   {
     label: "การค้าขาย",
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
     submenu: [
       {
         label: "คำสั่งซื้อ",
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"/><path d="M4 13.5V6a2 2 0 0 1 2-2h2"/></svg>',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-pen"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"/><path d="M4 13.5V6a2 2 0 0 1 2-2h2"/></svg>',
         url: "/app/sales-invoice"
       },
       {
-        label:'ช่องทางการขาย',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-goal"><path d="M12 13V2l8 4-8 4"/><path d="M20.55 10.23A9 9 0 1 1 8 4.94"/><path d="M8 10a5 5 0 1 0 8.9 2.02"/></svg>',
+        label: 'ช่องทางการขาย',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-goal"><path d="M12 13V2l8 4-8 4"/><path d="M20.55 10.23A9 9 0 1 1 8 4.94"/><path d="M8 10a5 5 0 1 0 8.9 2.02"/></svg>',
         submenu: [
           {
             label: "Website",
@@ -134,8 +134,8 @@ const sidebarMenus = [
         ]
       },
       {
-        label:'การแจ้งโอนเงิน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
+        label: 'การแจ้งโอนเงิน',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>',
         url: "/app/payment-entry"
       },
       // {
@@ -144,48 +144,48 @@ const sidebarMenus = [
       //   url: "/app/sales-invoice?status=Return"
       // },
       {
-        label:'คืนสินค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-receipt"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>',
-        url:'/app/sales-invoice',
-        search:'?status=%5B"in"%2C%5B"Return"%2C"Cancelled"%2Cnull%5D%5D'
+        label: 'คืนสินค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-receipt"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>',
+        url: '/app/sales-invoice',
+        search: '?status=%5B"in"%2C%5B"Return"%2C"Cancelled"%2Cnull%5D%5D'
       },
     ]
   },
   {
-    label:'ลูกค้า',
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>',
+    label: 'ลูกค้า',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>',
     submenu: [
       {
-        label:'ลูกค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-        url:'/app/customer'
+        label: 'ลูกค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+        url: '/app/customer'
       },
       {
-        label:'แดชบอร์ดลูกค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>',
+        label: 'แดชบอร์ดลูกค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>',
         url: "/app/dashboard-view/Customers"
       },
       {
-        label:'กลุ่มลูกค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-user"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>',
+        label: 'กลุ่มลูกค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-user"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>',
         url: "/app/customer-group/view/tree"
       },
     ]
   },
   {
-    label:'การตลาด',
+    label: 'การตลาด',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-party-popper"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>',
-    badgePrefix:`<div style="background: linear-gradient(96.29deg, #C7BEFF 5.86%, #FFD3FB 104.34%);color:#460051" class='badge-prefix'>
+    badgePrefix: `<div style="background: linear-gradient(96.29deg, #C7BEFF 5.86%, #FFD3FB 104.34%);color:#460051" class='badge-prefix'>
       New
     </div>`,
     submenu: [
       {
-        label:'Reduced',
-        bgColor:'#FEF8FF',
-        badgeSuffix:`<div style="background:linear-gradient(96.29deg, #FAECFF 5.86%, #FFD0FA 104.34%);color:#AF3BD4" class='badge-suffix'>
+        label: 'Reduced',
+        bgColor: '#FEF8FF',
+        badgeSuffix: `<div style="background:linear-gradient(96.29deg, #FAECFF 5.86%, #FFD0FA 104.34%);color:#AF3BD4" class='badge-suffix'>
           Pro
         </div>`,
-        icon:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="16" height="16" rx="3" fill="url(#paint0_linear_2950_13728)"/>
           <path d="M7.77799 3.55566C6.57133 3.55566 5.47168 4.01365 4.64325 4.76526L6.79879 5.7601C6.9827 5.84499 7.1829 5.88895 7.38548 5.88895H9.64466C9.9024 5.88895 10.1113 6.09788 10.1113 6.35562V10.0889C10.1113 10.3467 9.9024 10.5556 9.64466 10.5556H5.91133C5.65359 10.5556 5.44466 10.3467 5.44466 10.0889V7.82977C5.44466 7.62719 5.4007 7.42704 5.31581 7.24308L4.32093 5.08764C3.56931 5.91602 3.11133 7.01567 3.11133 8.22233C3.11133 10.7997 5.20064 12.889 7.77799 12.889C10.3553 12.889 12.4447 10.7997 12.4447 8.22233C12.4447 5.64498 10.3553 3.55566 7.77799 3.55566Z" fill="white"/>
           <defs>
@@ -203,13 +203,13 @@ const sidebarMenus = [
           //   url:''
           // },
           {
-            label:'โค้ดส่วนลด',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>',
-            url:'/app/coupon-code'
+            label: 'โค้ดส่วนลด',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>',
+            url: '/app/coupon-code'
           },
           {
-            label:'จัดการแคมเปญ',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
+            label: 'จัดการแคมเปญ',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
             submenu: [
               {
                 label: "โปรโมชันส่วนลด",
@@ -239,15 +239,15 @@ const sidebarMenus = [
   },
   {
     label: "ระบบแต้มและรางวัล",
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
     submenu: [
       {
-        label:'Rewardful',
-        bgColor:'#FFFAF8',
-        badgeSuffix:`<div style="background: linear-gradient(102.81deg, #FFEDE0 0.4%, #FFD4CB 104.74%);color:#FF7009" class='badge-suffix'>
+        label: 'Rewardful',
+        bgColor: '#FFFAF8',
+        badgeSuffix: `<div style="background: linear-gradient(102.81deg, #FFEDE0 0.4%, #FFD4CB 104.74%);color:#FF7009" class='badge-suffix'>
           Pro
         </div>`,
-        icon:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        icon: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="16" height="16" rx="3" fill="#FF7009"/>
           <path d="M8.08385 8.95801C10.3309 8.95801 12.1728 10.6649 12.1677 13.1144L4.00001 13.1144C3.99542 10.666 5.83684 8.95801 8.08385 8.95801Z" fill="white"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.55927 8.46391C9.31508 8.46152 11.148 6.18962 11.4895 5.56632C11.8544 4.90035 12.2823 4.1193 11.1287 3.48727C9.97515 2.85523 9.54723 3.63628 9.18236 4.30225C8.95735 4.71293 8.47768 6.05452 8.2924 7.10458C7.78688 6.16985 6.92518 5.06187 6.58636 4.7447C6.03198 4.22574 5.38181 3.61711 4.48287 4.5774C3.58394 5.53769 4.23411 6.14632 4.78848 6.66528C5.3297 7.17191 7.85241 8.49853 8.55927 8.46391Z" fill="white"/>
@@ -259,20 +259,20 @@ const sidebarMenus = [
           //   url:''
           // },
           {
-            label:'Loyalty Program',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
-            url:'/app/loyalty-program'
+            label: 'Loyalty Program',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
+            url: '/app/loyalty-program'
           },
           {
-            label:'ระดับลูกค้า',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
-            url:'/app/item',
+            label: 'ระดับลูกค้า',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+            url: '/app/item',
             search: '?type=reward'
           },
           {
-            label:'ของรางวัล',
-            icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>',
-            url:'/app/loyalty-point-entry/view/report'
+            label: 'ของรางวัล',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>',
+            url: '/app/loyalty-point-entry/view/report'
           },
           // {
           //   label:'แลกซื้อผ่านแต้ม',
@@ -296,14 +296,14 @@ const sidebarMenus = [
   {
     label: "การเงิน",
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
-    badgePrefix:`<div style="background: linear-gradient(96.29deg, #FFE5BE 5.86%, #F8FFD0 104.34%);color:#754600" class='badge-prefix'>
+    badgePrefix: `<div style="background: linear-gradient(96.29deg, #FFE5BE 5.86%, #F8FFD0 104.34%);color:#754600" class='badge-prefix'>
       Beta 0.1
     </div>`,
     submenu: [
       {
-        label:'สมุดบัญชี',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
-        tip:`
+        label: 'สมุดบัญชี',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-copy"><path d="M2 16V4a2 2 0 0 1 2-2h11"/><path d="M5 14H4a2 2 0 1 0 0 4h1"/><path d="M22 18H11a2 2 0 1 0 0 4h11V6H11a2 2 0 0 0-2 2v12"/></svg>',
+        tip: `
           <div style="background-color:#FFE8C0;color:#754600" class='menutip'>
             <svg style='width:40px' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
             หมายเหตุ: รายงานการเงินและบัญชีอยู่ในช่วงทดลองระบบ
@@ -328,8 +328,8 @@ const sidebarMenus = [
         ]
       },
       {
-        label:'งบการเงิน',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+        label: 'งบการเงิน',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
         submenu: [
           {
             label: "งบดุลและฐานะการเงิน",
@@ -359,34 +359,34 @@ const sidebarMenus = [
         ]
       },
       {
-        label:'อัตรากำไรขั้นต้น',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><polyline points="10 2 10 10 13 7 16 10 16 2"/></svg>',
-        url:'/app/query-report/Gross%20Profit?'
+        label: 'อัตรากำไรขั้นต้น',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><polyline points="10 2 10 10 13 7 16 10 16 2"/></svg>',
+        url: '/app/query-report/Gross%20Profit?'
       }
     ]
   },
   {
-    label:'การตั้งค่า',
-    icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
+    label: 'การตั้งค่า',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
     submenu: [
       {
-        label:'ข้อมูลธุรกิจ',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
+        label: 'ข้อมูลธุรกิจ',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>',
         url: "/app/company/Zaviago"
       },
       {
-        label:'เว็บร้านค้า',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
+        label: 'เว็บร้านค้า',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
         url: "/app/storefront-website-settings"
       },
       {
-        label:'ขนส่งและการจัดส่ง',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
+        label: 'ขนส่งและการจัดส่ง',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
         url: "/app/shipping-rule"
       },
       {
-        label:'อัตราภาษี',
-        icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>',
+        label: 'อัตราภาษี',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>',
         url: "/app/sales-taxes-and-charges-template"
       },
       // {
@@ -400,9 +400,9 @@ const sidebarMenus = [
 
 const modalMenus = [
   {
-    title:'จัดการธุรกิจ',
-    desc:'ระบบจัดการธุรกิจและขายสินค้า',
-    icon:`<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+    title: 'จัดการธุรกิจ',
+    desc: 'ระบบจัดการธุรกิจและขายสินค้า',
+    icon: `<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect y="0.25" width="36" height="36" rx="8" fill="#0A5FD9"/>
       <path d="M27.3966 8.7382C27.3974 8.73997 27.3984 8.74159 27.3997 8.74295C27.7601 9.11051 28.0321 9.55488 28.195 10.0425C28.3583 10.5311 28.4079 11.0503 28.3401 11.5608C28.2723 12.0713 28.0888 12.5597 27.8036 12.9891C27.5184 13.4184 27.1389 13.7775 26.6939 14.039C23.4859 15.9191 19.7425 16.6842 16.0512 16.2142C12.4541 15.7561 9.26564 14.3739 6.66253 11.8643C6.59432 11.7986 6.40028 11.642 6.40005 11.4804C6.39992 11.3953 6.42401 11.3213 6.4547 11.2615C6.5185 11.1372 6.63095 11.0464 6.72879 10.9467L10.7212 6.8787C10.8174 6.78069 10.9105 6.65039 11.0478 6.65039V6.65039C11.1799 6.65039 11.2701 6.73135 11.3106 6.77164C12.8716 8.29203 14.7051 9.18696 16.8712 9.46876C19.0757 9.75554 21.3135 9.308 23.2364 8.19575C23.891 7.81124 24.6556 7.65553 25.409 7.7533C26.1614 7.85094 26.8597 8.19584 27.3935 8.73341C27.3949 8.73478 27.3959 8.73641 27.3966 8.7382V8.7382Z" fill="white"/>
       <path d="M27.3761 8.72448C26.7406 8.08926 25.8788 7.73242 24.9802 7.73242C24.0816 7.73242 23.2199 8.08926 22.5843 8.72448L8.20121 23.1076C7.56598 23.7431 7.20914 24.6049 7.20914 25.5035C7.20914 26.4021 7.56598 27.2639 8.20121 27.8994C8.51576 28.2142 8.88926 28.4639 9.30036 28.6343C9.71146 28.8047 10.1521 28.8924 10.5971 28.8924C11.0421 28.8924 11.4828 28.8047 11.8939 28.6343C12.305 28.4639 12.6785 28.2142 12.993 27.8994L27.3761 13.5163C27.6909 13.2018 27.9407 12.8283 28.111 12.4172C28.2814 12.0061 28.3691 11.5654 28.3691 11.1204C28.3691 10.6754 28.2814 10.2347 28.111 9.82364C27.9407 9.41253 27.6909 9.03903 27.3761 8.72448Z" fill="url(#paint0_linear_723_5264)"/>
@@ -424,18 +424,18 @@ const modalMenus = [
     enabled: true
   },
   {
-    title:'บล็อกและบทความ',
-    desc:'สร้างข่าวสารและเขียนบทความ',
-    icon:`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    title: 'บล็อกและบทความ',
+    desc: 'สร้างข่าวสารและเขียนบทความ',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
       <rect width="36" height="36" rx="7" fill="#242424"/>
       <path d="M17.5 8C14.785 8 12.3108 9.03047 10.4468 10.7216L15.2968 12.96C15.7106 13.151 16.161 13.2499 16.6168 13.2499H21.7C22.2799 13.2499 22.75 13.72 22.75 14.2999V22.6999C22.75 23.2798 22.2799 23.7499 21.7 23.7499H13.3C12.7201 23.7499 12.25 23.2798 12.25 22.6999V17.6167C12.25 17.1609 12.1511 16.7106 11.9601 16.2967L9.7216 11.4469C8.03047 13.3108 7 15.785 7 18.5C7 24.299 11.701 29 17.5 29C23.299 29 28 24.299 28 18.5C28 12.701 23.299 8 17.5 8Z" fill="white"/>
     </svg>`,
     enabled: false
   },
   {
-    title:'CRM',
-    desc:'จัดการและดูข้อมูลลูกค้าต่างๆ',
-    icon:`<svg width='36' height='36' viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    title: 'CRM',
+    desc: 'จัดการและดูข้อมูลลูกค้าต่างๆ',
+    icon: `<svg width='36' height='36' viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="36" height="36" rx="7" fill="#013395"/>
     <path d="M11.8348 14.1866C11.8344 13.6954 12.2031 13.1495 12.6583 12.9671L26.7311 7.32999C27.1862 7.14765 27.5555 7.39801 27.5559 7.88917L27.5645 20.4289C27.5649 20.9201 27.2206 21.4734 26.7654 21.6557L11.6354 27.7164L11.8348 14.1866Z" fill="url(#paint0_linear_467_3889)"/>
     <path fillRule="evenodd" clipRule="evenodd" d="M11.5826 27.7371L11.6307 20.7927L18.9189 17.8733C19.5155 17.6343 20.3432 17.8339 20.7677 18.3191L23.7172 21.6901C24.1417 22.1753 24.0023 22.7623 23.4057 23.0013L11.605 27.7283C11.5976 27.7313 11.5901 27.7342 11.5826 27.7371Z" fill="url(#paint1_linear_467_3889)"/>
@@ -462,30 +462,30 @@ const modalMenus = [
       </linearGradient>
     </defs>
   </svg>`,
-  enabled: false
+    enabled: false
   },
   {
-    title:'เว็บไซต์',
-    desc:'สร้างและออกแบบเว็บไซต์',
-    icon:`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    title: 'เว็บไซต์',
+    desc: 'สร้างและออกแบบเว็บไซต์',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
       <rect width="36" height="36" rx="7" fill='white'/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M29.0014 18.9473C29.1869 19.141 29.0496 19.4625 28.7814 19.4625H21.9731C21.9226 19.4625 21.8817 19.5034 21.8817 19.5538V24.5443C21.8817 24.6834 21.7875 24.8048 21.6528 24.8393L11.0125 27.5649C10.9547 27.5797 10.8985 27.5361 10.8985 27.4764L10.8985 21.2297C10.8985 21.0906 10.9927 20.9692 11.1275 20.9347L17.641 19.2662C17.7095 19.2486 17.733 19.1632 17.6829 19.1132L7.08969 8.51992C6.89783 8.32806 7.03372 8 7.30505 8H18.4799C18.5048 8 18.5286 8.01017 18.5458 8.02816L29.0014 18.9473Z" fill="#1A1A1A"/>
     </svg>`,
     enabled: false
   },
   {
-    title:'Projects Manager',
-    desc:'จัดการงานและโปรเจกต์',
-    icon:`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    title: 'Projects Manager',
+    desc: 'จัดการงานและโปรเจกต์',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
       <rect width="36" height="36" rx="7" fill="#FF4A00"/>
       <path d="M28.8283 16.1667H22.4172L26.9584 11.6215C26.5958 11.125 26.1951 10.6476 25.7754 10.2083C25.3365 9.7691 24.8786 9.36806 24.3634 9.02431L19.8222 13.5694V7.15278C19.2307 7.05729 18.6201 7 17.9905 7H17.9714C17.3417 7 16.7311 7.05729 16.1396 7.15278V13.5694L11.5984 9.02431C11.1023 9.38715 10.6253 9.78819 10.1865 10.2083C9.74761 10.6476 9.366 11.1059 9.00347 11.6215L13.5638 16.1667H7.15265C7.15265 16.1667 7 17.3698 7 18C7 18.6302 7.05724 19.2413 7.15265 19.8333H13.5638L9.02255 24.3785C9.72853 25.3715 10.6062 26.25 11.6175 26.9757L16.1587 22.4306V28.8472C16.7502 28.9427 17.3608 29 17.9905 29H18.0095C18.6392 29 19.2498 28.9427 19.8413 28.8472V22.4306L24.3825 26.9757C24.8786 26.6128 25.3556 26.2118 25.7944 25.7917C26.2333 25.3524 26.634 24.8941 26.9774 24.3785L22.4363 19.8333H28.8474C28.9428 19.2413 29 18.6302 29 18V17.9809C28.9809 17.3698 28.9428 16.7587 28.8283 16.1667ZM20.7381 18.0191C20.7381 18.8403 20.5854 19.6233 20.3183 20.349C19.5932 20.6163 18.8109 20.7691 17.9905 20.7691C17.17 20.7691 16.3877 20.6163 15.6626 20.349C15.3955 19.6233 15.2428 18.8403 15.2428 18.0191V18C15.2428 17.1788 15.3955 16.3958 15.6626 15.6701C16.3877 15.4028 17.17 15.25 17.9905 15.25C18.8109 15.25 19.5932 15.4028 20.3183 15.6701C20.5854 16.3958 20.7381 17.1788 20.7381 18.0191Z" fill="white"/>
     </svg>`,
     enabled: false
   },
   {
-    title:'Canvas',
-    desc:'ระบบออกแบบ Graphic',
-    icon:`<svg width='36' height='36' viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    title: 'Canvas',
+    desc: 'ระบบออกแบบ Graphic',
+    icon: `<svg width='36' height='36' viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="36" height="36" rx="7" fill="#7000FF"/>
       <path d="M18.2416 8.56352C17.5258 8.02219 16.6261 7.8616 15.7717 8.12206L9.9919 9.88424C8.8012 10.2475 8.00073 11.34 8.00073 12.6039V25.1588C8.00073 26.0654 8.4111 26.8956 9.12675 27.4361C9.84253 27.9775 10.7432 28.138 11.5967 27.8776L15.9113 26.5617C15.7764 26.1095 15.7081 25.6376 15.7081 25.1588V19.4571C15.7081 18.2598 16.1377 17.1162 16.9199 16.239C17.494 15.5929 18.2387 15.1161 19.071 14.8616L19.3676 14.7755V10.8417C19.3676 9.93511 18.9573 9.10492 18.2415 8.56352H18.2416Z" fill="white"/>
       <path d="M29.0005 17.6953V23.397C29.0005 24.66 28.201 25.7535 27.0094 26.1158L21.2296 27.878C20.9618 27.9602 20.6892 28.0004 20.4195 28.0004C19.8289 28.0004 19.2509 27.8086 18.7596 27.4365C18.5352 27.2662 18.3406 27.0694 18.1807 26.8491C17.9861 26.5848 17.8406 26.2901 17.7491 25.9739C17.7481 25.9739 17.7472 25.9739 17.7462 25.9748L17.7481 25.9729C17.674 25.7134 17.6335 25.4403 17.6335 25.1593V19.4575C17.6335 18.8721 17.805 18.3229 18.1075 17.8666C18.41 17.4104 18.8435 17.0462 19.3675 16.8298C19.4513 16.7956 19.5371 16.7642 19.6248 16.7378L20.3318 16.5224L25.4046 14.9756C26.259 14.7151 27.1588 14.8757 27.8745 15.4171C28.5903 15.9585 29.0006 16.7887 29.0006 17.6953H29.0005Z" fill="white"/>
@@ -494,7 +494,7 @@ const modalMenus = [
   },
 ]
 
-$(document).ready(function(){
+$(document).ready(function () {
   $('#upper-menu').html(upperItems.map(item => {
     return `
       <a href="${item.link}" class="menulink-btn">
@@ -555,10 +555,10 @@ $(document).ready(function(){
 
   function buildMenu(sidebarMenus, $parent, depth = 0) {
     var $ul = $(`<ul class='menulists'>`);
-    sidebarMenus.forEach(function(item) {
+    sidebarMenus.forEach(function (item) {
 
-      function getSearch(){
-        if (item.search !== undefined){ window.history.replaceState({}, "", item.search) }
+      function getSearch() {
+        if (item.search !== undefined) { window.history.replaceState({}, "", item.search) }
       }
 
       var $li = $("<li>");
@@ -568,13 +568,13 @@ $(document).ready(function(){
           ${item.label}
           ${item.badgePrefix || ''}
         </span>
-      `); 
+      `);
       $a.on("click", getSearch)
       $a.addClass('menulink-btn');
-      if (depth === 0){
+      if (depth === 0) {
         $a.addClass('first')
       }
-      if (depth === 1 && item.bgColor || item.innerBgColor){
+      if (depth === 1 && item.bgColor || item.innerBgColor) {
         $a.addClass('second-with-bg')
       }
       $li.append($a);
@@ -584,7 +584,7 @@ $(document).ready(function(){
         var $submenu = $("<ul>").addClass("submenu");
         buildMenu(item.submenu, $submenu, depth + 1);
         $submenu.css('margin-bottom', '20px')
-        if (depth === 1){
+        if (depth === 1) {
           $submenu.css('margin-bottom', '0')
         }
 
@@ -602,10 +602,10 @@ $(document).ready(function(){
       $parent.append($ul);
     });
   }
-  
+
   buildMenu(sidebarMenus, $("#lower-menu"));
 
-  $("#lower-menu").on("click", "a", function(event) {
+  $("#lower-menu").on("click", "a", function (event) {
     event.preventDefault();
     var $submenu = $(this).closest("li").find("> ul");
     var $submenuToggle = $(this).find(".submenu-toggle");
@@ -630,12 +630,12 @@ $(document).ready(function(){
   var sidebarOverlay = $('#navbar-overlay-mobile')
   var sidebar = $('#rightside')
 
-  modalButton.on('click', function(){
+  modalButton.on('click', function () {
     sidebarOverlay.addClass("active")
     sidebar.addClass("active")
   })
 
-  sidebarOverlay.on('click', function(){
+  sidebarOverlay.on('click', function () {
     sidebarOverlay.removeClass("active")
     sidebar.removeClass("active")
   })

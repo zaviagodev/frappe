@@ -19,6 +19,7 @@ frappe.require = function (items, callback) {
 	});
 };
 
+
 frappe.assets = {
 	check: function () {
 		// if version is different then clear localstorage
@@ -229,12 +230,10 @@ function page_changed(event) {
 var pushState = history.pushState;
 history.pushState = function () {
     pushState.apply(history, arguments);
-    console.log("location: " + document.location );
-	setTimeout(show_current_page , 1500);
+    setTimeout(show_current_page , 1500);
 
 };
 window.onpopstate = function(event) {
-	console.log("location: " + document.location );
 	setTimeout(show_current_page , 1500);
 };
 function show_current_page(){

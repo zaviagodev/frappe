@@ -21,6 +21,7 @@ frappe.ui.toolbar.Toolbar = class {
 		this.setup_notifications();
 		this.setup_help();
 		this.make();
+		
 	}
 
 	make() {

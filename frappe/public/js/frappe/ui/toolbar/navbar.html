@@ -60,25 +60,23 @@
 							<stop offset="1" stop-color="white"/>
 						  </linearGradient>
 						  <clipPath id="clip0_2566_24332">
-							<rect width="14" height="15" fill="white"/>
 						  </clipPath>
 						</defs>
 					  </svg>
-					  <span>โปร</span>
-				  </a>
-			</div>
-			<div class="input-group search-bar text-muted hidden searchbar-header">
-				<input
-					id="navbar-search"
-					type="text"
-					class="form-control"
-					placeholder="{%= __("ค้นหา    (Ctrl + G)") %}"
-					aria-haspopup="true"
-				> <!-- Search or type a command (Ctrl + G) -->
 				<span class="search-icon">
 					<svg class="icon icon-md"><use href="#icon-search"></use></svg>
 				</span>
 			</div>
+=======
+					  <span>โปร</span> -->
+					</div>
+				  </a>
+			</div>
+			<span style="cursor:pointer;margin-right: 5px;padding: 0 0px 0 4px;transform: scale(1.2);" class="search-icon" id="search-icon-button" data-toggle="modal" data-target="#search-modal-centered">
+				<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
+			</span>
+
+>>>>>>> Stashed changes
 		</form>
 		<ul class="navbar-nav">
 			<!-- <li class="nav-item dropdown dropdown-notifications dropdown-mobile hidden">
@@ -212,11 +210,76 @@
 				<p class="site-name"></p>
 			  </div>
 			</div>
+
 		  </div>
 		  <div id="modal-menus-trigger"></div>
+		 
 	</div>
+	 <!-- sidebar-search -->
+	 <div class="sidebar-search" style="padding:0 16px 0 16px">
+		<div class="input-group text-muted">
+			<input
+				id="sidebar-search"
+				type="text"
+				class="form-control"
+				placeholder="Search"
+				disabled
+				style="padding-left: 20px;border-top-right-radius:7px;border-bottom-right-radius:7px; cursor:pointer"
+				data-toggle="modal" data-target="#search-modal-centered"
+			> <!-- Search or type a command (Ctrl + G) -->
+			<span class="search-icon" style="position:absolute;left: 4px;top: 2px;">
+				<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
+			</span>
+		</div>
+	</div>
+	<!-- sidebar-search -->
 	<div id="sidebar-menus">
         <div id="upper-menu"></div>
         <div id="lower-menu"></div>
     </div>
 </nav>
+<!-- search modal -->
+ <!-- Button trigger modal -->
+
+<div class="modal fade search-modal-centered" id="search-modal-centered" tabindex="-1" role="dialog" aria-labelledby="search-modal-centered" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+			<div class="modal-body navbar-search-modal">
+					<div class="input-group search-bar text-muted hidden searchbar-header">
+						<input
+							id="navbar-search"
+							type="text"
+							class="form-control"
+							placeholder="Search"
+							aria-haspopup="true"
+						> <!-- Search or type a command (Ctrl + G) -->
+						<span class="search-icon">
+							<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
+						</span>
+					</div>
+					<button type="button" class="close search-popup-close-button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="search-popup-suggestions">
+						<div class="suggestions-left">Suggestions</div>
+						<div style="cursor:pointer;" id="suggestions-right" class="suggestions-right">
+							<span>Help on Search</span>
+						</div>
+					</div>
+					<div class="search-popup-footer-more-results">
+						<div style="cursor:pointer;" class="search-popup-more-search-results" id="search-popup-more-search-results">
+						
+								More Search Results
+							
+						</div>
+					</div>
+			</div>
+	  	</div>
+	</div>
+  </div>
+  <div class="grey-background-frame" style="background: #F3F2F7 !important;
+  height: 65px;
+  width: 100vw;
+  z-index: 10;
+  position: fixed;
+  top: 0;"></div>

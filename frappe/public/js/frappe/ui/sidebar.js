@@ -6,6 +6,7 @@ frappe.ui.Sidebar = class Sidebar {
 		this.css_class = css_class;
 		this.items = {};
 		this.make_dom();
+		
 	}
 
 	make_dom() {
