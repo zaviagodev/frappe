@@ -912,7 +912,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 		display:inline-flex;
 		position:fixed;
 		left:0;
-		top:8px;
+		/* top:8px; */
 		width:fit-content
 	}
 	.nav-rightside {
@@ -1114,4 +1114,10 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 .page-body .form-footer{
 	padding-top: 56px;
+}
+.nav-rightside{
+	margin-top: 53px;
+}
+.navbar, .content.page-container {
+    margin-left: 0;
 }

@@ -110,6 +110,35 @@ frappe.ui.Page = class Page {
 
 		this.setup_page();
 	}
+	show_current_page( title ){
+		setTimeout(function( ){
+			let path = $("body").attr("data-route");
+ 				if( path != null ){
+					let splitted_path=path.split("/");
+					let list_name='';
+					let cur_docname=title;
+					list_name=splitted_path[1];
+					if( splitted_path[0] =="List" ){
+						cur_docname=splitted_path[1];
+					}
+					if( list_name =="Sales Invoice" || list_name =="Payment Entry" ){
+						cur_docname=splitted_path[2]
+					}else{
+						cur_docname=document.title;
+						cur_docname=cur_docname.split('-');
+						cur_docname=cur_docname[0];
+					}
+					
+					if(cur_docname != null && $("#navbar-current-docname").length){
+						$("#navbar-current-docname").text(cur_docname);
+					}
+					if(list_name != null && $("#navbar-header-text").length){
+						$("#navbar-header-text").text(list_name);
+					}
+				} 
+		} , 1000);
+		
+	}
 
 	setup_page() {
 		this.$title_area = this.wrapper.find(".title-area");
@@ -181,10 +210,12 @@ frappe.ui.Page = class Page {
 				);
 			})
 			.appendTo(this.sidebar);
+			this.show_current_page( this.title );
 	}
 
 	setup_sidebar_toggle() {
 		let sidebar_toggle = $(".page-head").find(".sidebar-toggle-btn");
+		let new_custom_sidebar_toggle = $("#top-navbar-toggle-sidebar");
 		let sidebar_wrapper = this.wrapper.find(".layout-side-section");
 		if (this.disable_sidebar_toggle || !sidebar_wrapper.length) {
 			sidebar_toggle.last().remove();
@@ -207,6 +238,39 @@ frappe.ui.Page = class Page {
 				this.update_sidebar_icon();
 			});
 		}
+		new_custom_sidebar_toggle.click(() => {
+			let rightside = $("#rightside");
+			if (frappe.utils.is_xs() || frappe.utils.is_sm()) {
+				this.setup_overlay_sidebar();
+			} else {
+				sidebar_wrapper.toggle();
+				if( rightside.hasClass("active") ){
+					setTimeout(function(){///workaround
+						rightside.removeClass("active");
+						rightside.css({"display": "none"});
+						$(".layout-side-section").css({"display": "none"});
+						$("#open-sidebar-top-navbar-ico").css({"display": "inline-block"});
+						$("#close-sidebar-top-navbar-ico").css({"display": "none"});
+						$(".page-container").css({"margin-left": "0"});
+					}, 10);
+					
+
+				} else {
+					setTimeout(function(){///workaround
+						rightside.css({"display": "block"});
+						rightside.addClass("active");
+						$("#open-sidebar-top-navbar-ico").css({"display": "none"});
+						$("#close-sidebar-top-navbar-ico").css({"display": "inline-block"});
+
+						$(".layout-side-section").css({"display": "block"});
+						$(".page-container").css({"margin-left": "var(--right-sidebar-size)"});
+					}, 10);
+				}
+			}
+			
+			$(document.body).trigger("toggleSidebar");
+			this.update_sidebar_icon();
+		});
 	}
 
 	setup_overlay_sidebar() {
