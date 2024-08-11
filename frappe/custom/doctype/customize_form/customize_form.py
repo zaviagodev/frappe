@@ -21,6 +21,7 @@ from frappe.custom.doctype.property_setter.property_setter import delete_propert
 from frappe.model import core_doctypes_list, no_value_fields
 from frappe.model.docfield import supports_translation
 from frappe.model.document import Document
+from frappe.model.meta import trim_table
 from frappe.utils import cint
 
 
@@ -44,7 +45,7 @@ class CustomizeForm(Document):
 		autoname: DF.Data | None
 		default_email_template: DF.Link | None
 		default_print_format: DF.Link | None
-		default_view: DF.Literal
+		default_view: DF.Literal[None]
 		doc_type: DF.Link | None
 		editable_grid: DF.Check
 		email_append_to: DF.Check
@@ -54,6 +55,7 @@ class CustomizeForm(Document):
 		is_calendar_and_gantt: DF.Check
 		istable: DF.Check
 		label: DF.Data | None
+		link_filters: DF.JSON | None
 		links: DF.Table[DocTypeLink]
 		make_attachments_public: DF.Check
 		max_attachments: DF.Int
@@ -74,7 +76,7 @@ class CustomizeForm(Document):
 		sender_name_field: DF.Data | None
 		show_preview_popup: DF.Check
 		show_title_field_in_link: DF.Check
-		sort_field: DF.Literal
+		sort_field: DF.Literal[None]
 		sort_order: DF.Literal["ASC", "DESC"]
 		states: DF.Table[DocTypeState]
 		subject_field: DF.Data | None
@@ -638,6 +640,19 @@ class CustomizeForm(Document):
 		frappe.clear_cache(doctype=self.doc_type)
 		self.fetch_to_customize()
 
+	@frappe.whitelist()
+	def trim_table(self):
+		"""Removes database fields that don't exist in the doctype.
+
+		This may be needed as maintenance since removing a field in a DocType
+		doesn't automatically delete the db field.
+		"""
+		if not self.doc_type:
+			return
+
+		trim_table(self.doc_type, dry_run=False)
+		self.fetch_to_customize()
+
 	@classmethod
 	def allow_fieldtype_change(self, old_type: str, new_type: str) -> bool:
 		"""allow type change, if both old_type and new_type are in same field group.
@@ -648,6 +663,13 @@ class CustomizeForm(Document):
 			return (old_type in group) and (new_type in group)
 
 		return any(map(in_field_group, ALLOWED_FIELDTYPE_CHANGE))
+
+
+@frappe.whitelist()
+def get_orphaned_columns(doctype: str):
+	frappe.only_for("System Manager")
+	frappe.db.begin(read_only=True)  # Avoid any potential bug from writing to db
+	return trim_table(doctype, dry_run=True)
 
 
 def reset_customization(doctype):
@@ -677,6 +699,17 @@ def reset_customization(doctype):
 
 def is_standard_or_system_generated_field(df):
 	return not df.get("is_custom_field") or df.get("is_system_generated")
+
+
+@frappe.whitelist()
+def get_link_filters_from_doc_without_customisations(doctype, fieldname):
+	"""Get the filters of a link field from a doc without customisations
+	In backend the customisations are not applied.
+	Customisations are applied in the client side.
+	"""
+	doc = frappe.get_doc("DocType", doctype)
+	field = list(filter(lambda x: x.fieldname == fieldname, doc.fields))
+	return field[0].link_filters
 
 
 doctype_properties = {
@@ -760,6 +793,7 @@ docfield_properties = {
 	"hide_days": "Check",
 	"hide_seconds": "Check",
 	"is_virtual": "Check",
+	"link_filters": "JSON",
 }
 
 doctype_link_properties = {
@@ -786,7 +820,7 @@ ALLOWED_FIELDTYPE_CHANGE = (
 	("Text", "Data"),
 	("Text", "Text Editor", "Code", "Signature", "HTML Editor"),
 	("Data", "Select"),
-	("Text", "Small Text"),
+	("Text", "Small Text", "Long Text"),
 	("Text", "Data", "Barcode"),
 	("Code", "Geolocation"),
 	("Table", "Table MultiSelect"),

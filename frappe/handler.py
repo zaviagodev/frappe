@@ -126,6 +126,9 @@ def web_logout():
 
 @frappe.whitelist()
 def uploadfile():
+	deprecation_warning(
+		"uploadfile is deprecated and will be removed in v16. Use upload_file instead.",
+	)
 	ret = None
 	check_write_permission(frappe.form_dict.doctype, frappe.form_dict.docname)
 
@@ -252,7 +255,8 @@ def check_write_permission(doctype: str | None = None, name: str | None = None):
 			doc.has_permission("write")
 		except frappe.DoesNotExistError:
 			# doc has not been inserted yet, name is set to "new-some-doctype"
-			check_doctype = True
+			# If doc inserts fine then only this attachment will be linked see file/utils.py:relink_mismatched_files
+			return
 
 	if check_doctype:
 		frappe.has_permission(doctype, "write", throw=True)
@@ -286,7 +290,6 @@ def get_attr(cmd):
 			f"Calling shorthand for {cmd} is deprecated, please specify full path in RPC call."
 		)
 		method = globals()[cmd]
-	frappe.log("method:" + cmd)
 	return method
 
 

@@ -5,6 +5,7 @@ import functools
 import hashlib
 import io
 import os
+import shutil
 import sys
 import traceback
 from collections import deque
@@ -229,7 +230,7 @@ def validate_url(
 	        bool: if `txt` represents a valid URL
 	"""
 	url = urlparse(txt)
-	is_valid = bool(url.netloc)
+	is_valid = bool(url.netloc) or (txt and txt.startswith("/"))
 
 	# Handle scheme validation
 	if isinstance(valid_schemes, str):
@@ -443,11 +444,21 @@ def unesc(s, esc_chars):
 
 def execute_in_shell(cmd, verbose=False, low_priority=False, check_exit_code=False):
 	# using Popen instead of os.system - as recommended by python docs
+	import shlex
 	import tempfile
 	from subprocess import Popen
 
+	if isinstance(cmd, list):
+		# ensure it's properly escaped; only a single string argument executes via shell
+		cmd = shlex.join(cmd)
+
 	with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
-		kwargs = {"shell": True, "stdout": stdout, "stderr": stderr}
+		kwargs = {
+			"shell": True,
+			"stdout": stdout,
+			"stderr": stderr,
+			"executable": shutil.which("bash") or "/bin/bash",
+		}
 
 		if low_priority:
 			kwargs["preexec_fn"] = lambda: os.nice(10)
@@ -470,7 +481,9 @@ def execute_in_shell(cmd, verbose=False, low_priority=False, check_exit_code=Fal
 			print(out)
 
 	if failed:
-		raise Exception("Command failed")
+		raise frappe.CommandFailedError(
+			"Command failed", out.decode(errors="replace"), err.decode(errors="replace")
+		)
 
 	return err, out
 

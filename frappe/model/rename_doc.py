@@ -456,30 +456,43 @@ def get_link_fields(doctype: str) -> list[dict]:
 		cf = frappe.qb.DocType("Custom Field")
 		ps = frappe.qb.DocType("Property Setter")
 
-		standard_fields = (
+		standard_fields_query = (
 			frappe.qb.from_(df)
 			.inner_join(dt)
 			.on(df.parent == dt.name)
 			.select(df.parent, df.fieldname, dt.issingle.as_("issingle"))
-			.where((df.options == doctype) & (df.fieldtype == "Link") & (dt.is_virtual == 0))
-			.run(as_dict=True)
+			.where((df.options == doctype) & (df.fieldtype == "Link"))
 		)
+
+		if frappe.db.has_column("DocField", "is_virtual"):
+			standard_fields_query = standard_fields_query.where(df.is_virtual == 0)
+
+		virtual_doctypes = []
+		if frappe.db.has_column("DocType", "is_virtual"):
+			virtual_doctypes = frappe.get_all("DocType", {"is_virtual": 1}, pluck="name")
+			standard_fields_query = standard_fields_query.where(dt.is_virtual == 0)
+
+		standard_fields = standard_fields_query.run(as_dict=True)
 
 		cf_issingle = frappe.qb.from_(dt).select(dt.issingle).where(dt.name == cf.dt).as_("issingle")
 		custom_fields = (
 			frappe.qb.from_(cf)
 			.select(cf.dt.as_("parent"), cf.fieldname, cf_issingle)
 			.where((cf.options == doctype) & (cf.fieldtype == "Link"))
-			.run(as_dict=True)
 		)
+		if virtual_doctypes:
+			custom_fields = custom_fields.where(cf.dt.notin(virtual_doctypes))
+		custom_fields = custom_fields.run(as_dict=True)
 
 		ps_issingle = frappe.qb.from_(dt).select(dt.issingle).where(dt.name == ps.doc_type).as_("issingle")
 		property_setter_fields = (
 			frappe.qb.from_(ps)
 			.select(ps.doc_type.as_("parent"), ps.field_name.as_("fieldname"), ps_issingle)
 			.where((ps.property == "options") & (ps.value == doctype) & (ps.field_name.notnull()))
-			.run(as_dict=True)
 		)
+		if virtual_doctypes:
+			property_setter_fields = property_setter_fields.where(ps.doc_type.notin(virtual_doctypes))
+		property_setter_fields = property_setter_fields.run(as_dict=True)
 
 		frappe.flags.link_fields[doctype] = standard_fields + custom_fields + property_setter_fields
 
@@ -628,7 +641,10 @@ def rename_dynamic_links(doctype: str, old: str, new: str):
 	Singles = frappe.qb.DocType("Singles")
 	for df in get_dynamic_link_map().get(doctype, []):
 		# dynamic link in single, just one value to check
-		if frappe.get_meta(df.parent).issingle:
+		meta = frappe.get_meta(df.parent)
+		if meta.is_virtual:
+			continue
+		if meta.issingle:
 			refdoc = frappe.db.get_singles_dict(df.parent)
 			if refdoc.get(df.options) == doctype and refdoc.get(df.fieldname) == old:
 				frappe.qb.update(Singles).set(Singles.value, new).where(

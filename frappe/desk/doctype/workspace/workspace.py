@@ -23,9 +23,7 @@ class Workspace(Document):
 	if TYPE_CHECKING:
 		from frappe.core.doctype.has_role.has_role import HasRole
 		from frappe.desk.doctype.workspace_chart.workspace_chart import WorkspaceChart
-		from frappe.desk.doctype.workspace_custom_block.workspace_custom_block import (
-			WorkspaceCustomBlock,
-		)
+		from frappe.desk.doctype.workspace_custom_block.workspace_custom_block import WorkspaceCustomBlock
 		from frappe.desk.doctype.workspace_link.workspace_link import WorkspaceLink
 		from frappe.desk.doctype.workspace_number_card.workspace_number_card import WorkspaceNumberCard
 		from frappe.desk.doctype.workspace_quick_list.workspace_quick_list import WorkspaceQuickList
@@ -156,7 +154,7 @@ class Workspace(Document):
 
 				current_card = link
 				card_links = []
-			else:
+			elif not link.get("only_for") or link.get("only_for") == frappe.get_system_settings("country"):
 				card_links.append(link)
 
 		current_card["links"] = card_links
@@ -251,6 +249,12 @@ def new_page(new_page):
 	):
 		frappe.throw(_("Cannot create private workspace of other users"), frappe.PermissionError)
 
+	elif not frappe.has_permission(doctype="Workspace", ptype="create"):
+		frappe.flags.error_message = _("User {0} does not have the permission to create a Workspace.").format(
+			frappe.bold(frappe.session.user)
+		)
+		raise frappe.PermissionError
+
 	doc = frappe.new_doc("Workspace")
 	doc.title = page.get("title")
 	doc.icon = page.get("icon")
@@ -300,6 +304,7 @@ def update_page(name, title, icon, indicator_color, parent, public):
 		)
 
 	if doc:
+		child_docs = frappe.get_all("Workspace", filters={"parent_page": doc.title, "public": doc.public})
 		doc.title = title
 		doc.icon = icon
 		doc.indicator_color = indicator_color
@@ -315,7 +320,6 @@ def update_page(name, title, icon, indicator_color, parent, public):
 			rename_doc("Workspace", name, new_name, force=True, ignore_permissions=True)
 
 		# update new name and public in child pages
-		child_docs = frappe.get_all("Workspace", filters={"parent_page": doc.title, "public": doc.public})
 		if child_docs:
 			for child in child_docs:
 				child_doc = frappe.get_doc("Workspace", child.name)

@@ -129,6 +129,9 @@ class Contact(Document):
 		if len([email.email_id for email in self.email_ids if email.is_primary]) > 1:
 			frappe.throw(_("Only one {0} can be set as primary.").format(frappe.bold("Email ID")))
 
+		if len(self.email_ids) == 1:
+			self.email_ids[0].is_primary = 1
+
 		primary_email_exists = False
 		for d in self.email_ids:
 			if d.is_primary == 1:
@@ -386,7 +389,7 @@ def get_contact_display_list(doctype: str, name: str) -> list[dict]:
 			["Dynamic Link", "parenttype", "=", "Contact"],
 		],
 		fields=["*"],
-		order_by="is_primary_contact DESC, creation ASC",
+		order_by="is_primary_contact DESC, `tabContact`.creation ASC",
 	)
 
 	for contact in contact_list:

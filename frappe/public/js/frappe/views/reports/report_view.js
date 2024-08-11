@@ -98,7 +98,7 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 		);
 		this.$paging_area
 			.find(".level-left")
-			.append(`<span class="comparison-message text-muted">${message}</span>`);
+			.after(`<span class="comparison-message text-muted">${message}</span>`);
 	}
 
 	setup_sort_selector() {
@@ -221,19 +221,14 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 		this.setup_datatable(this.data);
 	}
 
-	render_count() {
-		if (this.list_view_settings?.disable_count) {
-			return;
-		}
-		let $list_count = this.$paging_area.find(".list-count");
-		if (!$list_count.length) {
-			$list_count = $("<span>")
+	get_count_element() {
+		let $count = this.$paging_area.find(".list-count");
+		if (!$count.length) {
+			$count = $("<span>")
 				.addClass("text-muted list-count")
 				.prependTo(this.$paging_area.find(".level-right"));
 		}
-		this.get_count_str().then((str) => {
-			$list_count.text(str);
-		});
+		return $count;
 	}
 
 	on_update(data) {
@@ -1477,7 +1472,8 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 					if (this.add_totals_row) {
 						const total_data = this.get_columns_totals(this.data);
 
-						total_data["name"] = __("Totals").bold();
+						total_data["name"] = __("Total");
+						total_data.is_total_row = true;
 						rows_in_order.push(total_data);
 					}
 
@@ -1558,12 +1554,22 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 					const selected_items = this.get_checked_items(true);
 
 					let extra_fields = null;
-					if (this.total_count > (this.count_without_children || args.page_length)) {
+					if (this.list_view_settings.disable_count) {
 						extra_fields = [
 							{
 								fieldtype: "Check",
 								fieldname: "export_all_rows",
-								label: __("Export All {0} rows?", [`<b>${this.total_count}</b>`]),
+								label: __("Export all matching rows?"),
+							},
+						];
+					} else if (
+						this.total_count > (this.count_without_children || args.page_length)
+					) {
+						extra_fields = [
+							{
+								fieldtype: "Check",
+								fieldname: "export_all_rows",
+								label: __("Export all {0} rows?", [`<b>${this.total_count}</b>`]),
 							},
 						];
 					}

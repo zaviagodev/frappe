@@ -36,7 +36,12 @@ _sites_path = os.environ.get("SITES_PATH", ".")
 
 # If gc.freeze is done then importing modules before forking allows us to share the memory
 if frappe._tune_gc:
+	import gettext
+
+	import babel
+	import babel.messages
 	import bleach
+	import num2words
 	import pydantic
 
 	import frappe.boot
@@ -74,7 +79,6 @@ def after_response_wrapper(app):
 			app(environ, start_response),
 			(
 				frappe.rate_limiter.update,
-				frappe.monitor.stop,
 				frappe.recorder.dump,
 				frappe.request.after_response.run,
 				frappe.destroy,
@@ -399,11 +403,7 @@ def handle_exception(e):
 
 def sync_database(rollback: bool) -> bool:
 	# if HTTP method would change server state, commit if necessary
-	if (
-		frappe.db
-		and (frappe.local.flags.commit or frappe.local.request.method in UNSAFE_HTTP_METHODS)
-		and frappe.db.transaction_writes
-	):
+	if frappe.db and (frappe.local.flags.commit or frappe.local.request.method in UNSAFE_HTTP_METHODS):
 		frappe.db.commit()
 		rollback = False
 	elif frappe.db:
@@ -413,7 +413,6 @@ def sync_database(rollback: bool) -> bool:
 	# update session
 	if session := getattr(frappe.local, "session_obj", None):
 		if session.update():
-			frappe.db.commit()
 			rollback = False
 
 	return rollback

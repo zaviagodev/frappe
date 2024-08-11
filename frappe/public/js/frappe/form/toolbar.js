@@ -77,7 +77,8 @@ frappe.ui.form.Toolbar = class Toolbar {
 			this.frm.perm[0].write &&
 			!this.frm.doc.__islocal &&
 			doc_field.fieldtype === "Data" &&
-			!doc_field.read_only
+			!doc_field.read_only &&
+			!doc_field.set_only_once
 		) {
 			return true;
 		} else {
@@ -453,7 +454,7 @@ frappe.ui.form.Toolbar = class Toolbar {
 			},
 			true,
 			{
-				shortcut: "ctrl+z",
+				shortcut: "Ctrl+Z",
 				condition: () => !this.frm.is_form_builder(),
 				description: __("Undo last action"),
 			}
@@ -465,7 +466,7 @@ frappe.ui.form.Toolbar = class Toolbar {
 			},
 			true,
 			{
-				shortcut: "ctrl+y",
+				shortcut: "Ctrl+Y",
 				condition: () => !this.frm.is_form_builder(),
 				description: __("Redo last action"),
 			}

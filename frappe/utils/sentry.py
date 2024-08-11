@@ -59,6 +59,7 @@ def set_scope(scope):
 		waitdiff = datetime.utcnow() - job.enqueued_at
 		context.uuid = job.id
 		context.wait = waitdiff.total_seconds()
+		context.kwargs = kwargs
 
 		scope.set_extra("job", context)
 		scope.set_transaction_name(transaction_name)
@@ -124,8 +125,8 @@ def capture_exception(message: str | None = None) -> None:
 		if client := hub.client:
 			exc_info = sys.exc_info()
 			if any(exc_info):
-				# Don't report validation errors
-				if isinstance(exc_info[0], frappe.ValidationError):
+				# Don't report errors which we can't "fix" in code
+				if isinstance(exc_info[1], frappe.ValidationError | frappe.PermissionError):
 					return
 
 				event, hint = event_from_exception(
@@ -139,13 +140,3 @@ def capture_exception(message: str | None = None) -> None:
 
 	except Exception:
 		frappe.logger().error("Failed to capture exception", exc_info=True)
-		pass
-
-
-def add_bootinfo(bootinfo):
-	"""Called from hook, sends DSN so client side can setup error monitoring."""
-	if not frappe.get_system_settings("enable_telemetry"):
-		return
-
-	if sentry_dsn := os.getenv("FRAPPE_SENTRY_DSN"):
-		bootinfo.sentry_dsn = sentry_dsn
