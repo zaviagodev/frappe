@@ -59,20 +59,32 @@ class FormTimeline extends BaseTimeline {
 		this.timeline_wrapper.remove(this.timeline_actions_wrapper);
 		this.timeline_wrapper.prepend(`
 				<div class="timeline-item activity-title">
-				<h4>${__("Activity")}</h4>
 				</div>
 			`);
+
+		this.timeline_wrapper.prepend(`<div class="timeline-top-bar"></div>`);	
+
+
 		if (has_communications()) {
 			this.timeline_wrapper
-				.find(".timeline-item.activity-title")
+				.find(".timeline-top-bar")
 				.append(
 					`
-					<div class="d-flex align-items-center show-all-activity">
-						<span style="color: var(--text-light); margin:0px 6px;">${__("Show all activity")}</span>
-						<label class="switch">
-							<input type="checkbox">
-							<span class="slider round"></span>
-						</label>
+					<div class="d-flex align-items-center justify-content-between show-all-activity">
+						<div class="d-flex align-items-center">
+						<span class="navbar-right-heart-button-icons" style="cursor:pointer;">  <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">   <path d="M0.326172 8.56445C0.330729 8.40495 0.36263 8.25911 0.421875 8.12695C0.48112 7.99479 0.572266 7.86719 0.695312 7.74414L7.54492 1.11328C7.74089 0.917318 7.98242 0.819336 8.26953 0.819336C8.46094 0.819336 8.63411 0.864909 8.78906 0.956055C8.94857 1.0472 9.07389 1.17025 9.16504 1.3252C9.26074 1.48014 9.30859 1.65332 9.30859 1.84473C9.30859 2.12728 9.2015 2.37565 8.9873 2.58984L2.79395 8.55762L8.9873 14.5322C9.2015 14.751 9.30859 14.9993 9.30859 15.2773C9.30859 15.4733 9.26074 15.6488 9.16504 15.8037C9.07389 15.9587 8.94857 16.0817 8.78906 16.1729C8.63411 16.2686 8.46094 16.3164 8.26953 16.3164C7.98242 16.3164 7.74089 16.2161 7.54492 16.0156L0.695312 9.38477C0.567708 9.26172 0.474284 9.13411 0.415039 9.00195C0.355794 8.86523 0.326172 8.7194 0.326172 8.56445Z" fill="#007AFF"></path>   </svg>     <span id="navbar-header-text" class="navbar-header-right-heart" style="vertical-align: middle;padding-left: 2px;padding-right: 12px;color: #007AFF;"></span>  </span>
+							<label class="switch">
+								<input type="checkbox">
+								<span class="switch-group">
+									<span class="slider round"></span>
+									<span class="switch-texts">
+										<span class="switch-text first" style="color: var(--text-light);">Chat</span>
+										<span class="switch-text second"  style="color: var(--text-light);">Activity</span>
+									</span>
+								</span>
+							</label>
+							
+						</div>
 					</div>
 				`
 				)
@@ -80,13 +92,24 @@ class FormTimeline extends BaseTimeline {
 				.prop("checked", !me.only_communication)
 				.on("click", function (e) {
 					me.only_communication = !this.checked;
+
+					console.log(!this.checked);
+					if(!this.checked == true){
+						$('.sidebar-right-comment').addClass("chat");
+						$('.sidebar-right-comment').removeClass("activity");
+					}	
+					else{
+						$('.sidebar-right-comment').addClass("activity");
+						$('.sidebar-right-comment').removeClass("chat");
+					}
+
 					me.render_timeline_items();
-					$(this).tab("show");
+					$(this).parent().parent();
 				});
 		}
-		this.timeline_wrapper
-			.find(".timeline-item.activity-title")
-			.append(this.timeline_actions_wrapper);
+		$('.sidebar-right-comment').addClass("activity");
+		//console.log(this.timeline_wrapper.find(".timeline-top-bar").find(".align-items-center"));
+		this.timeline_wrapper.find(".d-flex.align-items-center").find(".d-flex.align-items-center").append(this.timeline_actions_wrapper);
 	}
 
 	setup_document_email_link() {

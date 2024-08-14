@@ -13,7 +13,9 @@ frappe.ui.form.Footer = class FormFooter {
 		});
 	}
 	make() {
-		this.wrapper = $(frappe.render_template("form_footer", {})).appendTo(this.parent);
+		let sidebarcontent = $(this.frm.$wrapper[0]).find(".sidebar-right-comment");
+		this.wrapper = $(frappe.render_template("form_footer", {})).appendTo(sidebarcontent);
+
 		this.wrapper.find(".btn-save").click(() => {
 			this.frm.save("Save", null, this);
 		});

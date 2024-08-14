@@ -11,8 +11,7 @@
  "field_order": [
   "details_tab",
   "doc_type",
-  "fields_section_break",
-  "deleted_items"
+  "soft_delete_list"
  ],
  "fields": [
   {
@@ -28,17 +27,10 @@
    "options": "DocType"
   },
   {
-   "collapsible": 1,
-   "depends_on": "doc_type",
-   "fieldname": "fields_section_break",
-   "fieldtype": "Section Break",
-   "label": "Deleted Items"
-  },
-  {
-   "allow_bulk_edit": 1,
-   "fieldname": "deleted_items",
+   "depends_on": "eval:doc.doc_type != ''",
+   "fieldname": "soft_delete_list",
    "fieldtype": "Table",
-   "label": "Fields",
+   "label": "Soft Delete List",
    "options": "Soft Delete List"
   }
  ],
@@ -47,7 +39,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-02-09 16:56:16.617609",
+ "modified": "2024-06-28 11:51:05.856123",
  "modified_by": "Administrator",
  "module": "Custom",
  "name": "Soft Delete",
@@ -69,5 +61,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1
 }

@@ -151,6 +151,8 @@ frappe.ui.form.Layout = class Layout {
 					this.fields.splice(1, 0, newname_field);
 				}
 			}
+			fields.unshift({ "label": "navigations", "fieldtype": "Tab Break", "fieldname": "__navigations" });
+			fields.push({ "label": "searchbar", "fieldtype": "Tab Break", "fieldname": "__searchicon" });
 		}
 
 		fields.forEach((df) => {
@@ -175,7 +177,52 @@ frappe.ui.form.Layout = class Layout {
 					this.make_field(df);
 			}
 		});
+
+		if (this.is_tabbed_layout()) {
+			var tabslist = this.tab_link_container;
+			var $tabs;
+			if (typeof tabslist === 'string') {
+				$tabs = $(tabslist);
+			} else {
+				$tabs = $(tabslist);
+			}
+
+			var $newList = $('<ul id="header_menu"></ul>');
+			var lastClickedItem = null;
+
+			setTimeout(function () {
+				$(".navbar-current-docname").html('');
+				$tabs.find('li').each(function (index, element) {
+					if ($(element).hasClass('show')) {
+						let $anchor = $(element).find('a');
+						let anchorText = $anchor.text();
+						let anchorId = $anchor.attr('id');
+						let $newLi = $('<li></li>');
+						// $newLi.attr("targetTab",anchorText);
+						// console.log($anchor)
+						let $newAnchor = $('<a role="tab"></a>').text(anchorText);
+						$newAnchor.attr("target-tab", $anchor.attr("href"))
+						$newLi.append($newAnchor);
+						$newLi.on('click', function () {
+							$('#' + anchorId).trigger('click');
+							if (lastClickedItem) {
+								lastClickedItem.removeClass('active');
+							}
+							$newLi.addClass('active');
+							lastClickedItem = $newLi;
+						});
+						$newList.append($newLi);
+					}
+				});
+				let slider_active = $('<div class="slider-active"></div>')
+				$newList.append(slider_active);
+				$(".navbar-current-docname").html($newList);
+				$("#header_menu li:first").css("color", "white");
+
+			}, 500);
+		}
 	}
+
 
 	no_opening_section() {
 		return (
@@ -323,6 +370,17 @@ frappe.ui.form.Layout = class Layout {
 	}
 
 	make_tab(df) {
+		if (df.fieldname == '__navigations') {
+			this.tab_link = $(`
+				<button class="sidebar-toggle-btns" title="" aria-label="Toggle Sidebar" data-original-title="Toggle Sidebar" aria-describedby="tooltip88595">      <svg class="es-icon icon-md sidebar-toggle-placeholder">       <use href="#es-line-align-justify"></use>      </svg>           </button>
+			`).appendTo(this.tab_link_container);
+		}
+		else if (df.fieldname == '__searchicon') {
+			this.tab_link = $(`
+				<button class="search_filter"><svg class="icon icon-sm">    <use href="#icon-search"></use>   </svg></button>
+			`).appendTo(this.tab_link_container);
+		}
+
 		this.section = null;
 		let tab = new Tab(this, df, this.frm, this.tab_link_container, this.tabs_content);
 		this.current_tab = tab;
@@ -489,37 +547,119 @@ frappe.ui.form.Layout = class Layout {
 
 	setup_events() {
 		let last_scroll = 0;
+		let isTabClick = false; // Flag to indicate if a tab link is being clicked
 		let tabs_list = $(".form-tabs-list");
+		// let slider_active = $('<div class=" slider-active-sticky"></div>')
+		// tabs_list.append(slider_active);
 		let tabs_content = this.tabs_content[0];
 		if (!tabs_list.length) return;
+		let page_head = $(".page-head");
+		let page_body =  $(".page-body");
+		let page_con = $(this.frm.$wrapper[0]);
 
-		$(window).scroll(
-			frappe.utils.throttle(() => {
-				let current_scroll = document.documentElement.scrollTop;
-				if (current_scroll > 0 && last_scroll <= current_scroll) {
-					tabs_list.removeClass("form-tabs-sticky-down");
-					tabs_list.addClass("form-tabs-sticky-up");
-				} else {
-					tabs_list.removeClass("form-tabs-sticky-up");
-					tabs_list.addClass("form-tabs-sticky-down");
-				}
-				last_scroll = current_scroll;
-			}, 500)
-		);
 
 		this.tab_link_container.off("click").on("click", ".nav-link", (e) => {
+
+			isTabClick = true; // Set flag to true when tab link is clicked
+			const linkText = $(e.currentTarget).text().trim();
+			$('#header_menu li').each(function () {
+				const itemText = $(this).find('a').text().trim();
+				if (itemText === linkText) {
+					$(this).addClass('active').siblings().removeClass('active'); // Optionally remove active from siblings
+					// muzammal code
+					// animate_tab_change(this);
+					// muzammal code
+
+				}
+			});
+
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			$(e.currentTarget).tab("show");
 			if (tabs_content.getBoundingClientRect().top < 100) {
-				tabs_content.scrollIntoView();
 				setTimeout(() => {
 					$(".page-head").css("top", "-15px");
-					$(".form-tabs-list").removeClass("form-tabs-sticky-down");
-					$(".form-tabs-list").addClass("form-tabs-sticky-up");
+					const currentScroll = window.scrollY || window.pageYOffset;
+					if (currentScroll > 400) {
+						$(".form-tabs-list").removeClass("form-tabs-sticky-up");
+						//$(".slider-active-sticky").css("display", "inline-block")
+						$(".form-tabs-list").addClass("form-tabs-sticky-down");
+						$("html, body").animate({ scrollTop: 0 }, "slow");
+						$(this.frm.$wrapper[0]).css({ "margin-top": "50px" });
+					}
 				}, 3);
 			}
+			// Reset the flag after a short delay
+			setTimeout(() => {
+				isTabClick = false;
+			}, 1000);
 		});
+
+		$(document).ready(function(){
+			var scrollTop = $(window).scrollTop();
+			
+			if (scrollTop < 30) {
+				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
+			}
+		  });
+
+		document.addEventListener('wheel', function (event) {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop == 0) {
+				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
+			
+				tabs_list.removeClass("form-tabs-sticky-down");
+				tabs_list.addClass("form-tabs-sticky-up");
+				// $(".slider-active-sticky").css("display", "none")
+				page_head.removeClass("form-tabs-sticky-down-head");
+				page_head.addClass("form-tabs-sticky-up-head");
+				tabs_list.addClass("slide-up");
+				window.setTimeout(function () {
+					tabs_list.removeClass('slide-up');
+				}, 300);
+				page_con.css({ "margin-top": "0px" });
+				$(".navbar-expand").addClass("sticky-top");
+			} else if (scrollTop < 200) {
+				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
+			} else {
+				page_body.find('.sidebar-right-comment').removeClass("full-top-comment-section");
+			}
+
+		});
+
+		$(window).scroll(
+			frappe.utils.throttle(() => {
+				if (isTabClick) return; // Skip scroll handling if a tab link is being clicked
+				let current_scroll = document.documentElement.scrollTop;
+				if (current_scroll < 500) {
+					if(current_scroll < 150){
+						console.log(current_scroll);
+						page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
+					}
+					else{
+						page_body.find('.sidebar-right-comment').removeClass("full-top-comment-section");
+					}
+					tabs_list.removeClass("form-tabs-sticky-down");
+					tabs_list.addClass("form-tabs-sticky-up");
+					page_head.removeClass("form-tabs-sticky-down-head");
+					page_head.addClass("form-tabs-sticky-up-head");
+					tabs_list.addClass("slide-up");
+					window.setTimeout(function () {
+						tabs_list.removeClass('slide-up');
+					}, 300);
+					$(this.frm.$wrapper[0]).css({ "margin-top": "0px" });
+					$(".navbar-expand").addClass("sticky-top");
+				} else {
+					tabs_list.removeClass("form-tabs-sticky-up");
+					tabs_list.addClass("form-tabs-sticky-down");
+					page_head.removeClass("form-tabs-sticky-up-head");
+					page_head.addClass("form-tabs-sticky-down-head");
+					$(".navbar-expand").removeClass("sticky-top");
+				}
+				last_scroll = current_scroll;
+			}, 200) // Reduced throttling delay for more responsiveness
+		);
+		$(".navbar-expand").addClass("sticky-top");
 	}
 
 	setup_tab_events() {
@@ -756,7 +896,23 @@ frappe.ui.form.Layout = class Layout {
 			}
 		}
 	}
+	// muzammal code
 
+	animate_tab_change(x) {
+		console.log(x);
+		// var position = $(this).parent().position();
+		// var width = $(this).parent().width();
+		// $("#form-tabs .slider-active-sticky").css("display","inline-block");
+		// $("#form-tabs li a").css("color","inherit")
+		// $(this).parent().css("color","white")
+		// $("#form-tabs .slider-active-sticky").css({"left":+ position.left,"width":width});
+		// var actWidth = $("#form-tabs li a").find(".active").parent("li").width();
+		// var actPosition = $("#form-tabs li .active").position();
+		// if( typeof actPosition !="undefined" ){
+		//   $("#form-tabs .slider-active-sticky").css({"left":+ actPosition.left,"width": actWidth});
+		// }
+	}
+	// muzammal code
 	evaluate_depends_on_value(expression) {
 		let out = null;
 		let doc = this.doc;

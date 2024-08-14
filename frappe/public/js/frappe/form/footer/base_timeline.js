@@ -10,16 +10,23 @@ class BaseTimeline {
 	make() {
 		this.timeline_wrapper = $(`<div class="new-timeline">`);
 		this.wrapper = this.timeline_wrapper;
-		this.timeline_items_wrapper = $(`<div class="timeline-items">`);
+		this.timeline_items_wrapper = $(`<div class="timeline-top-bar">`);
 		this.timeline_actions_wrapper = $(`
-			<div class="timeline-items timeline-actions">
-				<div class="timeline-item">
-					<div class="timeline-content action-buttons"></div>
+			<div class="menu-btn-group show">
+				<button type="button" class="btn btn-default icon-btn" data-toggle="dropdown" aria-expanded="true" aria-label="Menu" title="" data-original-title="Menu">
+					<span>
+					<span class="menu-btn-group-label" data-label="">
+						<svg class="icon icon-sm">
+						<use href="#icon-dot-horizontal"></use>
+						</svg>
+					</span>
+					</span>
+				</button>
+				<ul class="dropdown-menu footer-menus">
+				</ul>
 				</div>
-			</div>
 		`);
-
-		this.timeline_wrapper.append(this.timeline_actions_wrapper);
+		//$(`.timeline-top-bar`).append(this.timeline_actions_wrapper);
 		this.timeline_actions_wrapper.hide();
 		this.timeline_wrapper.append(this.timeline_items_wrapper);
 
@@ -34,12 +41,11 @@ class BaseTimeline {
 	add_action_button(label, action, icon = null, btn_class = null) {
 		let icon_element = icon ? frappe.utils.icon(icon, "xs") : null;
 		this.timeline_actions_wrapper.show();
-		let action_btn = $(`<button class="btn btn-xs ${btn_class || "btn-default"} action-btn">
-			${icon_element}
+		let action_btn = $(`<li><button class="btn btn-xs ${btn_class || "btn-default"} action-btn">
 			${label}
-		</button>`);
+		</button></li>`);
 		action_btn.click(action);
-		this.timeline_actions_wrapper.find(".action-buttons").append(action_btn);
+		this.timeline_actions_wrapper.find(".footer-menus").append(action_btn);
 		return action_btn;
 	}
 
@@ -51,13 +57,13 @@ class BaseTimeline {
 		if (response instanceof Promise) {
 			response.then(() => {
 				this.timeline_items.sort(
-					(item1, item2) => new Date(item2.creation) - new Date(item1.creation)
+					(item1, item2) => new Date(item1.creation) - new Date(item2.creation)
 				);
 				this.timeline_items.forEach(this.add_timeline_item.bind(this));
 			});
 		} else {
 			this.timeline_items.sort(
-				(item1, item2) => new Date(item2.creation) - new Date(item1.creation)
+				(item1, item2) => new Date(item1.creation) - new Date(item2.creation)
 			);
 			this.timeline_items.forEach(this.add_timeline_item.bind(this));
 		}
@@ -67,7 +73,7 @@ class BaseTimeline {
 		//
 	}
 
-	add_timeline_item(item, append_at_the_end = false) {
+	add_timeline_item(item, append_at_the_end = true) {
 		let timeline_item = this.get_timeline_item(item);
 		if (append_at_the_end) {
 			this.timeline_items_wrapper.append(timeline_item);
@@ -97,6 +103,13 @@ class BaseTimeline {
 		// item can have content*, creation*,
 		// timeline_badge, icon, icon_size,
 		// hide_timestamp, is_card
+
+
+		// if(item.content[0]){
+		// 	var uservalue = $(`<div class="timeline-item">`).find('.ml-2').text();
+		// 	console.log(uservalue);
+		// }
+
 		const timeline_item = $(`<div class="timeline-item">`);
 
 		if (item.name == "load-more") {
@@ -136,14 +149,19 @@ class BaseTimeline {
 			`<div class="timeline-content ${item.is_card ? "frappe-card" : ""}">`
 		);
 		let timeline_content = timeline_item.find(".timeline-content");
-		timeline_content.append(item.content);
+
+		timeline_content.html(item.content);
+
 		if (!item.hide_timestamp && !item.is_card) {
 			timeline_content.append(`<span> · ${comment_when(item.creation)}</span>`);
 		}
 		if (item.id) {
 			timeline_content.attr("id", item.id);
 		}
-
+		var commentuser = timeline_item.find('.ml-2').html();
+		if (commentuser == "You") {
+			timeline_item.addClass("chat-you");
+		}
 		return timeline_item;
 	}
 }

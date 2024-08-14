@@ -565,6 +565,18 @@ frappe.ui.form.Form = class FrappeForm {
 				$(document).trigger("form-rename", [this]);
 			}
 		}
+
+		$(document).on('click', '.opne-page-sidebar-button', function() {
+			let sidebar_toggle = $("#top-navbar-toggle-sidebar");
+			sidebar_toggle.click();
+		});
+		// $('body').on('click', '.sidebar-toggle-btns', function() {
+		// 	let sidebar_wrapper = $(document.body).find(".sidebar-toggle-btn");
+		// 	sidebar_wrapper.click();
+		// 	console.log('form clciked');
+		// 	sidebar_wrapper = $(document.body).find(".layout-side-section");
+		// 	sidebar_wrapper.toggleClass('toggle-sidebar');
+		// });
 	}
 
 	initialize_new_doc() {
@@ -674,6 +686,15 @@ frappe.ui.form.Form = class FrappeForm {
 
 		// cleanup activities after refresh
 		this.cleanup_refresh(this);
+		this.refresh_updates();
+		if (typeof  this.doc.custom_sales_channel !== 'undefined' ) { 
+			let sale_channel=this.doc.custom_sales_channel
+			setTimeout(function() { 
+				sales_channel_logo(sale_channel);
+			}, 1200);
+			
+		}
+		console.log("refresh ")
 	}
 
 	cleanup_refresh() {
@@ -734,7 +755,74 @@ frappe.ui.form.Form = class FrappeForm {
 		this.show_submit_message();
 		this.clear_custom_buttons();
 		this.show_web_link();
+		
 	}
+
+	refresh_updates() {
+		let pagedata = this.page.parent;
+		pagedata = $(pagedata);
+		//setTimeout(function(){
+			$('body').find(".navbar-current-docname").html('');
+			if(this.doc.__islocal){
+				$('body').addClass("new-doc-view");
+			}
+			else{
+				$('body').addClass("form-view");
+			}
+			$('body').removeClass("list-view");
+			let path = $('body').attr("data-route");
+			if (path != null) {
+				let splitted_path = path.split("/");
+				let list_name = splitted_path[1];
+				this.page.wrapper.find(".navbar-header-texts").text(list_name);
+				$("#body").find(".navbar-header-text").text(list_name);
+				// setTimeout(function(){
+				// 		$("#navbar-header-text").text(list_name);
+				// }, 200);
+			}
+
+			let lastClickedItem = null;
+			let tabslist = pagedata.find("#form-tabs").html();
+			if(tabslist){
+				let $tabs = $('<div>').html(tabslist);
+				let $newList = $('<ul id="header_menu"></ul>');
+				
+				$tabs.find('li').each(function(index, element) {
+					if ($(element).hasClass('show')) {
+						let $anchor = $(element).find('a');
+						let anchorText = $anchor.text();
+						let anchorId = $anchor.attr('id');
+						let activeid = $anchor.hasClass('active');
+						let $newLi = $('<li class="navtabs"></li>');
+						$newLi.attr("targetTab",$anchor.attr("href"));
+						let $newAnchor = $('<a></a>').text(anchorText);
+						$newAnchor.attr("data-toggle","tab");
+						$newLi.append($newAnchor);
+						$newLi.on('click', function() {
+							$('#' + anchorId).trigger('click');
+							if (lastClickedItem) {
+								lastClickedItem.removeClass('active');
+							}
+							$newLi.addClass('active');
+							lastClickedItem = $newLi;
+						});
+						if(activeid){
+							$newLi.addClass('active');
+						}
+						$newList.append($newLi);
+						
+					}
+				});
+				let slider_active=$('<div class="slider-active"></div>')
+				$newList.append(slider_active);
+				
+				$("#body").find(".navbar-current-docname").html($newList);
+				$("#header_menu li:first").css("color","white");
+				$("#body").find("header").removeClass("navbar-list");
+			}
+		//},100);
+	}
+
 
 	// SAVE
 
@@ -2152,6 +2240,26 @@ frappe.ui.form.Form = class FrappeForm {
 				}
 			});
 	}
+	
 };
 
 frappe.validated = 0;
+function sales_channel_logo(selected_channel){
+	if( selected_channel != null ){
+		$(".s-c-img-logo").css("display","none");
+	
+		selected_channel=selected_channel.replace(/\s+/g, '-');
+		selected_channel="#s-"+selected_channel+"-logo";
+		if( selected_channel=="#s-Twitter-/-X-logo" ){
+			selected_channel="#s-twitter-logo"
+		}
+		if( selected_channel=="#s-TikTok-Shop-logo" ){
+			selected_channel="#s-tiktok-logo"
+		}
+	
+		if( $(selected_channel).length ){
+			$(selected_channel).css("display","block")
+		}
+	}
+}
+

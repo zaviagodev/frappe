@@ -68,8 +68,81 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	}
 
 	hide_skeleton() {
+		$("#navbar-current-docname").html('');
+
+
+		//console.log(this.parent.page.container.find('.dropdown-menu'));
+
+	
+
+		//console.log();
+
+
+		$("#navbar-current-docname").html('');
+		$("header").addClass("navbar-list");
+		$("body").addClass("list-view");
+		$("body").removeClass("form-view");
 		this.$list_skeleton && this.$list_skeleton.hide();
 		this.parent.page.container.find(".layout-main").show();
+		var listviewz = this;
+
+		
+		var interval = setInterval(function () {
+			var activeone = listviewz.view_name;
+
+			let listofview = $(listviewz.parent.page.page_actions).find('.custom-btn-group');
+			let currentview = listofview.find('.custom-btn-group-label').text();
+			let listofviews = listofview.find('.dropdown-menu');
+			var views = [currentview];
+			$(listofviews).find('li').each(function() {
+				var viewName = $(this).attr('data-view');
+				views.push(viewName);
+			});
+
+			if(views){
+				views.sort((a, b) => a.localeCompare(b));
+
+				var list_view = views;
+				let current_ac = activeone;
+				let newList = $('<ul id="header_menu"></ul>');
+				list_view.forEach(item => {
+					let listItem = $('<li></li>');
+					let anchor = $('<a href="#"></a>').text(item);
+					anchor.click((e) => {
+						e.preventDefault();
+						$(listviewz.parent).find(`li[data-view="${item}"] a`).click();
+						$(listItem).siblings().removeClass("active");
+						$(listItem).addClass("active");
+					});
+					if(current_ac == item.replace(' View','')){
+						$(listItem).addClass("active");
+					}
+					listItem.append(anchor);
+					newList.append(listItem);
+					
+
+				})
+				if (newList) {
+					clearInterval(interval);
+					$("#navbar-current-docname").html(newList);
+					activeone = activeone.replace(' View', '');
+					$("#header_menu li").each(function () {
+						var menuItemText = $(this).find('a').text().trim();
+						if (menuItemText === activeone.trim()) {
+							$(this).addClass("active");
+						}
+					});
+					// let slider_active=$('<div class="slider-active"></div>')
+					// newList.append(slider_active);
+					// $("#header_menu li:first a").css("color","white");
+					// $(".slider-active").css("width","120px");
+				}
+			}
+			else{
+				$("#navbar-current-docname").html('');
+			}
+		}, 500);
+		
 	}
 
 	get view_name() {

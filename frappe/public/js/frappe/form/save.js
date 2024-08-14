@@ -3,7 +3,6 @@
 
 frappe.ui.form.save = function (frm, action, callback, btn) {
 	$(btn).prop("disabled", true);
-
 	// specified here because there are keyboard shortcuts to save
 	const working_label = {
 		Save: __("Saving", null, "Freeze message while saving a document"),
@@ -16,27 +15,95 @@ frappe.ui.form.save = function (frm, action, callback, btn) {
 	var freeze_message = working_label ? __(working_label) : "";
 
 	var save = function () {
-		remove_empty_rows();
+		if(frm.doctype == 'Item'){
+			if(frm.doc.__islocal){
+				var headers = $('.apps-nav-bar-top');
+				if (headers.length > 0) {
+					var default_tabs = headers.html();
+					var imageslist = $(frm.$wrapper[0]).find('.images_list').html();
+					var structure = '<div class="ite_insert_state"><canvas id="item_canvas" width="600" height="200"></canvas></div>';
+					headers.html(structure);
 
+					const popcorn = new rive.Rive({
+						src: "/assets/erpnext/images/delivery_demo_7.riv",
+						canvas: document.getElementById("item_canvas"),
+						autoplay: true,
+						stateMachines: "State Machine 1",
+						onLoad: (e) => {
+							const stateMachineInputs = popcorn.stateMachineInputs("State Machine 1");
+							const isPressedInput = stateMachineInputs.find(input => input.name === "isPressed");
+							setTimeout(() => { 
+								isPressedInput.fire();
+							}, 2000);
+						}
+					});
+					
+					
+				}
+			}
+			return;
+		}
+
+		remove_empty_rows();
+		var j_btn = $(btn);
 		$(frm.wrapper).addClass("validated-form");
 		if ((action !== "Save" || frm.is_dirty()) && check_mandatory()) {
-			_call({
-				method: "frappe.desk.form.save.savedocs",
-				args: { doc: frm.doc, action: action },
-				callback: function (r) {
-					$(document).trigger("save", [frm.doc]);
-					callback(r);
-				},
-				error: function (r) {
-					callback(r);
-				},
-				btn: btn,
-				freeze_message: freeze_message,
-			});
+			j_btn.find('a').addClass('loading');
+
+
+			if(frm.doctype == 'Sales Invoice'){
+				if(frm.doc.__islocal){
+					var headers = $('.apps-nav-bar-top');
+					if (headers.length > 0) {
+						var default_tabs = headers.html();
+						var imageslist = $(frm.$wrapper[0]).find('.images_list').html();
+						var structure = '<div class="save_state"><div class="first_action"><h3>Creating Order</h3><span>Saving</span></div>     <div class="second_action"><div class="order_totals">  <span class="total_title">Total (THB)</span> <span class="total_value">'+frm.doc.base_grand_total+'</span>   </div></div>            <div class="third_action"><div class="images_list">'+imageslist+'</div></div>            </div>';
+						headers.html(structure);
+						const second_action = $('.second_action');
+						gsap.set(second_action, {display: "block", height: "0px", opacity: 0, y: 50});
+						const third_action = $('.third_action');
+						gsap.set(third_action, {display: "block", height: "0px", opacity: 0, y: 50});
+						setTimeout(() => { 
+							gsap.to(third_action, {duration: 1,height: "auto", opacity: 1, y: 0,ease: "power2.out"});
+						}, 4000);
+						setTimeout(() => { 
+							gsap.to(second_action, {duration: 1,height: "auto", opacity: 1, y: 0,ease: "power2.out"});
+						}, 6000);
+					}
+				}
+			}
+
+			setTimeout(function() { 
+				_call({
+					freeze : false,
+					method: "frappe.desk.form.save.savedocs",
+					args: { doc: frm.doc, action: action },
+					callback: function (r) {
+							if(frm.doctype == 'Sales Invoice' && frm.doc.__islocal == 1){
+								var headers = $('.apps-nav-bar-top');
+								if (headers.length > 0) {
+									headers.html(default_tabs)
+								}
+							}
+							j_btn.find('a').addClass('done');
+							$(document).trigger("save", [frm.doc]);
+							j_btn.find('a').removeClass('loading done');
+							callback(r);
+					},
+					error: function (r) {
+						callback(r);
+						j_btn.find('a').removeClass('loading');
+					}
+				});
+			}, 6000);
+
+			
 		} else {
+			j_btn.find('a').addClass('loading');
 			!frm.is_dirty() &&
 				frappe.show_alert({ message: __("No changes in document"), indicator: "orange" });
 			$(btn).prop("disabled", false);
+			j_btn.find('a').removeClass('loading');
 		}
 	};
 
@@ -244,7 +311,7 @@ frappe.ui.form.save = function (frm, action, callback, btn) {
 		frappe.ui.form.is_saving = true;
 
 		return frappe.call({
-			freeze: true,
+			freeze: false,
 			// freeze_message: opts.freeze_message,
 			method: opts.method,
 			args: opts.args,

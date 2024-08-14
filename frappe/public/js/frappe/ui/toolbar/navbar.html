@@ -1,44 +1,61 @@
-<header style="margin-left: 0;padding-left: 0px;width: 100%;"  class="navbar navbar-expand sticky-top" role="navigation">
-	<!-- <a class="navbar-brand navbar-home" href="/app"> -->
+<header class="main-header">
+	<span onclick="window.history.go(-1); return false;" class="navbar-back-button-icon"
+	style="cursor:pointer;position:absolute;top:32px;left:26px;">
+	<svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M0.326172 8.56445C0.330729 8.40495 0.36263 8.25911 0.421875 8.12695C0.48112 7.99479 0.572266 7.86719 0.695312 7.74414L7.54492 1.11328C7.74089 0.917318 7.98242 0.819336 8.26953 0.819336C8.46094 0.819336 8.63411 0.864909 8.78906 0.956055C8.94857 1.0472 9.07389 1.17025 9.16504 1.3252C9.26074 1.48014 9.30859 1.65332 9.30859 1.84473C9.30859 2.12728 9.2015 2.37565 8.9873 2.58984L2.79395 8.55762L8.9873 14.5322C9.2015 14.751 9.30859 14.9993 9.30859 15.2773C9.30859 15.4733 9.26074 15.6488 9.16504 15.8037C9.07389 15.9587 8.94857 16.0817 8.78906 16.1729C8.63411 16.2686 8.46094 16.3164 8.26953 16.3164C7.98242 16.3164 7.74089 16.2161 7.54492 16.0156L0.695312 9.38477C0.567708 9.26172 0.474284 9.13411 0.415039 9.00195C0.355794 8.86523 0.326172 8.7194 0.326172 8.56445Z" fill="#007AFF"/>
+		</svg>
+		
+	<span id="navbar-header-text" class="navbar-header-text"
+		style="vertical-align: middle;padding-left: 2px;padding-right: 12px;color: #007AFF;"></span>
+	</span>
+
+	<header style="margin-left: 0;" class="navbar navbar-expand" role="navigation">
+		<!-- <a class="navbar-brand navbar-home" href="/app"> -->
 		<!-- <img class="app-logo" style="width: {{ navbar_settings.logo_width || 28 }}px" src="{{ frappe.boot.app_logo_url }}"> -->
 		<!-- แดชบอร์ด -->
-	<!-- </a> -->
-	<!-- <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul> -->
-	<div class="collapse navbar-collapse justify-content-end">
-		<!-- code to be updated and optimized -->
-		<div class="apps-nav-bar-top" style="
-				width: 100%;
-				margin: 0 auto;
-				text-align: center;
-				padding-left: 29px;
-				position: absolute;">
-				<div class="navbar-back-button" style="width: 50%;
-					text-align: left;
-					padding-left: 10px;
-					float: left;"
-					>     
-					<span id="top-navbar-toggle-sidebar"  class="navbar-sidebar-toggle-button-icon btn-reset sidebar-toggle-btn">
-						<img id="open-sidebar-top-navbar-ico" style="cursor:pointer;display:none;" src="/files/navbar-sidebar-toggle-button-icon.png">
-						<img id="close-sidebar-top-navbar-ico" style="cursor:pointer;" src="/files/sidebar-open-top-navbar.png">
-					</span>     
-					<span onclick="window.history.go(-1); return false;" class="navbar-back-button-icon" style="padding-left: 15px;cursor:pointer">
-						<img style="" src="/files/navbar-back-button-ico.png">
-					   
-						<span id="navbar-header-text" class="navbar-header-text" style="vertical-align: middle;padding-left: 2px;padding-right: 12px;color: #007AFF;"></span>    
-					</span>  
-					<span style="cursor:pointer" id="top-bar-ellipsis.circle" class="top-bar-ellipsis.circle"><img src="/files/top-bar-ellipsis.circle.png" alt=""></span>
-				</div>
-				<div id="navbar-current-docname" class="navbar-current-docname" style="width: 50%;float:right;text-align: left;color:#18181B"></div>
-		 </div> 
+		<!-- </a> -->
+		<!-- <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul> -->
+		<div class="collapse navbar-collapse justify-content-end">
 			<!-- code to be updated and optimized -->
-		<form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
-			
-			{% if (frappe.boot.read_only) { %}
-				<span class="indicator-pill yellow no-indicator-dot" title="{%= __("Your site is undergoing maintenance or being updated.") %}">
-					{%= __("Read Only Mode") %}
-				</span>
-			{% } %}
-			<div class="upgrade-sec">
+			<div class="apps-nav-bar-top" style="
+					margin: 0 auto;">
+				<!-- <div class="navbar-back-button">
+					<span id="top-navbar-toggle-sidebar"
+						class="navbar-sidebar-toggle-button-icon btn-reset">
+						
+							<svg id="open-sidebar-top-navbar-ico" style="cursor:pointer;display:none;" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M19.7917 21.875H5.20833C4.05774 21.875 3.125 20.9423 3.125 19.7917V5.20833C3.125 4.05774 4.05774 3.125 5.20833 3.125H19.7917C20.9423 3.125 21.875 4.05774 21.875 5.20833V19.7917C21.875 20.9423 20.9423 21.875 19.7917 21.875Z" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M9.89575 21.875V3.125" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5.72925 10.416L7.55216 12.4993L5.72925 14.5827" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								
+						
+							<svg id="close-sidebar-top-navbar-ico" style="cursor:pointer;" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M19.875 21.875L5.125 21.875C4.02043 21.875 3.125 20.9796 3.125 19.875L3.125 5.125C3.125 4.02043 4.02043 3.125 5.125 3.125L19.875 3.125C20.9796 3.125 21.875 4.02043 21.875 5.125L21.875 19.875C21.875 20.9796 20.9796 21.875 19.875 21.875Z" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M7.55143 10.417L5.72852 12.5003L7.55143 14.5837" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M9.89648 21.875V3.125" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								
+					</span>
+					<span onclick="window.history.go(-1); return false;" class="navbar-back-button-icon"
+						style="cursor:pointer;position: relative;z-index: 99;">
+						<svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.326172 8.56445C0.330729 8.40495 0.36263 8.25911 0.421875 8.12695C0.48112 7.99479 0.572266 7.86719 0.695312 7.74414L7.54492 1.11328C7.74089 0.917318 7.98242 0.819336 8.26953 0.819336C8.46094 0.819336 8.63411 0.864909 8.78906 0.956055C8.94857 1.0472 9.07389 1.17025 9.16504 1.3252C9.26074 1.48014 9.30859 1.65332 9.30859 1.84473C9.30859 2.12728 9.2015 2.37565 8.9873 2.58984L2.79395 8.55762L8.9873 14.5322C9.2015 14.751 9.30859 14.9993 9.30859 15.2773C9.30859 15.4733 9.26074 15.6488 9.16504 15.8037C9.07389 15.9587 8.94857 16.0817 8.78906 16.1729C8.63411 16.2686 8.46094 16.3164 8.26953 16.3164C7.98242 16.3164 7.74089 16.2161 7.54492 16.0156L0.695312 9.38477C0.567708 9.26172 0.474284 9.13411 0.415039 9.00195C0.355794 8.86523 0.326172 8.7194 0.326172 8.56445Z" fill="#007AFF"/>
+							</svg>
+							
+
+						<span id="navbar-header-text" class="navbar-header-text"
+							style="vertical-align: middle;padding-left: 2px;padding-right: 12px;color: #007AFF;"></span>
+					</span>
+					<span style="cursor:pointer" id="top-bar-ellipsis.circle" class="top-bar-ellipsis.circle">
+						<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.4668 16.9668C13.0986 16.9668 16.9336 13.1235 16.9336 8.5C16.9336 3.86816 13.0903 0.0332031 8.4585 0.0332031C3.83496 0.0332031 0 3.86816 0 8.5C0 13.1235 3.84326 16.9668 8.4668 16.9668ZM8.4668 15.5557C4.54883 15.5557 1.41943 12.418 1.41943 8.5C1.41943 4.58203 4.54053 1.44434 8.4585 1.44434C12.3765 1.44434 15.5225 4.58203 15.5225 8.5C15.5225 12.418 12.3848 15.5557 8.4668 15.5557ZM4.59033 9.70361C5.25439 9.70361 5.79395 9.16406 5.79395 8.4917C5.79395 7.82764 5.24609 7.28809 4.59033 7.28809C3.91797 7.28809 3.37842 7.82764 3.37842 8.4917C3.37842 9.16406 3.91797 9.70361 4.59033 9.70361ZM8.4585 9.70361C9.12256 9.70361 9.67041 9.16406 9.67041 8.4917C9.67041 7.82764 9.12256 7.28809 8.4585 7.28809C7.79443 7.28809 7.24658 7.82764 7.24658 8.4917C7.24658 9.16406 7.79443 9.70361 8.4585 9.70361ZM12.335 9.70361C12.999 9.70361 13.5386 9.16406 13.5386 8.4917C13.5386 7.82764 12.999 7.28809 12.335 7.28809C11.6626 7.28809 11.123 7.82764 11.123 8.4917C11.123 9.16406 11.6626 9.70361 12.335 9.70361Z" fill="#0A84FF"/>
+							</svg>
+							</span>
+				</div> -->
+				<div id="navbar-current-docname" class="navbar-current-docname"
+					style="width: 50%;float:right;text-align: left;color:#18181B;top: -11px;"></div>
+									<div class="upgrade-sec">
 				<a href="" class="upgrade-to-pro">
 					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
 						<g clip-path="url(#clip0_2566_24332)">
@@ -60,80 +77,100 @@
 							<stop offset="1" stop-color="white"/>
 						  </linearGradient>
 						  <clipPath id="clip0_2566_24332">
+							<rect width="14" height="15" fill="white"/>
 						  </clipPath>
 						</defs>
 					  </svg>
-				</a>
-				<span class="search-icon">
-					<svg class="icon icon-md"><use href="#icon-search"></use></svg>
-				</span>
+					  <span>โปร</span>
+				  </a>
 			</div>
+
+			</div>
+			<!-- code to be updated and optimized -->
+			<form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
+
+				{% if (frappe.boot.read_only) { %}
+				<span class="indicator-pill yellow no-indicator-dot" title="{%= __(" Your site is undergoing maintenance or
+					being updated.") %}">
+					{%= __("Read Only Mode") %}
+				</span>
+				{% } %}
+				<!-- <div class="upgrade-sec">
+					
+						<span class="search-icon">
+							<svg class="icon icon-md"><use href="#icon-search"></use></svg>
+						</span>
+				</div> -->
+				<!-- <span>โปร</span> -->
+		</div>
+		</a>
+		</div>
+
 		</form>
 		<ul class="navbar-nav">
 			<!-- <li class="nav-item dropdown dropdown-notifications dropdown-mobile hidden">
-				<a
-					class="nav-link notifications-icon text-muted"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="true"
-					href="#"
-					onclick="return false;">
-					<span class="notifications-seen">
-						<svg class="es-icon icon-sm" style="stroke:none;"><use href="#es-line-notifications"></use></svg>
-					</span>
-					<span class="notifications-unseen">
-						<svg class="es-icon icon-sm"><use href="#es-line-notifications-unseen"></use></svg>
-					</span>
-				</a>
-				<div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">
-					<div class="notification-list-header">
-						<div class="header-items"></div>
-						<div class="header-actions"></div>
+					<a
+						class="nav-link notifications-icon text-muted"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="true"
+						href="#"
+						onclick="return false;">
+						<span class="notifications-seen">
+							<svg class="es-icon icon-sm" style="stroke:none;"><use href="#es-line-notifications"></use></svg>
+						</span>
+						<span class="notifications-unseen">
+							<svg class="es-icon icon-sm"><use href="#es-line-notifications-unseen"></use></svg>
+						</span>
+					</a>
+					<div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">
+						<div class="notification-list-header">
+							<div class="header-items"></div>
+							<div class="header-actions"></div>
+						</div>
+						<div class="notification-list-body">
+							<div class="panel-notifications"></div>
+							<div class="panel-events"></div>
+						</div>
 					</div>
-					<div class="notification-list-body">
-						<div class="panel-notifications"></div>
-						<div class="panel-events"></div>
-					</div>
-				</div>
-			</li> -->
+				</li> -->
 			<li class="nav-item dropdown dropdown-message dropdown-mobile hidden">
-				<a
-					class="nav-link notifications-icon text-muted"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="true"
-					href="#"
-					onclick="return false;">
+				<a class="nav-link notifications-icon text-muted" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="true" href="#" onclick="return false;">
 					<span>
-						<svg class="es-icon icon-sm"><use href="#es-line-chat-alt"></use></svg>
+						<svg class="es-icon icon-sm">
+							<use href="#es-line-chat-alt"></use>
+						</svg>
 					</span>
 				</a>
 			</li>
-			<li class="vertical-bar d-none d-sm-block"></li>
+			<!-- <li class="vertical-bar d-none d-sm-block"></li>
 			<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
 				<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
 					{{ __("ช่วยเหลือ") }}
 					<span>
-						<svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg>
+						<svg class="es-icon icon-xs">
+							<use href="#es-line-down"></use>
+						</svg>
 					</span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-help" role="menu">
 					<div id="help-links"></div>
 					<div class="dropdown-divider documentation-links"></div>
 					{% for item in navbar_settings.help_dropdown %}
-						{% if (!item.hidden) { %}
-							{% if (item.route) { %}
-								<a class="dropdown-item" href="{{ item.route }}">
-									{%= __(item.item_label) %}
-								</a>
-							{% } else if (item.action) { %}
-								<a class="dropdown-item" onclick="return {{ item.action }}">
-									{%= __(item.item_label) %}
-								</a>
-							{% } else { %}
-								<div class="dropdown-divider"></div>
-							{% } %}
-						{% } %}
+					{% if (!item.hidden) { %}
+					{% if (item.route) { %}
+					<a class="dropdown-item" href="{{ item.route }}">
+						{%= __(item.item_label) %}
+					</a>
+					{% } else if (item.action) { %}
+					<a class="dropdown-item" onclick="return {{ item.action }}">
+						{%= __(item.item_label) %}
+					</a>
+					{% } else { %}
+					<div class="dropdown-divider"></div>
+					{% } %}
+					{% } %}
 					{% endfor %}
 				</div>
 			</li>
@@ -143,132 +180,190 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" id="toolbar-user" role="menu">
 					{% for item in navbar_settings.settings_dropdown %}
-						{% if (!item.hidden) { %}
-							{% if (item.route) { %}
-								<a class="dropdown-item" href="{{ item.route }}">
-									{%= __(item.item_label) %}
-								</a>
-							{% } else if (item.action) { %}
-								<a class="dropdown-item" onclick="return {{ item.action }}">
-									{%= __(item.item_label) %}
-								</a>
-							{% } else { %}
-								<div class="dropdown-divider"></div>
-							{% } %}
-						{% } %}
+					{% if (!item.hidden) { %}
+					{% if (item.route) { %}
+					<a class="dropdown-item" href="{{ item.route }}">
+						{%= __(item.item_label) %}
+					</a>
+					{% } else if (item.action) { %}
+					<a class="dropdown-item" onclick="return {{ item.action }}">
+						{%= __(item.item_label) %}
+					</a>
+					{% } else { %}
+					<div class="dropdown-divider"></div>
+					{% } %}
+					{% } %}
 					{% endfor %}
 				</div>
-			</li>
+			</li> -->
 		</ul>
+		</div>
+	</header>
+
+	<div style="position:absolute;top:24px;right:24px;display:flex;gap:12px;z-index: 4">
+		<span class="search-icon"
+			id="search-icon-button" data-toggle="modal" data-target="#search-modal-centered">
+			<svg class="icon icon-sm">
+				<use href="#icon-search"></use>
+			</svg>
+		</span>
+
+		<span class="navbar-right-heart-button-icons" style="cursor:pointer;background-color:white;padding:6px;border-radius:14px;">  
+			<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5514 0C5.62325 0 0.253906 5.0488 0.253906 11.8675C0.253906 15.4344 1.72367 18.5164 4.11637 20.6457C4.31679 20.8254 4.43803 21.074 4.44793 21.3423L4.51474 23.5184C4.53701 24.2126 5.25704 24.663 5.89542 24.3849L8.33513 23.3141C8.54298 23.223 8.77309 23.2058 8.99084 23.2648C10.1117 23.5725 11.3068 23.735 12.5514 23.735C19.4796 23.735 24.8489 18.6862 24.8489 11.8675C24.8489 5.0488 19.4796 0 12.5514 0Z" fill="url(#paint0_linear_2755_13561)"/>
+				<defs>
+				<linearGradient id="paint0_linear_2755_13561" x1="0.253752" y1="0" x2="0.253752" y2="24.4686" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#00B2FF"/>
+				<stop offset="1" stop-color="#006AFF"/>
+				</linearGradient>
+				</defs>
+			</svg>
+		</span>
 	</div>
+
+
 </header>
 
 <!-- Additional Sidebar -->
 
-  <div id="navbar-overlay-mobile"></div>
-  <nav style="margin-top: 53px;" class="navside nav-rightside active" id="rightside">
+<div id="navbar-overlay-mobile"></div>
+
+<svg id="close-sidebar-top-navbar-icon" style="cursor:pointer;" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M19.7917 21.875H5.20833C4.05774 21.875 3.125 20.9423 3.125 19.7917V5.20833C3.125 4.05774 4.05774 3.125 5.20833 3.125H19.7917C20.9423 3.125 21.875 4.05774 21.875 5.20833V19.7917C21.875 20.9423 20.9423 21.875 19.7917 21.875Z" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	<path d="M9.89575 21.875V3.125" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	<path d="M5.72925 10.416L7.55216 12.4993L5.72925 14.5827" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<nav style="margin-top: 53px;" class="navside nav-rightside active" id="rightside">
 	<div class="upper-sidebar">
-        <div id="trigger">
+		<div id="trigger">
 			<div class="inner-trigger">
 				<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<rect width="36" height="36" rx="10" fill="#0A5FD9"/>
+					<rect width="36" height="36" rx="10" fill="#0A5FD9" />
 					<g clip-path="url(#clip0_5543_18423)">
-					<path d="M15.5832 7.64988L9.44197 11.0951C8.02826 11.8874 7.15723 13.3531 7.15723 14.9385V21.8647C7.15723 23.4501 8.02826 24.9157 9.44197 25.7081L15.6142 29.1707C17.0279 29.9638 18.7692 29.9638 20.182 29.1707L24.0247 27.0159L15.6191 22.2501C14.216 21.4546 13.3531 19.9953 13.3531 18.4163V11.483C13.3531 9.79602 14.2803 8.42157 15.5857 7.66812C15.6207 7.6475 15.6126 7.63323 15.5832 7.64988Z" fill="url(#paint0_linear_5543_18423)"/>
-					<path d="M28.6944 14.9L28.6977 21.7849C28.6977 21.8182 28.6798 21.8175 28.6798 21.7778C28.6594 20.3042 24.424 17.6394 22.919 16.7963C22.919 16.7963 22.255 16.142 21.8158 15.7621C21.3766 15.3814 21.3554 15.364 21.0279 15.153C20.7435 14.9706 20.4477 14.8278 20.2579 14.7358L20.2399 14.7271C20.0509 14.6359 19.4838 14.3924 19.4838 14.3924C17.529 13.7238 16.9619 13.6628 15.8277 14.5146C15.8277 14.5146 14.5036 15.7621 13.9993 16.8875C13.4949 18.0129 13.367 19.0019 13.5894 19.6253C13.6008 19.6562 13.6081 19.6856 13.6139 19.7134C14.2698 21.3281 14.7261 21.5843 15.8725 22.2275C15.9573 22.2759 16.0469 22.3258 16.1406 22.379L19.0405 23.7177L26 26L20.0248 29.1703C18.6119 29.9634 16.8699 29.9634 15.457 29.1703L9.28393 25.7076C7.87104 24.9153 7 23.4497 7 21.8642V14.9381C7 13.3527 7.87104 11.887 9.28393 11.0947L15.4252 7.64945C15.4553 7.6328 15.4635 7.64707 15.4284 7.66769C15.3576 7.70814 15.2867 7.76604 15.2158 7.839L15.655 7.59314C17.0695 6.80163 18.8124 6.80242 20.2269 7.59473L26.4064 11.0582C27.821 11.8505 28.6936 13.3154 28.6944 14.9Z" fill="url(#paint1_linear_5543_18423)"/>
-					<path d="M9.56323 25.8809L15.7558 29.3657C17.1834 30.1612 18.9866 30.1454 20.4157 29.3483L26.6548 25.8674C28.084 25.0695 28.964 23.5975 28.9648 22.0042L28.968 15.0471C28.9689 13.4545 28.0897 11.9825 26.6621 11.187L22.7803 9.02344L22.7306 18.5224C22.7225 20.1079 21.8433 21.5711 20.4206 22.3642L14.1743 25.8499C12.6538 26.6977 10.9484 26.605 9.61049 25.8809C9.57382 25.861 9.53308 25.8642 9.56323 25.8809Z" fill="url(#paint2_linear_5543_18423)"/>
+						<path
+							d="M15.5832 7.64988L9.44197 11.0951C8.02826 11.8874 7.15723 13.3531 7.15723 14.9385V21.8647C7.15723 23.4501 8.02826 24.9157 9.44197 25.7081L15.6142 29.1707C17.0279 29.9638 18.7692 29.9638 20.182 29.1707L24.0247 27.0159L15.6191 22.2501C14.216 21.4546 13.3531 19.9953 13.3531 18.4163V11.483C13.3531 9.79602 14.2803 8.42157 15.5857 7.66812C15.6207 7.6475 15.6126 7.63323 15.5832 7.64988Z"
+							fill="url(#paint0_linear_5543_18423)" />
+						<path
+							d="M28.6944 14.9L28.6977 21.7849C28.6977 21.8182 28.6798 21.8175 28.6798 21.7778C28.6594 20.3042 24.424 17.6394 22.919 16.7963C22.919 16.7963 22.255 16.142 21.8158 15.7621C21.3766 15.3814 21.3554 15.364 21.0279 15.153C20.7435 14.9706 20.4477 14.8278 20.2579 14.7358L20.2399 14.7271C20.0509 14.6359 19.4838 14.3924 19.4838 14.3924C17.529 13.7238 16.9619 13.6628 15.8277 14.5146C15.8277 14.5146 14.5036 15.7621 13.9993 16.8875C13.4949 18.0129 13.367 19.0019 13.5894 19.6253C13.6008 19.6562 13.6081 19.6856 13.6139 19.7134C14.2698 21.3281 14.7261 21.5843 15.8725 22.2275C15.9573 22.2759 16.0469 22.3258 16.1406 22.379L19.0405 23.7177L26 26L20.0248 29.1703C18.6119 29.9634 16.8699 29.9634 15.457 29.1703L9.28393 25.7076C7.87104 24.9153 7 23.4497 7 21.8642V14.9381C7 13.3527 7.87104 11.887 9.28393 11.0947L15.4252 7.64945C15.4553 7.6328 15.4635 7.64707 15.4284 7.66769C15.3576 7.70814 15.2867 7.76604 15.2158 7.839L15.655 7.59314C17.0695 6.80163 18.8124 6.80242 20.2269 7.59473L26.4064 11.0582C27.821 11.8505 28.6936 13.3154 28.6944 14.9Z"
+							fill="url(#paint1_linear_5543_18423)" />
+						<path
+							d="M9.56323 25.8809L15.7558 29.3657C17.1834 30.1612 18.9866 30.1454 20.4157 29.3483L26.6548 25.8674C28.084 25.0695 28.964 23.5975 28.9648 22.0042L28.968 15.0471C28.9689 13.4545 28.0897 11.9825 26.6621 11.187L22.7803 9.02344L22.7306 18.5224C22.7225 20.1079 21.8433 21.5711 20.4206 22.3642L14.1743 25.8499C12.6538 26.6977 10.9484 26.605 9.61049 25.8809C9.57382 25.861 9.53308 25.8642 9.56323 25.8809Z"
+							fill="url(#paint2_linear_5543_18423)" />
 					</g>
 					<defs>
-					<linearGradient id="paint0_linear_5543_18423" x1="15.549" y1="7.64258" x2="15.6934" y2="29.7652" gradientUnits="userSpaceOnUse">
-					<stop stop-color="#AD7EE1"/>
-					<stop offset="1" stop-color="#2A64BB"/>
-					</linearGradient>
-					<linearGradient id="paint1_linear_5543_18423" x1="7" y1="11.3921" x2="29.2559" y2="24.4194" gradientUnits="userSpaceOnUse">
-					<stop stop-color="white"/>
-					<stop offset="0.99" stop-color="#0A5FD9"/>
-					</linearGradient>
-					<linearGradient id="paint2_linear_5543_18423" x1="12.6244" y1="29.9543" x2="27.2916" y2="10.0516" gradientUnits="userSpaceOnUse">
-					<stop stop-color="white"/>
-					<stop offset="1" stop-color="white"/>
-					</linearGradient>
-					<clipPath id="clip0_5543_18423">
-					<rect width="22" height="23" fill="white" transform="translate(7 7)"/>
-					</clipPath>
+						<linearGradient id="paint0_linear_5543_18423" x1="15.549" y1="7.64258" x2="15.6934" y2="29.7652"
+							gradientUnits="userSpaceOnUse">
+							<stop stop-color="#AD7EE1" />
+							<stop offset="1" stop-color="#2A64BB" />
+						</linearGradient>
+						<linearGradient id="paint1_linear_5543_18423" x1="7" y1="11.3921" x2="29.2559" y2="24.4194"
+							gradientUnits="userSpaceOnUse">
+							<stop stop-color="white" />
+							<stop offset="0.99" stop-color="#0A5FD9" />
+						</linearGradient>
+						<linearGradient id="paint2_linear_5543_18423" x1="12.6244" y1="29.9543" x2="27.2916"
+							y2="10.0516" gradientUnits="userSpaceOnUse">
+							<stop stop-color="white" />
+							<stop offset="1" stop-color="white" />
+						</linearGradient>
+						<clipPath id="clip0_5543_18423">
+							<rect width="22" height="23" fill="white" transform="translate(7 7)" />
+						</clipPath>
 					</defs>
-					</svg>					
-				  <!-- <div class="square-shadow"></div> -->
-			  <div>
-				<h2 id="site-title">workspace.</h2>
-				<p class="site-name"></p>
-			  </div>
+				</svg>
+				<!-- <div class="square-shadow"></div> -->
+				<div>
+					<h2 id="site-title">workspace.</h2>
+					<p class="site-name"></p>
+				</div>
 			</div>
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown dropdown-navbar-user dropdown-mobile">
+					<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+						{{ avatar }}
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" id="toolbar-user" role="menu">
+						{% for item in navbar_settings.settings_dropdown %}
+						{% if (!item.hidden) { %}
+						{% if (item.route) { %}
+						<a class="dropdown-item" href="{{ item.route }}">
+							{%= __(item.item_label) %}
+						</a>
+						{% } else if (item.action) { %}
+						<a class="dropdown-item" onclick="return {{ item.action }}">
+							{%= __(item.item_label) %}
+						</a>
+						{% } else { %}
+						<div class="dropdown-divider"></div>
+						{% } %}
+						{% } %}
+						{% endfor %}
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="modal-menus-trigger"></div>
 
-		  </div>
-		  <div id="modal-menus-trigger"></div>
-		 
 	</div>
-	 <!-- sidebar-search -->
-	 <div class="sidebar-search" style="padding:0 16px 0 16px">
+	<!-- sidebar-search -->
+	<div class="sidebar-search" style="padding:0 16px">
 		<div class="input-group text-muted">
-			<input
-				id="sidebar-search"
-				type="text"
-				class="form-control"
-				placeholder="Search"
-				disabled
+			<input id="sidebar-search" type="text" class="form-control" placeholder="Search"  readonly="readonly"
 				style="padding-left: 20px;border-top-right-radius:7px;border-bottom-right-radius:7px; cursor:pointer"
-				data-toggle="modal" data-target="#search-modal-centered"
-			> <!-- Search or type a command (Ctrl + G) -->
+				data-toggle="modal" data-target="#search-modal-centered"> <!-- Search or type a command (Ctrl + G) -->
 			<span class="search-icon" style="position:absolute;left: 4px;top: 2px;">
-				<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
+				<svg class="icon icon-sm">
+					<use href="#icon-search"></use>
+				</svg>
 			</span>
 		</div>
 	</div>
 	<!-- sidebar-search -->
 	<div id="sidebar-menus">
-        <div id="upper-menu"></div>
-        <div id="lower-menu"></div>
-    </div>
+		<div id="upper-menu"></div>
+		<div id="lower-menu"></div>
+	</div>
 </nav>
 <!-- search modal -->
- <!-- Button trigger modal -->
+<!-- Button trigger modal -->
 
-<div class="modal fade search-modal-centered" id="search-modal-centered" tabindex="-1" role="dialog" aria-labelledby="search-modal-centered" aria-hidden="true">
+<div class="modal fade search-modal-centered" id="search-modal-centered" tabindex="-1" role="dialog"
+	aria-labelledby="search-modal-centered" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
-	  <div class="modal-content">
+		<div class="modal-content">
 			<div class="modal-body navbar-search-modal">
-					<div class="input-group search-bar text-muted hidden searchbar-header">
-						<input
-							id="navbar-search"
-							type="text"
-							class="form-control"
-							placeholder="Search"
-							aria-haspopup="true"
-						> <!-- Search or type a command (Ctrl + G) -->
-						<span class="search-icon">
-							<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
-						</span>
+				<div class="input-group search-bar text-muted hidden searchbar-header">
+					<input id="navbar-search" type="text" class="form-control" placeholder="Search"
+						aria-haspopup="true"> <!-- Search or type a command (Ctrl + G) -->
+					<span class="search-icon">
+						<svg class="icon icon-sm">
+							<use href="#icon-search"></use>
+						</svg>
+					</span>
+				</div>
+				<button type="button" class="close search-popup-close-button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="search-popup-suggestions">
+					<div class="suggestions-left">Suggestions</div>
+					<div style="cursor:pointer;" id="suggestions-right" class="suggestions-right">
+						<span>Help on Search</span>
 					</div>
-					<button type="button" class="close search-popup-close-button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="search-popup-suggestions">
-						<div class="suggestions-left">Suggestions</div>
-						<div style="cursor:pointer;" id="suggestions-right" class="suggestions-right">
-							<span>Help on Search</span>
-						</div>
+				</div>
+				<div class="search-popup-footer-more-results">
+					<div style="cursor:pointer;" class="search-popup-more-search-results"
+						id="search-popup-more-search-results">
+
+						More Search Results
+
 					</div>
-					<div class="search-popup-footer-more-results">
-						<div style="cursor:pointer;" class="search-popup-more-search-results" id="search-popup-more-search-results">
-						
-								More Search Results
-							
-						</div>
-					</div>
+				</div>
 			</div>
-	  	</div>
+		</div>
 	</div>
-  </div>
-  <div class="grey-background-frame" style="background: #F3F2F7 !important;
+</div>
+<div class="grey-background-frame" style="background: #F3F2F7 !important;
   height: 65px;
   width: 100vw;
   z-index: 10;

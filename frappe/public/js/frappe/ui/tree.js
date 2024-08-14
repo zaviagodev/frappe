@@ -40,6 +40,7 @@ frappe.ui.Tree = class {
 	}
 
 	get_nodes(value, is_root) {
+		$("#navbar-current-docname").html('');
 		var args = Object.assign({}, this.args);
 		args.parent = value;
 		args.is_root = is_root;
