@@ -49,6 +49,10 @@ frappe.ui.form.Footer = class FormFooter {
 							this.frm.timeline.add_timeline_item(comment_item);
 							this.frm.sidebar.refresh_comments_count &&
 								this.frm.sidebar.refresh_comments_count();
+							setTimeout(() => {
+								let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child")
+								chatBox.scrollTop(99999999)
+							}, 100)
 						})
 						.finally(() => {
 							this.frm.comment_box.enable();

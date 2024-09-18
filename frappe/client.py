@@ -272,31 +272,7 @@ def delete(doctype, name):
 
 	:param doctype: DocType of the document to be deleted
 	:param name: name of the document to be deleted"""
-	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
-	if softdelet == 1:
-		if doctype == "Item":
-			stock = frappe.get_doc("Item", name)
-			stock_entry_list = frappe.get_list("Stock Ledger Entry",filters={"item_code": stock.item_code},fields=["sum(actual_qty) as total_qty","warehouse"],group_by="warehouse")
-
-			for warehouse in stock_entry_list:
-				if warehouse.total_qty > 0:
-					stock_entry = frappe.new_doc("Stock Entry")
-					stock_entry.posting_date = frappe.utils.nowdate()
-					stock_entry.from_warehouse = warehouse.warehouse
-					stock_entry.stock_entry_type = "Material Issue"
-					stock_entry.append("items", {
-						"item_code": stock.item_code,
-						"qty": warehouse.total_qty,
-						"transfer_qty": warehouse.total_qty,
-						"s_warehouse": warehouse.warehouse,
-						"uom": frappe.get_value("Item", stock.item_code, "stock_uom"),
-						"serial_no": "",
-					})
-					stock_entry.docstatus = 1
-					stock_entry.save()
-		frappe.db.set_value(doctype, name, 'docstatus', 5)
-	else:
-		delete_doc(doctype, name)
+	delete_doc(doctype, name)
 
 
 @frappe.whitelist(methods=["POST", "PUT"])
@@ -507,7 +483,6 @@ def insert_doc(doc) -> "Document":
 		return parent
 
 	return frappe.get_doc(doc).insert()
-
 
 def delete_doc(doctype, name):
 	"""Deletes document

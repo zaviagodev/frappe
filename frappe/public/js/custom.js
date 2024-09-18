@@ -1,3 +1,5 @@
+
+
 const upperItems = [
   {
     link: '/',
@@ -45,21 +47,42 @@ const upperItems = [
 const sidebarMenus = [
   {
     label: 'สินค้า',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+    icon: `<lord-icon
+      src="https://cdn.lordicon.com/lwumwgrp.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     submenu: [
       {
         label: "สินค้าของฉัน",
-        icon: '<svg style="background: linear-gradient(141.37deg, #007AFF 4.46%, #0069DA 95.54%);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>',
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fwkkspzz.json"
+          target=".menulink-btn"
+          trigger="hover"
+          style="width:28px;height:28px">
+        </lord-icon>`,
         url: "/app/item"
       },
       {
         label: "เพิ่มสินค้าใหม่",
-        icon: '<svg style="background: linear-gradient(313.49deg, rgba(102, 0, 233, 0.12) 45.12%, rgba(255, 125, 234, 0.12) 98.75%);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>',
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ftndcppj.json"
+          target=".menulink-btn"
+          trigger="hover"
+          colors="primary:#d59f80,secondary:#ebe6ef"
+          style="width:28px;height:28px">
+        </lord-icon>`,
         url: "/app/item/new-item"
       },
       {
         label: "สินค้าในช่องทางต่างๆ",
-        icon: '<svg style="transform:rotate(90deg);background: linear-gradient(134.63deg, #F26A66 0.32%, #CE0400 99.68%);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>',
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/iuemcjza.json"
+          target=".menulink-btn"
+          trigger="hover"
+          style="width:28px;height:28px">
+        </lord-icon>`,
         submenu: [
           {
             label: "Website Item",
@@ -116,7 +139,12 @@ const sidebarMenus = [
   },
   {
     label: "การค้าขาย",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
+    icon: `<lord-icon
+      src="https://cdn.lordicon.com/qnwzeeae.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     submenu: [
       {
         label: "คำสั่งซื้อ",
@@ -131,31 +159,31 @@ const sidebarMenus = [
             label: "Website",
             icon: `<div class="dot" style="background-color:#0A5FD9"></div>`,
             url: "/app/sales-invoice",
-            search: "?custom_channel=Website"
+            search: "?custom_sales_channel=Website"
           },
           {
             label: "Lazada",
             icon: `<div class="dot" style="background-color:#6100DD"></div>`,
             url: "/app/sales-invoice",
-            search: "?custom_channel=Lazada"
+            search: "?custom_sales_channel=Lazada"
           },
           {
             label: "TikTok",
             icon: `<div class="dot" style="background-color:#000000"></div>`,
             url: "/app/sales-invoice",
-            search: "?custom_channel=TikTok+Shop"
+            search: "?custom_sales_channel=TikTok+Shop"
           },
           {
             label: "Shopee",
             icon: `<div class="dot" style="background-color:#FF6B00"></div>`,
             url: "/app/sales-invoice",
-            search: "?custom_channel=Shopee"
+            search: "?custom_sales_channel=Shopee"
           },
           {
             label: "Line MyShop",
             icon: `<div class="dot" style="background-color:#00BA1E"></div>`,
             url: "/app/sales-invoice",
-            search: "?custom_channel=LINE+MyShop"
+            search: "?custom_sales_channel=LINE+MyShop"
           }
         ]
       },
@@ -179,7 +207,12 @@ const sidebarMenus = [
   },
   {
     label: 'ลูกค้า',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>',
+    icon: `<lord-icon
+      src="https://cdn.lordicon.com/zfmcashd.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     submenu: [
       {
         label: 'ลูกค้า',
@@ -189,7 +222,7 @@ const sidebarMenus = [
       {
         label: 'แดชบอร์ดลูกค้า',
         icon: '<svg style="background: #454400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>',
-        url: "/app/dashboard-view/Customers"
+        url: "/app/customer/view/dashboard"
       },
       {
         label: 'กลุ่มลูกค้า',
@@ -200,7 +233,12 @@ const sidebarMenus = [
   },
   {
     label: 'การตลาด',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-party-popper"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>',
+    icon: `<lord-icon
+    src="https://cdn.lordicon.com/tlxagvyb.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     badgePrefix: `<div style="background: linear-gradient(96.29deg, #C7BEFF 5.86%, #FFD3FB 104.34%);color:#460051" class='badge-prefix'>
       New
     </div>`,
@@ -265,7 +303,12 @@ const sidebarMenus = [
   },
   {
     label: "ระบบแต้มและรางวัล",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>',
+    icon: `<lord-icon
+      src="https://cdn.lordicon.com/ltzdrkcf.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     submenu: [
       {
         label: 'Rewardful',
@@ -321,7 +364,12 @@ const sidebarMenus = [
   },
   {
     label: "การเงิน",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
+    icon: `<lord-icon
+      src="https://cdn.lordicon.com/nqtlkdwi.json"
+      target=".menulink-btn"
+      trigger="hover"
+      style="width:28px;height:28px">
+    </lord-icon>`,
     badgePrefix: `<div style="background: linear-gradient(96.29deg, #FFE5BE 5.86%, #F8FFD0 104.34%);color:#754600" class='badge-prefix'>
       Beta 0.1
     </div>`,
@@ -520,67 +568,532 @@ const modalMenus = [
   },
 ]
 
-$(document).ready(function () {
-  
-  $('#upper-menu').html(upperItems.map(item => {
-    return `
-      <a href="${item.link}" class="menulink-btn">
-        ${item.icon}
-        ${item.title}
-      </a>
-    `
-  }).join(''))
+const businessApps = [
+  {
+    name: "Selling",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Customer",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Marketing",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Item",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Placeholder",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Placeholder",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Placeholder",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+  {
+    name: "Placeholder",
+    inner_apps: [
+      {
+        app_name: "Camera",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/vneufqmz.json"
+          colors="primary:#3a3347,secondary:#d59f80,tertiary:#ffc738,quaternary:#ebe6ef,quinary:#646e78,senary:#f24c00"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Home",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/heexevev.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "App Store",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/fgsdcsla.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Books",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/qwjfapmb.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      },
+      {
+        app_name: "Podcast",
+        icon: `<lord-icon
+          src="https://cdn.lordicon.com/ceogkocw.json"
+          style="width:100%;height:100%">
+        </lord-icon>`,
+        link: ""
+      }
+    ]
+  },
+]
 
-  $('.main-header').addClass('active');
-  $('.content.page-container').addClass('page-container-setup')
-  
-  $('#close-sidebar-top-navbar-icon').on('click', function(){
-    $('.main-header').toggleClass('active')
-    $('.content.page-container').toggleClass('page-container-setup')
+$(document).ready(function () {
+
+  // gsap.registerPlugin(Draggable);
+  $('#upper-menu').html(upperItems.map(item => {
+    return `<a href="${item.link}" class="menulink-btn">
+      ${item.icon}
+      ${item.title}
+    </a>`
+  }).join(''))
+  if ($('.custom-actions').children().length == 0 && $('.page-icon-group').children().length == 0) {
+    $('.custom-see-more-btn').addClass("hide");
+  } else {
+    $('.custom-see-more-btn').removeClass("hide");
+  }
+  // $(document).on('click', '.page-body', function ( ) {
+  //   let sdb=$("#rightside");
+  //   if(sdb.hasClass("is-sidebar-floated")){
+  //     remove_hover_effect_sidebar()
+  //   }
+  // })
+  // $(document).on('click', '.editable-form', function ( ) {
+  //   let sdb=$("#rightside");
+  //   if(sdb.hasClass("is-sidebar-floated")){
+  //     remove_hover_effect_sidebar()
+  //   }
+  // })
+  // $(document).on('click', '.page-actions', function ( ) {
+  //   let sdb=$("#rightside");
+  //   if(sdb.hasClass("is-sidebar-floated")){
+  //     remove_hover_effect_sidebar()
+  //   }
+  // })
+  $(document).on('click', '.custom-see-more-btn', function () {
+    $('.page-icon-group').removeClass("hide");
+    $('.custom-actions').removeClass("hide");
+    $('.custom-actions').toggle("slide:left");
+    $('.custom-actions').css("display", "flex");
+    $('.page-icon-group').toggle("slide:left");
+  })
+  $(document).on('click', '#floating-sidebar-fts', function () {
+    let el = document.querySelector("#rightside")
+    let sdb = $("#rightside");
+    if (sdb.hasClass("is-sidebar-floated")) {
+      close_floated_sidebar();
+    }
+    $("#open-sidebar-menu-icons").addClass("isfloat")
+    sdb.addClass("is-draggable");
+    el.removeEventListener("mouseenter", on_hover_effect_sidebar, false);
+    Draggable.create("#rightside", {
+      type: "x,y",
+      trigger: "#navside-drag",
+      bounds: ".main-section",
+      allowNativeTouchScrolling: false
+    });
+    // make_draggable();
+    $("#open-side-on-hover").css("display", "none")
+    $("#rightside").removeAttr("style");
+    if ($("body").hasClass("left-sidebar-active")) {
+      $('.main-header').removeClass('active')
+      $('.content.page-container').toggleClass('page-container-setup')
+      $('.navbar.navbar-expand').removeClass('active-sidebar')
+      $('.navbar-back-button-icon').removeClass('active-sidebar')
+      $('body').toggleClass('left-sidebar-active')
+    }
+    $("#floating-sidebar-fts").css("display", "none");
+    $("#close-floating-sidebar-fts").css("display", "block");
+    $("body").removeClass("floated-sidebar-active")
+    // setTimeout(() => {
+    //   $("#rightside").animate({ 
+    //     // top: "80px",
+    //     // left: "10px",
+    //     transform:"translate3d(0px, 90px, 0px);"
+    //   }, 200 );
+    // }, 50);
+    gsap.to("#rightside", { duration: 0.5, x: 20, y: 80 });
+    openCloseSidebarSwitcher();
+    setCookie("sidebar_type", "dragging", 10)
   })
 
+  $(document).on('click', '#floated-sidebar-fts', function () {
+    let sdb = $("#rightside");
+    if (sdb.hasClass("is-draggable")) {
+      close_draggable_sidebar();
+    }
+    sdb.css("boxShadow", "10px 5px 5px #ddd");
+    sdb.addClass("is-sidebar-floated");
+    sdb.removeClass("is-draggable");
+    let el = document.querySelector("#open-side-on-hover")
+    $('.main-header').removeClass('active')
+    $('.content.page-container').removeClass('page-container-setup')
+    $('.navbar.navbar-expand').removeClass('active-sidebar')
+    $('.navbar-back-button-icon').removeClass('active-sidebar')
+    $('body').removeClass('left-sidebar-active')
+    $("#floated-sidebar-fts").css("display", "none");
+    $("#close-floated-sidebar-fts").css("display", "block");
+    $("#open-sidebar-menu-icons").addClass("isfloat")
+    $("body").addClass("floated-sidebar-active")
+    $("#open-side-on-hover").css("display", "none");
+    openCloseSidebarSwitcher();
+    show_sidebar_on_hover(el);
+    floated_sidebar_submenues();
+    checkIfFloatedMenus();
+    setCookie("sidebar_type", "floating", 10)
+  })
 
- $('body').on('click', '.sidebar-toggle-btns', function() {
+  $(document).on('click', '#close-floated-sidebar-fts', function () {
+    close_floated_sidebar();
+    // openCloseSidebarSwitcher();
+  })
+  $(document).on('click', '#open-side-on-hover', function () {
+    on_hover_effect_sidebar();
+  })
+
+  $(document).on('click', '#close-floating-sidebar-fts', function () {
+    close_draggable_sidebar();
+    openCloseSidebarSwitcher();
+  })
+  $('.main-header').addClass('active');
+  $('.content.page-container').addClass('page-container-setup');
+
+  $('#close-sidebar-top-navbar-icon').on('click', function () {
+    $('.main-header').toggleClass('active')
+    $('.content.page-container').toggleClass('page-container-setup')
+    // $("#navbar-icons-menus").toggleClass("active")
+  })
+
+  $('#float-sidebar-icon').on('click', function () {
+    $("#rightside").toggleClass("is-sidebar-floated")
+  })
+
+  $('body').on('click', '.sidebar-toggle-btns', function () {
     let sidebar_wrapper = $(".layout-side-section");
     sidebar_wrapper.toggle();
     $(document.body).trigger("toggleSidebar");
   });
 
-
-  $('body').on('click', '.navbar-right-heart-button-icons', function() {
+  $('body').on('click', '.navbar-right-heart-button-icons', function () {
     let sidebar_wrapper = $(".sidebar-right-comment");
     sidebar_wrapper.toggle();
   });
 
-
   var sidebar = $('#rightside');
-  $('body').on('click', '#close-sidebar-top-navbar-icos', function() {
-    console.log('testssss');
-    $('.main-header').addClass('active')
-    sidebar.addClass('active');
-    $('.content.page-container').addClass('page-container-setup')
-    $('.navbar.navbar-expand').addClass('active-sidebar')
-    $('.navbar-back-button-icon').addClass('active-sidebar')
-    $('body').addClass('left-sidebar-active')
-  })
 
-
-  $('body').on('click', 'a.nav-link', function() {
+  $('body').on('click', 'a.nav-link', function () {
     e.preventDefault();
   });
 
-
-
-
-
-  $('#top-navbar-toggle-sidebar').on('click', function(){
+  $('#top-navbar-toggle-sidebar').on('click', function () {
     $('.main-header').toggleClass('active')
     $('.content.page-container').toggleClass('page-container-setup')
   })
 
   var pageContainerSetup = document.querySelectorAll(".content.page-container")
-  for (let i = 0; i < pageContainerSetup.length; i++){
-    if ($('.main-header').hasClass('active') === false){
+  for (let i = 0; i < pageContainerSetup.length; i++) {
+    if ($('.main-header').hasClass('active') === false) {
       pageContainerSetup[i].removeClass('page-container-setup')
     }
   }
@@ -640,6 +1153,7 @@ $(document).ready(function () {
 
       function getSearch() {
         if (item.search !== undefined) { window.history.replaceState({}, "", item.search) }
+        if (depth === 0) { $(".floated-menu-title").text(item.label) }
       }
 
       var $li = $("<li>");
@@ -652,26 +1166,23 @@ $(document).ready(function () {
       `);
       $a.on("click", getSearch)
       $a.addClass('menulink-btn');
-      if (depth === 0) {
-        $a.addClass('first')
-      }
-      if (depth === 1 && item.bgColor || item.innerBgColor) {
-        $a.addClass('second-with-bg')
-      }
       $li.append($a);
       $ul.append(item.tip || '')
 
+      if (depth === 0) { $a.addClass('first') }
+      if (depth === 1 && item.bgColor || item.innerBgColor) { $a.addClass('second-with-bg') }
+
       if (item.submenu) {
-        var $submenu = $("<ul>").addClass("submenu");
+        var $submenu = $("<ul menu-depth='" + depth + "'>").addClass("submenu");
         buildMenu(item.submenu, $submenu, depth + 1);
         $submenu.css('margin-bottom', '20px')
-        if (depth === 1) {
-          $submenu.css('margin-bottom', '0')
-        }
-
+        if (depth === 0) { $submenu.prepend(`<h2 class="floated-menu-title hide">${item.label}</h2>`) }
+        if (depth === 1) { $submenu.css('margin-bottom', '0') }
         if (item.innerBgColor) {
-          $submenu.css('background-color', item.innerBgColor)
-          $submenu.css('padding', '0 8px 8px 0')
+          $submenu.css({
+            'background-color': item.innerBgColor,
+            'padding': '0 8px 8px 0'
+          })
         }
         $li.addClass('has-submenu');
         $a.append(`<svg class='submenu-toggle' style="color:${depth === 0 ? '#18181B;' : '#7A7A7A;'}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>`)
@@ -679,52 +1190,86 @@ $(document).ready(function () {
         $li.append($submenu);
       }
       $ul.append($li);
-
-      $parent.append($ul);
     });
+    $parent.append($ul);
   }
 
   buildMenu(sidebarMenus, $("#lower-menu"));
 
-  $("#lower-menu").on("click", "a", function (event) {
+  function checkIfFloatedMenus() {
+    let floatedSidebar = $("#rightside.is-sidebar-floated")
+    setTimeout(() => {
+      if ($(document).find(".floated-submenu").hasClass("expanded")) {
+        floatedSidebar.css("border-radius", "22px 0 0 22px")
+      } else {
+        floatedSidebar.css("border-radius", "22px")
+      }
+    }, 10)
+  }
+
+  function closeOtherMenues() {
+    var $submenu = $(this).closest("li").find("> ul");
+    if ($submenu.hasClass("floated-submenu")) {
+      let all_floated_menues = $(".floated-submenu");
+      $.each(all_floated_menues, function (i) {
+        if ($submenu.text() != $(all_floated_menues[i]).text()) {
+          $(all_floated_menues[i]).css("display", "none")
+          $(all_floated_menues[i]).removeClass("expanded")
+        }
+      });
+    }
+  }
+
+  function useState(initialValue) {
+    let _value = initialValue
+
+    function state() { return _value }
+    function setState(newValue) { _value = newValue }
+
+    return [state, setState]
+  }
+
+  let [isSubmenuActive, setIsSubmenuActive] = useState(false)
+
+  function toggleOnMenus(event) {
     event.preventDefault();
     var $submenu = $(this).closest("li").find("> ul");
+    var $depth_zero_submenu = $(this).closest("li").find("> ul[menu-depth='0'].floated-submenu")
     var $submenuToggle = $(this).find(".submenu-toggle");
 
     if ($submenu.is(":visible")) {
+      $depth_zero_submenu.animate({ width: "toggle", opacity: "toggle" }, isSubmenuActive() ? 200 : 0, () => setIsSubmenuActive(false))
       $submenu.slideUp("fast");
+      $submenu.removeClass("expanded")
       $submenuToggle.removeClass("expanded");
     } else {
+      $depth_zero_submenu.animate({ width: "toggle", opacity: "toggle" }, isSubmenuActive() ? 0 : 200, () => setIsSubmenuActive(true))
       $submenu.slideDown("fast");
+      $submenu.addClass("expanded")
       $submenuToggle.addClass("expanded");
     }
 
     if ($(this).closest("li").hasClass('has-submenu')) {
       event.stopPropagation();
     }
-  });
+  }
+  $("#lower-menu").on("click", "a", closeOtherMenues);
+  $("#lower-menu").on("click", "a", toggleOnMenus);
+  $("#lower-menu").on("click", ".menulink-btn.first", checkIfFloatedMenus)
 
+  $("#submenus-appear").on("click", "a", toggleOnMenus);
   $(".submenu").not("#lower-menu .submenu").hide();
 
-  var modalButton = $('#trigger')
-  var modalMenu = $('#modal-menus-trigger');
   var sidebarOverlay = $('#navbar-overlay-mobile')
   var sidebar = $('#rightside')
   $(document.body).addClass("left-sidebar-active");
-
-
-  // modalButton.on('click', function () {
-  //   sidebarOverlay.addClass("active")
-  //   sidebar.addClass("active");
-  // })
-
 
   sidebarOverlay.on('click', function () {
     sidebarOverlay.removeClass("active")
     sidebar.removeClass("active")
   })
 
-  $('#close-sidebar-top-navbar-icon').on('click', function(){
+  $('#close-sidebar-top-navbar-icon').on('click', function () {
     $('.main-header').toggleClass('')
     sidebar.toggleClass('active');
     $('.content.page-container').toggleClass('page-container-setup')
@@ -732,92 +1277,474 @@ $(document).ready(function () {
     $('.navbar-back-button-icon').removeClass('active-sidebar')
     $('body').toggleClass('left-sidebar-active')
   })
-
-  
-
-
-
-})
-
-
-$(document).on("scroll", function(){
-  if(window.scrollY >= 200){
-    $('.navbar.navbar-expand').addClass("with-shadow")
-  } else {
-    $('.navbar.navbar-expand').removeClass("with-shadow")
+  let screen_width = $(window).width();
+  if (screen_width < 1180) {
+    $("#close-sidebar-top-navbar-icon").click();
   }
+  $(window).resize(function () {
+    let screen_width = $(window).width();
+    if (screen_width < 1180 && $("body").hasClass("left-sidebar-active")) {
+      $("#close-sidebar-top-navbar-icon").click();
+    }
+  });
+  var uptopro = $("#uptopro");
+  var modalOverlayNew = document.querySelector(".modalOverlayNew");
+  var modal = document.querySelector(".messageWrapper");
+  TweenMax.set([modalOverlayNew, modal], { autoAlpha: 0 });
+  var modalOverlayNew = document.querySelector(".modalOverlayNew");
+
+  uptopro.on('click', function (event) {
+    let uptopro_pos =  getPosition( document.querySelector("#uptopro"),document.querySelector(".messageWrapper") );
+    var modal = document.querySelector(".messageWrapper");
+    let pos = getPosition( document.querySelector(".messageWrapper"),document.querySelector("#uptopro") );
+    var uptopro = document.getElementById("uptopro");
+    var newRect = getPosition(modal, uptopro);
+    TweenMax.set(modal, {
+      x: newRect.left-20,
+      y: newRect.top,
+      width: newRect.width,
+      height: newRect.height
+    });
+    var tl = gsap.timeline();
+    tl.to(modal, {
+      duration: 0.6,
+      x: 0,
+      y: 0,
+      width: 800,
+      height: 400,
+      autoAlpha: 1,
+      ease: "power2.out"
+    });
+    tl.to(modalOverlayNew, {
+      duration: 0.3,
+      autoAlpha: 1,
+      ease: "power2.out"
+    });
+  });
+
+
+  modalOverlayNew.addEventListener("click", function (event) {
+    let pos = getPosition( document.querySelector(".messageWrapper"),document.querySelector("#uptopro") );
+    var tl = gsap.timeline();
+    var modalOverlayNew = document.querySelector(".modalOverlayNew");
+    var modal = document.querySelector(".messageWrapper");
+    let uptopro_pos = $("#uptopro").position();
+    tl.to(modalOverlayNew, {
+      duration: 0.3,
+      autoAlpha: 0,
+      ease: "power2.out"
+    });
+    tl.to(modal, {
+      duration: 0.6,
+      x: pos.left+10,
+      y: pos.top+10,
+      width: 0,
+      height: 0,
+      autoAlpha: 0,
+      ease: "power2.out"
+    });
+    // setTimeout(() => {
+    //   TweenMax.set([modalOverlayNew], { autoAlpha: 0 });
+    // }, 311);
+    // 
+  });
+
+  function getPosition(elem, target) {
+    var targetRect = target.getBoundingClientRect();
+    var elemRect = elem.getBoundingClientRect();
+    TweenLite.set(elem, {
+      x: 0,
+      y: 0,
+      width: targetRect.width,
+      height: targetRect.height
+    });
+    var newRect = elem.getBoundingClientRect();
+    TweenLite.set(elem, { width: elemRect.width, height: elemRect.height });
+    return {
+      left: targetRect.left - newRect.left,
+      top: targetRect.top - newRect.top,
+      width: newRect.width,
+      height: newRect.height
+    };
+  }
+
+  function moveSidebar(e) {
+    e.originalEvent.deltaY < 0 ?
+      $(".sidebar-search").addClass("active") :
+      $(".sidebar-search").removeClass("active")
+  }
+
+  function moveSidebarMobile(e) {
+    $("#sidebar-menus").scrollTop() < 1 ?
+      $(".sidebar-search").addClass("active") :
+      $(".sidebar-search").removeClass("active")
+  }
+
+  $("#sidebar-menus").bind("scroll wheel", moveSidebar)
+  $("#sidebar-menus").bind("touchmove", moveSidebarMobile)
+
+  $(".modal-search-business-app input").on("input", function () {
+    $(this).val() === "" ?
+      $(".modal-search-business-app svg").show() :
+      $(".modal-search-business-app svg").hide()
+  })
 })
 
-// $(document).on('hide.bs.tab', 'a[data-toggle="tab"]', function (e) {
-//   var $old_tab = $($(e.target).attr("href"));
-//   var $new_tab = $($(e.relatedTarget).attr("href"));
-//   if($new_tab.index() < $old_tab.index()){
-    
-//     $old_tab.css('position', 'relative').css("left", "0").css("opacity","1");
-//     $old_tab.animate({"left":"-75px","opacity":"0"}, 400, function () {
-//       $old_tab.css("left", 0).removeAttr("style");
-//     });
+// function checkSizeOfRightSidebar(){
+//   if ($(window).width() < 1300){
+//     $(".sidebar-right-comment").addClass("is-draggable")
+//     dragElement(document.querySelector(".is-draggable"), document.getElementById("sidebar-right-comment-header"))
+//   } else {
+//     $(".sidebar-right-comment").removeClass("is-draggable")
+//     dragElement(null)
 //   }
-//   else {
-    
-//     $old_tab.css('position', 'relative').css("left", "0").css("opacity","1");
-//     $old_tab.animate({"left":"75px","opacity":"0"}, 400, function () {
-//       $old_tab.css("left", 0).removeAttr("style");
-//     });
-//   }
-  
-// });
+// }
+
+// $(window).on("resize", checkSizeOfRightSidebar)
+// $(document).on("load", checkSizeOfRightSidebar)
+
+$(document).on("scroll", function () {
+  window.scrollY >= 200 ?
+    $('.navbar.navbar-expand').addClass("with-shadow") :
+    $('.navbar.navbar-expand').removeClass("with-shadow")
+})
 
 $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
   var $new_tab = $($(e.target).attr("href"));
   var $old_tab = $($(e.relatedTarget).attr("href"));
-  if($new_tab.index() > $old_tab.index()){
-    console.log("right");
-    $new_tab.css('position', 'relative').css("right", "-75px").css("opacity","0");
-    $new_tab.animate({"right":"0","opacity":"1"}, 450, function () {
-            $new_tab.removeAttr("style");
+  if ($new_tab.index() > $old_tab.index()) {
+    $new_tab.css('position', 'relative').css("right", "-75px").css("opacity", "0");
+    $new_tab.animate({ "right": "0", "opacity": "1" }, 450, function () {
+      $new_tab.removeAttr("style");
     });
-    $old_tab.css('position', 'relative').css("right", "0").css("opacity","1");
-    $old_tab.animate({"right":"75px","opacity":"0"}, 450, function () {
-            $old_tab.removeAttr("style");
+    $old_tab.css('position', 'relative').css("right", "0").css("opacity", "1");
+    $old_tab.animate({ "right": "75px", "opacity": "0" }, 450, function () {
+      $old_tab.removeAttr("style");
     });
   }
   else {
-    console.log("left");
-    $new_tab.css('position', 'relative').css("left", "-75px").css("opacity","0");
-    $new_tab.animate({"left":"0","opacity":"1"}, 450, function () {
-            $new_tab.removeAttr("style");
+    $new_tab.css('position', 'relative').css("left", "-75px").css("opacity", "0");
+    $new_tab.animate({ "left": "0", "opacity": "1" }, 450, function () {
+      $new_tab.removeAttr("style");
     });
-    $old_tab.css('position', 'relative').css("left", "0").css("opacity","1");
-    $old_tab.animate({"left":"75px","opacity":"0"}, 450, function () {
-            $old_tab.removeAttr("style");
+    $old_tab.css('position', 'relative').css("left", "0").css("opacity", "1");
+    $old_tab.animate({ "left": "75px", "opacity": "0" }, 450, function () {
+      $old_tab.removeAttr("style");
     });
   }
 });
-  $(document).on('click', '#header_menu li', function ( ) {	
-    var position = $(this).position();
-    var width = $(this).width();
-    $("#header_menu .slider-active").css("display","inline-block");
-    $("#header_menu .slider-active").css({"left":+ position.left,"width":width});
-    setTimeout(() => {
-      $("#header_menu li a").css("color","#18181B");
-      $(this).find("a").css("color","white");
-    }, 100);
-    
-  });
-  
-  // $(document).on('click', '#form-tabs li', function ( ) {	
-  //   console.log("slider-active-sticky")
-  //   var position = $(this).position();
-  //   var width = $(this).width();
-  //   $("#form-tabs .slider-active-sticky").css("display","inline-block");
-  //   $("#form-tabs .slider-active-sticky").css({"left":+ position.left,"width":width});
-  //   setTimeout(() => {
-  //     $("#form-tabs li a").css("color","#18181B");
-  //     $(this).find("a").css("color","white");
-  //   }, 100);
-    
-  // });
-  
-  
 
+$(document).on('click', '#header_menu li', function () {
+  slider_active_move(this)
+});
+
+
+// function dragElement(elmnt, elmntToMove) {
+//   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+//   elmntToMove.onmousedown = dragMouseDown;
+
+//   function dragMouseDown(e) {
+//     e = e || window.event;
+//     e.preventDefault();
+//     // get the mouse cursor position at startup:
+//     pos3 = e.clientX;
+//     pos4 = e.clientY;
+//     document.onmouseup = closeDragElement;
+//     // call a function whenever the cursor moves:
+//     document.onmousemove = elementDrag;
+//   }
+
+//   function elementDrag(e) {
+//     e = e || window.event;
+//     e.preventDefault();
+//     // calculate the new cursor position:
+//     pos1 = pos3 - e.clientX;
+//     pos2 = pos4 - e.clientY;
+//     pos3 = e.clientX;
+//     pos4 = e.clientY;
+//     // set the element's new position:
+//     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+//     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+//   }
+
+//   function closeDragElement() {
+//     // stop moving when mouse button is released:
+//     document.onmouseup = null;
+//     document.onmousemove = null;
+//   }
+// }
+function sync_tabs() {
+  let navtabs = $(".navtabs");
+  $(navtabs[0]).trigger("click");
+}
+$(document).ready(function () {
+  // close floating sidebar
+  $(document).mouseup(function (e) {
+    let switcher = $(".sidebar-menu-icons");
+    var container = $("#rightside");
+    // If the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0 && $(e.target).attr("id") != "open-sidebar-menu-icons") {
+      if (container.hasClass("is-sidebar-floated")) {
+        remove_hover_effect_sidebar();
+        if (switcher.is(":visible")) {
+          openCloseSidebarSwitcher();
+        }
+      }
+    }
+  });
+  // close floating sidebar
+
+  window.addEventListener('locationchange', function () {
+    setTimeout(() => {
+      $('.custom-actions, .page-icon-group').addClass("hide"); //always hidden until user clicks see more button
+      sync_tabs();
+    }, 1500);
+  });
+  (() => {
+    let oldPushState = history.pushState;
+    history.pushState = function pushState() {
+      let ret = oldPushState.apply(this, arguments);
+      window.dispatchEvent(new Event('locationchange'));
+      return ret;
+    };
+  })();
+});
+// muzammal code
+$(document).ready(function () {
+  function handleLeftSidebar() {
+    let switcher = $(".sidebar-menu-icons");
+
+    if (switcher.is(":visible")) {
+      let sdb = $("#rightside");
+      if (sdb.hasClass("is-sidebar-floated")) {
+        close_floated_sidebar();
+      }
+      if (sdb.hasClass("is-draggable")) {
+        close_draggable_sidebar();
+      }
+    }
+    openCloseSidebarSwitcher();
+
+  }
+  $(document).on('click', '#open-sidebar-menu-icons', handleLeftSidebar)
+  $(document).on('click', '#close-sidebar-top-navbar-icos', handleLeftSidebar)
+  let sidebar_type = checkSidebarCookie()
+  if (sidebar_type == "dragging") {
+    $("#floating-sidebar-fts").trigger("click");
+    openCloseSidebarSwitcher();
+  }
+  if (sidebar_type == "floating") {
+    $("#floated-sidebar-fts").trigger("click");
+    openCloseSidebarSwitcher();
+  }
+})
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function checkSidebarCookie() {
+  let sidebar_type = getCookie("sidebar_type");
+  if (sidebar_type != "") {
+    return sidebar_type;
+  } else {
+    return ""
+  }
+}
+function openCloseSidebarSwitcher() {
+  $(".sidebar-menu-icons").toggle("slide:left");
+  $("#open-sidebar-menu-icons").toggleClass("is-option-open");
+}
+function show_sidebar_on_hover(el) {
+  let el1 = document.querySelector("#rightside")
+  el1.addEventListener("mouseenter", on_hover_effect_sidebar, false);
+  el.addEventListener("mouseenter", on_hover_effect_sidebar, false);
+  // el1.addEventListener("mouseleave", remove_hover_effect_sidebar,false );
+}
+function on_hover_effect_sidebar() {
+  let el = $("#rightside");
+  el.css("display", "block");
+  $("#open-side-on-hover").css("display", "none")
+  $("#open-sidebar-menu-icons.isfloat").addClass("active")
+}
+function remove_hover_effect_sidebar() {
+  let el = $("#rightside")
+  el.css("display", "none")
+  $("#open-side-on-hover").css("display", "block");
+  $("#open-sidebar-menu-icons.isfloat").removeClass("active")
+}
+function floated_sidebar_submenues() {
+  $("#sidebar-menus").addClass("floated-sidebar-menues");
+  $("#sidebar-menus").find(".submenu").addClass("floated-submenu");
+  $("#sidebar-menus").find("li").addClass("floated-submenu-li-items");
+  $("#sidebar-menus").find(".has-submenu svg").addClass("floated-svg");
+  let all_submenues = $("#sidebar-menus").find(".submenu");
+  $.each(all_submenues, function (i) {
+    let depth = $(all_submenues[i]).attr("menu-depth");
+    if (depth > 0) {
+      $(all_submenues[i]).removeClass("floated-submenu");
+    }
+  });
+  let all_floated_submenues = $("#sidebar-menus").find(".floated-submenu");
+  $.each(all_floated_submenues, function (i) {
+    $($(all_floated_submenues[i]).find("li")).removeClass("floated-submenu-li-items");
+  });
+  $("#open-sidebar-menu-icons.isfloat").addClass("active")
+  $(".floated-menu-title").removeClass("hide")
+}
+function remove_floated_sidebar_submenues() {
+  $("#sidebar-menus").removeClass("floated-sidebar-menues");
+  $("#sidebar-menus").find(".submenu").removeClass("floated-submenu");
+  $("#sidebar-menus").find("li").removeClass("floated-submenu-li-items");
+  $("#sidebar-menus").find(".has-submenu svg").removeClass("floated-svg")
+  $("body").removeClass("floated-sidebar-active")
+  let all_submenues = $("#sidebar-menus").find(".submenu")
+  $.each(all_submenues, function (i) {
+    let depth = $(all_submenues[i]).attr("menu-depth")
+    if (depth > 0) {
+      $(all_submenues[i]).css("left", "unset")
+    }
+  });
+  $(".floated-menu-title").addClass("hide")
+}
+function close_draggable_sidebar() {
+  gsap.to("#rightside", { duration: 0.5, x: 0, y: 0 });
+  Draggable.get("#rightside").disable();
+  Draggable.get("#rightside").kill();
+  // remove_draggable();
+  let sdb = $("#rightside");
+  sdb.removeClass("is-draggable");
+  sdb.removeAttr("style");
+  $('.main-header').addClass('active');
+  sdb.addClass('active');
+  $('.content.page-container').addClass('page-container-setup');
+  $('.navbar.navbar-expand').addClass('active-sidebar');
+  $('.navbar-back-button-icon').addClass('active-sidebar');
+  $('body').addClass('left-sidebar-active');
+  $("#floating-sidebar-fts").css("display", "block");
+  $("#close-floating-sidebar-fts").css("display", "none");
+  $("#open-sidebar-menu-icons").removeClass("isfloat")
+  $("body").removeClass("floated-sidebar-active")
+  setCookie("sidebar_type", "", 10)
+}
+function close_floated_sidebar() {
+  let el = document.querySelector("#rightside")
+  let sdb = $("#rightside");
+  sdb.removeClass("is-sidebar-floated");
+  // el.removeEventListener("mouseleave", remove_hover_effect_sidebar,false);
+  el.removeEventListener("mouseenter", on_hover_effect_sidebar, false);
+  sdb.removeAttr("style");
+  $('.main-header').addClass('active')
+  sdb.addClass('active');
+  $('.content.page-container').addClass('page-container-setup')
+  $('.navbar.navbar-expand').addClass('active-sidebar')
+  $('.navbar-back-button-icon').addClass('active-sidebar')
+  $('body').addClass('left-sidebar-active')
+  $("#floated-sidebar-fts").css("display", "block");
+  $("#close-floated-sidebar-fts").css("display", "none");
+  $("#open-sidebar-menu-icons").removeClass("isfloat")
+  $("#open-sidebar-menu-icons").removeClass("active")
+  $("body").removeClass("floated-sidebar-active")
+  // setTimeout(() => {
+  //   $("#rightside").removeAttr("style");
+  //   $("#rightside").css("opacity","1")
+  // }, 1001);
+  remove_floated_sidebar_submenues();
+  setCookie("sidebar_type", "", 10)
+}
+function slider_active_move(this_el) {
+  var position = $(this_el).position();
+  var width = $(this_el).width();
+  $("#header_menu .slider-active").css({
+    "left": + position.left,
+    "width": width,
+    "display": "inline-block"
+  });
+  $("#header_menu li a").css("color", "#18181B");
+  $(this_el).find("a").css("color", "white");
+}
+function make_draggable() {
+  dragElement(document.getElementById("rightside"));
+}
+function remove_draggable() {
+  document.getElementById("rightside").onmousedown = null
+}
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    document.getElementById(elmnt.id + "header").touchstart = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.touchstart = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+    document.addEventListener("touchend", () => {
+      closeDragElement();
+    });
+    document.addEventListener("touchmove", () => {
+      elementDrag();
+    });
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.addEventListener("touchend", () => {
+      return false
+    });
+    document.addEventListener("touchstart", () => {
+      return false
+    });
+    document.onmousemove = null;
+  }
+}
+// muzammal code
+
+
+$(document).on('click', '.list-row-collapse', function (e) {
+  e.preventDefault();
+  var closestDiv = $(this).parent().children('.child-row');
+  closestDiv.toggleClass('active-child');
+
+  $(this).toggleClass("active")
+});

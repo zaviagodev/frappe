@@ -40,6 +40,7 @@ frappe.views.ImageView = class ImageView extends frappe.views.ListView {
 	}
 
 	render() {
+		this.prepare_data(this.data);
 		this.get_attached_images().then(() => {
 			this.render_image_view();
 

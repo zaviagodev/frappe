@@ -455,6 +455,13 @@ frappe.views.BaseList = class BaseList {
 			filters.some((filter) => {
 				return filter[0] !== this.doctype;
 			});
+
+		// FIXME: remove simmillar logic from this file and put in doctype specific file
+		if (this.doctype === 'Item' || this.doctype === 'Website Item') {
+			let item_filter = [this.doctype,"variant_of","is","not set"]
+			filters.push(item_filter);
+		}
+
 		return {
 			doctype: this.doctype,
 			fields: this.get_fields(),
@@ -491,8 +498,126 @@ frappe.views.BaseList = class BaseList {
 		this.freeze(true);
 		// fetch data from server
 		return frappe.call(args).then((r) => {
-			// render
-			this.prepare_data(r);
+
+
+			this.add_variants_data(r);
+
+			// this.prepare_data(r);
+			// this.toggle_result_area();
+			// this.before_render();
+			// this.render();
+			// this.after_render();
+			// this.freeze(false);
+			// this.reset_defaults();
+			// if (this.settings.refresh) {
+			// 	this.settings.refresh(this);
+			// }
+		});
+	}
+
+
+
+	add_variants_data(r) {
+		let data = r.message || {};
+		Object.assign(frappe.boot.user_info, data.user_info);
+		delete data.user_info;
+		data = !Array.isArray(data) ? frappe.utils.dict(data.keys, data.values) : data;
+		if(data.length > 0){
+
+
+			if (this.doctype === 'Website Item') {
+				let list_view_data = [];
+				data.forEach(function(element, index, array) {
+					if(element.has_variants){
+						list_view_data.push(element.web_item_name);
+					}
+				});
+				let r =  this.feach_variants_childs(list_view_data);
+				r.then((r) => {
+					let variants = r.message || {};
+
+					Object.assign(frappe.boot.user_info, variants.user_info);
+					delete variants.user_info;
+					let variants_list = !Array.isArray(variants) ? frappe.utils.dict(variants.keys, variants.values) : variants;
+
+					data.forEach(function (element, index, array) {
+						if (element.has_variants) {
+							let relevant_variants = Array.isArray(variants_list) ? variants_list.filter(variant => variant.variant_of === element.item_name) : [];
+							element._childs = relevant_variants;
+						}
+					});
+
+
+					if (this.start === 0) {
+						this.data = data;
+					} else {
+						this.data = this.data.concat(data);
+					}
+					this.data = this.data.uniqBy((d) => d.name);
+					this.toggle_result_area();
+					this.before_render();
+					this.render();
+					this.after_render();
+					this.freeze(false);
+					this.reset_defaults();
+					if (this.settings.refresh) {
+						this.settings.refresh(this);
+					}
+					return;
+				})
+
+			}
+
+
+			if (this.doctype === 'Item') {
+				let list_view_data = [];
+				data.forEach(function(element, index, array) {
+					if(element.has_variants){
+						list_view_data.push(element.name);
+					}
+				});
+				let r =  this.feach_variants_childs(list_view_data);
+
+				r.then((r) => {
+					let variants = r.message || {};
+
+					Object.assign(frappe.boot.user_info, variants.user_info);
+					delete variants.user_info;
+					let variants_list = !Array.isArray(variants) ? frappe.utils.dict(variants.keys, variants.values) : variants;
+					data.forEach(function (element, index, array) {
+						if (element.has_variants) {
+							let relevant_variants = Array.isArray(variants_list) ? variants_list.filter(variant => variant.variant_of === element.name) : [];
+							element._childs = relevant_variants;
+						}
+					});
+
+					if (this.start === 0) {
+						this.data = data;
+					} else {
+						this.data = this.data.concat(data);
+					}
+					this.data = this.data.uniqBy((d) => d.name);
+					this.toggle_result_area();
+					this.before_render();
+					this.render();
+					this.after_render();
+					this.freeze(false);
+					this.reset_defaults();
+					if (this.settings.refresh) {
+						this.settings.refresh(this);
+					}
+					return;
+				})
+				
+			}
+
+			if (this.start === 0) {
+				this.data = data;
+			} else {
+				this.data = this.data.concat(data);
+			}
+			this.data = this.data.uniqBy((d) => d.name);
+
 			this.toggle_result_area();
 			this.before_render();
 			this.render();
@@ -502,8 +627,11 @@ frappe.views.BaseList = class BaseList {
 			if (this.settings.refresh) {
 				this.settings.refresh(this);
 			}
-		});
+			
+		}
 	}
+
+
 
 	no_change(args) {
 		// returns true if arguments are same for the last 3 seconds
@@ -518,22 +646,105 @@ frappe.views.BaseList = class BaseList {
 		return false;
 	}
 
+	variants_get_args(variants) {
+		let variants_fields = this.fields.map((f) => frappe.model.get_full_column_name(f[0], f[1]));
+		variants_fields.push("`tab"+this.doctype+"`.`variant_of`");
+		let filters = [];
+		let group_by = this.get_group_by();
+		let group_by_required =
+			Array.isArray(filters) &&
+			filters.some((filter) => {
+				return filter[0] !== this.doctype;
+			});
+		if (this.doctype === 'Item' || this.doctype === 'Website Item') {
+			let item_filter = [this.doctype,"variant_of","in",variants]
+			filters.push(item_filter);
+		}
+
+
+		return {
+			doctype: this.doctype,
+			fields: variants_fields,
+			filters,
+			order_by: this.sort_selector && this.sort_selector.get_sql_string(),
+			start: this.start,
+			page_length: 9999,
+			view: this.view,
+			group_by: group_by_required ? group_by : null,
+		};
+	}
+
+	async feach_variants_childs(variants) {
+		let args = this.variants_get_args(variants);
+
+		args = {
+			method: this.method,
+			args: args,
+			freeze: this.freeze_on_refresh || false,
+			freeze_message: this.freeze_message || __("Loading") + "...",
+		};
+		this.freeze(true);
+		return frappe.call(args).then((r) => {
+			this.freeze(false);
+			return r;
+		});
+	}
+
 	prepare_data(r) {
 		let data = r.message || {};
-
 		// extract user_info for assignments
 		Object.assign(frappe.boot.user_info, data.user_info);
 		delete data.user_info;
-
 		data = !Array.isArray(data) ? frappe.utils.dict(data.keys, data.values) : data;
 
-		if (this.start === 0) {
-			this.data = data;
-		} else {
-			this.data = this.data.concat(data);
+
+		if(data.length > 0){
+
+
+			if (this.doctype === 'Item') {
+				let list_view_data = [];
+				data.forEach(function(element, index, array) {
+					if(element.has_variants){
+						list_view_data.push(element.name);
+					}
+				});
+				let r =  this.feach_variants_childs(list_view_data);
+				r.then((r) => {
+					let variants = r.message || {};
+					Object.assign(frappe.boot.user_info, variants.user_info);
+					delete variants.user_info;
+					let variants_list = !Array.isArray(variants) ? frappe.utils.dict(variants.keys, variants.values) : variants;
+					data.forEach(function (element, index, array) {
+						if (element.has_variants) {
+							let relevant_variants = Array.isArray(variants_list) ? variants_list.filter(variant => variant.variant_of === element.name) : [];
+							element._childs = relevant_variants;
+						}
+					});
+
+					if (this.start === 0) {
+						this.data = data;
+					} else {
+						this.data = this.data.concat(data);
+					}
+					this.data = this.data.uniqBy((d) => d.name);
+					return;
+				})
+				return;
+			}
+
+
+
+			if (this.start === 0) {
+				this.data = data;
+			} else {
+				this.data = this.data.concat(data);
+			}
+			this.data = this.data.uniqBy((d) => d.name);
+
+
 		}
 
-		this.data = this.data.uniqBy((d) => d.name);
+		
 	}
 
 	reset_defaults() {
@@ -568,7 +779,6 @@ frappe.views.BaseList = class BaseList {
 
 	call_for_selected_items(method, args = {}) {
 		args.names = this.get_checked_items(true);
-
 		frappe.call({
 			method: method,
 			args: args,

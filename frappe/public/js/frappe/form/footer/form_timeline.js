@@ -110,6 +110,10 @@ class FormTimeline extends BaseTimeline {
 		$('.sidebar-right-comment').addClass("activity");
 		//console.log(this.timeline_wrapper.find(".timeline-top-bar").find(".align-items-center"));
 		this.timeline_wrapper.find(".d-flex.align-items-center").find(".d-flex.align-items-center").append(this.timeline_actions_wrapper);
+		this.timeline_wrapper.find(".timeline-top-bar .switch").on("click", function(){
+			let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child")
+			chatBox.scrollTop(99999999)
+		})
 	}
 
 	setup_document_email_link() {

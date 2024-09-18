@@ -70,23 +70,21 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	hide_skeleton() {
 		$("#navbar-current-docname").html('');
 
-
 		//console.log(this.parent.page.container.find('.dropdown-menu'));
 
-	
-
-		//console.log();
-
-
-		$("#navbar-current-docname").html('');
-		$("header").addClass("navbar-list");
+		gsap.set($(".page-container"),{top:"0"})
+		$('#new-doc-overlay').remove()
 		$("body").addClass("list-view");
 		$("body").removeClass("form-view");
+		$("body").removeClass("new-doc-view");
+		$("body").removeClass("settings-view");
+		$(".main-header").addClass("navbar-list");
+		$('header.navbar.navbar-expand').removeClass("hide") // remove hide when it was hidden on the 'new form' page
+
 		this.$list_skeleton && this.$list_skeleton.hide();
 		this.parent.page.container.find(".layout-main").show();
 		var listviewz = this;
 
-		
 		var interval = setInterval(function () {
 			var activeone = listviewz.view_name;
 
@@ -104,45 +102,51 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 				var list_view = views;
 				let current_ac = activeone;
-				let newList = $('<ul id="header_menu"></ul>');
-				list_view.forEach(item => {
-					let listItem = $('<li></li>');
-					let anchor = $('<a href="#"></a>').text(item);
-					anchor.click((e) => {
-						e.preventDefault();
-						$(listviewz.parent).find(`li[data-view="${item}"] a`).click();
-						$(listItem).siblings().removeClass("active");
-						$(listItem).addClass("active");
-					});
-					if(current_ac == item.replace(' View','')){
-						$(listItem).addClass("active");
-					}
-					listItem.append(anchor);
-					newList.append(listItem);
-					
-
-				})
-				if (newList) {
-					clearInterval(interval);
-					$("#navbar-current-docname").html(newList);
-					activeone = activeone.replace(' View', '');
-					$("#header_menu li").each(function () {
-						var menuItemText = $(this).find('a').text().trim();
-						if (menuItemText === activeone.trim()) {
-							$(this).addClass("active");
+				let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
+				$("#navbar-current-docname").html(`<div class="skel-row">
+								<div class="skel-col-6 standard"></div>
+							</div>`);
+				setTimeout(function () {
+					views.forEach(item => {
+						let listItem = $('<li></li>');
+						let anchor = $('<a href="#"></a>').text(item);
+						anchor.click((e) => {
+							e.preventDefault();
+							$(listviewz.parent).find(`li[data-view="${item}"] a`).click();
+							$(listItem).siblings().removeClass("active");
+							$(listItem).addClass("active");
+						});
+						if(current_ac == item.replace(' View','')){
+							$(listItem).addClass("active");
 						}
-					});
-					// let slider_active=$('<div class="slider-active"></div>')
-					// newList.append(slider_active);
-					// $("#header_menu li:first a").css("color","white");
-					// $(".slider-active").css("width","120px");
-				}
+						listItem.append(anchor);
+						newList.append(listItem);
+					})
+					if (newList) {
+						clearInterval(interval);
+						$("#navbar-current-docname").html(newList);
+						activeone = activeone.replace(' View', '');
+						$("#header_menu li").each(function () {
+							var menuItemText = $(this).find('a').text().trim();
+							if (menuItemText === activeone.trim()) {
+								$(this).addClass("active");
+							}
+						});
+					}
+				}, 1900);
 			}
 			else{
 				$("#navbar-current-docname").html('');
 			}
+
+			gsap.set($(".page-container"),{top:"0"})
+			$('#new-doc-overlay').remove()
+			$("body").addClass("list-view");
+			$("body").removeClass("form-view");
+			$("body").removeClass("new-doc-view");
+			$(".main-header").addClass("navbar-list");
+			$('.custom-actions, .page-icon-group').css("display","none"); //always hidden until user clicks see more button'
 		}, 500);
-		
 	}
 
 	get view_name() {
@@ -679,9 +683,11 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	}
 
 	render_list() {
+
+		//console.log(this.data)
+
 		// clear rows
 		this.$result.find(".list-row-container").remove();
-
 		if (this.data.length > 0) {
 			// append rows
 			let idx = 0;
@@ -801,13 +807,39 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		return this.get_meta_html(doc);
 	}
 
-	get_list_row_html(doc) {
-		return this.get_list_row_html_skeleton(this.get_left_html(doc), this.get_right_html(doc));
+	get_childs_html(doc) {
+		if (doc && typeof doc.has_variants !== 'undefined') {
+			if(doc.has_variants == 1){
+				let relevant_variants = Array.isArray(this.data) ? this.data.filter(variant => variant.name === doc.name) : [];
+				
+				if(doc._childs){
+					let variant = doc._childs;
+					let html = '<div class="level child-row">';
+					variant.forEach((element, index, array) => {
+						html += this.get_list_row_html_skeleton(this.get_left_html(element), this.get_right_html(element));
+					});
+					html += '</div>';
+					return html;
+				}
+			}
+		}
 	}
 
-	get_list_row_html_skeleton(left = "", right = "") {
+	get_list_row_html(doc) {
+		return this.get_list_row_html_skeleton(this.get_left_html(doc), this.get_right_html(doc),this.get_childs_html(doc));
+	}
+
+
+
+	get_list_row_html_skeleton(left = "", right = "", childs = "") {
 		return `
-			<div class="list-row-container" tabindex="1">
+			<div class="list-row-container${childs ? " has-child" : ""}" tabindex="1">
+				${childs ? `
+					<div class="level-child list-row-collapse">
+						<span class="line-one"></span>
+						<span class="line-two"></span>
+					</div>
+				` : ''}
 				<div class="level list-row">
 					<div class="level-left ellipsis">
 						${left}
@@ -816,6 +848,13 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 						${right}
 					</div>
 				</div>
+				
+				${childs ? `
+					<div class="level child-row">
+						<div class="level-left ellipsis">${childs}</div>
+					</div>
+				` : ''}
+				
 				<div class="list-row-border"></div>
 			</div>
 		`;
@@ -891,6 +930,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 				_value = _value * out_of_ratings;
 			}
 
+
+			//console.log(fieldname);
+
+
 			if (df.fieldtype === "Image" || df.fieldtype === "Attach Image") {
 				html = df.options
 					? `<img src="${doc[df.options]}"
@@ -926,6 +969,8 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 				${html}
 			</span>`;
 		};
+
+		
 
 		const class_map = {
 			Subject: "list-subject level",
@@ -1036,7 +1081,6 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	get_count_str() {
 		let current_count = this.data.length;
 		let count_without_children = this.data.uniqBy((d) => d.name).length;
-
 		return frappe.db
 			.count(this.doctype, {
 				filters: this.get_filters_for_args(),
@@ -1431,6 +1475,17 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 			this.on_row_checked();
 		});
+
+		this.$result.on("click", ".has-child .list-row-checkbox", function(){
+			let data_name = $(this).attr("data-name")
+			let list_row = $(`.child-row .list-row-checkbox[data-name*="${data_name}"]`).not(`div[data-name*="${data_name} "]`)
+
+			if ($(this).prop("checked")){
+			  list_row.prop("checked", true)
+			} else {
+			  list_row.prop("checked", false)
+			}
+		})
 
 		this.$result.on("click", ".list-row-checkbox", (e) => {
 			const $target = $(e.currentTarget);

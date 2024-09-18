@@ -187,17 +187,20 @@ frappe.ui.form.Layout = class Layout {
 				$tabs = $(tabslist);
 			}
 
-			var $newList = $('<ul id="header_menu"></ul>');
+			var $newList = $('<ul class="header-menu-layout" id="header_menu"></ul>');
 			var lastClickedItem = null;
-
+			$(".navbar-current-docname").html(`<div class="skel-row">
+				<div class="skel-col-6 standard"></div>
+			</div>`);
 			setTimeout(function () {
-				$(".navbar-current-docname").html('');
+				
 				$tabs.find('li').each(function (index, element) {
 					if ($(element).hasClass('show')) {
 						let $anchor = $(element).find('a');
 						let anchorText = $anchor.text();
 						let anchorId = $anchor.attr('id');
 						let $newLi = $('<li></li>');
+						let activeid = $anchor.hasClass('active');
 						// $newLi.attr("targetTab",anchorText);
 						// console.log($anchor)
 						let $newAnchor = $('<a role="tab"></a>').text(anchorText);
@@ -209,6 +212,9 @@ frappe.ui.form.Layout = class Layout {
 								lastClickedItem.removeClass('active');
 							}
 							$newLi.addClass('active');
+							if(activeid){
+								$newLi.addClass('active');
+							}
 							lastClickedItem = $newLi;
 						});
 						$newList.append($newLi);
@@ -216,9 +222,12 @@ frappe.ui.form.Layout = class Layout {
 				});
 				let slider_active = $('<div class="slider-active"></div>')
 				$newList.append(slider_active);
+				// $newList.css("display","none");
 				$(".navbar-current-docname").html($newList);
 				$("#header_menu li:first").css("color", "white");
-
+				// setTimeout(() => {
+				// 	$newList.show('slow');
+				// }, 100)
 			}, 500);
 		}
 	}
@@ -564,12 +573,22 @@ frappe.ui.form.Layout = class Layout {
 			const linkText = $(e.currentTarget).text().trim();
 			$('#header_menu li').each(function () {
 				const itemText = $(this).find('a').text().trim();
+				$(this).find("a").removeAttr("style")
 				if (itemText === linkText) {
-					$(this).addClass('active').siblings().removeClass('active'); // Optionally remove active from siblings
-					// muzammal code
-					// animate_tab_change(this);
-					// muzammal code
-
+					$(this).addClass('active').siblings().removeClass('active'); // Optionally remove active from siblings	
+					var position = $(this).position();
+					if( position.left < 1 ){
+						$("#header_menu .slider-active").css("display","none");
+						$("#header_menu li a").css("color","#18181B");
+						$(this).find("a").css({
+							"margin": "0",
+							"padding": "8px 15px",
+							"border": "none",
+							"borderRadius": "9999px",
+							"backgroundColor": "#006AFF",
+							"color": "white"
+						});
+					}
 				}
 			});
 
@@ -585,7 +604,7 @@ frappe.ui.form.Layout = class Layout {
 						//$(".slider-active-sticky").css("display", "inline-block")
 						$(".form-tabs-list").addClass("form-tabs-sticky-down");
 						$("html, body").animate({ scrollTop: 0 }, "slow");
-						$(this.frm.$wrapper[0]).css({ "margin-top": "50px" });
+						// $(this.frm.$wrapper[0]).css({ "margin-top": "50px" });
 					}
 				}, 3);
 			}
@@ -597,7 +616,12 @@ frappe.ui.form.Layout = class Layout {
 
 		$(document).ready(function(){
 			var scrollTop = $(window).scrollTop();
-			
+
+			setTimeout(() => {
+				let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child")
+				chatBox.scrollTop(99999999)
+			}, 100)
+
 			if (scrollTop < 30) {
 				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
 			}
@@ -605,9 +629,11 @@ frappe.ui.form.Layout = class Layout {
 
 		document.addEventListener('wheel', function (event) {
 			var scrollTop = $(window).scrollTop();
+
 			if (scrollTop == 0) {
+				// page_con.css({ "margin-top": "12px" });
 				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
-			
+
 				tabs_list.removeClass("form-tabs-sticky-down");
 				tabs_list.addClass("form-tabs-sticky-up");
 				// $(".slider-active-sticky").css("display", "none")
@@ -617,9 +643,9 @@ frappe.ui.form.Layout = class Layout {
 				window.setTimeout(function () {
 					tabs_list.removeClass('slide-up');
 				}, 300);
-				page_con.css({ "margin-top": "0px" });
+
 				$(".navbar-expand").addClass("sticky-top");
-			} else if (scrollTop < 200) {
+			} else if (scrollTop < 50) {
 				page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
 			} else {
 				page_body.find('.sidebar-right-comment').removeClass("full-top-comment-section");
@@ -628,15 +654,18 @@ frappe.ui.form.Layout = class Layout {
 		});
 
 		$(window).scroll(
-			frappe.utils.throttle(() => {
-				if (isTabClick) return; // Skip scroll handling if a tab link is being clicked
+			// frappe.utils.throttle(() => {
+			// 	if (isTabClick) return; // Skip scroll handling if a tab link is being clicked
+			// 	last_scroll = current_scroll;
+			// }, 50) // Reduced throttling delay for more responsiveness
+
+			// Move the scrolling function outside the throttle to prevent showing the topbar that can overlap the menu tab.
+			() => {
 				let current_scroll = document.documentElement.scrollTop;
 				if (current_scroll < 500) {
-					if(current_scroll < 150){
-						console.log(current_scroll);
+					if (current_scroll < 50){
 						page_body.find('.sidebar-right-comment').addClass("full-top-comment-section");
-					}
-					else{
+					} else {
 						page_body.find('.sidebar-right-comment').removeClass("full-top-comment-section");
 					}
 					tabs_list.removeClass("form-tabs-sticky-down");
@@ -647,17 +676,16 @@ frappe.ui.form.Layout = class Layout {
 					window.setTimeout(function () {
 						tabs_list.removeClass('slide-up');
 					}, 300);
-					$(this.frm.$wrapper[0]).css({ "margin-top": "0px" });
+					// $(this.frm.$wrapper[0]).css({ "margin-top": "0px" });
 					$(".navbar-expand").addClass("sticky-top");
 				} else {
 					tabs_list.removeClass("form-tabs-sticky-up");
 					tabs_list.addClass("form-tabs-sticky-down");
 					page_head.removeClass("form-tabs-sticky-up-head");
 					page_head.addClass("form-tabs-sticky-down-head");
-					$(".navbar-expand").removeClass("sticky-top");
+					$(".navbar-expand").removeClass("sticky-top")
 				}
-				last_scroll = current_scroll;
-			}, 200) // Reduced throttling delay for more responsiveness
+			}
 		);
 		$(".navbar-expand").addClass("sticky-top");
 	}
@@ -896,23 +924,6 @@ frappe.ui.form.Layout = class Layout {
 			}
 		}
 	}
-	// muzammal code
-
-	animate_tab_change(x) {
-		console.log(x);
-		// var position = $(this).parent().position();
-		// var width = $(this).parent().width();
-		// $("#form-tabs .slider-active-sticky").css("display","inline-block");
-		// $("#form-tabs li a").css("color","inherit")
-		// $(this).parent().css("color","white")
-		// $("#form-tabs .slider-active-sticky").css({"left":+ position.left,"width":width});
-		// var actWidth = $("#form-tabs li a").find(".active").parent("li").width();
-		// var actPosition = $("#form-tabs li .active").position();
-		// if( typeof actPosition !="undefined" ){
-		//   $("#form-tabs .slider-active-sticky").css({"left":+ actPosition.left,"width": actWidth});
-		// }
-	}
-	// muzammal code
 	evaluate_depends_on_value(expression) {
 		let out = null;
 		let doc = this.doc;

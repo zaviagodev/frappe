@@ -934,12 +934,13 @@ div[data-fieldtype="Attach Multiple Images"] {
 		top:0;
 		opacity:0;
 		visibility:hidden;
+		z-index:-1;
 		background-color:rgba(0,0,0,0.6);
-		z-index:1029;
 		transition:opacity 300ms, visibility 300ms;
 	}
 	#navbar-overlay-mobile.active {
 		opacity:1;
+		z-index:1029;
 		visibility:visible;
 		transition:opacity 300ms, visibility 300ms;
 	}
@@ -1547,10 +1548,6 @@ span.navbar-right-heart-button-icons {
 
 
 
-
-
-
-
 .sticky-header-comment-section.sidebar-right-comment {
     height: calc(100vh) !important;
     background: transparent !important;
@@ -1564,10 +1561,9 @@ span.navbar-right-heart-button-icons {
 .sidebar-right-comment {
     height: 100vh !important;
 }
-.col-lg-2.layout-right-section.sidebar-right-comment.activity.full-top-comment-section {
+/* .col-lg-2.layout-right-section.sidebar-right-comment.activity.full-top-comment-section {
     height: calc(100vh - 150px) !important;
-}
-
+} */
 
 
 .loadingBarContainer {
@@ -1585,4 +1581,37 @@ span.navbar-right-heart-button-icons {
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+.level-child.list-row-collapse {
+    background: #5e5757;
+    width: 22px;
+    text-align: center;
+    border-radius: 17px;
+    color: #fff;
+}
+
+
+.level.child-row {
+	max-height: 0;
+	transition: max-height 0.6s ease-out;
+    overflow: hidden;
+}
+.level.child-row.active-child {
+    max-height: 2000px;
+    transition: max-height 1s ease-in;
+}
+.level.child-row.active-child .level.child-row{
+	max-height: 2000px;
+    transition: max-height 1s ease-in;
+}
+
+.level-child.list-row-collapse {
+	cursor: pointer;
+    margin-top: 18px;
+    position: absolute;
+    margin-left: -6px;
+}
+
+.level.child-row.active-child {
+    height: auto;
 }

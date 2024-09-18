@@ -692,9 +692,7 @@ frappe.ui.form.Form = class FrappeForm {
 			setTimeout(function() { 
 				sales_channel_logo(sale_channel);
 			}, 1200);
-			
 		}
-		console.log("refresh ")
 	}
 
 	cleanup_refresh() {
@@ -755,21 +753,37 @@ frappe.ui.form.Form = class FrappeForm {
 		this.show_submit_message();
 		this.clear_custom_buttons();
 		this.show_web_link();
-		
 	}
 
 	refresh_updates() {
 		let pagedata = this.page.parent;
 		pagedata = $(pagedata);
-		//setTimeout(function(){
-			$('body').find(".navbar-current-docname").html('');
+		// setTimeout(function(){
+			$('body').find(".navbar-current-docname").html(`<div class="skel-row">
+				<div class="skel-col-6 standard"></div>
+			</div>`);
 			if(this.doc.__islocal){
 				$('body').addClass("new-doc-view");
+				
+				if ($("div#new-doc-overlay").length === 0){
+					$('body').append('<div id="new-doc-overlay"></div>')
+				}
 			}
-			else{
-				$('body').addClass("form-view");
+			else {
+				$('body').removeClass("new-doc-view")
+				$('div#new-doc-overlay').remove()
+
+				// gsap.set($(".page-container"),{top:"0"})
+
+				if (this.doc.doctype === "Settings"){
+					$('body').addClass("settings-view");
+					$('body').removeClass("form-view");
+				} else {
+					$('body').addClass("form-view");
+					$('body').removeClass("settings-view");
+				}
 			}
-			$('body').removeClass("list-view");
+
 			let path = $('body').attr("data-route");
 			if (path != null) {
 				let splitted_path = path.split("/");
@@ -783,9 +797,42 @@ frappe.ui.form.Form = class FrappeForm {
 
 			let lastClickedItem = null;
 			let tabslist = pagedata.find("#form-tabs").html();
+
+			// Hide the navbar in case there are no menu tabs on each doctype
+			let noMenuTabsDoctypes = ["Pricing Rule", "Loyalty Program", "Coupon Code", "Promotional Scheme", "Brand", "Price List", "Payment Entry", "Customer Group", "Product Bundle", "Item Attribute", "Contact"]
+			if (noMenuTabsDoctypes.includes(this.doc.doctype)) {
+				$('header.navbar.navbar-expand').addClass("hide") 
+			} else {
+				$('.form-view header.navbar.navbar-expand').removeClass("hide") 
+			}
+
+			// Hide the navbar only on the new form
+			if (this.doc.doctype === "Item") {
+				$('.new-doc-view header.navbar.navbar-expand').addClass("hide") 
+			}
+
 			if(tabslist){
+				$('[data-route*="List"]').addClass("list-view");
+				$('[data-route*="List"] .main-header').addClass("navbar-list");
+				$('[data-route*="List"] header.navbar.navbar-expand').addClass("navbar-list");
+
+				$('[data-route*="List"]').removeClass("form-view");
+				$('[data-route*="List"]').removeClass("new-doc-view");
+				$('[data-route*="Form"]').removeClass("list-view");
+				$('[data-route*="Form"] .main-header').removeClass("navbar-list");
+				$('[data-route*="Form"] header.navbar.navbar-expand').removeClass("navbar-list");
+
+				// This code is for auto-scrolling the right sidebar to the bottom
+				setTimeout(() => {
+					$(".sidebar-right-comment").css("display","none")
+					let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child")
+					chatBox.scrollTop(99999999)
+
+					$('[data-route*="List"] header.navbar.navbar-expand').css("display", "flex")
+				}, 100)
+
 				let $tabs = $('<div>').html(tabslist);
-				let $newList = $('<ul id="header_menu"></ul>');
+				let $newList = $('<ul class="header-menu-form" id="header_menu"></ul>');
 				
 				$tabs.find('li').each(function(index, element) {
 					if ($(element).hasClass('show')) {
@@ -810,17 +857,23 @@ frappe.ui.form.Form = class FrappeForm {
 							$newLi.addClass('active');
 						}
 						$newList.append($newLi);
-						
 					}
 				});
 				let slider_active=$('<div class="slider-active"></div>')
 				$newList.append(slider_active);
-				
-				$("#body").find(".navbar-current-docname").html($newList);
+				// $newList.css("display","none");
+				$("#navbar-current-docname").html($newList);
 				$("#header_menu li:first").css("color","white");
-				$("#body").find("header").removeClass("navbar-list");
+				$("#body").find("header").removeClass("navbar-list");	
+
+				setTimeout(() => {
+					if ($("body").hasClass("new-doc-view")){ $newList.show() }
+				}, 10)
+
+				setTimeout(() => {
+					$('.custom-actions, .page-icon-group').css("display","none"); //always hidden until user clicks see more button
+				}, 100);	
 			}
-		//},100);
 	}
 
 
@@ -2249,12 +2302,12 @@ function sales_channel_logo(selected_channel){
 		$(".s-c-img-logo").css("display","none");
 	
 		selected_channel=selected_channel.replace(/\s+/g, '-');
-		selected_channel="#s-"+selected_channel+"-logo";
-		if( selected_channel=="#s-Twitter-/-X-logo" ){
-			selected_channel="#s-twitter-logo"
+		selected_channel=".s-"+selected_channel+"-logo";
+		if( selected_channel==".s-Twitter-/-X-logo" ){
+			selected_channel=".s-twitter-logo"
 		}
-		if( selected_channel=="#s-TikTok-Shop-logo" ){
-			selected_channel="#s-tiktok-logo"
+		if( selected_channel==".s-TikTok-Shop-logo" ){
+			selected_channel=".s-tiktok-logo"
 		}
 	
 		if( $(selected_channel).length ){
@@ -2262,4 +2315,3 @@ function sales_channel_logo(selected_channel){
 		}
 	}
 }
-

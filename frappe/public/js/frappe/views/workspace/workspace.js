@@ -391,6 +391,10 @@ frappe.views.Workspace = class Workspace {
 	get_page_to_show() {
 		let default_page;
 
+		if ($("body").hasClass("new-doc-view")){
+			$("body").removeClass("new-doc-view")
+		}
+
 		if (frappe.boot.user.default_workspace) {
 			default_page = {
 				name: frappe.boot.user.default_workspace.title,
