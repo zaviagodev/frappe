@@ -24,6 +24,7 @@ import frappe.utils.response
 from frappe import _
 from frappe.auth import SAFE_HTTP_METHODS, UNSAFE_HTTP_METHODS, HTTPRequest, validate_auth
 from frappe.middlewares import StaticDataMiddleware
+from frappe.sentry.sentry import capture_exception
 from frappe.utils import CallbackManager, cint, get_site_name
 from frappe.utils.data import escape_html
 from frappe.utils.deprecations import deprecation_warning
@@ -321,6 +322,10 @@ def handle_exception(e):
 	)
 
 	allow_traceback = frappe.get_system_settings("allow_error_traceback") if frappe.db else False
+
+	if http_status_code >= 500:
+		capture_exception()
+
 
 	if not frappe.session.user:
 		# If session creation fails then user won't be unset. This causes a lot of code that
