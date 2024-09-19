@@ -37,6 +37,7 @@ def log_error(title=None, message=None, reference_doctype=None, reference_name=N
 	"""Log error to Error Log"""
 	from frappe.monitor import get_trace_id
 	from frappe.utils.sentry import capture_exception
+	from frappe.sentry.sentry import capture_exception as sentry_exception_capture
 
 	# Parameter ALERT:
 	# the title and message may be swapped
@@ -68,6 +69,8 @@ def log_error(title=None, message=None, reference_doctype=None, reference_name=N
 	)
 
 	# Capture exception data if telemetry is enabled
+	with suppress(Exception):
+		sentry_exception_capture(reference_doctype, reference_name)
 	capture_exception(message=f"{title}\n{traceback}")
 
 	if frappe.flags.read_only or defer_insert:
