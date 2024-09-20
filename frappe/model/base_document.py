@@ -245,25 +245,23 @@ class BaseDocument:
 		"""Append an item to a child table.
 
 		Example:
-				doc.append("childtable", {
-						"child_table_field": "value",
-						"child_table_int_field": 0,
-						...
-				})
+		                doc.append("childtable", {
+		                                "child_table_field": "value",
+		                                "child_table_int_field": 0,
+		                                ...
+		                })
 		"""
 		if value is None:
 			value = []  # Assign an empty array if value is None
 
 		if (table := self.__dict__.get(key)) is None:
 			self.__dict__[key] = table = []
-   
+
 		ret_value = self._init_child(value, key)
 		table.append(ret_value)
 
 		# reference parent document
 		ret_value.parent_doc = self
-  
-		
 
 		return ret_value
 

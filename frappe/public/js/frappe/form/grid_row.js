@@ -86,7 +86,7 @@ export default class GridRow {
 		}
 	}
 	set_popovers() {
-		const fields = this.wrapper.find('.attached-image-link');
+		const fields = this.wrapper.find(".attached-image-link");
 		if (!fields.length) return;
 		fields.each(function () {
 			const txt = $(this);

@@ -326,7 +326,6 @@ def handle_exception(e):
 	if http_status_code >= 500:
 		capture_exception()
 
-
 	if not frappe.session.user:
 		# If session creation fails then user won't be unset. This causes a lot of code that
 		# assumes presence of this to fail. Session creation fails => guest or expired login

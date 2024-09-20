@@ -36,8 +36,8 @@ def _is_ldap_exception(e):
 def log_error(title=None, message=None, reference_doctype=None, reference_name=None, *, defer_insert=False):
 	"""Log error to Error Log"""
 	from frappe.monitor import get_trace_id
-	from frappe.utils.sentry import capture_exception
 	from frappe.sentry.sentry import capture_exception as sentry_exception_capture
+	from frappe.utils.sentry import capture_exception
 
 	# Parameter ALERT:
 	# the title and message may be swapped
