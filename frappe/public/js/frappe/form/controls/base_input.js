@@ -242,7 +242,7 @@ frappe.ui.form.ControlInput = class ControlInput extends frappe.ui.form.Control 
 			$(this.disp_area).toggleClass("bold", !!(this.df.bold || this.df.reqd));
 		}
 	}
-	
+
 	set_placeholder(placeholderText) {
 		if (placeholderText !== undefined) {
 			this.df.placeholder = placeholderText;

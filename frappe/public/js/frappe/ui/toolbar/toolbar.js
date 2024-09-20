@@ -22,7 +22,6 @@ frappe.ui.toolbar.Toolbar = class {
 		this.setup_help();
 		this.setup_announcement_widget();
 		this.make();
-		
 	}
 
 	make() {

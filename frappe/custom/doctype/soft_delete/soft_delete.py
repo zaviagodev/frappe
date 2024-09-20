@@ -12,8 +12,9 @@ class SoftDelete(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from frappe.types import DF
 		from webshop.webshop.doctype.soft_delete_list.soft_delete_list import SoftDeleteList
+
+		from frappe.types import DF
 
 		deleted_items: DF.Table[SoftDeleteList]
 		doc_type: DF.Link | None

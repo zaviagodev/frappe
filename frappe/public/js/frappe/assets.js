@@ -146,54 +146,55 @@ function is_reload() {
 	}
 }
 //top header content
-window.onload = function() {
-	page_changed()
+window.onload = function () {
+	page_changed();
 };
-document.addEventListener('DOMContentLoaded',page_changed );
-$(window).on('hashchange', page_changed);
-$(window).on('load', page_changed);
-document.addEventListener('DOMContentLoaded', function() {
-page_changed(event)
-}  , false);
+document.addEventListener("DOMContentLoaded", page_changed);
+$(window).on("hashchange", page_changed);
+$(window).on("load", page_changed);
+document.addEventListener(
+	"DOMContentLoaded",
+	function () {
+		page_changed(event);
+	},
+	false
+);
 function page_changed(event) {
 	// waiting for page to load completely
-	setTimeout(show_current_page , 1500);
+	setTimeout(show_current_page, 1500);
 }
 
 var pushState = history.pushState;
 history.pushState = function () {
-    pushState.apply(history, arguments);
-    setTimeout(show_current_page , 1500);
-
+	pushState.apply(history, arguments);
+	setTimeout(show_current_page, 1500);
 };
-window.onpopstate = function(event) {
-	setTimeout(show_current_page , 1500);
+window.onpopstate = function (event) {
+	setTimeout(show_current_page, 1500);
 };
-function show_current_page(){
-	
+function show_current_page() {
 	let path = $("body").attr("data-route");
- 			if( path != null ){
-				let splitted_path=path.split("/");
-				let list_name='';
-				let cur_docname=document.title;
-				cur_docname=cur_docname.split('-');
-				cur_docname=cur_docname[0];
-				list_name=splitted_path[1];
-				if( splitted_path[0] =="List" ){
-					cur_docname=splitted_path[1];
-				}
-				if( list_name =="Sales Invoice" || list_name =="Payment Entry" ){
-					cur_docname=splitted_path[2]
-				}
-			
+	if (path != null) {
+		let splitted_path = path.split("/");
+		let list_name = "";
+		let cur_docname = document.title;
+		cur_docname = cur_docname.split("-");
+		cur_docname = cur_docname[0];
+		list_name = splitted_path[1];
+		if (splitted_path[0] == "List") {
+			cur_docname = splitted_path[1];
+		}
+		if (list_name == "Sales Invoice" || list_name == "Payment Entry") {
+			cur_docname = splitted_path[2];
+		}
 
-				if(cur_docname != null && $("#navbar-current-docname").length){
-					$("#navbar-current-docname").text(cur_docname);
-				}
-				if(list_name != null && $("#navbar-header-text").length){
-					$("#navbar-header-text").text(list_name);
-				}
-			} 
+		if (cur_docname != null && $("#navbar-current-docname").length) {
+			$("#navbar-current-docname").text(cur_docname);
+		}
+		if (list_name != null && $("#navbar-header-text").length) {
+			$("#navbar-header-text").text(list_name);
+		}
+	}
 }
 //top header content
 

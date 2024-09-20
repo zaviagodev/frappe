@@ -404,7 +404,11 @@ frappe.form.formatters = {
 };
 
 function format_attachment_url(url, isIamge = false) {
-	return url ? `<a ${isIamge ? 'class="attached-image-link"' : ''} href="${url}" target="_blank">${url}</a>` : "";
+	return url
+		? `<a ${
+				isIamge ? 'class="attached-image-link"' : ""
+		  } href="${url}" target="_blank">${url}</a>`
+		: "";
 }
 
 frappe.form.get_formatter = function (fieldtype) {
