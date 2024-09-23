@@ -22,5 +22,4 @@ class ImageList(Document):
 		parentfield: DF.Data
 		parenttype: DF.Data
 		thumbnail_url: DF.SmallText | None
-	# end: auto-generated types	
-
+	# end: auto-generated types

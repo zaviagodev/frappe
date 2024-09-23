@@ -36,17 +36,13 @@ frappe.ui.Page = class Page {
 
 		this.make();
 		frappe.ui.pages[frappe.get_route_str()] = this;
-
-
 	}
 
 	make() {
-
 		this.wrapper = $(this.parent);
 		this.add_main_section();
 		this.setup_scroll_handler();
 		this.setup_sidebar_toggle();
-
 	}
 
 	setup_scroll_handler() {
@@ -82,7 +78,6 @@ frappe.ui.Page = class Page {
 
 	load_lib(callback) {
 		frappe.require(this.required_libs, callback);
-
 	}
 
 	add_main_section() {
@@ -121,17 +116,17 @@ frappe.ui.Page = class Page {
 			let path = $("body").attr("data-route");
 			if (path != null) {
 				let splitted_path = path.split("/");
-				let list_name = '';
+				let list_name = "";
 				let cur_docname = title;
 				list_name = splitted_path[1];
 				if (splitted_path[0] == "List") {
 					cur_docname = splitted_path[1];
 				}
 				if (list_name == "Sales Invoice" || list_name == "Payment Entry") {
-					cur_docname = splitted_path[2]
+					cur_docname = splitted_path[2];
 				} else {
 					cur_docname = document.title;
-					cur_docname = cur_docname.split('-');
+					cur_docname = cur_docname.split("-");
 					cur_docname = cur_docname[0];
 				}
 
@@ -143,10 +138,8 @@ frappe.ui.Page = class Page {
 				}
 			}
 		}, 1000);
-
 	}
 	setup_page() {
-
 		this.$title_area = this.wrapper.find(".title-area");
 
 		this.$sub_title_area = this.wrapper.find("h6");
@@ -250,22 +243,24 @@ frappe.ui.Page = class Page {
 				} else {
 					sidebar_wrapper.toggle();
 					if (rightside.hasClass("active")) {
-						setTimeout(function () {///workaround
+						setTimeout(function () {
+							///workaround
 							rightside.removeClass("active");
-							$('.page-container').removeClass('page-container-setup');
-							rightside.css({ "display": "none" });
-							$(".layout-side-section").css({ "display": "none" });
+							$(".page-container").removeClass("page-container-setup");
+							rightside.css({ display: "none" });
+							$(".layout-side-section").css({ display: "none" });
 							$(".page-container").css({ "margin-left": "0" });
 						}, 10);
-
-
 					} else {
-						setTimeout(function () {///workaround
-							rightside.css({ "display": "block" });
+						setTimeout(function () {
+							///workaround
+							rightside.css({ display: "block" });
 							rightside.addClass("active");
-							$('.page-container').addClass('page-container-setup');
-							$(".layout-side-section").css({ "display": "block" });
-							$(".page-container").css({ "margin-left": "var(--right-sidebar-size)" });
+							$(".page-container").addClass("page-container-setup");
+							$(".layout-side-section").css({ display: "block" });
+							$(".page-container").css({
+								"margin-left": "var(--right-sidebar-size)",
+							});
 						}, 10);
 					}
 				}
@@ -281,24 +276,24 @@ frappe.ui.Page = class Page {
 			} else {
 				sidebar_wrapper.toggle();
 				if (rightside.hasClass("active")) {
-					setTimeout(function () {///workaround
+					setTimeout(function () {
+						///workaround
 						rightside.removeClass("active");
-						rightside.css({ "display": "none" });
-						$(".layout-side-section").css({ "display": "none" });
-						$("#open-sidebar-top-navbar-ico").css({ "display": "inline-block" });
-						$("#close-sidebar-top-navbar-ico").css({ "display": "none" });
+						rightside.css({ display: "none" });
+						$(".layout-side-section").css({ display: "none" });
+						$("#open-sidebar-top-navbar-ico").css({ display: "inline-block" });
+						$("#close-sidebar-top-navbar-ico").css({ display: "none" });
 						$(".page-container").css({ "margin-left": "0" });
 					}, 10);
-
-
 				} else {
-					setTimeout(function () {///workaround
-						rightside.css({ "display": "block" });
+					setTimeout(function () {
+						///workaround
+						rightside.css({ display: "block" });
 						rightside.addClass("active");
-						$("#open-sidebar-top-navbar-ico").css({ "display": "none" });
-						$("#close-sidebar-top-navbar-ico").css({ "display": "inline-block" });
+						$("#open-sidebar-top-navbar-ico").css({ display: "none" });
+						$("#close-sidebar-top-navbar-ico").css({ display: "inline-block" });
 
-						$(".layout-side-section").css({ "display": "block" });
+						$(".layout-side-section").css({ display: "block" });
 						$(".page-container").css({ "margin-left": "var(--right-sidebar-size)" });
 					}, 10);
 				}
@@ -1045,6 +1040,5 @@ frappe.ui.Page = class Page {
 		this.views[name].toggle(true);
 
 		this.wrapper.trigger("view-change");
-
 	}
 };

@@ -1,8 +1,9 @@
 # Copyright (c) 2024, Frappe Technologies and contributors
 # For license information, please see license.txt
 
-from frappe.model.document import Document
 from frappe.geo import geo_Source
+from frappe.model.document import Document
+
 
 class State(Document):
 	# begin: auto-generated types
@@ -27,21 +28,21 @@ class State(Document):
 		geo_Source.insert(self.as_dict())
 
 	def db_update(self, *args, **kwargs):
-		updated_state =  self.as_dict()
+		updated_state = self.as_dict()
 		updated_state.pop("modified")
 		geo_Source.update(updated_state)
 
 	def delete(self):
 		geo_Source.delete("State", self.name)
-			
+
 	@staticmethod
 	def get_list(args):
 		return geo_Source.get_list("State", args)
-	
-	@staticmethod	
+
+	@staticmethod
 	def get_count(args):
 		return geo_Source.get_count("State", args)
-	
+
 	@staticmethod
 	def get_stats(self):
 		"""Returns the stats of cities"""
