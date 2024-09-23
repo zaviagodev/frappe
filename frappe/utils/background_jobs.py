@@ -270,6 +270,13 @@ def start_worker(
 ) -> None:  # pragma: no cover
 	"""Wrapper to start rq worker. Connects to redis and monitors these queues."""
 
+	from frappe.sentry import init_sentry
+
+	try:
+		init_sentry()
+	except Exception as _:
+		print("Failed to sentry")
+
 	if not strategy:
 		strategy = DequeueStrategy.DEFAULT
 
