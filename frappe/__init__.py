@@ -2035,6 +2035,16 @@ def get_list(doctype, *args, **kwargs):
 	        frappe.get_list("ToDo", fields="*", filters = [["modified", ">", "2014-01-01"]])
 	"""
 	import frappe.model.db_query
+	from frappe.model.base_document import get_controller
+
+	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
+	if softdelet == 1:
+		filter = kwargs["filters"]
+		filter.append([doctype, "docstatus", "!=", "5"])
+
+	controller = get_controller(doctype)
+	if hasattr(controller, "get_list"):
+		return controller.get_list(kwargs)
 
 	return frappe.model.db_query.DatabaseQuery(doctype).execute(*args, **kwargs)
 
