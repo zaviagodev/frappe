@@ -86,7 +86,7 @@ export default class GridRow {
 		}
 	}
 	set_popovers() {
-		const fields = this.wrapper.find('.attached-image-link');
+		const fields = this.wrapper.find(".attached-image-link");
 		if (!fields.length) return;
 		fields.each(function () {
 			const txt = $(this);
@@ -117,11 +117,10 @@ export default class GridRow {
 	remove() {
 		var me = this;
 		if (this.grid.is_editable()) {
+			if (this.get_open_form()) {
+				this.hide_form();
+			}
 			if (this.frm) {
-				if (this.get_open_form()) {
-					this.hide_form();
-				}
-
 				frappe
 					.run_serially([
 						() => {
@@ -864,10 +863,12 @@ export default class GridRow {
 					delete this.grid.filter[df.fieldname];
 				}
 
-				this.grid.grid_sortable.option(
-					"disabled",
-					Object.keys(this.grid.filter).length !== 0
-				);
+				if (this.grid.grid_sortable) {
+					this.grid.grid_sortable.option(
+						"disabled",
+						Object.keys(this.grid.filter).length !== 0
+					);
+				}
 
 				this.grid.prevent_build = true;
 				this.grid.grid_pagination.go_to_page(1);

@@ -181,16 +181,34 @@ onMounted(() => selected.value && label_input.value.focus_on_label());
 </script>
 
 <template>
-	<div :class="['field', selected ? 'selected' : hovered ? 'hovered' : '']" :title="field.df.fieldname"
-		@click.stop="store.form.selected_field = field.df" @mouseover.stop="hovered = true"
-		@mouseout.stop="hovered = false">
-		<component :is="component" :df="field.df" :data-fieldname="field.df.fieldname" :data-fieldtype="field.df.fieldtype">
+	<div
+		:class="['field', selected ? 'selected' : hovered ? 'hovered' : '']"
+		:title="field.df.fieldname"
+		@click.stop="store.form.selected_field = field.df"
+		@mouseover.stop="hovered = true"
+		@mouseout.stop="hovered = false"
+	>
+		<component
+			:is="component"
+			:df="field.df"
+			:data-fieldname="field.df.fieldname"
+			:data-fieldtype="field.df.fieldtype"
+		>
 			<template #label>
 				<div class="field-label">
-					<EditableInput ref="label_input" :text="field.df.label" :placeholder="__('Label')"
-						:empty_label="`${__('No Label')} (${field.df.fieldtype})`" v-model="field.df.label" />
+					<EditableInput
+						ref="label_input"
+						:text="field.df.label"
+						:placeholder="__('Label')"
+						:empty_label="`${__('No Label')} (${field.df.fieldtype})`"
+						v-model="field.df.label"
+					/>
 					<div class="reqd-asterisk" v-if="field.df.reqd">*</div>
-					<div class="help-icon" v-if="field.df.documentation_url" v-html="frappe.utils.icon('help', 'sm')"></div>
+					<div
+						class="help-icon"
+						v-if="field.df.documentation_url"
+						v-html="frappe.utils.icon('help', 'sm')"
+					></div>
 				</div>
 			</template>
 			<template #actions>

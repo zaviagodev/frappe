@@ -50,7 +50,7 @@ from .utils.jinja import (
 )
 from .utils.lazy_loader import lazy_import
 
-__version__ = "15.37.0"
+__version__ = "15.41.0"
 __title__ = "Frappe Framework"
 
 controllers = {}
@@ -331,7 +331,8 @@ def connect(site: str | None = None, db_name: str | None = None, set_admin_as_us
 		host=local.conf.db_host,
 		port=local.conf.db_port,
 		user=db_name or local.conf.db_name,
-		password=None,
+		password=local.conf.db_password,
+		cur_db_name=db_name or local.conf.db_name,
 	)
 	if set_admin_as_user:
 		set_user("Administrator")
@@ -351,7 +352,13 @@ def connect_replica() -> bool:
 		user = local.conf.replica_db_name
 		password = local.conf.replica_db_password
 
-	local.replica_db = get_db(host=local.conf.replica_host, user=user, password=password, port=port)
+	local.replica_db = get_db(
+		host=local.conf.replica_host,
+		port=port,
+		user=user,
+		password=password,
+		cur_db_name=local.conf.db_name,
+	)
 
 	# swap db connections
 	local.primary_db = local.db
@@ -2028,6 +2035,16 @@ def get_list(doctype, *args, **kwargs):
 	        frappe.get_list("ToDo", fields="*", filters = [["modified", ">", "2014-01-01"]])
 	"""
 	import frappe.model.db_query
+	from frappe.model.base_document import get_controller
+
+	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
+	if softdelet == 1:
+		filter = kwargs["filters"]
+		filter.append([doctype, "docstatus", "!=", "5"])
+
+	controller = get_controller(doctype)
+	if hasattr(controller, "get_list"):
+		return controller.get_list(kwargs)
 
 	return frappe.model.db_query.DatabaseQuery(doctype).execute(*args, **kwargs)
 

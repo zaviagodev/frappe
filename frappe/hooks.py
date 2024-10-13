@@ -26,14 +26,10 @@ app_include_js = [
 	"controls.bundle.js",
 	"report.bundle.js",
 	"telemetry.bundle.js",
-	"/assets/frappe/js/custom.js"
+	"/assets/frappe/js/custom.js",
 ]
 
-app_include_css = [
-	"desk.bundle.css",
-	"report.bundle.css",
-	"/assets/frappe/css/custom.css"
-]
+app_include_css = ["desk.bundle.css", "report.bundle.css", "/assets/frappe/css/custom.css"]
 app_include_icons = [
 	"frappe/icons/timeless/icons.svg",
 	"frappe/icons/espresso/icons.svg",
@@ -393,7 +389,7 @@ override_whitelisted_methods = {
 	"frappe.www.login.login_via_office365": "frappe.integrations.oauth2_logins.login_via_office365",
 	"frappe.www.login.login_via_salesforce": "frappe.integrations.oauth2_logins.login_via_salesforce",
 	"frappe.www.login.login_via_fairlogin": "frappe.integrations.oauth2_logins.login_via_fairlogin",
- 	"frappe.desk.reportview.delete_items": "frappe.desk.soft_delete.delete_items",
+	"frappe.desk.reportview.delete_items": "frappe.desk.soft_delete.delete_items",
 }
 
 ignore_links_on_delete = [
@@ -488,6 +484,12 @@ standard_navbar_items = [
 		"item_label": "View Website",
 		"item_type": "Action",
 		"action": "frappe.ui.toolbar.view_website()",
+		"is_standard": 1,
+	},
+	{
+		"item_label": "Apps",
+		"item_type": "Route",
+		"route": "/apps",
 		"is_standard": 1,
 	},
 	{

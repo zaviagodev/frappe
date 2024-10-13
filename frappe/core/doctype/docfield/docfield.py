@@ -28,7 +28,53 @@ class DocField(Document):
 		fetch_from: DF.SmallText | None
 		fetch_if_empty: DF.Check
 		fieldname: DF.Data | None
-		fieldtype: DF.Literal["Autocomplete", "Attach", "Attach Image", "Attach Multiple Images", "Barcode", "Button", "Check", "Code", "Color", "Column Break", "Connection", "Currency", "Data", "Date", "Datetime", "Duration", "Dynamic Link", "Float", "Fold", "Geolocation", "Heading", "HTML", "HTML Editor", "Icon", "Image", "Int", "JSON", "Link", "Long Text", "Markdown Editor", "Password", "Percent", "Phone", "Read Only", "Rating", "Section Break", "Select", "Signature", "Small Text", "Tab Break", "Table", "Table MultiSelect", "Text", "Text Editor", "Time"]
+		fieldtype: DF.Literal[
+			"Autocomplete",
+			"Attach",
+			"Attach Image",
+			"Attach Multiple Images",
+			"Barcode",
+			"Button",
+			"Check",
+			"Code",
+			"Color",
+			"Column Break",
+			"Connection",
+			"Currency",
+			"Data",
+			"Date",
+			"Datetime",
+			"Duration",
+			"Dynamic Link",
+			"Float",
+			"Fold",
+			"Geolocation",
+			"Heading",
+			"HTML",
+			"HTML Editor",
+			"Icon",
+			"Image",
+			"Int",
+			"JSON",
+			"Link",
+			"Long Text",
+			"Markdown Editor",
+			"Password",
+			"Percent",
+			"Phone",
+			"Read Only",
+			"Rating",
+			"Section Break",
+			"Select",
+			"Signature",
+			"Small Text",
+			"Tab Break",
+			"Table",
+			"Table MultiSelect",
+			"Text",
+			"Text Editor",
+			"Time",
+		]
 		hidden: DF.Check
 		hide_border: DF.Check
 		hide_days: DF.Check
@@ -69,6 +115,7 @@ class DocField(Document):
 		search_index: DF.Check
 		set_only_once: DF.Check
 		show_dashboard: DF.Check
+		show_on_timeline: DF.Check
 		sort_options: DF.Check
 		translatable: DF.Check
 		unique: DF.Check

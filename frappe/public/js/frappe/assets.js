@@ -149,16 +149,19 @@ function is_reload() {
 }
 //top header content
 window.onload = function () {
-	page_changed()
+	page_changed();
 };
-document.addEventListener('DOMContentLoaded', page_changed);
-$(window).on('hashchange', page_changed);
-$(window).on('load', page_changed);
+document.addEventListener("DOMContentLoaded", page_changed);
+$(window).on("hashchange", page_changed);
+$(window).on("load", page_changed);
 
-
-document.addEventListener('DOMContentLoaded', function () {
-	page_changed(event)
-}, false);
+document.addEventListener(
+	"DOMContentLoaded",
+	function () {
+		page_changed(event);
+	},
+	false
+);
 
 function page_changed(event) {
 	setTimeout(show_current_page, 1500);
@@ -166,29 +169,27 @@ function page_changed(event) {
 
 var pushState = history.pushState;
 history.pushState = function () {
-	if ($('#search-modal-centered').hasClass('show')) {
-		$('#search-modal-centered').modal('hide');
+	if ($("#search-modal-centered").hasClass("show")) {
+		$("#search-modal-centered").modal("hide");
 	}
 	pushState.apply(history, arguments);
 	setTimeout(show_current_page, 1500);
 };
 
 window.onpopstate = function (event) {
-	if ($('#search-modal-centered').hasClass('show')) {
-		$('#search-modal-centered').modal('hide');
+	if ($("#search-modal-centered").hasClass("show")) {
+		$("#search-modal-centered").modal("hide");
 	}
 	setTimeout(show_current_page, 1500);
 };
 
-
 function show_current_page() {
-
 	// $('body').on('click', '.sidebar-toggle-btns', function() {
 	// 	$('.page-title .btn-reset.sidebar-toggle-btn').trigger('click');
 	// });
 
-	$('body').on('click', '.search_filter svg', function () {
-		$('#search-icon-button').trigger('click');
+	$("body").on("click", ".search_filter svg", function () {
+		$("#search-icon-button").trigger("click");
 	});
 
 	// $('body').on('click', '.sidebar-toggle-btns', function() {
@@ -196,11 +197,9 @@ function show_current_page() {
 	// 	sidebar_wrapper.toggleClass('toggle-sidebar');
 	// });
 
-
 	// $('body').on('click', '.opne-page-sidebar-button', function() {
 	// 	$('#close-sidebar-top-navbar-ico').trigger('click');
 	// });
-
 
 	// let sidebar_toggle_btns = $(".sidebar-toggle-btns");
 	// sidebar_toggle_btns.click(() => {
@@ -218,15 +217,12 @@ function show_current_page() {
 	$(".page-container").addClass("page-container-setup");
 }
 //top header content
-$(window).on('shown.bs.modal', function (event) {
-	var button_id = $(event.relatedTarget).attr('id') // Button that triggered the modal
+$(window).on("shown.bs.modal", function (event) {
+	var button_id = $(event.relatedTarget).attr("id"); // Button that triggered the modal
 	if (button_id == "search-icon-button" || button_id == "sidebar-search") {
-		$('#navbar-search').focus();
+		$("#navbar-search").focus();
 	}
 });
-
-
-
 
 $(document).ready(function () {
 	setTimeout(function () {
@@ -266,7 +262,6 @@ $(document).ready(function () {
 		</table>";
 			frappe.msgprint(txt, __("Search Help"));
 		});
-
 	}, 1500);
 
 	setTimeout(function () {

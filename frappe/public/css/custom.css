@@ -503,7 +503,7 @@
 
 body[data-route^="Workspaces/Home"] .col-lg-2.layout-side-section{
     display: none !important;
-} 
+}
 
 /* Modify CSS of doctypes */
 
@@ -893,7 +893,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	.col-md-4.col-sm-6.col-xs-7.page-title {
 		max-width:none
 	}
-	
+
 	.row.flex.align-center.page-head-content {
 		flex-direction: column;
 		gap:8px;
@@ -1003,7 +1003,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 	}
 }
 
-@media (max-width:1336px) and (min-width:481px) { 
+@media (max-width:1336px) and (min-width:481px) {
 	/* tablet screens */
 	html,body{
 		background:#ebebeb;
@@ -1021,7 +1021,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 		margin-top: -20px;
 	}
 }
-@media (min-width:1281px) { /* hi-res laptops and desktops */ 
+@media (min-width:1281px) { /* hi-res laptops and desktops */
 	#page-Item .page-head-content{
 		padding-top: 24px;
 		padding-bottom: 24px;
@@ -1101,7 +1101,7 @@ div[data-fieldtype="Attach Multiple Images"] {
     .form-sidebar {
 		max-width: 240px !important;
 	}
-    
+
 	.form-assignments{
 		margin-top: 24px;
 	}
@@ -1142,7 +1142,7 @@ div[data-fieldtype="Attach Multiple Images"] {
 }
 .navbar-search-modal .search-icon .icon{
 	transform: scale(1.5);
-	
+
 }
 .navbar-search-modal .search-icon{
 	margin-left: -4px;

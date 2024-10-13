@@ -272,6 +272,7 @@ def delete(doctype, name):
 
 	:param doctype: DocType of the document to be deleted
 	:param name: name of the document to be deleted"""
+
 	delete_doc(doctype, name)
 
 
@@ -483,6 +484,7 @@ def insert_doc(doc) -> "Document":
 		return parent
 
 	return frappe.get_doc(doc).insert()
+
 
 def delete_doc(doctype, name):
 	"""Deletes document

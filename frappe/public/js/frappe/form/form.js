@@ -566,7 +566,7 @@ frappe.ui.form.Form = class FrappeForm {
 			}
 		}
 
-		$(document).on('click', '.opne-page-sidebar-button', function() {
+		$(document).on("click", ".opne-page-sidebar-button", function () {
 			let sidebar_toggle = $("#top-navbar-toggle-sidebar");
 			sidebar_toggle.click();
 		});
@@ -687,9 +687,9 @@ frappe.ui.form.Form = class FrappeForm {
 		// cleanup activities after refresh
 		this.cleanup_refresh(this);
 		this.refresh_updates();
-		if (typeof  this.doc.custom_sales_channel !== 'undefined' ) { 
-			let sale_channel=this.doc.custom_sales_channel
-			setTimeout(function() { 
+		if (typeof this.doc.custom_sales_channel !== "undefined") {
+			let sale_channel = this.doc.custom_sales_channel;
+			setTimeout(function () {
 				sales_channel_logo(sale_channel);
 			}, 1200);
 		}
@@ -759,123 +759,135 @@ frappe.ui.form.Form = class FrappeForm {
 		let pagedata = this.page.parent;
 		pagedata = $(pagedata);
 		// setTimeout(function(){
-			$('body').find(".navbar-current-docname").html(`<div class="skel-row">
+		$("body").find(".navbar-current-docname").html(`<div class="skel-row">
 				<div class="skel-col-6 standard"></div>
 			</div>`);
-			if(this.doc.__islocal){
-				$('body').addClass("new-doc-view");
-				
-				if ($("div#new-doc-overlay").length === 0){
-					$('body').append('<div id="new-doc-overlay"></div>')
-				}
+		if (this.doc.__islocal) {
+			$("body").addClass("new-doc-view");
+
+			if ($("div#new-doc-overlay").length === 0) {
+				$("body").append('<div id="new-doc-overlay"></div>');
 			}
-			else {
-				$('body').removeClass("new-doc-view")
-				$('div#new-doc-overlay').remove()
+		} else {
+			$("body").removeClass("new-doc-view");
+			$("div#new-doc-overlay").remove();
 
-				// gsap.set($(".page-container"),{top:"0"})
+			// gsap.set($(".page-container"),{top:"0"})
 
-				if (this.doc.doctype === "Settings"){
-					$('body').addClass("settings-view");
-					$('body').removeClass("form-view");
-				} else {
-					$('body').addClass("form-view");
-					$('body').removeClass("settings-view");
-				}
-			}
-
-			let path = $('body').attr("data-route");
-			if (path != null) {
-				let splitted_path = path.split("/");
-				let list_name = splitted_path[1];
-				this.page.wrapper.find(".navbar-header-texts").text(list_name);
-				$("#body").find(".navbar-header-text").text(list_name);
-				// setTimeout(function(){
-				// 		$("#navbar-header-text").text(list_name);
-				// }, 200);
-			}
-
-			let lastClickedItem = null;
-			let tabslist = pagedata.find("#form-tabs").html();
-
-			// Hide the navbar in case there are no menu tabs on each doctype
-			let noMenuTabsDoctypes = ["Pricing Rule", "Loyalty Program", "Coupon Code", "Promotional Scheme", "Brand", "Price List", "Payment Entry", "Customer Group", "Product Bundle", "Item Attribute", "Contact"]
-			if (noMenuTabsDoctypes.includes(this.doc.doctype)) {
-				$('header.navbar.navbar-expand').addClass("hide") 
+			if (this.doc.doctype === "Settings") {
+				$("body").addClass("settings-view");
+				$("body").removeClass("form-view");
 			} else {
-				$('.form-view header.navbar.navbar-expand').removeClass("hide") 
+				$("body").addClass("form-view");
+				$("body").removeClass("settings-view");
 			}
+		}
 
-			// Hide the navbar only on the new form
-			if (this.doc.doctype === "Item") {
-				$('.new-doc-view header.navbar.navbar-expand').addClass("hide") 
-			}
+		let path = $("body").attr("data-route");
+		if (path != null) {
+			let splitted_path = path.split("/");
+			let list_name = splitted_path[1];
+			this.page.wrapper.find(".navbar-header-texts").text(list_name);
+			$("#body").find(".navbar-header-text").text(list_name);
+			// setTimeout(function(){
+			// 		$("#navbar-header-text").text(list_name);
+			// }, 200);
+		}
 
-			if(tabslist){
-				$('[data-route*="List"]').addClass("list-view");
-				$('[data-route*="List"] .main-header').addClass("navbar-list");
-				$('[data-route*="List"] header.navbar.navbar-expand').addClass("navbar-list");
+		let lastClickedItem = null;
+		let tabslist = pagedata.find("#form-tabs").html();
 
-				$('[data-route*="List"]').removeClass("form-view");
-				$('[data-route*="List"]').removeClass("new-doc-view");
-				$('[data-route*="Form"]').removeClass("list-view");
-				$('[data-route*="Form"] .main-header').removeClass("navbar-list");
-				$('[data-route*="Form"] header.navbar.navbar-expand').removeClass("navbar-list");
+		// Hide the navbar in case there are no menu tabs on each doctype
+		let noMenuTabsDoctypes = [
+			"Pricing Rule",
+			"Loyalty Program",
+			"Coupon Code",
+			"Promotional Scheme",
+			"Brand",
+			"Price List",
+			"Payment Entry",
+			"Customer Group",
+			"Product Bundle",
+			"Item Attribute",
+			"Contact",
+		];
+		if (noMenuTabsDoctypes.includes(this.doc.doctype)) {
+			$("header.navbar.navbar-expand").addClass("hide");
+		} else {
+			$(".form-view header.navbar.navbar-expand").removeClass("hide");
+		}
 
-				// This code is for auto-scrolling the right sidebar to the bottom
-				setTimeout(() => {
-					$(".sidebar-right-comment").css("display","none")
-					let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child")
-					chatBox.scrollTop(99999999)
+		// Hide the navbar only on the new form
+		if (this.doc.doctype === "Item") {
+			$(".new-doc-view header.navbar.navbar-expand").addClass("hide");
+		}
 
-					$('[data-route*="List"] header.navbar.navbar-expand').css("display", "flex")
-				}, 100)
+		if (tabslist) {
+			$('[data-route*="List"]').addClass("list-view");
+			$('[data-route*="List"] .main-header').addClass("navbar-list");
+			$('[data-route*="List"] header.navbar.navbar-expand').addClass("navbar-list");
 
-				let $tabs = $('<div>').html(tabslist);
-				let $newList = $('<ul class="header-menu-form" id="header_menu"></ul>');
-				
-				$tabs.find('li').each(function(index, element) {
-					if ($(element).hasClass('show')) {
-						let $anchor = $(element).find('a');
-						let anchorText = $anchor.text();
-						let anchorId = $anchor.attr('id');
-						let activeid = $anchor.hasClass('active');
-						let $newLi = $('<li class="navtabs"></li>');
-						$newLi.attr("targetTab",$anchor.attr("href"));
-						let $newAnchor = $('<a></a>').text(anchorText);
-						$newAnchor.attr("data-toggle","tab");
-						$newLi.append($newAnchor);
-						$newLi.on('click', function() {
-							$('#' + anchorId).trigger('click');
-							if (lastClickedItem) {
-								lastClickedItem.removeClass('active');
-							}
-							$newLi.addClass('active');
-							lastClickedItem = $newLi;
-						});
-						if(activeid){
-							$newLi.addClass('active');
+			$('[data-route*="List"]').removeClass("form-view");
+			$('[data-route*="List"]').removeClass("new-doc-view");
+			$('[data-route*="Form"]').removeClass("list-view");
+			$('[data-route*="Form"] .main-header').removeClass("navbar-list");
+			$('[data-route*="Form"] header.navbar.navbar-expand').removeClass("navbar-list");
+
+			// This code is for auto-scrolling the right sidebar to the bottom
+			setTimeout(() => {
+				$(".sidebar-right-comment").css("display", "none");
+				let chatBox = $(".sidebar-right-comment .timeline-top-bar:last-child");
+				chatBox.scrollTop(99999999);
+
+				$('[data-route*="List"] header.navbar.navbar-expand').css("display", "flex");
+			}, 100);
+
+			let $tabs = $("<div>").html(tabslist);
+			let $newList = $('<ul class="header-menu-form" id="header_menu"></ul>');
+
+			$tabs.find("li").each(function (index, element) {
+				if ($(element).hasClass("show")) {
+					let $anchor = $(element).find("a");
+					let anchorText = $anchor.text();
+					let anchorId = $anchor.attr("id");
+					let activeid = $anchor.hasClass("active");
+					let $newLi = $('<li class="navtabs"></li>');
+					$newLi.attr("targetTab", $anchor.attr("href"));
+					let $newAnchor = $("<a></a>").text(anchorText);
+					$newAnchor.attr("data-toggle", "tab");
+					$newLi.append($newAnchor);
+					$newLi.on("click", function () {
+						$("#" + anchorId).trigger("click");
+						if (lastClickedItem) {
+							lastClickedItem.removeClass("active");
 						}
-						$newList.append($newLi);
+						$newLi.addClass("active");
+						lastClickedItem = $newLi;
+					});
+					if (activeid) {
+						$newLi.addClass("active");
 					}
-				});
-				let slider_active=$('<div class="slider-active"></div>')
-				$newList.append(slider_active);
-				// $newList.css("display","none");
-				$("#navbar-current-docname").html($newList);
-				$("#header_menu li:first").css("color","white");
-				$("#body").find("header").removeClass("navbar-list");	
+					$newList.append($newLi);
+				}
+			});
+			let slider_active = $('<div class="slider-active"></div>');
+			$newList.append(slider_active);
+			// $newList.css("display","none");
+			$("#navbar-current-docname").html($newList);
+			$("#header_menu li:first").css("color", "white");
+			$("#body").find("header").removeClass("navbar-list");
 
-				setTimeout(() => {
-					if ($("body").hasClass("new-doc-view")){ $newList.show() }
-				}, 10)
+			setTimeout(() => {
+				if ($("body").hasClass("new-doc-view")) {
+					$newList.show();
+				}
+			}, 10);
 
-				setTimeout(() => {
-					$('.custom-actions, .page-icon-group').css("display","none"); //always hidden until user clicks see more button
-				}, 100);	
-			}
+			setTimeout(() => {
+				$(".custom-actions, .page-icon-group").css("display", "none"); //always hidden until user clicks see more button
+			}, 100);
+		}
 	}
-
 
 	// SAVE
 
@@ -1274,9 +1286,9 @@ frappe.ui.form.Form = class FrappeForm {
 				this.dashboard.clear_headline();
 				this.dashboard.set_headline_alert(
 					__("This form has been modified after you have loaded it") +
-					'<button class="btn btn-xs btn-primary pull-right" onclick="cur_frm.reload_doc()">' +
-					__("Refresh") +
-					"</button>",
+						'<button class="btn btn-xs btn-primary pull-right" onclick="cur_frm.reload_doc()">' +
+						__("Refresh") +
+						"</button>",
 					"alert-warning"
 				);
 			} else {
@@ -1311,7 +1323,7 @@ frappe.ui.form.Form = class FrappeForm {
 	add_web_link(path, label) {
 		label = __(label) || __("See on Website");
 		this.web_link = this.sidebar
-			.add_user_action(__(label), function () { })
+			.add_user_action(__(label), function () {})
 			.attr("href", path || this.doc.route)
 			.attr("target", "_blank");
 	}
@@ -1979,7 +1991,7 @@ frappe.ui.form.Form = class FrappeForm {
 				if (get_text) {
 					label = get_text(doc);
 				} else if (frappe.form.link_formatters[df.options]) {
-					label = frappe.form.link_formatters[df.options](value, doc);
+					label = frappe.form.link_formatters[df.options](value, doc, df);
 				} else {
 					label = value;
 				}
@@ -2270,8 +2282,8 @@ frappe.ui.form.Form = class FrappeForm {
 						</div>
 						<div class="col-md-6">
 							<a href='/app/submission-queue?ref_doctype=${encodeURIComponent(
-							this.doctype
-						)}&ref_docname=${encodeURIComponent(this.docname)}'>${__(
+								this.doctype
+							)}&ref_docname=${encodeURIComponent(this.docname)}'>${__(
 							"All Submissions"
 						)}</a>
 						`;
@@ -2293,25 +2305,24 @@ frappe.ui.form.Form = class FrappeForm {
 				}
 			});
 	}
-	
 };
 
 frappe.validated = 0;
-function sales_channel_logo(selected_channel){
-	if( selected_channel != null ){
-		$(".s-c-img-logo").css("display","none");
-	
-		selected_channel=selected_channel.replace(/\s+/g, '-');
-		selected_channel=".s-"+selected_channel+"-logo";
-		if( selected_channel==".s-Twitter-/-X-logo" ){
-			selected_channel=".s-twitter-logo"
+function sales_channel_logo(selected_channel) {
+	if (selected_channel != null) {
+		$(".s-c-img-logo").css("display", "none");
+
+		selected_channel = selected_channel.replace(/\s+/g, "-");
+		selected_channel = ".s-" + selected_channel + "-logo";
+		if (selected_channel == ".s-Twitter-/-X-logo") {
+			selected_channel = ".s-twitter-logo";
 		}
-		if( selected_channel==".s-TikTok-Shop-logo" ){
-			selected_channel=".s-tiktok-logo"
+		if (selected_channel == ".s-TikTok-Shop-logo") {
+			selected_channel = ".s-tiktok-logo";
 		}
-	
-		if( $(selected_channel).length ){
-			$(selected_channel).css("display","block")
+
+		if ($(selected_channel).length) {
+			$(selected_channel).css("display", "block");
 		}
 	}
 }
