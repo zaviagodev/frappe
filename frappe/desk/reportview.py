@@ -24,14 +24,14 @@ from frappe.utils.data import sbool
 @frappe.read_only()
 def get():
 	args = get_form_params()
+	controller = get_controller(args.doctype)
 
 	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
 		filter.append([args["doctype"], "docstatus", "!=", "5"])
 
-	if is_virtual_doctype(args.doctype):
-		controller = get_controller(args.doctype)
+	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_list"):
 		data = compress(controller.get_list(args))
 	else:
 		data = compress(execute(**args), args=args)
@@ -42,9 +42,14 @@ def get():
 @frappe.read_only()
 def get_list():
 	args = get_form_params()
+	controller = get_controller(args.doctype)
 
-	if is_virtual_doctype(args.doctype):
-		controller = get_controller(args.doctype)
+	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
+	if softdelet == 1:
+		filter = args["filters"]
+		filter.append([args["doctype"], "docstatus", "!=", "5"])
+
+	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_list"):
 		data = controller.get_list(args)
 	else:
 		# uncompressed (refactored from frappe.model.db_query.get_list)
@@ -57,9 +62,14 @@ def get_list():
 @frappe.read_only()
 def get_count() -> int:
 	args = get_form_params()
+	controller = get_controller(args.doctype)
 
-	if is_virtual_doctype(args.doctype):
-		controller = get_controller(args.doctype)
+	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
+	if softdelet == 1:
+		filter = args["filters"]
+		filter.append([args["doctype"], "docstatus", "!=", "5"])
+
+	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_count"):
 		count = controller.get_count(args)
 	else:
 		args.distinct = sbool(args.distinct)
