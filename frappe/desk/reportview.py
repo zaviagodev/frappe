@@ -47,7 +47,7 @@ def get_list():
 	args = get_form_params()
 	controller = get_controller(args.doctype)
 
-	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
+  softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
 		if type(filter) == list:
