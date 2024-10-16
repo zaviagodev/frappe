@@ -155,6 +155,7 @@ frappe.ui.FieldSelect = class FieldSelect {
 	add_field_option(df) {
 		let me = this;
 
+		if (df?.not_in_filter == 1) return;
 		if (df.fieldname == "docstatus" && !frappe.model.is_submittable(me.doctype)) return;
 
 		if (frappe.model.table_fields.includes(df.fieldtype)) {

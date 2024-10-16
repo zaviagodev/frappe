@@ -87,6 +87,7 @@ class DocField(Document):
 		in_list_view: DF.Check
 		in_preview: DF.Check
 		in_standard_filter: DF.Check
+		not_in_filter: DF.Check
 		is_virtual: DF.Check
 		label: DF.Data | None
 		length: DF.Int
@@ -121,6 +122,10 @@ class DocField(Document):
 		unique: DF.Check
 		width: DF.Data | None
 	# end: auto-generated types
+
+	def validate(self):
+		if self.not_in_filter and self.in_standard_filter:
+			frappe.throw(_("Not in filter cannot be checked if In list view is checked"))
 
 	def get_link_doctype(self):
 		"""Returns the Link doctype for the docfield (if applicable)

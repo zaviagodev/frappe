@@ -91,6 +91,7 @@ class CustomField(Document):
 		in_list_view: DF.Check
 		in_preview: DF.Check
 		in_standard_filter: DF.Check
+		not_in_filter: DF.Check
 		insert_after: DF.Literal[None]
 		is_system_generated: DF.Check
 		is_virtual: DF.Check
@@ -164,6 +165,9 @@ class CustomField(Document):
 		# these imports have been added to avoid cyclical import, should fix in future
 		from frappe.core.doctype.doctype.doctype import check_fieldname_conflicts
 		from frappe.custom.doctype.customize_form.customize_form import CustomizeForm
+  
+		if self.not_in_filter and self.in_standard_filter:
+			frappe.throw(_("Not in filter cannot be checked if In list view is checked"))
 
 		# don't always get meta to improve performance
 		# setting idx is just an improvement, not a requirement
