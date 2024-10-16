@@ -19,6 +19,7 @@
   "is_virtual",
   "in_list_view",
   "in_standard_filter",
+  "not_in_filter",
   "in_global_search",
   "in_preview",
   "bold",
@@ -141,6 +142,12 @@
    "fieldname": "in_standard_filter",
    "fieldtype": "Check",
    "label": "In Standard Filter"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_in_filter",
+   "fieldtype": "Check",
+   "label": "Not in Filter"
   },
   {
    "default": "0",

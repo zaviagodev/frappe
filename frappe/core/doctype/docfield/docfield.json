@@ -48,6 +48,7 @@
   "list__search_settings_section",
   "in_list_view",
   "in_standard_filter",
+  "not_in_filter",
   "in_preview",
   "column_break_35",
   "in_filter",
@@ -171,6 +172,12 @@
    "fieldname": "in_standard_filter",
    "fieldtype": "Check",
    "label": "In List Filter"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_in_filter",
+   "fieldtype": "Check",
+   "label": "not in Filter"
   },
   {
    "default": "0",

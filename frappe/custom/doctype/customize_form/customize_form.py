@@ -763,6 +763,7 @@ docfield_properties = {
 	"ignore_user_permissions": "Check",
 	"in_list_view": "Check",
 	"in_standard_filter": "Check",
+	"not_in_filter": "Check",
 	"in_global_search": "Check",
 	"in_preview": "Check",
 	"bold": "Check",

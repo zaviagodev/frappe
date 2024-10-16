@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
+import frappe
 from frappe.model.document import Document
 
 
@@ -83,6 +84,7 @@ class CustomizeFormField(Document):
 		in_list_view: DF.Check
 		in_preview: DF.Check
 		in_standard_filter: DF.Check
+		not_in_filter: DF.Check
 		is_custom_field: DF.Check
 		is_system_generated: DF.Check
 		is_virtual: DF.Check
@@ -114,4 +116,6 @@ class CustomizeFormField(Document):
 		width: DF.Data | None
 	# end: auto-generated types
 
-	pass
+	def validate(self):
+		if self.not_in_filter and self.in_standard_filter:
+			frappe.throw(_("Not in filter cannot be checked if In list view is checked"))
