@@ -29,7 +29,10 @@ def get():
 	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
-		filter.append([args["doctype"], "docstatus", "!=", "5"])
+		if type(filter) == list:
+			filter.append([args["doctype"], "docstatus", "!=", "5"])
+		else:
+			filter["docstatus"] = ["!=", "5"]
 
 	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_list"):
 		data = compress(controller.get_list(args))
@@ -47,7 +50,10 @@ def get_list():
 	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
-		filter.append([args["doctype"], "docstatus", "!=", "5"])
+		if type(filter) == list:
+			filter.append([args["doctype"], "docstatus", "!=", "5"])
+		else:
+			filter["docstatus"] = ["!=", "5"]
 
 	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_list"):
 		data = controller.get_list(args)
@@ -67,7 +73,10 @@ def get_count() -> int:
 	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
-		filter.append([args["doctype"], "docstatus", "!=", "5"])
+		if type(filter) == list:
+			filter.append([args["doctype"], "docstatus", "!=", "5"])
+		else:
+			filter["docstatus"] = ["!=", "5"]
 
 	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_count"):
 		count = controller.get_count(args)
