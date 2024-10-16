@@ -2040,7 +2040,10 @@ def get_list(doctype, *args, **kwargs):
 	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
 	if softdelet == 1:
 		filter = kwargs["filters"]
-		filter.append([doctype, "docstatus", "!=", "5"])
+		if type(filter) == list:
+			filter.append([doctype, "docstatus", "!=", "5"])
+		else:
+			filter["docstatus"] = ["!=", "5"]
 
 	controller = get_controller(doctype)
 	if hasattr(controller, "get_list"):
