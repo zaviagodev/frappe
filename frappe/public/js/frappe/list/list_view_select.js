@@ -133,15 +133,18 @@ frappe.views.ListViewSelect = class ListViewSelect {
 			},
 		};
 
+		this.available_views = new Set([this.current_view]);
 		frappe.views.view_modes.forEach((view) => {
 			if (this.current_view !== view && views[view].condition) {
 				this.add_view_to_menu(view, views[view].action);
+				this.available_views.add(view);
 			}
 
 			if (this.current_view == view) {
 				views[view].current_view_handler && views[view].current_view_handler();
 			}
 		});
+		$.extend(frappe.views, { available_views: Array.from(this.available_views) });
 	}
 
 	setup_dropdown_in_sidebar(view, items, default_action) {
