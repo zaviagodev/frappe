@@ -1,6 +1,6 @@
 const upperItems = [
 	{
-		link: "/",
+		link: `https://${frappe.get_cookie(`login_source-${window.location.hostname}`) || "dashboard.zaviago.com"}/dashboard/app`,
 		title: "แดชบอร์ด",
 		icon: `<svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect x="0.5" y="1" width="28" height="28" rx="5.5" fill="url(#pattern0_2111_12207)" stroke="#F0F0F0"/>
@@ -28,7 +28,7 @@ const upperItems = [
     `,
 	},
 	{
-		link: "",
+		link: `https://${frappe.get_cookie(`login_source-${window.location.hostname}`) || "dashboard.zaviago.com"}/dashboard/app?modal=team`,
 		title: "ทีมงาน",
 		icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-shadow: 1px 1px 9.1px 0px #00000014;">
     <rect x="0.5" y="0.5" width="27" height="27" rx="5.5" fill="white"/>
