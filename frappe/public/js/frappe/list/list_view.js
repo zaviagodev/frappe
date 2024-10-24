@@ -820,10 +820,17 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 			if (df.fieldtype === "Image" || df.fieldtype === "Attach Image") {
 				html = df.options
-					? `<img src="${doc[df.options]}"
-					style="max-height: 30px; max-width: 100%;">`
-					: `<div class="missing-image small">
-						${frappe.utils.icon("restriction")}
+					? 
+					`<div class="preview-image">
+						${frappe.get_avatar(
+							"avatar-small",
+							doc[this.meta.title_field ?? "name"],
+							doc[df.options]
+						)}
+					</div>`
+					:
+					`<div class='missing-image' style="height: 30px; width: 30px; line-height: unset; border-radius: 50%;">
+						${frappe.utils.icon("restriction", "sm", "", "vertical-align: -webkit-baseline-middle;")}
 					</div>`;
 			} else if (df.fieldtype === "Select") {
 				html = `<span class="filterable indicator-pill ${frappe.utils.guess_colour(
