@@ -26,7 +26,8 @@ class BaseTimeline {
 				</ul>
 				</div>
 		`);
-		//$(`.timeline-top-bar`).append(this.timeline_actions_wrapper);
+		
+		$(`.timeline-top-bar`).append(this.timeline_actions_wrapper);
 		this.timeline_actions_wrapper.hide();
 		this.timeline_wrapper.append(this.timeline_items_wrapper);
 

@@ -187,48 +187,52 @@ frappe.ui.form.Layout = class Layout {
 				$tabs = $(tabslist);
 			}
 
-			var $newList = $('<ul class="header-menu-layout" id="header_menu"></ul>');
-			var lastClickedItem = null;
-			$(".navbar-current-docname").html(`<div class="skel-row">
-				<div class="skel-col-6 standard"></div>
-			</div>`);
-			setTimeout(function () {
+			// var $newList = $('<ul class="header-menu-layout" id="header_menu"></ul>');
+			// var lastClickedItem = null;
+			// $(".navbar-current-docname").html(`<div class="skel-row">
+			// 	<div class="skel-col-6 standard"></div>
+			// </div>`);
+			// setTimeout(function () {
 				
-				$tabs.find('li').each(function (index, element) {
-					if ($(element).hasClass('show')) {
-						let $anchor = $(element).find('a');
-						let anchorText = $anchor.text();
-						let anchorId = $anchor.attr('id');
-						let $newLi = $('<li></li>');
-						let activeid = $anchor.hasClass('active');
-						// $newLi.attr("targetTab",anchorText);
-						// console.log($anchor)
-						let $newAnchor = $('<a role="tab"></a>').text(anchorText);
-						$newAnchor.attr("target-tab", $anchor.attr("href"))
-						$newLi.append($newAnchor);
-						$newLi.on('click', function () {
-							$('#' + anchorId).trigger('click');
-							if (lastClickedItem) {
-								lastClickedItem.removeClass('active');
-							}
-							$newLi.addClass('active');
-							if(activeid){
-								$newLi.addClass('active');
-							}
-							lastClickedItem = $newLi;
-						});
-						$newList.append($newLi);
-					}
-				});
-				let slider_active = $('<div class="slider-active"></div>')
-				$newList.append(slider_active);
-				// $newList.css("display","none");
-				$(".navbar-current-docname").html($newList);
-				$("#header_menu li:first").css("color", "white");
-				// setTimeout(() => {
-				// 	$newList.show('slow');
-				// }, 100)
-			}, 500);
+			// 	$tabs.find('li').each(function (index, element) {
+			// 		if ($(element).hasClass('show')) {
+			// 			let $anchor = $(element).find('a');
+			// 			let anchorText = $anchor.text();
+			// 			let anchorId = $anchor.attr('id');
+			// 			let $newLi = $('<li></li>');
+			// 			$newLi.addClass("navtabs")
+			// 			let activeid = $anchor.hasClass('active');
+			// 			// $newLi.attr("targetTab",anchorText);
+			// 			// console.log($anchor)
+			// 			let $newAnchor = $('<a role="tab"></a>').text(anchorText);
+			// 			$newAnchor.attr("target-tab", $anchor.attr("href"))
+			// 			$newLi.append($newAnchor);
+			// 			$newLi.on('click', function () {
+			// 				$('#' + anchorId).trigger('click');
+			// 				if (lastClickedItem) {
+			// 					lastClickedItem.removeClass('active');
+			// 				}
+			// 				$newLi.addClass('active');
+			// 				if(activeid){
+			// 					$newLi.addClass('active');
+			// 				}
+			// 				lastClickedItem = $newLi;
+			// 			});
+			// 			$newList.append($newLi);
+			// 		}
+			// 	});
+			// 	let slider_active = $('<div class="slider-active"></div>')
+			// 	$newList.append(slider_active);
+			// 	// $newList.css("display","none");
+			// 	$(".navbar-current-docname").html($newList);
+			// 	$("#header_menu li:first").addClass("active");
+			// 	// setTimeout(() => {
+			// 	// 	$newList.show('slow');
+			// 	// }, 100)
+			// }, 3500);
+
+
+
 		}
 	}
 
@@ -438,6 +442,7 @@ frappe.ui.form.Layout = class Layout {
 
 	refresh_sections() {
 		// hide invisible sections
+
 		this.wrapper.find(".form-section:not(.hide-control)").each(function () {
 			const section = $(this).removeClass("empty-section visible-section");
 			if (section.find(".frappe-control:not(.hide-control)").length) {
@@ -450,10 +455,86 @@ frappe.ui.form.Layout = class Layout {
 				section.addClass("empty-section");
 			}
 		});
-
 		// refresh tabs
 		this.is_tabbed_layout() && this.refresh_tabs();
 	}
+
+	update_top_navigation() {
+
+		var navbar = $("#navbar-current-docname");
+		navbar.html('');  // Clear the navbar
+
+		if ( ( this.doc.docstatus == 0 || (typeof this.doc.__islocal !== 'undefined' && this.doc.__islocal)) && this.doctype === "Sales Invoice" ){
+			return;
+		}
+
+		let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
+		navbar.html(`<div class="skel-row">
+			<div class="skel-col-6 standard"></div>
+		</div>`);
+
+		$("#freeze").hide()
+
+		let activetabs = [];
+		for (let df of this.tabs) {
+			if (!df.hidden) {
+				let listItem = $('<li></li>');
+				let anchor = $('<a href="#" data-fieldname="' + df.df.fieldname + '"></a>').text(df.df.label);
+				
+				// Click event for the anchor
+				anchor.click((e) => {
+					e.preventDefault();
+					$(df.tab_link[0]).children('a').trigger('click');
+					$(listItem).siblings().removeClass("active");
+					$(listItem).addClass("active");
+				});
+	
+				// Set the active class if this tab is currently active
+				if (this.frm?.get_active_tab?.()?.df?.label == df.df.label) {
+					$(listItem).addClass("active");
+				}
+				
+				activetabs.push(df.df.fieldname);
+				listItem.append(anchor);
+				newList.append(listItem);
+			}
+		}
+		if(activetabs.length === 0){
+			$("header.navbar").hide();  
+		}
+		else{
+			$("header.navbar").show();  
+		}
+
+		// Set the new HTML directly
+		setTimeout(function(){
+			console.log(newList);
+			$("#navbar-current-docname").html(newList);  
+		},500)
+		
+
+		const imagesListWidth = $('.tab-content').width()
+			
+		const templateAreas = (grid) => {
+		  $('[data-fieldname="custom_images"] .row').css({
+			'grid-template-areas': grid
+		  })
+		  $('[data-fieldname="website_images"] .row').css({
+			'grid-template-areas': grid
+		  })
+		}
+	  
+		if (imagesListWidth < 760){
+		  templateAreas(`"large large small" "large large small"`)
+		} else if (imagesListWidth < 940){
+		  templateAreas(`"large large small small" "large large small small"`)
+		} else {
+		  templateAreas(`"large large small small small" "large large small small small"`)
+		}
+	}
+	
+
+
 
 	refresh_tabs() {
 		for (let tab of this.tabs) {
@@ -578,16 +659,16 @@ frappe.ui.form.Layout = class Layout {
 					$(this).addClass('active').siblings().removeClass('active'); // Optionally remove active from siblings	
 					var position = $(this).position();
 					if( position.left < 1 ){
-						$("#header_menu .slider-active").css("display","none");
-						$("#header_menu li a").css("color","#18181B");
-						$(this).find("a").css({
-							"margin": "0",
-							"padding": "8px 15px",
-							"border": "none",
-							"borderRadius": "9999px",
-							"backgroundColor": "#006AFF",
-							"color": "white"
-						});
+						// $("#header_menu .slider-active").css("display","none");
+						// $("#header_menu li a").css("color","#18181B");
+						// $(this).find("a").css({
+						// 	"margin": "0",
+						// 	"padding": "8px 15px",
+						// 	"border": "none",
+						// 	"borderRadius": "9999px",
+						// 	"backgroundColor": "#006AFF",
+						// 	"color": "white"
+						// });
 					}
 				}
 			});

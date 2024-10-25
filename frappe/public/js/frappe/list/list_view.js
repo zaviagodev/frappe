@@ -69,84 +69,91 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 	hide_skeleton() {
 		$("#navbar-current-docname").html('');
-
-		//console.log(this.parent.page.container.find('.dropdown-menu'));
-
 		gsap.set($(".page-container"),{top:"0"})
 		$('#new-doc-overlay').remove()
 		$("body").addClass("list-view");
-		$("body").removeClass("form-view");
-		$("body").removeClass("new-doc-view");
-		$("body").removeClass("settings-view");
 		$(".main-header").addClass("navbar-list");
 		$('header.navbar.navbar-expand').removeClass("hide") // remove hide when it was hidden on the 'new form' page
+		$('header.navbar.navbar-expand').css("display", "flex")
+
+		const setListView = setInterval(() => {
+			$("body").removeClass("form-view");
+			$("body").removeClass("new-doc-view");
+			$("body").removeClass("settings-view");
+
+			if ($("body").hasClass("new-doc-view") == false){
+				clearInterval(setListView)
+			}
+		}, 1)
 
 		this.$list_skeleton && this.$list_skeleton.hide();
 		this.parent.page.container.find(".layout-main").show();
-		var listviewz = this;
+		this.update_top_navigation();
+		
+		// var interval = setInterval(function () {
+		// 	var activeone = listviewz.view_name;
 
-		var interval = setInterval(function () {
-			var activeone = listviewz.view_name;
+		// 	let listofview = $(listviewz.parent.page.page_actions).find('.custom-btn-group');
+		// 	let currentview = listofview.find('.custom-btn-group-label').text();
+		// 	let listofviews = listofview.find('.dropdown-menu');
 
-			let listofview = $(listviewz.parent.page.page_actions).find('.custom-btn-group');
-			let currentview = listofview.find('.custom-btn-group-label').text();
-			let listofviews = listofview.find('.dropdown-menu');
-			var views = [currentview];
-			$(listofviews).find('li').each(function() {
-				var viewName = $(this).attr('data-view');
-				views.push(viewName);
-			});
+		// 	var views = [currentview];
+		// 	$(listofviews).find('li').each(function() {
+		// 		var viewName = $(this).attr('data-view');
+		// 		views.push(viewName);
+		// 	});
 
-			if(views){
-				views.sort((a, b) => a.localeCompare(b));
+		// 	if(views){
+		// 		views.sort((a, b) => a.localeCompare(b));
 
-				var list_view = views;
-				let current_ac = activeone;
-				let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
-				$("#navbar-current-docname").html(`<div class="skel-row">
-								<div class="skel-col-6 standard"></div>
-							</div>`);
-				setTimeout(function () {
-					views.forEach(item => {
-						let listItem = $('<li></li>');
-						let anchor = $('<a href="#"></a>').text(item);
-						anchor.click((e) => {
-							e.preventDefault();
-							$(listviewz.parent).find(`li[data-view="${item}"] a`).click();
-							$(listItem).siblings().removeClass("active");
-							$(listItem).addClass("active");
-						});
-						if(current_ac == item.replace(' View','')){
-							$(listItem).addClass("active");
-						}
-						listItem.append(anchor);
-						newList.append(listItem);
-					})
-					if (newList) {
-						clearInterval(interval);
-						$("#navbar-current-docname").html(newList);
-						activeone = activeone.replace(' View', '');
-						$("#header_menu li").each(function () {
-							var menuItemText = $(this).find('a').text().trim();
-							if (menuItemText === activeone.trim()) {
-								$(this).addClass("active");
-							}
-						});
-					}
-				}, 1900);
-			}
-			else{
-				$("#navbar-current-docname").html('');
-			}
+		// 		var list_view = views;
+		// 		let current_ac = activeone;
+		// 		let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
+		// 		$("#navbar-current-docname").html(`<div class="skel-row">
+		// 						<div class="skel-col-6 standard"></div>
+		// 					</div>`);
+		// 		setTimeout(function () {
+		// 			views.forEach(item => {
+		// 				let listItem = $('<li></li>');
+		// 				let anchor = $('<a href="#"></a>').text(item);
+		// 				anchor.click((e) => {
+		// 					e.preventDefault();
+		// 					$(listviewz.parent).find(`li[data-view="${item}"] a`).click();
+		// 					$(listItem).siblings().removeClass("active");
+		// 					$(listItem).addClass("active");
+		// 				});
+		// 				if(current_ac == item.replace(' View','')){
+		// 					$(listItem).addClass("active");
+		// 				}
+		// 				listItem.append(anchor);
+		// 				newList.append(listItem);
+		// 			})
+		// 			if (newList) {
+		// 				clearInterval(interval);
+		// 				$("#navbar-current-docname").html(newList);
+		// 				activeone = activeone.replace(' View', '');
+		// 				$("#header_menu li").each(function () {
+		// 					var menuItemText = $(this).find('a').text().trim();
+		// 					if (menuItemText === activeone.trim()) {
+		// 						$(this).addClass("active");
+		// 					}
+		// 				});
+		// 			}
+		// 		}, 1900);
+		// 	}
+		// 	else{
+		// 		$("#navbar-current-docname").html('');
+		// 	}
 
-			gsap.set($(".page-container"),{top:"0"})
-			$('#new-doc-overlay').remove()
-			$("body").addClass("list-view");
-			$("body").removeClass("form-view");
-			$("body").removeClass("new-doc-view");
-			$(".main-header").addClass("navbar-list");
-			$('.custom-actions, .page-icon-group').css("display","none"); //always hidden until user clicks see more button'
-		}, 500);
+		// 	gsap.set($(".page-container"),{top:"0"})
+		// 	// $('#new-doc-overlay').remove()
+		// 	// $("body").addClass("list-view");
+		// 	$("body").removeClass("form-view");
+		// 	// $("body").removeClass("new-doc-view");
+		// 	$(".main-header").addClass("navbar-list");
+		// 	$('.custom-actions, .page-icon-group').css("display","none"); //always hidden until user clicks see more button'
+		// }, 500);
+
 	}
 
 	get view_name() {
@@ -186,8 +193,156 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		if (this.view_name == "List") this.toggle_paging = true;
 
 		this.patch_refresh_and_load_lib();
+		this.update_top_navigation();
 		return this.get_list_view_settings();
 	}
+
+	
+
+	// get_list_of_views () {
+	// 	const views = {
+	// 		List: {
+	// 			condition: true,
+	// 			action: () => this.set_route("list"),
+	// 		},
+	// 		Report: {
+	// 			condition: true,
+	// 			action: () => this.set_route("report"),
+	// 			current_view_handler: () => {
+	// 				const reports = this.get_reports();
+	// 				let default_action = {};
+	// 				// Only add action if current route is not report builder
+	// 				if (frappe.get_route().length > 3) {
+	// 					default_action = {
+	// 						label: __("Report Builder"),
+	// 						action: () => this.set_route("report"),
+	// 					};
+	// 				}
+	// 				this.setup_dropdown_in_sidebar("Report", reports, default_action);
+	// 			},
+	// 		},
+	// 		Dashboard: {
+	// 			condition: true,
+	// 			action: () => this.set_route("dashboard"),
+	// 		},
+	// 		Calendar: {
+	// 			condition: frappe.views.calendar[this.doctype],
+	// 			action: () => this.set_route("calendar", "default"),
+	// 			current_view_handler: () => {
+	// 				this.get_calendars().then((calendars) => {
+	// 					this.setup_dropdown_in_sidebar("Calendar", calendars);
+	// 				});
+	// 			},
+	// 		},
+	// 		Gantt: {
+	// 			condition: frappe.views.calendar[this.doctype],
+	// 			action: () => this.set_route("gantt"),
+	// 		},
+	// 		Inbox: {
+	// 			condition: this.doctype === "Communication" && frappe.boot.email_accounts.length,
+	// 			action: () => this.set_route("inbox"),
+	// 			current_view_handler: () => {
+	// 				const accounts = this.get_email_accounts();
+	// 				let default_action;
+	// 				if (has_common(frappe.user_roles, ["System Manager", "Administrator"])) {
+	// 					default_action = {
+	// 						label: __("New Email Account"),
+	// 						action: () => frappe.new_doc("Email Account"),
+	// 					};
+	// 				}
+	// 				this.setup_dropdown_in_sidebar("Inbox", accounts, default_action);
+	// 			},
+	// 		},
+	// 		Image: {
+	// 			condition: this.list_view.meta.image_field,
+	// 			action: () => this.set_route("image"),
+	// 		},
+	// 		Tree: {
+	// 			condition:
+	// 				frappe.treeview_settings[this.doctype] ||
+	// 				frappe.get_meta(this.doctype).is_tree,
+	// 			action: () => this.set_route("tree"),
+	// 		},
+	// 		Kanban: {
+	// 			condition: this.doctype != "File",
+	// 			action: () => this.setup_kanban_boards(),
+	// 			current_view_handler: () => {
+	// 				frappe.views.KanbanView.get_kanbans(this.doctype).then((kanbans) =>
+	// 					this.setup_kanban_switcher(kanbans)
+	// 				);
+	// 			},
+	// 		},
+	// 		Map: {
+	// 			condition:
+	// 				this.list_view.settings.get_coords_method ||
+	// 				(this.list_view.meta.fields.find((i) => i.fieldname === "latitude") &&
+	// 					this.list_view.meta.fields.find((i) => i.fieldname === "longitude")) ||
+	// 				this.list_view.meta.fields.find(
+	// 					(i) => i.fieldname === "location" && i.fieldtype == "Geolocation"
+	// 				),
+	// 			action: () => this.set_route("map"),
+	// 		},
+	// 	};
+	// 	return views;
+	// }
+
+	update_top_navigation () {
+		var listviewz = this;
+		var active_view = listviewz.view_name; 
+		const doctype = this.doctype;
+		$(".sidebar-right-comment").hide();
+
+		if (doctype) {
+			frappe.model.with_doctype(doctype, () => {
+				const meta = frappe.model.user_settings[doctype];
+				let doctype_slug = frappe.router.slug(doctype);
+				const default_views = ["List", "Report", "Dashboard", "Kanban"];
+
+				if (meta && typeof meta === 'object') {
+					default_views.forEach(view => {
+						if (!meta[view]) {
+							meta[view] = true;
+						}
+					});
+
+					$("header.navbar").show();  
+					let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
+							$("#navbar-current-docname").html(`<div class="skel-row">
+								<div class="skel-col-6 standard"></div>
+							</div>`);
+
+					for (const key in meta) {
+						if(frappe.views.view_modes.includes(key)){
+							if (meta.hasOwnProperty(key)) {
+								if (key === 'updated_on' || key === 'last_view') {
+									continue;
+								}
+								let listItem = $('<li></li>');
+								let anchor = $('<a href="#"></a>').text(key);
+								anchor.click((e) => {
+									e.preventDefault();
+									frappe.set_route(`${doctype_slug}/view/${key}`);
+									$(listItem).siblings().removeClass("active");
+									$(listItem).addClass("active");
+								});
+								if(key == active_view){
+									$(listItem).addClass("active");
+								}
+
+								listItem.append(anchor);
+								newList.append(listItem);
+							}
+						}
+					}
+					$("#navbar-current-docname").html(newList);
+				}
+				else{
+					$("header.navbar").hide();  
+				}
+			});
+		}
+	}
+
 
 	on_sort_change(sort_by, sort_order) {
 		this.sort_by = sort_by;
@@ -207,6 +362,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	}
 
 	setup_page_head() {
+		this.update_top_navigation();
 		super.setup_page_head();
 		this.set_primary_action();
 		this.set_actions_menu_items();
@@ -380,7 +536,6 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	refresh_columns(meta, list_view_settings) {
 		this.meta = meta;
 		this.list_view_settings = list_view_settings;
-
 		this.setup_columns();
 		this.refresh(true);
 	}

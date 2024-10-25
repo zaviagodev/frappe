@@ -25,7 +25,7 @@ import "./frappe/list/list_view_permission_restrictions.html";
 import "./frappe/views/gantt/gantt_view.js";
 import "./frappe/views/calendar/calendar.js";
 import "./frappe/views/dashboard/dashboard_view.js";
-import "./frappe/views/image/image_view.js";
+import "./frappe/views/image/image_view.js?hhhhhhhhhhhhhhhh";
 import "./frappe/views/map/map_view.js";
 import "./frappe/views/kanban/kanban_view.js";
 import "./frappe/views/inbox/inbox_view.js";

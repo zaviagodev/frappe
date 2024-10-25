@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Contact", {
+	before_save: function (frm) {
+		if( frm.doc.links.length<1  ){
+			frappe.throw(("Please create contact from customer"));
+		}
+	},
 	onload(frm) {
 		frm.email_field = "email_id";
 	},

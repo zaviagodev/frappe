@@ -1532,9 +1532,10 @@ li.nav-item.show .nav-link {
 	margin: 12px 0 0;
 	padding: 0;
 }
-.list-view .sidebar-right-comment{
+/* .list-view .sidebar-right-comment{
 	display: none !important;
-}
+} */
+ 
 span.navbar-right-heart-button-icons {
     display: none;
 }

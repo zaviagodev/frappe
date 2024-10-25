@@ -19,13 +19,13 @@ from frappe.model.utils import is_virtual_doctype
 from frappe.utils import add_user_info, cint, format_duration
 from frappe.utils.data import sbool
 
-
+ 
 @frappe.whitelist()
 @frappe.read_only()
 def get():
 	args = get_form_params()
 	controller = get_controller(args.doctype)
-
+ 
 	softdelet = frappe.db.get_value("DocType", args["doctype"], "soft_delete")
 	if softdelet == 1:
 		filter = args["filters"]
@@ -34,10 +34,13 @@ def get():
 		else:
 			filter["docstatus"] = ["!=", "5"]
 
-	if is_virtual_doctype(args.doctype) or hasattr(controller, "get_list"):
+	if is_virtual_doctype(args.doctype):
+		data = compress(controller.get_list(args))
+	elif hasattr(controller, "get_list"):
 		data = compress(controller.get_list(args))
 	else:
 		data = compress(execute(**args), args=args)
+  
 	return data
 
 
@@ -248,7 +251,7 @@ def update_wildcard_field_param(data):
 
 
 def clean_params(data):
-	for param in ("cmd", "data", "ignore_permissions", "view", "user", "csrf_token", "join"):
+	for param in ("cmd", "data", "ignore_permissions","view", "user", "csrf_token", "join"):
 		data.pop(param, None)
 
 

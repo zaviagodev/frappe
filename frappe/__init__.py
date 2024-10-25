@@ -2039,7 +2039,7 @@ def get_list(doctype, *args, **kwargs):
 
 	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
 	if softdelet == 1:
-		filter = kwargs["filters"]
+		filter = kwargs.get("filters", {})
 		if type(filter) == list:
 			filter.append([doctype, "docstatus", "!=", "5"])
 		else:

@@ -31,6 +31,7 @@ window.addEventListener("popstate", (e) => {
 	return false;
 });
 
+
 // Capture all clicks so that the target is managed with push-state
 $("body").on("click", "a", function (e) {
 	const target_element = e.currentTarget;

@@ -37,10 +37,63 @@ frappe.ui.Tree = class {
 		}
 
 		this.setup_root_node();
+		this.update_top_navigation();
+
+	}
+
+	update_top_navigation () {
+		var listviewz = this;
+		var active_view = listviewz.view_name; 
+		const doctype = this.args.doctype;
+		$("#navbar-current-docname").html('');
+
+		if (doctype) {
+			frappe.model.with_doctype(doctype, () => {
+				const meta = frappe.model.user_settings[doctype];
+				let doctype_slug = frappe.router.slug(doctype);
+
+				
+				if (meta && typeof meta === 'object') {
+					let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
+							$("#navbar-current-docname").html(`<div class="skel-row">
+								<div class="skel-col-6 standard"></div>
+							</div>`);
+					for (const key in meta) {
+						if(frappe.views.view_modes.includes(key)){
+							if (meta.hasOwnProperty(key)) {
+								if (key === 'updated_on' || key === 'last_view') {
+									continue;
+								}
+								let listItem = $('<li></li>');
+								let anchor = $('<a href="#"></a>').text(key);
+								anchor.click((e) => {
+									e.preventDefault();
+									frappe.set_route(`${doctype_slug}/view/${key}`);
+									$(listItem).siblings().removeClass("active");
+									$(listItem).addClass("active");
+								});
+								if(key == active_view){
+									$(listItem).addClass("active");
+								}
+
+								listItem.append(anchor);
+								newList.append(listItem);
+							}
+						}
+					}
+
+					
+					console.log(newList);
+
+
+					$("#navbar-current-docname").html(newList);
+				}
+			});
+		}
 	}
 
 	get_nodes(value, is_root) {
-		$("#navbar-current-docname").html('');
+		//$("#navbar-current-docname").html('');
 		var args = Object.assign({}, this.args);
 		args.parent = value;
 		args.is_root = is_root;

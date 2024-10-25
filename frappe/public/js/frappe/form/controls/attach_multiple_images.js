@@ -38,6 +38,7 @@ frappe.ui.form.ControlAttachMultipleImages = class ControlAttachMultipleImages e
 						});
 				},
 				before_save: () => {
+					console.log("before save this.imageGrid.pending_delete", this.imageGrid.pending_delete);
 					for (const image of this.imageGrid.pending_delete) {
 						this.frm.attachments.remove_attachment(image.image);
 					}
@@ -137,6 +138,7 @@ class ImageGrid {
 		this.images = this.images.filter((img) => img.image !== image.image);
 		this.images = this.images.map((img, index) => ({ ...img, idx: index + 1 }));
 		this.frm.set_value(this.control.df.fieldname, this.images);
+		console.log("pushing to pending delete", image);
 		this.pending_delete.push(image);
 		this.render();
 	}

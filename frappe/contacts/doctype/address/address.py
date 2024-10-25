@@ -10,7 +10,8 @@ from frappe.core.doctype.dynamic_link.dynamic_link import deduplicate_dynamic_li
 from frappe.model.document import Document
 from frappe.model.naming import make_autoname
 from frappe.utils import cstr
-
+import json
+# from frappe.contacts.doctype.address.custom_address import customAddress
 
 class Address(Document):
 	# begin: auto-generated types
@@ -259,6 +260,7 @@ def get_company_address(company):
 		ret.company_address_display = render_address(ret.company_address, check_permissions=False)
 
 	return ret
+
 
 
 @frappe.whitelist()

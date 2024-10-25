@@ -156,6 +156,7 @@ frappe.ui.toolbar.Toolbar = class {
 		if (frappe.boot.desk_settings.search_bar) {
 			let awesome_bar = new frappe.search.AwesomeBar();
 			awesome_bar.setup("#navbar-search");
+			awesome_bar.setup("#business-app-search");
 
 			frappe.search.utils.make_function_searchable(
 				frappe.utils.generate_tracking_url,

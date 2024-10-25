@@ -2,8 +2,20 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Address", {
+	before_save: function (frm) {
+		if( frm.doc.links.length<1  ){
+			frappe.throw(("Please create address from customer"));
+		}
+	},
 	refresh: function (frm) {
+		frm.refresh_fields();
+		frm.refresh_updates();
+	},
+	onload: function (frm) {
 		if (frm.doc.__islocal) {
+			//bymuzammal
+			$("header").addClass("hide");
+			//by muzammal
 			const last_doc = frappe.contacts.get_last_doc(frm);
 			if (
 				frappe.dynamic_link &&
@@ -50,6 +62,20 @@ frappe.ui.form.on("Address", {
 		}
 	},
 	after_save: function (frm) {
+		// muzammal
+		frappe.call({
+			method: 'frappe.contacts.doctype.address.custom_address.checkPrimaryAddress',
+			args: {
+				'links':frm.doc.links,
+				'reference':frm.doc.name,
+			},
+			callback: function(r) {
+				if (!r.exc) {
+					let response=r.message;
+				}
+			}
+		});
+		// muzammal
 		frappe.run_serially([
 			() => frappe.timeout(1),
 			() => {
@@ -73,3 +99,10 @@ frappe.ui.form.on("Address", {
 		]);
 	},
 });
+//muzammal
+$(document).ready(function () {
+	window.addEventListener('popstate', function (event) {
+		$("header").removeClass("hide");
+	});
+});
+//muzammal

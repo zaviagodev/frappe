@@ -64,8 +64,7 @@ class FormTimeline extends BaseTimeline {
 
 		this.timeline_wrapper.prepend(`<div class="timeline-top-bar"></div>`);	
 
-
-		if (has_communications()) {
+		//if (has_communications()) {
 			this.timeline_wrapper
 				.find(".timeline-top-bar")
 				.append(
@@ -106,7 +105,7 @@ class FormTimeline extends BaseTimeline {
 					me.render_timeline_items();
 					$(this).parent().parent();
 				});
-		}
+		//}
 		$('.sidebar-right-comment').addClass("activity");
 		//console.log(this.timeline_wrapper.find(".timeline-top-bar").find(".align-items-center"));
 		this.timeline_wrapper.find(".d-flex.align-items-center").find(".d-flex.align-items-center").append(this.timeline_actions_wrapper);
