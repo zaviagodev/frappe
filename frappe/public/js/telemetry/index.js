@@ -18,8 +18,8 @@ class TelemetryManager {
 		try {
 			posthog.init(this.project_id, {
 				api_host: this.telemetry_host,
+				// autocapture: false,
 				autocapture: frappe.urllib.get_arg("posthog_session_id"),
-				autocapture: false,
 				capture_pageview: false,
 				capture_pageleave: false,
 				// advanced_disable_decide: disable_decide,
