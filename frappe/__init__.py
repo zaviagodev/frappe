@@ -2037,13 +2037,16 @@ def get_list(doctype, *args, **kwargs):
 	import frappe.model.db_query
 	from frappe.model.base_document import get_controller
 
-	softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
-	if softdelet == 1:
-		filter = kwargs.get("filters", {})
-		if type(filter) == list:
-			filter.append([doctype, "docstatus", "!=", "5"])
-		else:
-			filter["docstatus"] = ["!=", "5"]
+	try:
+		softdelet = frappe.db.get_value("DocType", doctype, "soft_delete")
+		if softdelet == 1:
+			filter = kwargs.get("filters", {})
+			if type(filter) == list:
+				filter.append([doctype, "docstatus", "!=", "5"])
+			else:
+				filter["docstatus"] = ["!=", "5"]
+	except Exception as e:
+		pass
 
 	controller = get_controller(doctype)
 	if hasattr(controller, "get_list"):
