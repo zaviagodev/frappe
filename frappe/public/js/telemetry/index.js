@@ -18,10 +18,15 @@ class TelemetryManager {
 		try {
 			posthog.init(this.project_id, {
 				api_host: this.telemetry_host,
+				autocapture: frappe.urllib.get_arg("posthog_session_id"),
 				autocapture: false,
 				capture_pageview: false,
 				capture_pageleave: false,
-				advanced_disable_decide: disable_decide,
+				// advanced_disable_decide: disable_decide,
+				person_profiles: 'identified_only',
+				bootstrap: {
+					sessionID: frappe.urllib.get_arg("posthog_session_id") 
+				}
 			});
 			posthog.identify(frappe.boot.sitename);
 			this.send_heartbeat();
