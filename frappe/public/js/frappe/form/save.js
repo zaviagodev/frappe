@@ -247,7 +247,7 @@ frappe.ui.form.save = function (frm, action, callback, btn) {
 				return true;
 			};
 
-			if (is_empty_row(in_list_view_cells)) {
+			if (is_empty_row(cells)) {
 				frappe.model.clear_doc(doc.doctype, doc.name);
 				modified_table_fields.push(doc.parentfield);
 			}
