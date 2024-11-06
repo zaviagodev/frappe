@@ -64,10 +64,10 @@ frappe.ui.form.on("Address", {
 	after_save: function (frm) {
 		// muzammal
 		frappe.call({
-			method: 'frappe.contacts.doctype.address.custom_address.checkPrimaryAddress',
+			method: 'frappe.contacts.doctype.address.custom_address.check_primary_address',
 			args: {
 				'links':frm.doc.links,
-				'reference':frm.doc.name,
+				'ref':frm.doc.name,
 			},
 			callback: function(r) {
 				if (!r.exc) {
@@ -102,7 +102,14 @@ frappe.ui.form.on("Address", {
 //muzammal
 $(document).ready(function () {
 	window.addEventListener('popstate', function (event) {
-		$("header").removeClass("hide");
+		show_header()
+	});
+	window.addEventListener('pushstate', function (event) {
+		show_header()
 	});
 });
+function show_header(){
+	$("header").removeClass("hide");
+	$("header").show();
+}
 //muzammal

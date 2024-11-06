@@ -465,8 +465,17 @@ frappe.ui.form.Layout = class Layout {
 		navbar.html('');  // Clear the navbar
 
 		if ( ( this.doc.docstatus == 0 || (typeof this.doc.__islocal !== 'undefined' && this.doc.__islocal)) && this.doctype === "Sales Invoice" ){
+			$('header.navbar.navbar-expand').addClass("hide");
+			$(this.frm.wrapper).find('#form-tabs').addClass("hide");
 			return;
 		}
+		else{
+			$('header.navbar.navbar-expand').removeClass("hide"); 
+			$(this.frm.wrapper).find('#form-tabs').removeClass("hide");
+		}
+
+
+
 
 		let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
 		navbar.html(`<div class="skel-row">

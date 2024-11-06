@@ -11,9 +11,10 @@ from frappe.model.document import Document
 from frappe.model.naming import make_autoname
 from frappe.utils import cstr
 import json
+from frappe.contacts.doctype.address.custom_address import customAddress
 # from frappe.contacts.doctype.address.custom_address import customAddress
 
-class Address(Document):
+class Address(Document,customAddress):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

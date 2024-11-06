@@ -6,6 +6,13 @@ frappe.ui.form.on("Contact", {
 		if( frm.doc.links.length<1  ){
 			frappe.throw(("Please create contact from customer"));
 		}
+
+	    if( frm.doc.first_name  == 'undefined' || frm.doc.first_name  == null || frm.doc.first_name  == '' ){
+			// $(".frappe-control[data-fieldname='first_name'] .control-value").html(frm.doc.links[0].link_name);
+			 if( frm.doc.links ){
+			  frm.set_value('first_name', frm.doc.links[0].link_name);   
+			 }
+		 }
 	},
 	onload(frm) {
 		frm.email_field = "email_id";
@@ -98,6 +105,22 @@ frappe.ui.form.on("Contact", {
 				);
 			}
 		}
+		//muzammal
+		frm.add_custom_button(__('Unlink and Delete'), function(){
+			frappe.call({
+					method: 'unlink_and_delete_contact',
+					args: {
+						'reference':frm.doc.name,
+					},
+					callback: function(r) {
+						if( r.message=="deleted" ){
+								location.replace("/app/contact/")                           
+
+						}
+					}
+			});
+		});
+		//muzammal
 	},
 	validate: function (frm) {
 		// clear linked customer / supplier / sales partner on saving...
@@ -129,6 +152,40 @@ frappe.ui.form.on("Contact", {
 				}
 			},
 		]);
+		//muzammal
+
+        let links='';
+        let email_phone='false';
+        let custom_checked_primary_contact='';
+        if( frm.doc.custom_checked_primary_contact==0 ){
+            custom_checked_primary_contact='false';
+            links=frm.doc.links;
+        }else{
+            custom_checked_primary_contact='true';
+            links="false";
+        }
+ 	    if( frm.doc.email_ids || frm.doc.phone_nos ){
+ 	        email_phone="yes";
+ 	    }
+	    frappe.call({
+                method: 'frappe.contacts.doctype.contact.custom_contact.primaryContactDetails',
+                args: {
+                    'reference':frm.doc.name,
+                    'links':links,
+                    'email_ids':frm.doc.email_ids,
+                    'phone_nos':frm.doc.phone_nos,
+                    'custom_checked_primary_contact':custom_checked_primary_contact,
+                },
+                callback: function(r) {
+                    if(r.message=="validate"){
+                        // frm.set_value("custom_checked_primary_contact",true);
+                        // frm.dirty();
+                        // frm.save();
+                        frm.reload_doc();
+                    }
+                }
+        });
+		//muzammal
 	},
 	sync_with_google_contacts: function (frm) {
 		if (frm.doc.sync_with_google_contacts) {

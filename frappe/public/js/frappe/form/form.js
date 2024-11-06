@@ -697,8 +697,12 @@ frappe.ui.form.Form = class FrappeForm {
 		this.refresh_updates();
 		if (typeof  this.doc.custom_sales_channel !== 'undefined' ) { 
 			let sale_channel=this.doc.custom_sales_channel
+			let customer=this.doc.customer
 			setTimeout(function() { 
 				sales_channel_logo(sale_channel);
+				if (typeof customer !== 'undefined' ) { 
+					getCustomerDetails(customer);
+				}
 			}, 1200);
 		}
 	}
@@ -838,6 +842,7 @@ frappe.ui.form.Form = class FrappeForm {
 				$('.new-doc-view header.navbar.navbar-expand').addClass("hide") 
 			}
 
+	
 			// this.layout.update_top_navigation();	
 
 			// setTimeout(() => {
@@ -2348,4 +2353,62 @@ function sales_channel_logo(selected_channel){
 			$(selected_channel).css("display","block")
 		}
 	}
+}
+function getCustomerDetails(customer) {
+	//muzammal
+	let url_args={
+		doctype:"Sales Invoice",
+		fields:["`tabSales Invoice`.`name`","`tabSales Invoice`.`status`","`tabSales Invoice Item`.`item_name` as 'Sales Invoice Item:name'","`tabSales Invoice`.`grand_total`","`tabSales Invoice`.`customer`","`tabSales Invoice Item`.`name` as 'Sales Invoice Item:itemdocname'"],
+		view:"Report",
+		filters:[["Sales Invoice","status","in",["Return","Paid",null]],["Sales Invoice","customer","=",customer]],
+		start:0,
+		// page_length	:"2500"
+	}
+	let args={
+			method: "frappe.desk.reportview.get",
+			args: url_args,
+			freeze: false,
+			freeze_message: __("Loading") + "...",
+		};
+		
+	frappe.call(args).then((r) => {
+		// render
+		let data=r.message.values
+		let all_orders=[]
+			let total_spending=0;
+			let total_spending_return=0;
+			let all_items=0
+			data.forEach(order => {
+				total_spending +=Math.abs(order[3])
+				if( order[1]=="Paid" ){
+					all_items=all_items+1
+				}
+				if( order[1]=="Return" ){
+					total_spending_return=total_spending_return+Math.abs( order[3] )
+				}
+				if( all_orders.includes( order[0] ) ){
+					return ;
+				}else{
+					if( order[1]=="Paid" ){
+						all_orders.push(order[0]);
+					}
+					
+				}
+			});
+			if( all_orders.length ){
+				let aov=(total_spending-total_spending_return-total_spending_return)/all_orders.length
+				aov=aov.toFixed(2)
+				$("#aov").text("฿ "+ numberWithCommas( aov ))
+				$("#total_orders").text(all_orders.length)
+				$("#bought_items").text(all_items)
+			}else{
+				$("#aov").text("฿ 0.00")
+				$("#total_orders").text("00")
+				$("#bought_items").text('00')
+			}
+			$("#lifetime_value").text("฿ "+numberWithCommas((total_spending-total_spending_return-total_spending_return).toFixed(2)) )
+	});
+}
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
