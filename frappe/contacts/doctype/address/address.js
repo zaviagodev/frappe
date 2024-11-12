@@ -13,9 +13,6 @@ frappe.ui.form.on("Address", {
 	},
 	onload: function (frm) {
 		if (frm.doc.__islocal) {
-			//bymuzammal
-			$("header").addClass("hide");
-			//by muzammal
 			const last_doc = frappe.contacts.get_last_doc(frm);
 			if (
 				frappe.dynamic_link &&
@@ -99,17 +96,3 @@ frappe.ui.form.on("Address", {
 		]);
 	},
 });
-//muzammal
-$(document).ready(function () {
-	window.addEventListener('popstate', function (event) {
-		show_header()
-	});
-	window.addEventListener('pushstate', function (event) {
-		show_header()
-	});
-});
-function show_header(){
-	$("header").removeClass("hide");
-	$("header").show();
-}
-//muzammal

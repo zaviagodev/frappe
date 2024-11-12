@@ -1114,8 +1114,12 @@ $(document).ready(function () {
     if (left_sidebar.attr("style") == "display: none;"){
       left_sidebar.attr("style", "")
     }
-
     sidebar_wrapper.toggle();
+    if (sidebar_wrapper.attr("style") == "display: block;"){
+        $(".layout-main-section-wrapper").css("max-width","72%")
+    }else{
+      $(".layout-main-section-wrapper").css("max-width","100%")
+    }
   });
 
   var sidebar = $('#rightside');
