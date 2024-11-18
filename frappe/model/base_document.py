@@ -389,6 +389,12 @@ class BaseDocument:
 
 			d[fieldname] = value
 
+		# add unregistered fields
+		if self.flags.allow_unregisted_fields:
+			for key in field_values:
+				if key not in d and key not in self._reserved_keywords and isinstance(field_values[key], (str, int, float)):
+					d[key] = field_values[key]
+  
 		return d
 
 	def init_child_tables(self):
