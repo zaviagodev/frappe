@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-07-09 11:21:31.006092",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general_setting_section",
+  "business_details",
+  "shipping_n_delivery",
+  "taxes",
+  "column_break_vtal",
+  "invoice_n_documents",
+  "currencies",
+  "personal_information",
+  "online_store_setting_section",
+  "website_setting",
+  "payments",
+  "column_break_tkje",
+  "online_store_regions",
+  "team_permission_section",
+  "the_team"
+ ],
+ "fields": [
+  {
+   "description": "Manage the settings of your business at zaviago",
+   "fieldname": "general_setting_section",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  },
+  {
+   "fieldname": "business_details",
+   "fieldtype": "HTML",
+   "options": "<a href=\"/app/company/Default%20Company\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n        <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/bdetailicon.svg\">\n        </span>\n        <div class=\"card-detail\">\n            <span>Business Details</span>\n            <span class=\"card-desc\">Manage your business Detail</span>\n        </div>\n        \n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "shipping_n_delivery",
+   "fieldtype": "HTML",
+   "options": "<a href=\"/app/shipping-rule\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/shipndel.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Shipping &amp; Delivery</span>\n                <span class=\"card-desc\">Choose where you ship and how much you charge for it</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "taxes",
+   "fieldtype": "HTML",
+   "options": "<a href=\"/app/sales-taxes-and-charges-template\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/taxesico.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Taxes</span>\n                <span class=\"card-desc\">Manage how taxes are calculated and shown in your store</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "column_break_vtal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_n_documents",
+   "fieldtype": "HTML",
+   "options": "<a href=\"\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n        <span class=\"settings-page-card-icon\">\n        <img src=\"/assets/frappe/images/invoic-ndocs.svg\">\n        </span>\n        <div class=\"card-detail\">\n            <span>Invoice &amp; Documents <img src=\"/assets/frappe/images/coming-sson.svg\"></span>\n            <span class=\"card-desc\">Customize your invoices </span>\n        </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "currencies",
+   "fieldtype": "HTML",
+   "options": "<a href=\"\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/curr-ico.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Currencies <img src=\"/assets/frappe/images/coming-sson.svg\"></span>\n                <span class=\"card-desc\">Manage the currencies that will be available in your store</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "personal_information",
+   "fieldtype": "HTML",
+   "options": "<a href=\"\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/pers-info.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Personal Information <img src=\"/assets/frappe/images/coming-sson.svg\"></span>\n                <span class=\"card-desc\">Manage your own personal workspace profile</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "online_store_setting_section",
+   "fieldtype": "Section Break",
+   "label": "Online Store Settings"
+  },
+  {
+   "fieldname": "website_setting",
+   "fieldtype": "HTML",
+   "options": "<a data-dependsonapp=\"webshop\" href=\"/app/webshop-settings/\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/web-set-ic.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Website Settings</span>\n                <span class=\"card-desc\">Manage general settings for your online store</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "payments",
+   "fieldtype": "HTML",
+   "options": "<a href=\"/app/webshop-settings/#tabpayment\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/bdetailicon.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Payments</span>\n                <span class=\"card-desc\">Manage your payment setting at checkout or payment links</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "column_break_tkje",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "online_store_regions",
+   "fieldtype": "HTML",
+   "options": "<a href=\"\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/mstoreregi.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Online Store Regions <img src=\"/assets/frappe/images/coming-sson.svg\"></span>\n                <span class=\"card-desc\">Manage the markets that you will operate within</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  },
+  {
+   "fieldname": "team_permission_section",
+   "fieldtype": "Section Break",
+   "label": "Team Permission <img src=\"/assets/frappe/images/sup-admin-ico.svg\">"
+  },
+  {
+   "fieldname": "the_team",
+   "fieldtype": "HTML",
+   "options": "<a href=\"\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/team-ico.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>The Team</span>\n                <span class=\"card-desc\">Manage users of your Workspace</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-11-18 16:03:57.053243",
+ "modified_by": "Administrator",
+ "module": "Core",
+ "name": "Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
