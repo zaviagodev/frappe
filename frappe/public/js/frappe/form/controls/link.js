@@ -309,6 +309,10 @@ frappe.ui.form.ControlLink = class ControlLink extends frappe.ui.form.ControlDat
 								r.message = r.message.concat(custom__link_options);
 							}
 
+							if(frappe?.custom_options &&(frappe?.custom_options[me.df.fieldname] ?? []).length) {
+								r.message = r.message.concat(frappe.custom_options[me.df.fieldname]);
+							}
+
 							// advanced search
 							if (locals && locals["DocType"]) {
 								// not applicable in web forms
