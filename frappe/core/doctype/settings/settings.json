@@ -75,7 +75,7 @@
   {
    "fieldname": "payments",
    "fieldtype": "HTML",
-   "options": "<a href=\"/app/webshop-settings/#tabpayment\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/bdetailicon.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Payments</span>\n                <span class=\"card-desc\">Manage your payment setting at checkout or payment links</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+   "options": "<a href=\"/app/webshop-settings/?initial_tab=payment_setting_tab\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/bdetailicon.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Payments</span>\n                <span class=\"card-desc\">Manage your payment setting at checkout or payment links</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
   },
   {
    "fieldname": "column_break_tkje",
