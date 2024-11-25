@@ -16,6 +16,7 @@ class CustomizeFormField(Document):
 		from frappe.types import DF
 
 		allow_bulk_edit: DF.Check
+		allow_user_options: DF.Check
 		allow_in_quick_entry: DF.Check
 		allow_on_submit: DF.Check
 		bold: DF.Check

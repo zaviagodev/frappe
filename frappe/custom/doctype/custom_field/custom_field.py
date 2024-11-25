@@ -21,6 +21,7 @@ class CustomField(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		allow_user_options: DF.Check
 		allow_in_quick_entry: DF.Check
 		allow_on_submit: DF.Check
 		bold: DF.Check
