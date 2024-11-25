@@ -49,6 +49,23 @@ frappe.ui.form.ControlLink = class ControlLink extends frappe.ui.form.ControlDat
 				me.$link.toggle(false);
 			}, 500);
 		});
+		if (this.df.allow_user_options) {
+			this.$input.on("keydown", function (e) {
+				// if enter key, open the link
+				if (e.which === 13) {
+					const doctype = me.get_options();
+					me.$input.cache[doctype][e.target.value] = [
+						{
+							label: e.target.value,
+							value: e.target.value,
+							description: e.target.value,
+						},
+					]
+					me.awesomplete.list = me.$input.cache[doctype][e.target.value];
+					e.preventDefault();
+				}
+			});
+		}
 		this.$input.attr("data-target", this.df.options);
 		this.input = this.$input.get(0);
 		this.has_input = true;
@@ -275,13 +292,13 @@ frappe.ui.form.ControlLink = class ControlLink extends frappe.ui.form.ControlDat
 						let filter_string = me.df.filter_description
 							? me.df.filter_description
 							: args.filters
-							? me.get_filter_description(args.filters)
-							: null;
+								? me.get_filter_description(args.filters)
+								: null;
 						if (filter_string) {
 							r.message.push({
 								html: `<span class="text-muted" style="line-height: 1.5">${filter_string}</span>`,
 								value: "",
-								action: () => {},
+								action: () => { },
 							});
 						}
 
@@ -309,7 +326,7 @@ frappe.ui.form.ControlLink = class ControlLink extends frappe.ui.form.ControlDat
 								r.message = r.message.concat(custom__link_options);
 							}
 
-							if(frappe?.custom_options &&(frappe?.custom_options[me.df.fieldname] ?? []).length) {
+							if (frappe?.custom_options && (frappe?.custom_options[me.df.fieldname] ?? []).length) {
 								r.message = r.message.concat(frappe.custom_options[me.df.fieldname]);
 							}
 
