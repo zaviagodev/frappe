@@ -52,6 +52,15 @@ frappe.ui.Tree = class {
 				const meta = frappe.model.user_settings[doctype];
 				let doctype_slug = frappe.router.slug(doctype);
 
+
+				if (doctype_slug == 'warehouse'){
+					$('header.navbar.navbar-expand').addClass("hide");
+					return;
+				}
+				else{
+					$('header.navbar.navbar-expand').removeClass("hide"); 
+				}
+
 				
 				if (meta && typeof meta === 'object') {
 					let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
@@ -75,16 +84,11 @@ frappe.ui.Tree = class {
 								if(key == active_view){
 									$(listItem).addClass("active");
 								}
-
 								listItem.append(anchor);
 								newList.append(listItem);
 							}
 						}
 					}
-
-					
-					console.log(newList);
-
 
 					$("#navbar-current-docname").html(newList);
 				}

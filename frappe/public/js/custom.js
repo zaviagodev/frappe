@@ -978,9 +978,9 @@ function handleImageListGrid(){
 // }
 
 $(document).ready(function () {
-  setInterval(() => {
-    handleImageListGrid()
-  }, 1)
+  // setInterval(() => {
+  //   handleImageListGrid()
+  // }, 1)
 
   $('#upper-menu').html(upperItems.map(item => {
     return `<a href="${item.link}" class="menulink-btn">
@@ -1115,16 +1115,16 @@ $(document).ready(function () {
       left_sidebar.attr("style", "")
     }
     sidebar_wrapper.toggle();
-    if (sidebar_wrapper.attr("style") == "display: block;"){
-        $(".layout-main-section-wrapper").css("max-width","72%")
-    }else{
-      $(".layout-main-section-wrapper").css("max-width","100%")
-    }
+    // if (sidebar_wrapper.attr("style") == "display: block;"){
+    //   $(".layout-main-section-wrapper").removeClass("main-section-full-width")
+    // }else{
+    //   $(".layout-main-section-wrapper").addClass("main-section-full-width")
+    // }
   });
 
   var sidebar = $('#rightside');
 
-  $('body').on('click', 'a.nav-link', function () {
+  $('body').on('click', 'a.nav-link', function (e) {
     e.preventDefault();
   });
 
@@ -1470,16 +1470,19 @@ $(document).ready(function () {
     e.originalEvent.deltaY < 0 ?
       $(".sidebar-search").addClass("active") :
       $(".sidebar-search").removeClass("active")
+    e.stopPropagation()
   }
 
   function moveSidebarMobile(e) {
     $("#sidebar-menus").scrollTop() < 1 ?
       $(".sidebar-search").addClass("active") :
       $(".sidebar-search").removeClass("active")
+    e.stopPropagation()
   }
 
-  $("#sidebar-menus").bind("scroll wheel", moveSidebar)
-  $("#sidebar-menus").bind("touchmove", moveSidebarMobile)
+  $("#sidebar-menus").on("scroll", moveSidebar);
+  $("#sidebar-menus").on("wheel", moveSidebar);
+  $("#sidebar-menus").on("touchmove", moveSidebarMobile);
 
   $(".modal-search-business-app input").on("input", function () {
     $(this).val() === "" ?
@@ -1575,6 +1578,11 @@ function sync_tabs() {
   let navtabs = $(".navtabs");
   $(navtabs[0]).trigger("click");
 }
+
+$(document).on("click touchend", (e) => {
+  $("#sidebar-menus").css({"-webkit-overflow-scrolling":"touch"})
+});
+
 $(document).ready(function () {
   // close floating sidebar
   $(document).mouseup(function (e) {
@@ -1862,7 +1870,7 @@ $(document).on('click', '.list-row-collapse', function (e) {
 $(document).ready(function () {
 	window.addEventListener('popstate', function (event) {
     setTimeout(() => {
-      $('body').removeClass("new-doc-view");
+      // $('body').removeClass("new-doc-view");
     }, 1000);
     
 	});

@@ -5,8 +5,12 @@ from frappe import _
 
 @frappe.whitelist()
 def delete_items():
+    
+    
     items = sorted(json.loads(frappe.form_dict.get("items")), reverse=True)
     doctype = frappe.form_dict.get("doctype")
+    return delete_bulk(doctype, items)
+
     if len(items) > 10:
         frappe.enqueue("frappe.desk.reportview.delete_bulk", doctype=doctype, items=items)
     else:

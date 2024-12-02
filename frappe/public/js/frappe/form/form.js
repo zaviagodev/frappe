@@ -772,7 +772,6 @@ frappe.ui.form.Form = class FrappeForm {
 	refresh_updates() {
 		let pagedata = this.page.parent;
 		pagedata = $(pagedata);
-		
 		// setTimeout(function(){
 			// if( this.navbar_loaded==false || this.doc.doctype != "Sales Invoice" ){
 			// 	console.log("skeleton")
@@ -828,7 +827,7 @@ frappe.ui.form.Form = class FrappeForm {
 
 			let lastClickedItem = null;
 			let tabslist = pagedata.find("#form-tabs").html();
-
+			// $(".layout-main-section-wrapper").addClass("main-section-full-width");
 			// Hide the navbar in case there are no menu tabs on each doctype
 			// let noMenuTabsDoctypes = ["Address","Pricing Rule", "Loyalty Program", "Coupon Code", "Promotional Scheme", "Brand", "Price List", "Payment Entry", "Customer Group", "Product Bundle", "Item Attribute", "Contact"]
 			// if (noMenuTabsDoctypes.includes(this.doc.doctype)) {
@@ -2378,29 +2377,35 @@ function getCustomerDetails(customer) {
 			let total_spending=0;
 			let total_spending_return=0;
 			let all_items=0
+			let paid_orders=0
+			let returned_orders=0
 			data.forEach(order => {
-				total_spending +=Math.abs(order[3])
 				if( order[1]=="Paid" ){
 					all_items=all_items+1
 				}
 				if( order[1]=="Return" ){
-					total_spending_return=total_spending_return+Math.abs( order[3] )
+					returned_items=returned_items+1;
 				}
 				if( all_orders.includes( order[0] ) ){
 					return ;
 				}else{
+					all_orders.push(order[0]);
 					if( order[1]=="Paid" ){
-						all_orders.push(order[0]);
+						total_spending +=Math.abs(order[3])
+						paid_orders=paid_orders+1
 					}
-					
+					if( order[1]=="Return" ){
+						total_spending_return=total_spending_return+Math.abs( order[3] )
+						returned_orders=returned_orders+1;
+					}
 				}
 			});
 			if( all_orders.length ){
 				let aov=(total_spending-total_spending_return-total_spending_return)/all_orders.length
 				aov=aov.toFixed(2)
 				$("#aov").text("฿ "+ numberWithCommas( aov ))
-				$("#total_orders").text(all_orders.length)
-				$("#bought_items").text(all_items)
+				$("#total_orders").text(paid_orders-returned_orders)
+				$("#bought_items").text(all_items-returned_items)
 			}else{
 				$("#aov").text("฿ 0.00")
 				$("#total_orders").text("00")

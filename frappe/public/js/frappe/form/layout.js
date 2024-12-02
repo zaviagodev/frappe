@@ -464,7 +464,10 @@ frappe.ui.form.Layout = class Layout {
 		var navbar = $("#navbar-current-docname");
 		navbar.html('');  // Clear the navbar
 
-		if ( ( this.doc.docstatus == 0 || (typeof this.doc.__islocal !== 'undefined' && this.doc.__islocal)) && this.doctype === "Sales Invoice" ){
+		console.log(this.doc);
+
+
+		if ( ( (this.doc.docstatus == 0 || (typeof this.doc.__islocal !== 'undefined' && this.doc.__islocal)) && this.doctype === "Sales Invoice") || ( this.doctype === "Item" && this.doc.__islocal )  ){
 			$('header.navbar.navbar-expand').addClass("hide");
 			$(this.frm.wrapper).find('#form-tabs').addClass("hide");
 			return;
@@ -475,6 +478,7 @@ frappe.ui.form.Layout = class Layout {
 		}
 
 
+		console.log(this.doc);
 
 
 		let newList = $('<ul class="header-menu-list-view" id="header_menu"></ul>');
@@ -484,12 +488,12 @@ frappe.ui.form.Layout = class Layout {
 
 		$("#freeze").hide()
 
+
 		let activetabs = [];
 		for (let df of this.tabs) {
 			if (!df.hidden) {
 				let listItem = $('<li></li>');
 				let anchor = $('<a href="#" data-fieldname="' + df.df.fieldname + '"></a>').text(df.df.label);
-				
 				// Click event for the anchor
 				anchor.click((e) => {
 					e.preventDefault();
@@ -497,23 +501,26 @@ frappe.ui.form.Layout = class Layout {
 					$(listItem).siblings().removeClass("active");
 					$(listItem).addClass("active");
 				});
-	
 				// Set the active class if this tab is currently active
 				if (this.frm?.get_active_tab?.()?.df?.label == df.df.label) {
 					$(listItem).addClass("active");
 				}
-				
 				activetabs.push(df.df.fieldname);
 				listItem.append(anchor);
 				newList.append(listItem);
 			}
 		}
+
 		if(activetabs.length === 0){
 			$("header.navbar").hide();  
 		}
-		else{
+		else if(activetabs.length > 1){
 			$("header.navbar").show();  
 		}
+		else{
+			$("header.navbar").hide();  
+		}
+
 
 		// Set the new HTML directly
 		setTimeout(function(){

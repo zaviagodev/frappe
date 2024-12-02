@@ -12,7 +12,6 @@ from frappe.model.naming import make_autoname
 from frappe.utils import cstr
 import json
 from frappe.contacts.doctype.address.custom_address import customAddress
-# from frappe.contacts.doctype.address.custom_address import customAddress
 
 class Address(Document,customAddress):
 	# begin: auto-generated types
@@ -72,12 +71,44 @@ class Address(Document,customAddress):
 				)
 		else:
 			throw(_("Address Title is mandatory."))
+		
 
 	def validate(self):
+		if( self.links[0].link_doctype=="Company" ):
+			primary_address=False
+			shipping_address=False
+			company_all_address = frappe.get_all("Dynamic Link", 
+						filters={"link_doctype": "Company", "link_name": self.links[0].link_name}, 
+						fields=["parent"])
+			if( self.disabled==False ):
+				for ad in company_all_address:
+					if( ad.is_primary_address and ad.disabled==False ):
+						primary_address=True
+					if( ad.is_shipping_address and ad.disabled==False ):
+						shipping_address=True
+				if( primary_address == False ):
+					self.is_primary_address=True
+
+				if( shipping_address == False ):
+					self.is_shipping_address=True
+			else:
+				self.is_primary_address=False
+				self.is_shipping_address=False
+				for add in company_all_address:
+					c_address=frappe.get_doc("Address",add.parent)
+					if( c_address.disabled == False ):
+						if( c_address.name != self.name ):
+							c_address.is_primary_address=True
+							c_address.is_shipping_address=True
+							c_address.save()
+							break
+
 		self.link_address()
 		self.validate_preferred_address()
 		set_link_title(self)
 		deduplicate_dynamic_links(self)
+
+
 
 	def link_address(self):
 		"""Link address based on owner"""
