@@ -70,7 +70,7 @@
   {
    "fieldname": "website_setting",
    "fieldtype": "HTML",
-   "options": "<a data-dependsonapp=\"webshop\" href=\"/app/webshop-settings/\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/web-set-ic.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Website Settings</span>\n                <span class=\"card-desc\">Manage general settings for your online store</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
+   "options": "<a data-dependsonapp=\"webshop\" href=\"/app/webshop-settings/?initial_tab=__details\" class=\"settings-page-card\">\n    <div class=\"card-left\">\n            <span class=\"settings-page-card-icon\">\n            <img src=\"/assets/frappe/images/web-set-ic.svg\">\n            </span>\n            <div class=\"card-detail\">\n                <span>Website Settings</span>\n                <span class=\"card-desc\">Manage general settings for your online store</span>\n            </div>\n    </div>\n    <div class=\"card-right\">\n        <span class=\"settings-page-card-icon-right\">\n            <img src=\"/assets/frappe/images/chevron-right.svg\">\n        </span>\n    </div>\n</a>"
   },
   {
    "fieldname": "payments",
